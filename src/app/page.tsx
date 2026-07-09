@@ -11,8 +11,7 @@ import DownloadSection from "@/components/home/DownloadSection";
 import WelcomeVideoOverlay from "@/components/home/WelcomeVideoOverlay";
 
 const Index = () => {
-  const { language } = useLanguage();
-  console.log('Index page rendering with FeaturedBooksCarousel');
+  useLanguage();
 
   return (
     <PageWrapper>

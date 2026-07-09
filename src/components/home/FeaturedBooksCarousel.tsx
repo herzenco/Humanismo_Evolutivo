@@ -6,18 +6,10 @@ import { motion, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
-} from '@/components/ui/carousel';
 import { books } from '@/data/books';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const FeaturedBooksCarousel = () => {
-  console.log('🔥 FeaturedBooksCarousel RENDERED - Grid Layout Version');
   const ref = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
   const isInView = useInView(ref, {

@@ -1,16 +1,15 @@
 "use client";
 
-import { useState, useEffect, Suspense } from 'react';
+import { useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Search as SearchIcon, BookOpen, Headphones, Video, ArrowRight } from 'lucide-react';
+import { Search as SearchIcon, BookOpen, Headphones, Video } from 'lucide-react';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { books } from '@/data/books';
 import { podcasts, videos } from '@/data/media';
 import { getPodcastEpisodeContent } from '@/data/podcastEpisodeContent';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 // Helper function to normalize strings (remove accents and diacritics)
@@ -45,16 +44,9 @@ const Search = () => {
   const { t, language } = useLanguage();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
-  const [searchResults, setSearchResults] = useState<{
-    books: typeof books;
-    podcasts: typeof podcasts;
-    videos: typeof videos;
-  }>({ books: [], podcasts: [], videos: [] });
-
-  useEffect(() => {
+  const searchResults = useMemo(() => {
     if (!query.trim()) {
-      setSearchResults({ books: [], podcasts: [], videos: [] });
-      return;
+      return { books: [], podcasts: [], videos: [] };
     }
 
     const searchTerm = query.toLowerCase();
@@ -99,19 +91,22 @@ const Search = () => {
                  fuzzyMatch(searchTerm, category);
         });
 
-    setSearchResults({
+    return {
       books: matchedBooks,
       podcasts: matchedPodcasts,
       videos: matchedVideos
-    });
+    };
+  }, [query, t]);
 
+  useEffect(() => {
+    if (!query.trim()) return;
     // Track search event
     (window as any).dataLayer?.push({
       event: 'search_performed',
       search_term: query,
-      results_count: matchedBooks.length + matchedPodcasts.length + matchedVideos.length
+      results_count: searchResults.books.length + searchResults.podcasts.length + searchResults.videos.length
     });
-  }, [query, t]);
+  }, [query, searchResults.books.length, searchResults.podcasts.length, searchResults.videos.length]);
 
   const totalResults = searchResults.books.length + searchResults.podcasts.length + searchResults.videos.length;
 

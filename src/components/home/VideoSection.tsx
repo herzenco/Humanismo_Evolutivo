@@ -12,13 +12,15 @@ const VideoSection = () => {
     amount: 0.3
   });
 
+  const featuredVideoUrl = 'https://www.youtube.com/embed/5rmKRNZbmoQ?rel=0';
+
   const videoConfig = {
     es: {
-      url: 'https://www.youtube.com/embed/-AzSGmQe8fM?rel=0',
+      url: featuredVideoUrl,
       title: 'Introducción a la filosofía del Humanismo Evolutivo'
     },
     en: {
-      url: 'https://www.youtube.com/embed/-zKX_ltV9QU?rel=0',
+      url: featuredVideoUrl,
       title: 'Introduction to Evolutionary Humanism philosophy'
     }
   };

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, MessageSquare } from 'lucide-react';
+import Script from 'next/script';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -204,7 +205,7 @@ const Contacto = () => {
                         title="Contact Us - Yo Soy Nosotros"
                         scrolling="no"
                       ></iframe>
-                      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+                      <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
                     </div>
                   </div>
                 </motion.div>

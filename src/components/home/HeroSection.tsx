@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 const HeroSection = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -25,23 +25,8 @@ const HeroSection = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-  const scrollToContent = () => {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: 'scroll_to_content',
-      section: 'hero'
-    });
-    const contentElement = document.getElementById('content');
-    if (contentElement) {
-      contentElement.scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
-  };
-
   const trackHeroCTA = (ctaType: string, destination: string) => {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
+    window.dataLayer?.push({
       event: 'hero_cta_click',
       cta_type: ctaType,
       destination: destination
@@ -133,20 +118,20 @@ const HeroSection = () => {
           duration: 0.5,
           delay: 0.8
         }} className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-            <a 
-              href="/libros" 
+            <Link
+              href="/libros"
               className="px-8 py-4 bg-gold text-navy-dark font-semibold rounded-xl hover:bg-gold/90 transition-all duration-300 shadow-2xl hover:shadow-gold/25 transform hover:scale-105 backdrop-blur-sm border border-gold/20"
               onClick={() => trackHeroCTA('explore_books', '/libros')}
             >
               {t('hero.explore')}
-            </a>
-            <a 
-              href="/autor" 
+            </Link>
+            <Link
+              href="/autor"
               className="px-8 py-4 bg-white/20 backdrop-blur-md border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/30 transition-all duration-300 shadow-2xl transform hover:scale-105"
               onClick={() => trackHeroCTA('about_author', '/autor')}
             >
               {t('hero.about')}
-            </a>
+            </Link>
           </motion.div>
 
           

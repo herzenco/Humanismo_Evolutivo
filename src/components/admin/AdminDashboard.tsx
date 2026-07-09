@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Image, FileText, Download, Users } from 'lucide-react';
+import { ImageIcon, FileText, Download, Users } from 'lucide-react';
 
 export const AdminDashboard = () => {
   const { data: stats, isLoading } = useQuery({
@@ -44,7 +44,7 @@ export const AdminDashboard = () => {
             <CardTitle className="text-sm font-medium">
               Series de Podcasts
             </CardTitle>
-            <Image className="h-4 w-4 text-muted-foreground" />
+            <ImageIcon className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats?.totalPodcasts}</div>
@@ -59,7 +59,7 @@ export const AdminDashboard = () => {
             <CardTitle className="text-sm font-medium">
               Total de Imágenes
             </CardTitle>
-            <Image className="h-4 w-4 text-muted-foreground" />
+            <ImageIcon className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats?.totalImages}</div>

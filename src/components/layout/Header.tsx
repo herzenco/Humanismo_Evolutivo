@@ -20,8 +20,7 @@ const Header = () => {
   const { isAdmin } = useAdmin();
 
   const trackNavigation = (linkName: string, path: string) => {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
+    window.dataLayer?.push({
       event: 'navigation_click',
       link_name: linkName,
       link_path: path,

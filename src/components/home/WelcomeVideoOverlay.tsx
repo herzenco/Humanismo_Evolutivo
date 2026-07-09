@@ -4,20 +4,23 @@ import { useState, useEffect } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { X } from 'lucide-react';
 
+const WELCOME_VIDEO_ID = '5rmKRNZbmoQ';
+const WELCOME_VIDEO_STORAGE_KEY = `welcomeVideoSeen:${WELCOME_VIDEO_ID}`;
+const WELCOME_VIDEO_URL = `https://www.youtube.com/embed/${WELCOME_VIDEO_ID}?autoplay=1&rel=0`;
+const WELCOME_VIDEO_DELAY_MS = 5000;
+
 const WelcomeVideoOverlay = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Check if user has visited before
-    const hasVisited = localStorage.getItem('hasVisitedBefore');
+    const hasVisited = localStorage.getItem(WELCOME_VIDEO_STORAGE_KEY);
     
     if (!hasVisited) {
-      // Set timer to show overlay after 5 seconds
       const timer = setTimeout(() => {
         setIsOpen(true);
-        // Mark user as having visited
-        localStorage.setItem('hasVisitedBefore', 'true');
-      }, 5000);
+        localStorage.setItem(WELCOME_VIDEO_STORAGE_KEY, 'true');
+        window.dataLayer?.push({ event: 'welcome_video_open', video_id: WELCOME_VIDEO_ID });
+      }, WELCOME_VIDEO_DELAY_MS);
 
       return () => clearTimeout(timer);
     }
@@ -25,10 +28,17 @@ const WelcomeVideoOverlay = () => {
 
   const handleClose = () => {
     setIsOpen(false);
+    window.dataLayer?.push({ event: 'welcome_video_close', video_id: WELCOME_VIDEO_ID });
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      if (!open) {
+        handleClose();
+        return;
+      }
+      setIsOpen(true);
+    }}>
       <DialogContent className="max-w-4xl w-full p-0 bg-background border border-border">
         <div className="relative">
           <button
@@ -48,7 +58,7 @@ const WelcomeVideoOverlay = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/-AzSGmQe8fM?autoplay=1&rel=0"
+                src={WELCOME_VIDEO_URL}
                 title="Video de bienvenida"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
