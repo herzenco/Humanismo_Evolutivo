@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { X } from 'lucide-react';
 
 const WELCOME_VIDEO_ID = '5rmKRNZbmoQ';
@@ -50,9 +50,9 @@ const WelcomeVideoOverlay = () => {
           </button>
           
           <div className="p-6">
-            <h2 className="text-2xl font-bold text-center mb-4 text-foreground">
+            <DialogTitle className="text-2xl font-bold text-center mb-4 text-foreground">
               Bienvenido
-            </h2>
+            </DialogTitle>
             
             <div className="aspect-video">
               <iframe
