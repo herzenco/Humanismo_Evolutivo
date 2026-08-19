@@ -12,6 +12,17 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      // OCC content can reference approved images from different publishing CDNs.
+      {
+        protocol: "https",
+        hostname: "**",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
+        pathname: "/**",
+      },
     ],
   },
 };

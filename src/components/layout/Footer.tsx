@@ -134,6 +134,15 @@ const Footer = () => {
                   Podcast
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/resources"
+                  className="text-white/70 hover:text-gold transition-colors"
+                  onClick={() => trackFooterLink("quick_links", "Recursos", "/resources")}
+                >
+                  Recursos
+                </Link>
+              </li>
             </ul>
           </div>
 
