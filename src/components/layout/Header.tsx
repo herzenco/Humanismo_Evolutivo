@@ -68,10 +68,13 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center" aria-label="Humanismo Evolutivo - Página de inicio">
+        <Link href="/" className="flex flex-col items-start leading-none" aria-label="Humanismo Evolutivo Transpersonal - Página de inicio">
           <div className="font-heading text-2xl font-semibold tracking-tight">
             <span className="text-primary">Humanismo</span> <span className="text-gold">Evolutivo</span>
           </div>
+          <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.32em] text-primary/70">
+            Transpersonal
+          </span>
         </Link>
 
         {/* Desktop Navigation */}

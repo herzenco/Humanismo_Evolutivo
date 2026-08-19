@@ -22,6 +22,9 @@ const Privacidad = () => {
             <p className="text-xl text-muted-foreground">
               Fundación Humanismo Evolutivo
             </p>
+            <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-gold">
+              Transpersonal
+            </p>
             <p className="text-sm text-muted-foreground mt-2">
               Última actualización: noviembre de 2025
             </p>
@@ -231,7 +234,12 @@ const Privacidad = () => {
           {/* Footer Section */}
           <div className="mt-16 pt-8 border-t border-border">
             <div className="text-center space-y-4">
-              <h3 className="text-2xl font-bold">Fundación Humanismo Evolutivo</h3>
+              <div>
+                <h3 className="text-2xl font-bold">Fundación Humanismo Evolutivo</h3>
+                <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-gold">
+                  Transpersonal
+                </p>
+              </div>
               <p className="text-lg italic text-muted-foreground">
                 Comprometida con la conciencia, el conocimiento y la integridad en cada acción.
               </p>

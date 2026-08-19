@@ -54,7 +54,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* About */}
           <div>
-            <h2 className="font-heading text-xl font-medium mb-4">Humanismo Evolutivo</h2>
+            <h2 className="font-heading text-xl font-medium">Humanismo Evolutivo</h2>
+            <p className="mt-1 mb-4 text-[10px] font-medium uppercase tracking-[0.32em] text-gold/80">
+              Transpersonal
+            </p>
             <p className="text-white/70 mb-4">
               Una visión transpersonal del mundo a través de la filosofía, espiritualidad y ecología.
             </p>
