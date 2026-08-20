@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "sync-resources": "node scripts/sync-resources.mjs",
+    "test": "node --test scripts/*.test.mjs",
+    "build": "npm run sync-resources && npm test && next build",
+    "build:site": "next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -48,6 +51,7 @@
     "framer-motion": "^12.38.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.462.0",
+    "marked": "^16.4.2",
     "next": "16.2.2",
     "next-themes": "^0.4.6",
     "react": "19.2.4",
@@ -56,6 +60,7 @@
     "react-hook-form": "^7.72.0",
     "react-resizable-panels": "^4.8.0",
     "recharts": "^3.8.1",
+    "sanitize-html": "^2.17.7",
     "sharp": "^0.34.5",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",

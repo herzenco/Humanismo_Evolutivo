@@ -55,6 +55,7 @@ const Header = () => {
     { name: t('nav.books'), path: '/libros' },
     { name: t('nav.podcast'), path: '/medios' },
     { name: t('nav.events'), path: '/eventos' },
+    { name: t('nav.resources'), path: '/resources' },
     { name: t('nav.vision'), path: '/vision' },
   ];
 
@@ -78,8 +79,8 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
-          <nav className="flex items-center space-x-6">
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
+          <nav className="flex items-center space-x-4 xl:space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -99,7 +100,7 @@ const Header = () => {
               placeholder={language === 'es' ? 'Buscar...' : 'Search...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-48 lg:w-64 pl-10 pr-4 py-2 rounded-full bg-background/50 border-muted focus:border-gold transition-colors"
+              className="w-40 xl:w-64 pl-10 pr-4 py-2 rounded-full bg-background/50 border-muted focus:border-gold transition-colors"
             />
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           </form>
@@ -118,7 +119,7 @@ const Header = () => {
         </div>
 
         {/* Mobile menu button and language toggle */}
-        <div className="flex items-center space-x-2 md:hidden">
+        <div className="flex items-center space-x-2 lg:hidden">
           <LanguageToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -137,7 +138,7 @@ const Header = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-background/95 backdrop-blur-md shadow-lg"
+          className="lg:hidden bg-background/95 backdrop-blur-md shadow-lg"
         >
           <div className="container mx-auto py-4 space-y-4">
             {/* Mobile Search */}

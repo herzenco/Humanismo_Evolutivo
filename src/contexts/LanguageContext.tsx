@@ -20,6 +20,7 @@ const translations = {
     'nav.podcast': 'Medios',
     'nav.events': 'Eventos',
     'nav.vision': 'Visión',
+    'nav.resources': 'Recursos',
     'nav.contact': 'Contacto',
     'nav.chatbot': 'Chatbot',
     
@@ -492,6 +493,7 @@ const translations = {
     'nav.podcast': 'Media',
     'nav.events': 'Events',
     'nav.vision': 'Vision',
+    'nav.resources': 'Resources',
     'nav.contact': 'Contact',
     'nav.chatbot': 'Chatbot',
     

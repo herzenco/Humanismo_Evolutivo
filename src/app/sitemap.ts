@@ -2,9 +2,10 @@ import type { MetadataRoute } from 'next'
 import { books } from '@/data/books'
 import { events } from '@/data/events'
 import { podcastSeries } from '@/data/media'
+import { resourceArticles } from '@/data/resources'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://yosoynosotros.org'
+  const baseUrl = (process.env.SITE_URL || 'https://yosoynosotros.org').replace(/\/$/, '')
 
   // Static pages
   const staticPages = [
@@ -13,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/libros',
     '/medios',
     '/eventos',
+    '/resources',
     '/contacto',
     '/vision',
     '/chatbot',
@@ -59,5 +61,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   )
 
-  return [...staticPages, ...bookPages, ...eventPages, ...showPages, ...episodePages]
+  // OCC-managed resource article pages
+  const resourcePages = resourceArticles.map(article => ({
+    url: `${baseUrl}/resources/${article.slug}/`,
+    lastModified: new Date(article.updatedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  return [...staticPages, ...bookPages, ...eventPages, ...showPages, ...episodePages, ...resourcePages]
 }

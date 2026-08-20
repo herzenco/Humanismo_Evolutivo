@@ -212,3 +212,86 @@ html {
   left: 0;
   top: 0;
 }
+
+/* Sanitized OCC article content */
+.resource-prose {
+  @apply text-lg leading-8 text-navy-light;
+}
+
+.resource-prose > * + * {
+  @apply mt-6;
+}
+
+.resource-prose h2 {
+  @apply mt-14 font-heading text-4xl font-medium leading-tight text-navy-dark;
+}
+
+.resource-prose h3 {
+  @apply mt-10 font-heading text-3xl font-medium leading-tight text-navy-dark;
+}
+
+.resource-prose h4,
+.resource-prose h5,
+.resource-prose h6 {
+  @apply mt-8 font-heading text-2xl font-medium leading-tight text-navy-dark;
+}
+
+.resource-prose strong {
+  @apply font-semibold text-navy-dark;
+}
+
+.resource-prose a {
+  @apply font-medium text-gold-dark underline decoration-gold/50 underline-offset-4 transition-colors hover:text-navy-dark;
+}
+
+.resource-prose ul {
+  @apply list-disc space-y-2 pl-7;
+}
+
+.resource-prose ol {
+  @apply list-decimal space-y-2 pl-7;
+}
+
+.resource-prose blockquote {
+  @apply border-l-4 border-gold bg-cream-light/60 px-7 py-5 font-heading text-2xl italic leading-relaxed text-navy-dark;
+}
+
+.resource-prose code {
+  @apply rounded bg-navy-dark/5 px-1.5 py-0.5 font-mono text-[0.9em] text-navy-dark;
+}
+
+.resource-prose pre {
+  @apply overflow-x-auto rounded-2xl bg-navy-dark p-6 text-sm leading-7 text-white;
+}
+
+.resource-prose pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+
+.resource-prose img {
+  @apply mx-auto h-auto max-w-full rounded-2xl shadow-lg;
+}
+
+.resource-prose figure {
+  @apply my-10;
+}
+
+.resource-prose figcaption {
+  @apply mt-3 text-center text-sm text-muted-foreground;
+}
+
+.resource-prose table {
+  @apply my-10 block w-full overflow-x-auto border-collapse text-left text-base;
+}
+
+.resource-prose th {
+  @apply border border-border bg-cream-light px-4 py-3 font-semibold text-navy-dark;
+}
+
+.resource-prose td {
+  @apply border border-border px-4 py-3 align-top;
+}
+
+.resource-prose hr {
+  @apply my-12 border-gold/30;
+}
