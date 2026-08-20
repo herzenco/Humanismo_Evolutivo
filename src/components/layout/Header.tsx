@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Menu, X, Search, Shield } from 'lucide-react';
+import { GraduationCap, Menu, X, Search, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { LanguageToggle } from '@/components/ui/language-toggle';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -105,6 +105,19 @@ const Header = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           </form>
 
+          <Link
+            href="/portal"
+            className="flex items-center gap-2 rounded-full border border-gold/35 px-3 py-2 text-sm font-medium text-primary transition-colors hover:border-gold hover:bg-gold/10"
+            title={language === 'es' ? 'Portal educativo' : 'Education portal'}
+            aria-label={language === 'es' ? 'Portal educativo' : 'Education portal'}
+            onClick={() => trackNavigation('Portal educativo', '/portal')}
+          >
+            <GraduationCap className="h-5 w-5" />
+            <span className="hidden xl:inline">
+              {language === 'es' ? 'Portal' : 'Portal'}
+            </span>
+          </Link>
+
           {isAdmin && (
             <Link
               href="/admin"
@@ -169,6 +182,17 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
+              <Link
+                href="/portal"
+                className="flex items-center gap-2 rounded-md px-4 py-2 font-medium text-primary transition-colors hover:bg-gold/10"
+                onClick={() => {
+                  trackNavigation('Portal educativo', '/portal');
+                  setMobileMenuOpen(false);
+                }}
+              >
+                <GraduationCap className="h-4 w-4" />
+                {language === 'es' ? 'Portal educativo' : 'Education portal'}
+              </Link>
               {isAdmin && (
                 <Link
                   href="/admin"

@@ -146,6 +146,15 @@ const Footer = () => {
                   Recursos
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/portal"
+                  className="text-white/70 hover:text-gold transition-colors"
+                  onClick={() => trackFooterLink("quick_links", "Portal educativo", "/portal")}
+                >
+                  Portal educativo
+                </Link>
+              </li>
             </ul>
           </div>
 
