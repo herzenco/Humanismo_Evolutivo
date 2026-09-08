@@ -17,11 +17,11 @@ const VideoSection = () => {
   const videoConfig = {
     es: {
       url: featuredVideoUrl,
-      title: 'Introducción a la filosofía del Humanismo Evolutivo'
+      title: 'Introducción a la filosofía del Humanismo Evolutivo Transpersonal'
     },
     en: {
       url: featuredVideoUrl,
-      title: 'Introduction to Evolutionary Humanism philosophy'
+      title: 'Introduction to Transpersonal Evolutionary Humanism philosophy'
     }
   };
 

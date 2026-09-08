@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 const HeroSection = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!parallaxRef.current) return;
@@ -34,7 +34,7 @@ const HeroSection = () => {
   };
   return <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden" aria-labelledby="hero-title" ref={parallaxRef}>
       {/* Background image */}
-      <div className="absolute inset-0 z-0" role="img" aria-label="Fondo artístico representando el universo y la conciencia humana">
+      <div className="absolute inset-0 z-0" role="img" aria-label={language === 'es' ? 'Fondo artístico que representa el universo y la consciencia humana' : 'Artistic background representing the universe and human consciousness'}>
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
         backgroundImage: `url('/lovable-uploads/90db5ca6-bf10-4c20-8ad6-b97482d17cce.png')`
       }} />

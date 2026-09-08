@@ -53,7 +53,7 @@ export const BookStructuredData = ({
         },
         {
           "@type": "Thing",
-          "name": "Conciencia Humana"
+          "name": "Consciencia Humana"
         },
         {
           "@type": "Thing",

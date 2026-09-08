@@ -31,13 +31,15 @@ const Autor = () => {
     <PageWrapper>
       <PersonStructuredData
         name="Marcos Constandse Madrazo"
-        jobTitle="Filósofo y Autor"
-        description="Pensador transpersonal mexicano dedicado a la integración de ciencia, espiritualidad y conciencia humana"
+        jobTitle={language === 'es' ? 'Filósofo y autor' : 'Philosopher and author'}
+        description={language === 'es'
+          ? 'Pensador transpersonal mexicano dedicado a la integración de ciencia, espiritualidad y consciencia humana'
+          : 'Mexican transpersonal thinker dedicated to integrating science, spirituality, and human consciousness'}
         image="https://yosoynosotros.com/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.png"
         url="https://yosoynosotros.com/autor"
       />
       {/* Elegant Hero Section */}
-      <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden" aria-label="Sección principal del autor">
+      <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden" aria-label={language === 'es' ? 'Sección principal del autor' : 'Author introduction'}>
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
@@ -122,7 +124,7 @@ const Autor = () => {
                 <div className="absolute -inset-4 bg-gradient-to-br from-gold/20 to-primary/20 rounded-2xl blur-xl"></div>
                 <img
                   src="/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.png"
-                  alt="Marcos Constandse Madrazo - Filósofo y autor transpersonal mexicano"
+                  alt={language === 'es' ? 'Marcos Constandse Madrazo, filósofo y autor transpersonal mexicano' : 'Marcos Constandse Madrazo, Mexican transpersonal philosopher and author'}
                   className="relative rounded-2xl shadow-2xl w-full h-auto"
                   loading="lazy"
                 />

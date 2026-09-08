@@ -7,7 +7,7 @@ import PageWrapper from "@/components/layout/PageWrapper";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Contacto = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -242,8 +242,8 @@ const Contacto = () => {
               <div className="w-full h-full flex items-center justify-center">
                 <div className="text-center">
                   <MapPin className="w-16 h-16 text-navy-dark mx-auto mb-4" />
-                  <p className="text-2xl font-heading text-navy-dark">Mapa Interactivo</p>
-                  <p className="text-navy-light">Integración con Google Maps próximamente</p>
+                  <p className="text-2xl font-heading text-navy-dark">{language === 'es' ? 'Mapa interactivo' : 'Interactive map'}</p>
+                  <p className="text-navy-light">{language === 'es' ? 'Integración con Google Maps próximamente' : 'Google Maps integration coming soon'}</p>
                 </div>
               </div>
             </motion.div>

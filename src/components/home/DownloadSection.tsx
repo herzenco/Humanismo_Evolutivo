@@ -13,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle 
 } from '@/components/ui/dialog';
-import { books } from '@/data/books';
+import { books, localizeBook } from '@/data/books';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -33,6 +33,7 @@ const DownloadSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { language, t } = useLanguage();
+  const localizedBooks = books.map((book) => localizeBook(book, t));
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -190,7 +191,9 @@ const DownloadSection = () => {
     }
   };
 
-  const selectedBookData = selectedBook ? books.find(book => book.id === selectedBook) : null;
+  const selectedBookData = selectedBook
+    ? localizedBooks.find((book) => book.id === selectedBook)
+    : null;
 
   return (
     <section className="py-20 lg:py-28 bg-white" ref={ref}>
@@ -215,7 +218,7 @@ const DownloadSection = () => {
             variants={itemVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {books.slice(0, 3).map((book) => (
+            {localizedBooks.slice(0, 3).map((book) => (
               <div 
                 key={book.id} 
                 className="bg-cream-light p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
@@ -253,7 +256,8 @@ const DownloadSection = () => {
             <DialogTitle className="text-center text-2xl font-heading">
               {isSubmitted ? t('download.dialog.thanks') : t('download.dialog.title')}
             </DialogTitle>
-            <DialogDescription className="text-center">
+            <DialogDescription asChild>
+              <div className="text-center">
               {isSubmitted ? (
                 <div className="flex flex-col items-center py-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
@@ -271,6 +275,7 @@ const DownloadSection = () => {
                   {t('download.dialog.complete')} {selectedBookData?.title}.
                 </p>
               )}
+              </div>
             </DialogDescription>
           </DialogHeader>
 

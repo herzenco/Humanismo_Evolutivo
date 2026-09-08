@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import NewsletterSignup from "@/components/layout/NewsletterSignup";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const trackFooterLink = (linkType: string, linkName: string, destination: string) => {
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({
@@ -28,27 +31,9 @@ const Footer = () => {
       <div className="container mx-auto">
         {/* Newsletter Signup */}
         <div className="mb-12 p-8 bg-navy-light rounded-lg shadow-lg">
-          <h3 className="text-2xl font-heading font-medium mb-2 text-center">Recibe nuestras novedades</h3>
-          <p className="text-white/80 mb-6 text-center">
-            Suscríbete para recibir información sobre nuevos libros, eventos y reflexiones filosóficas.
-          </p>
-          <iframe
-            src="https://api.leadconnectorhq.com/widget/form/L88rd23ASEnrMJtyLFfo"
-            style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
-            id="inline-L88rd23ASEnrMJtyLFfo"
-            data-layout='{"id":"INLINE"}'
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Newsletter - Humanismo Evolutivo"
-            data-height="400"
-            data-layout-iframe-id="inline-L88rd23ASEnrMJtyLFfo"
-            data-form-id="L88rd23ASEnrMJtyLFfo"
-            title="Newsletter - Humanismo Evolutivo"
-          ></iframe>
+          <h3 className="text-2xl font-heading font-medium mb-2 text-center">{t('footer.newsletter.title')}</h3>
+          <p className="text-white/90 mb-6 text-center">{t('footer.newsletter.description')}</p>
+          <NewsletterSignup />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
@@ -58,9 +43,7 @@ const Footer = () => {
             <p className="mt-1 mb-4 text-[10px] font-medium uppercase tracking-[0.32em] text-gold/80">
               Transpersonal
             </p>
-            <p className="text-white/70 mb-4">
-              Una visión transpersonal del mundo a través de la filosofía, espiritualidad y ecología.
-            </p>
+            <p className="text-white/85 mb-4">{t('footer.about')}</p>
             <div className="flex space-x-4">
               <a
                 href="https://facebook.com"
@@ -99,7 +82,7 @@ const Footer = () => {
 
           {/* Links 1 */}
           <div>
-            <h3 className="font-heading text-lg font-medium mb-4">Enlaces Rápidos</h3>
+            <h3 className="font-heading text-lg font-medium mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -107,7 +90,7 @@ const Footer = () => {
                   className="text-white/70 hover:text-gold transition-colors"
                   onClick={() => trackFooterLink("quick_links", "Inicio", "/")}
                 >
-                  Inicio
+                  {t('footer.home')}
                 </Link>
               </li>
               <li>
@@ -116,7 +99,7 @@ const Footer = () => {
                   className="text-white/70 hover:text-gold transition-colors"
                   onClick={() => trackFooterLink("quick_links", "Sobre el Autor", "/autor")}
                 >
-                  Sobre el Autor
+                  {t('footer.author')}
                 </Link>
               </li>
               <li>
@@ -125,7 +108,7 @@ const Footer = () => {
                   className="text-white/70 hover:text-gold transition-colors"
                   onClick={() => trackFooterLink("quick_links", "Libros", "/libros")}
                 >
-                  Libros
+                  {t('footer.books')}
                 </Link>
               </li>
               <li>
@@ -134,7 +117,7 @@ const Footer = () => {
                   className="text-white/70 hover:text-gold transition-colors"
                   onClick={() => trackFooterLink("quick_links", "Podcast", "/medios")}
                 >
-                  Podcast
+                  {t('footer.podcast')}
                 </Link>
               </li>
             </ul>
@@ -142,15 +125,15 @@ const Footer = () => {
 
           {/* Links 2 */}
           <div>
-            <h3 className="font-heading text-lg font-medium mb-4">Obras</h3>
+            <h3 className="font-heading text-lg font-medium mb-4">{t('footer.works')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/libros/yo-soy-nosotros"
                   className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() => trackFooterLink("books", "Yo soy nosotros", "/libros/yo-soy-nosotros")}
+                  onClick={() => trackFooterLink("books", t('book.yosoynosotros.title'), "/libros/yo-soy-nosotros")}
                 >
-                  Yo soy nosotros
+                  {t('book.yosoynosotros.title')}
                 </Link>
               </li>
               <li>
@@ -158,10 +141,10 @@ const Footer = () => {
                   href="/libros/lo-mejor-esta-por-venir"
                   className="text-white/70 hover:text-gold transition-colors"
                   onClick={() =>
-                    trackFooterLink("books", "Y lo mejor aún está por venir", "/libros/lo-mejor-esta-por-venir")
+                    trackFooterLink("books", t('book.lomejor.title'), "/libros/lo-mejor-esta-por-venir")
                   }
                 >
-                  Y lo mejor aún está por venir
+                  {t('book.lomejor.title')}
                 </Link>
               </li>
               <li>
@@ -169,10 +152,10 @@ const Footer = () => {
                   href="/libros/el-arte-de-ser-empresario"
                   className="text-white/70 hover:text-gold transition-colors"
                   onClick={() =>
-                    trackFooterLink("books", "El arte de ser empresario", "/libros/el-arte-de-ser-empresario")
+                    trackFooterLink("books", t('book.elarte.title'), "/libros/el-arte-de-ser-empresario")
                   }
                 >
-                  El arte de ser empresario
+                  {t('book.elarte.title')}
                 </Link>
               </li>
               <li>
@@ -180,10 +163,10 @@ const Footer = () => {
                   href="/libros/ecologia-y-espiritualidad"
                   className="text-white/70 hover:text-gold transition-colors"
                   onClick={() =>
-                    trackFooterLink("books", "Ecología y espiritualidad", "/libros/ecologia-y-espiritualidad")
+                    trackFooterLink("books", t('book.ecologia.title'), "/libros/ecologia-y-espiritualidad")
                   }
                 >
-                  Ecología y espiritualidad
+                  {t('book.ecologia.title')}
                 </Link>
               </li>
             </ul>
@@ -191,15 +174,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom Footer */}
-        <div className="border-t border-white/10 pt-8 mt-8 text-center text-white/50 text-sm">
-          <p>&copy; {new Date().getFullYear()} Fundación Humanismo Evolutivo. Todos los derechos reservados.</p>
+        <div className="border-t border-white/20 pt-8 mt-8 text-center text-white/80 text-sm">
+          <p>&copy; {new Date().getFullYear()} Fundación Humanismo Evolutivo Transpersonal. {t('footer.rights')}</p>
           <div className="mt-2 space-x-4">
             <Link href="/privacidad" className="hover:text-gold transition-colors">
-              Política de Privacidad
+              {t('footer.privacy')}
             </Link>
             <span>|</span>
             <Link href="/terminos" className="hover:text-gold transition-colors">
-              Términos y Condiciones
+              {t('footer.terms')}
             </Link>
           </div>
         </div>

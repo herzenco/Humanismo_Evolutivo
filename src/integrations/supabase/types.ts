@@ -38,6 +38,39 @@ export type Database = {
         }
         Relationships: []
       }
+      newsletter_subscriptions: {
+        Row: {
+          consented_at: string
+          created_at: string
+          email: string
+          id: string
+          locale: string
+          source: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          consented_at?: string
+          created_at?: string
+          email: string
+          id?: string
+          locale?: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          consented_at?: string
+          created_at?: string
+          email?: string
+          id?: string
+          locale?: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       podcast_series: {
         Row: {
           book_id: string

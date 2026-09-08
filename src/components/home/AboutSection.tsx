@@ -9,7 +9,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const AboutSection = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const variants = {
@@ -30,7 +30,7 @@ const AboutSection = () => {
             <figure className="relative">
               <img 
                 src="/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.png" 
-                alt="Marcos Constandse Madrazo, filósofo transpersonal mexicano y autor de Humanismo Evolutivo, retrato profesional" 
+                alt={language === 'es' ? 'Marcos Constandse Madrazo, filósofo transpersonal mexicano y autor de Humanismo Evolutivo Transpersonal' : 'Marcos Constandse Madrazo, Mexican transpersonal philosopher and author of Transpersonal Evolutionary Humanism'}
                 className="w-full h-auto rounded-lg shadow-xl"
                 loading="lazy"
                 width="600"
@@ -94,7 +94,7 @@ const AboutSection = () => {
                   });
                 }}
               >
-                <Link href="/autor">Conocer más</Link>
+                <Link href="/autor">{t('about.learnMore')}</Link>
               </Button>
             </motion.footer>
           </article>

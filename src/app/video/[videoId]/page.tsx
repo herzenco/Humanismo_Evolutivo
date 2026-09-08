@@ -12,7 +12,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function VideoDetailPage({ params }: { params: Promise<{ videoId: string }> }) {
   const { videoId } = use(params);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const allVideos = [
     {
@@ -74,7 +74,7 @@ export default function VideoDetailPage({ params }: { params: Promise<{ videoId:
             <div className="flex items-center gap-6 text-white/80 mb-8">
               <span>{video.duration}</span>
               <span>•</span>
-              <span>{new Date(video.date).toLocaleDateString('es-ES', {
+              <span>{new Date(video.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'

@@ -94,19 +94,19 @@ const Chatbot = () => {
                 <ul className="space-y-4 text-left">
                   <li className="flex items-start">
                     <span className="text-gold mr-3 mt-1">✓</span>
-                    <span className="text-navy-light">Diálogos profundos sobre conceptos filosóficos y espirituales</span>
+                    <span className="text-navy-light">{t('chatbot.feature.deepDialogues')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-gold mr-3 mt-1">✓</span>
-                    <span className="text-navy-light">Exploración interactiva de los libros y ensayos del autor</span>
+                    <span className="text-navy-light">{t('chatbot.feature.interactiveBooks')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-gold mr-3 mt-1">✓</span>
-                    <span className="text-navy-light">Conversaciones por texto y voz en tiempo real</span>
+                    <span className="text-navy-light">{t('chatbot.feature.textVoice')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-gold mr-3 mt-1">✓</span>
-                    <span className="text-navy-light">Respuestas personalizadas según tus inquietudes espirituales</span>
+                    <span className="text-navy-light">{t('chatbot.feature.personalized')}</span>
                   </li>
                 </ul>
               </div>
@@ -118,7 +118,7 @@ const Chatbot = () => {
               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
                   type="email"
-                  placeholder="Tu correo electrónico"
+                  placeholder={t('chatbot.notify.placeholder')}
                   className="flex-grow px-4 py-3 rounded-lg text-navy placeholder:text-navy/50 border-0 focus:ring-2 focus:ring-gold outline-none"
                 />
                 <Button className="bg-gold hover:bg-gold-light text-navy-dark font-semibold px-6 py-3 rounded-lg whitespace-nowrap">
@@ -135,11 +135,10 @@ const Chatbot = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-navy">
-              Una Experiencia de Diálogo Profundo
+              {t('chatbot.experience.title')}
             </h2>
             <p className="text-navy-light text-lg mb-12 leading-relaxed">
-              Esta experiencia revolucionaria permitirá explorar las ideas del autor
-              de manera interactiva y personalizada como nunca antes.
+              {t('chatbot.experience.description')}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -147,24 +146,24 @@ const Chatbot = () => {
                 <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="text-gold" size={32} />
                 </div>
-                <h3 className="font-heading text-xl font-semibold mb-2 text-navy">Diálogo Inteligente</h3>
-                <p className="text-navy-light">Conversaciones naturales basadas en el pensamiento del autor</p>
+                <h3 className="font-heading text-xl font-semibold mb-2 text-navy">{t('chatbot.experience.smart.title')}</h3>
+                <p className="text-navy-light">{t('chatbot.experience.smart.description')}</p>
               </div>
 
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-primary text-2xl">φ</span>
                 </div>
-                <h3 className="font-heading text-xl font-semibold mb-2 text-navy">Exploración Filosófica</h3>
-                <p className="text-navy-light">Profundiza en conceptos de conciencia, espiritualidad y ética</p>
+                <h3 className="font-heading text-xl font-semibold mb-2 text-navy">{t('chatbot.experience.philosophy.title')}</h3>
+                <p className="text-navy-light">{t('chatbot.experience.philosophy.description')}</p>
               </div>
 
               <div className="text-center">
                 <div className="w-16 h-16 bg-navy/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-navy text-2xl">∞</span>
                 </div>
-                <h3 className="font-heading text-xl font-semibold mb-2 text-navy">Aprendizaje Continuo</h3>
-                <p className="text-navy-light">Cada conversación se adapta a tu nivel de comprensión</p>
+                <h3 className="font-heading text-xl font-semibold mb-2 text-navy">{t('chatbot.experience.learning.title')}</h3>
+                <p className="text-navy-light">{t('chatbot.experience.learning.description')}</p>
               </div>
             </div>
           </div>

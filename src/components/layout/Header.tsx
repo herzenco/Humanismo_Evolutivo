@@ -68,7 +68,7 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <Link href="/" className="flex flex-col items-start leading-none" aria-label="Humanismo Evolutivo Transpersonal - Página de inicio">
+        <Link href="/" className="flex flex-col items-start leading-none" aria-label={language === 'es' ? 'Humanismo Evolutivo Transpersonal — Página de inicio' : 'Transpersonal Evolutionary Humanism — Home'}>
           <div className="font-heading text-2xl font-semibold tracking-tight">
             <span className="text-primary">Humanismo</span> <span className="text-gold">Evolutivo</span>
           </div>
@@ -108,7 +108,7 @@ const Header = () => {
             <Link
               href="/admin"
               className="flex items-center gap-2 text-gold hover:text-gold/80 transition-colors"
-              title="Panel de Administración"
+              title={language === 'es' ? 'Panel de administración' : 'Admin dashboard'}
             >
               <Shield className="h-5 w-5" />
             </Link>

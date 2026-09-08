@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function AuthPage() {
   const [email, setEmail] = useState('');
@@ -17,6 +18,7 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+  const { language } = useLanguage();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,8 +36,8 @@ export default function AuthPage() {
       if (error) throw error;
 
       toast({
-        title: 'Cuenta creada',
-        description: 'Revisa tu correo para confirmar tu cuenta',
+        title: language === 'es' ? 'Cuenta creada' : 'Account created',
+        description: language === 'es' ? 'Revisa tu correo para confirmar tu cuenta' : 'Check your email to confirm your account',
       });
     } catch (error: any) {
       toast({
@@ -61,8 +63,8 @@ export default function AuthPage() {
       if (error) throw error;
 
       toast({
-        title: 'Sesión iniciada',
-        description: 'Bienvenido de vuelta',
+        title: language === 'es' ? 'Sesión iniciada' : 'Signed in',
+        description: language === 'es' ? 'Bienvenido de vuelta' : 'Welcome back',
       });
 
       router.push('/admin');
@@ -82,14 +84,14 @@ export default function AuthPage() {
       <div className="container mx-auto px-4 py-16 flex items-center justify-center min-h-screen">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>Autenticación</CardTitle>
-            <CardDescription>Inicia sesión o crea una cuenta</CardDescription>
+            <CardTitle>{language === 'es' ? 'Autenticación' : 'Authentication'}</CardTitle>
+            <CardDescription>{language === 'es' ? 'Inicia sesión o crea una cuenta' : 'Sign in or create an account'}</CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="signin">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="signin">Iniciar Sesión</TabsTrigger>
-                <TabsTrigger value="signup">Registrarse</TabsTrigger>
+                <TabsTrigger value="signin">{language === 'es' ? 'Iniciar sesión' : 'Sign in'}</TabsTrigger>
+                <TabsTrigger value="signup">{language === 'es' ? 'Registrarse' : 'Sign up'}</TabsTrigger>
               </TabsList>
 
               <TabsContent value="signin">
@@ -106,7 +108,7 @@ export default function AuthPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signin-password">Contraseña</Label>
+                    <Label htmlFor="signin-password">{language === 'es' ? 'Contraseña' : 'Password'}</Label>
                     <Input
                       id="signin-password"
                       type="password"
@@ -116,7 +118,7 @@ export default function AuthPage() {
                     />
                   </div>
                   <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? 'Cargando...' : 'Iniciar Sesión'}
+                    {loading ? (language === 'es' ? 'Cargando...' : 'Loading...') : (language === 'es' ? 'Iniciar sesión' : 'Sign in')}
                   </Button>
                 </form>
               </TabsContent>
@@ -135,7 +137,7 @@ export default function AuthPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password">Contraseña</Label>
+                    <Label htmlFor="signup-password">{language === 'es' ? 'Contraseña' : 'Password'}</Label>
                     <Input
                       id="signup-password"
                       type="password"
@@ -146,7 +148,7 @@ export default function AuthPage() {
                     />
                   </div>
                   <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? 'Cargando...' : 'Crear Cuenta'}
+                    {loading ? (language === 'es' ? 'Cargando...' : 'Loading...') : (language === 'es' ? 'Crear cuenta' : 'Create account')}
                   </Button>
                 </form>
               </TabsContent>

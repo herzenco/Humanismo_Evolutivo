@@ -3,6 +3,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { motion } from 'framer-motion';
+import EnglishVisionContent from '@/components/vision/EnglishVisionContent';
 
 const Vision = () => {
   const { t, language } = useLanguage();
@@ -28,6 +29,10 @@ const Vision = () => {
 
           {/* Content */}
           <div className="prose prose-lg max-w-none">
+            {language === 'en' ? (
+              <EnglishVisionContent />
+            ) : (
+            <>
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-6">La fuente de la que bebí:</h2>
               <p className="mb-6">
@@ -321,10 +326,12 @@ const Vision = () => {
 
               <div className="text-center mt-8">
                 <p className="font-semibold">Cancún, Q. Roo</p>
-                <p className="font-semibold">año M(XX)</p>
+                <p className="font-semibold">Año 2020</p>
                 <p className="font-bold text-lg mt-2">Marcos Constandse Madrazo</p>
               </div>
             </section>
+            </>
+            )}
           </div>
         </motion.div>
       </article>

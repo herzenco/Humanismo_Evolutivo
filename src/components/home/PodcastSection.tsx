@@ -11,7 +11,6 @@ const podcasts = [
   {
     id: 1,
     title: "El Universo",
-    host: "Humanismo Evolutivo",
     duration: "45:32",
     image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     url: "https://open.spotify.com/show/0sAbxFDgJTtuHZeSz0CSvy"
@@ -19,7 +18,6 @@ const podcasts = [
   {
     id: 2,
     title: "El inicio de la búsqueda",
-    host: "Humanismo Evolutivo",
     duration: "38:15",
     image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     url: "https://open.spotify.com/show/0sAbxFDgJTtuHZeSz0CSvy"
@@ -29,7 +27,7 @@ const podcasts = [
 const PodcastSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const containerVariants = {
     hidden: {},
@@ -127,7 +125,7 @@ const PodcastSection = () => {
                 <div className="relative flex-shrink-0">
                   <img 
                     src={podcast.image} 
-                    alt={podcast.title} 
+                    alt={language === 'es' ? podcast.title : (podcast.id === 1 ? 'The Universe' : 'The Beginning of the Search')}
                     className="w-24 h-24 rounded-md object-cover"
                   />
                   <div 
@@ -148,8 +146,12 @@ const PodcastSection = () => {
                   </div>
                 </div>
                 <div className="ml-4 flex-grow">
-                  <h4 className="font-heading text-lg font-semibold text-navy-dark">{podcast.title}</h4>
-                  <p className="text-primary/70 text-sm">{podcast.host}</p>
+                  <h4 className="font-heading text-lg font-semibold text-navy-dark">
+                    {language === 'es' ? podcast.title : (podcast.id === 1 ? 'The Universe' : 'The Beginning of the Search')}
+                  </h4>
+                  <p className="text-primary/70 text-sm">
+                    {language === 'es' ? 'Humanismo Evolutivo Transpersonal' : 'Transpersonal Evolutionary Humanism'}
+                  </p>
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-xs text-navy-light">{podcast.duration}</span>
                     <button 

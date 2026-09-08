@@ -27,27 +27,29 @@ const translations = {
     'hero.title': 'Humanismo',
     'hero.title.highlight': 'Evolutivo',
     'hero.secondarySubtitle': 'Yo soy nosotros',
-    'hero.subtitle': 'Un viaje de conciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos, conectando ciencia, espíritu y humanidad.',
+    'hero.subtitle': 'Un viaje de consciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos, conectando ciencia, espíritu y humanidad.',
     'hero.explore': 'Explorar Libros',
     'hero.about': 'Sobre el Autor',
     
     // Video Section
     'video.title': 'Una Introducción a Nuestra Filosofía',
-    'video.subtitle': 'Descubre la esencia del Humanismo Evolutivo en esta presentación introductoria.',
+    'video.subtitle': 'Descubre la esencia del Humanismo Evolutivo Transpersonal en esta presentación introductoria.',
     
     // About Section
     'about.subtitle': 'SOBRE EL AUTOR',
     'about.name': 'Marcos Constandse Madrazo',
     'about.description1': 'Marcos Constandse Madrazo es un pensador incansable, empresario visionario y explorador del alma humana. Desde hace más de tres décadas, ha recorrido un camino único que integra ciencia, filosofía, ecología y espiritualidad para ofrecer una visión del mundo donde todo está profundamente conectado: el universo, la Tierra, la vida, el ser humano y su evolución consciente.',
     'about.business': 'En su vida empresarial formó cuatro grupos. El grupo inicial en el que adquiere experiencia, Grupo Mezcalapa, que administró una diversidad de empresas. El segundo grupo que fue cofundador fue Grupo Ritco. El tercer grupo que formó como cofundador también y aportando las ideas básicas del mismo fue Grupo Palace, grupo de hoteles Palace en Cancún. Y el cuarto grupo que fue cofundador y que estuvo al frente de la formación espiritual, financiera, legal y de auditoría fue Grupo Xcaret. De esos cuatro grupos que formó parte en su fundación, tres de ellos, en su momento, han estado calificados como las 200 empresas más importantes de México.',
-    'about.literature': 'Su obra literaria desarrolla la filosofía del Humanismo Evolutivo, planteando la evolución desde la consciencia individual hacia la consciencia colectiva como proceso transformador de la humanidad. Su libro "Yo soy nosotros" fue galardonado con el Premio Nacional de Ensayo Filosófico.',
+    'about.literature': 'Su obra literaria desarrolla la filosofía del Humanismo Evolutivo Transpersonal, planteando la evolución desde la consciencia individual hacia la consciencia colectiva como proceso transformador de la humanidad. Su libro "Yo soy nosotros" fue galardonado con el Premio Nacional de Ensayo Filosófico.',
     'about.works': 'Autor de obras como Yo soy nosotros, Ecología y espiritualidad, Déjalo ser, El arte de ser empresario y Y lo mejor aún está por venir, Constandse ha dedicado su vida a explorar las conexiones profundas entre todos los aspectos de la existencia.',
+    'about.learnMore': 'Conocer más',
     
     // Books Section
     'books.title': 'Biblioteca Filosófica',
     'books.subtitle': 'Una colección de obras que exploran la evolución de la consciencia humana',
     'books.read': 'Leer más',
     'books.download': 'Descargar',
+    'books.viewAll': 'Ver todos los libros',
     
     // Featured Book
     'featured.label': 'Obra Destacada',
@@ -60,7 +62,7 @@ const translations = {
     // Podcast Section
     'podcast.title': 'Medios y Podcast',
     'podcast.subtitle': 'Conversaciones que conectan ciencia, espiritualidad y consciencia',
-    'podcast.intro': 'En nuestro podcast exploramos los temas centrales de su obra y la filosofía del Humanismo Evolutivo, la integración de ciencia y espiritualidad, la evolución de la consciencia, y la construcción de un mundo más conectado y consciente.',
+    'podcast.intro': 'En nuestro podcast exploramos los temas centrales de su obra y la filosofía del Humanismo Evolutivo Transpersonal, la integración de ciencia y espiritualidad, la evolución de la consciencia, y la construcción de un mundo más conectado y consciente.',
     'podcast.listen': 'Escuchar Episodio',
     'podcast.moreInfo': 'Más información',
     'podcast.view': 'Ver todos los episodios',
@@ -103,15 +105,29 @@ const translations = {
     'libros.hero.title.highlight': 'Filosófica',
     'libros.hero.subtitle': 'Explora las obras de Marcos Constandse que conectan ciencia, filosofía, espiritualidad y ecología bajo una visión integradora del conocimiento humano.',
     'libros.explore': 'Explorar Obra',
+    'book.detail.notFound': 'Libro no encontrado',
+    'book.detail.notFoundDescription': 'Lo sentimos, el libro que buscas no está disponible.',
+    'book.detail.back': 'Volver a la biblioteca',
+    'book.detail.aria': 'Detalles del libro',
+    'book.detail.author': 'Autor',
+    'book.detail.download': 'Descargar libro',
+    'book.detail.about': 'Sobre el libro',
+    'book.detail.ctaTitle': '¿Te gustaría leer este libro?',
+    'book.detail.ctaDescription': 'Descárgalo gratuitamente y comienza tu viaje hacia una comprensión más profunda del ser humano y su lugar en el universo.',
+    'book.detail.downloadNow': 'Descargar ahora',
+    'book.detail.prologue': 'Prólogo',
+    'book.detail.summary': 'Resumen',
+    'book.detail.relatedTitle': 'También te puede interesar',
+    'book.detail.relatedDescription': 'Explora otras obras de Marcos Constandse que complementan las ideas y reflexiones de este libro.',
     
     // Autor Page
     'autor.hero.badge': 'Filósofo • Escritor • Pensador',
-    'autor.hero.subtitle': 'Marcos Constandse une ciencia, espíritu y experiencia para inspirar una vida con conciencia.',
+    'autor.hero.subtitle': 'Marcos Constandse une ciencia, espíritu y experiencia para inspirar una vida con consciencia.',
     'autor.section.search': 'Una vida de búsqueda e investigación',
     'autor.philosophy.badge': 'Filosofía y Visión',
     'autor.philosophy.title': 'Pensamiento',
     'autor.philosophy.highlight': 'Integrativo',
-    'autor.philosophy.description': 'La obra de Marcos Constandse explora la intersección entre ciencia, espiritualidad y conciencia humana, buscando una comprensión integral del ser y su relación con el todo.',
+    'autor.philosophy.description': 'La obra de Marcos Constandse explora la intersección entre ciencia, espiritualidad y consciencia humana, buscando una comprensión integral del ser y su relación con el todo.',
     'autor.philosophy.knowledge': 'Integración del Conocimiento',
     'autor.philosophy.transpersonal': 'Visión Transpersonal',
     'autor.philosophy.ethics': 'Ética Evolutiva',
@@ -154,6 +170,19 @@ const translations = {
     'chatbot.notify.title': '¡Sé el primero en saberlo!',
     'chatbot.notify.description': 'Regístrate para recibir una notificación cuando el chatbot esté disponible.',
     'chatbot.notify.button': 'Notificarme',
+    'chatbot.feature.deepDialogues': 'Diálogos profundos sobre conceptos filosóficos y espirituales',
+    'chatbot.feature.interactiveBooks': 'Exploración interactiva de los libros y ensayos del autor',
+    'chatbot.feature.textVoice': 'Conversaciones por texto y voz en tiempo real',
+    'chatbot.feature.personalized': 'Respuestas personalizadas según tus inquietudes espirituales',
+    'chatbot.notify.placeholder': 'Tu correo electrónico',
+    'chatbot.experience.title': 'Una Experiencia de Diálogo Profundo',
+    'chatbot.experience.description': 'Esta experiencia permitirá explorar las ideas del autor de manera interactiva y personalizada como nunca antes.',
+    'chatbot.experience.smart.title': 'Diálogo Inteligente',
+    'chatbot.experience.smart.description': 'Conversaciones naturales basadas en el pensamiento del autor',
+    'chatbot.experience.philosophy.title': 'Exploración Filosófica',
+    'chatbot.experience.philosophy.description': 'Profundiza en conceptos de consciencia, espiritualidad y ética',
+    'chatbot.experience.learning.title': 'Aprendizaje Continuo',
+    'chatbot.experience.learning.description': 'Cada conversación se adapta a tu nivel de comprensión',
     
     // Videos Section
     'videos.coming.soon': 'Próximamente',
@@ -166,9 +195,9 @@ const translations = {
     'chatbot.section.title': 'Charla con el Autor',
     'chatbot.section.description': 'Una experiencia única para dialogar directamente con Marcos Constandse sobre su obra, su pensamiento y su visión del mundo a través de inteligencia artificial.',
     'chatbot.section.question1': '¿Qué es la consciencia transpersonal?',
-    'chatbot.section.answer1': 'La consciencia transpersonal trasciende los límites del ego individual y nos conecta con la totalidad del ser. Nos permite experimentar que somos parte de un todo interconectado. Esta es la esencia del Humanismo Evolutivo.',
+    'chatbot.section.answer1': 'La consciencia transpersonal trasciende los límites del ego individual y nos conecta con la totalidad del ser. Nos permite experimentar que somos parte de un todo interconectado. Esta es la esencia del Humanismo Evolutivo Transpersonal.',
     'chatbot.section.question2': '¿Cómo podemos aplicar esto en nuestra vida diaria?',
-    'chatbot.section.answer2': 'Podemos comenzar reconociendo nuestra interdependencia con los demás y con el planeta. Cada decisión que tomamos afecta al conjunto. La conciencia ampliada nos lleva a actuar desde el amor y la responsabilidad.',
+    'chatbot.section.answer2': 'Podemos comenzar reconociendo nuestra interdependencia con los demás y con el planeta. Cada decisión que tomamos afecta al conjunto. La consciencia ampliada nos lleva a actuar desde el amor y la responsabilidad.',
     'chatbot.section.placeholder': 'Escribe tu pregunta aquí...',
     'chatbot.section.card.title': 'Chatbot Filosófico',
     'chatbot.section.card.availability': 'Disponible 24/7',
@@ -181,7 +210,7 @@ const translations = {
     // Podcast Page
     'podcast.page.badge': 'Podcasts y Entrevistas',
     'podcast.page.title': 'Medios',
-    'podcast.page.intro': 'En esta sección encontrarás conversaciones vivas, cercanas y profundas inspiradas en el pensamiento de Marcos Constandse. A través de entrevistas, reflexiones y diálogos abiertos, exploramos los temas centrales de su obra y la filosofía del Humanismo Evolutivo, la evolución de la conciencia, la espiritualidad práctica, la ética en la vida cotidiana, el rol del empresario consciente, y el equilibrio entre humanidad y planeta.',
+    'podcast.page.intro': 'En esta sección encontrarás conversaciones vivas, cercanas y profundas inspiradas en el pensamiento de Marcos Constandse. A través de entrevistas, reflexiones y diálogos abiertos, exploramos los temas centrales de su obra y la filosofía del Humanismo Evolutivo Transpersonal, la evolución de la consciencia, la espiritualidad práctica, la ética en la vida cotidiana, el rol del empresario consciente y el equilibrio entre humanidad y planeta.',
     'podcast.page.series.title': 'Humanismo Evolutivo',
     'podcast.page.series.description': 'Serie de podcast que explora los temas centrales del pensamiento de Marcos Constandse',
     'podcast.page.tab.podcasts': 'Podcasts',
@@ -219,65 +248,65 @@ const translations = {
     'podcast.series.ysn.title': 'Yo Soy Nosotros',
     'podcast.series.ysn.description': 'Una visión transpersonal del mundo que conecta ciencia, filosofía, psicología y espiritualidad.',
     'podcast.series.ylmepv.title': 'Y lo mejor está por venir',
-    'podcast.series.ylmepv.description': 'La serie completa traza un recorrido que inicia en la comprensión del origen del universo, la vida y la conciencia humana. Un viaje desde la física y la biología hasta la vocación, la espiritualidad y la sabiduría adquirida.',
+    'podcast.series.ylmepv.description': 'La serie completa traza un recorrido que inicia en la comprensión del origen del universo, la vida y la consciencia humana. Un viaje desde la física y la biología hasta la vocación, la espiritualidad y la sabiduría adquirida.',
     'podcast.series.eadse.title': 'El arte de ser empresario',
-    'podcast.series.eadse.description': 'Una serie que explora el liderazgo consciente, la empresa como organismo vivo y la evolución de la conciencia empresarial hacia modelos más humanos, éticos y sostenibles.',
+    'podcast.series.eadse.description': 'Una serie que explora el liderazgo consciente, la empresa como organismo vivo y la evolución de la consciencia empresarial hacia modelos más humanos, éticos y sostenibles.',
     'podcast.series.eye.title': 'Ecología y espiritualidad',
-    'podcast.series.eye.description': 'Una exploración profunda de la conexión entre la crisis ecológica y la crisis de conciencia. Marcos Constandse plantea que el deterioro ambiental es el reflejo de una conciencia fragmentada y propone una ecología espiritual como camino hacia la verdadera sostenibilidad.',
+    'podcast.series.eye.description': 'Una exploración profunda de la conexión entre la crisis ecológica y la crisis de consciencia. Marcos Constandse plantea que el deterioro ambiental es el reflejo de una consciencia fragmentada y propone una ecología espiritual como camino hacia la verdadera sostenibilidad.',
     
     // Podcast episodes - Ecología y espiritualidad
     'podcast.eye.ep1.title': 'El problema ecológico es un problema del espíritu',
     'podcast.eye.ep1.description': 'Este episodio introduce la idea central del proyecto: el deterioro ambiental no es únicamente consecuencia de malas decisiones políticas o prácticas económicas insostenibles; es la manifestación de un modo de ser que ha perdido conexión con la vida. La crisis ecológica es, ante todo, un problema del espíritu humano.',
-    'podcast.eye.ep2.title': 'Conciencia ecológica: más allá del fanatismo y la culpa',
-    'podcast.eye.ep2.description': 'Este episodio muestra que la ecología auténtica no nace del miedo ni de la culpa. Nace de la conciencia moral, entendida como la capacidad de percibir con claridad el valor de la vida y actuar en coherencia con esa percepción.',
+    'podcast.eye.ep2.title': 'Consciencia ecológica: más allá del fanatismo y la culpa',
+    'podcast.eye.ep2.description': 'Este episodio muestra que la ecología auténtica no nace del miedo ni de la culpa. Nace de la consciencia moral, entendida como la capacidad de percibir con claridad el valor de la vida y actuar en coherencia con esa percepción.',
     'podcast.eye.ep3.title': 'Interdependencia: La ecología como experiencia espiritual',
     'podcast.eye.ep3.description': 'La ecología no es únicamente el estudio de ecosistemas ni la observación de las dinámicas naturales. Es, en su raíz, la comprensión profunda de que todo lo que existe está unido por vínculos invisibles que sostienen la continuidad de la vida.',
-    'podcast.eye.ep4.title': 'Democracia, libertad y conciencia ecológica',
-    'podcast.eye.ep4.description': 'La ecología no florece en sistemas autoritarios. Este episodio profundiza en la relación esencial entre democracia, libertad y conciencia ecológica, y muestra por qué ninguna política ambiental puede sostenerse sin una ciudadanía capaz de discernir, dialogar y participar.',
+    'podcast.eye.ep4.title': 'Democracia, libertad y consciencia ecológica',
+    'podcast.eye.ep4.description': 'La ecología no florece en sistemas autoritarios. Este episodio profundiza en la relación esencial entre democracia, libertad y consciencia ecológica, y muestra por qué ninguna política ambiental puede sostenerse sin una ciudadanía capaz de discernir, dialogar y participar.',
     'podcast.eye.ep5.title': 'Economía, energía y sustentabilidad',
-    'podcast.eye.ep5.description': 'Exploramos la relación profunda entre economía, energía y sustentabilidad. Todo proceso económico es, en su raíz, un acto de transformación de energía. La forma en que usamos esa energía revela el nivel de conciencia con el que habitamos la vida.',
-    'podcast.eye.ep6.title': 'Ciencia, tecnología y conciencia del límite',
-    'podcast.eye.ep6.description': 'Este episodio examina la tensión entre la expansión acelerada del conocimiento humano y la falta de conciencia capaz de orientarlo. La crisis ecológica no nació de la ciencia ni de la tecnología, sino del estado interior desde el cual las utilizamos.',
+    'podcast.eye.ep5.description': 'Exploramos la relación profunda entre economía, energía y sustentabilidad. Todo proceso económico es, en su raíz, un acto de transformación de energía. La forma en que usamos esa energía revela el nivel de consciencia con el que habitamos la vida.',
+    'podcast.eye.ep6.title': 'Ciencia, tecnología y consciencia del límite',
+    'podcast.eye.ep6.description': 'Este episodio examina la tensión entre la expansión acelerada del conocimiento humano y la falta de consciencia capaz de orientarlo. La crisis ecológica no nació de la ciencia ni de la tecnología, sino del estado interior desde el cual las utilizamos.',
     'podcast.eye.ep7.title': 'Religión, valores y profundidad espiritual',
-    'podcast.eye.ep7.description': 'Este episodio aborda la relación entre religión, valores y profundidad espiritual en el desarrollo de una conciencia ecológica auténtica. Propone regresar a la pregunta fundamental: ¿de dónde provienen nuestros valores y qué sostiene la capacidad humana de cuidar la vida?',
+    'podcast.eye.ep7.description': 'Este episodio aborda la relación entre religión, valores y profundidad espiritual en el desarrollo de una consciencia ecológica auténtica. Propone regresar a la pregunta fundamental: ¿de dónde provienen nuestros valores y qué sostiene la capacidad humana de cuidar la vida?',
     'podcast.eye.ep8.title': 'Imperativo ético y responsabilidad compartida',
     'podcast.eye.ep8.description': 'Este episodio aborda el imperativo ético como fundamento de toda ecología profunda. La crisis ecológica es, antes que nada, una crisis moral y espiritual. No se debe únicamente a errores técnicos o económicos, sino a una falla en la manera en que comprendemos nuestra relación con el todo.',
     'podcast.eye.ep9.title': 'Hacia una ecología espiritual: el futuro de la humanidad',
-    'podcast.eye.ep9.description': 'Este episodio marca un punto de síntesis: el tránsito desde la ecología entendida como disciplina científica hacia la ecología como expresión de una conciencia espiritual más profunda. La integración de ciencia y espiritualidad se vuelve imprescindible.',
+    'podcast.eye.ep9.description': 'Este episodio marca un punto de síntesis: el tránsito desde la ecología entendida como disciplina científica hacia la ecología como expresión de una consciencia espiritual más profunda. La integración de ciencia y espiritualidad se vuelve imprescindible.',
     'podcast.eye.ep10.title': 'Conclusión: La evolución depende de todos nosotros',
-    'podcast.eye.ep10.description': 'Este episodio final reúne los hilos centrales: la idea de que la crisis ecológica es un llamado a la evolución espiritual de la humanidad. La sostenibilidad del planeta depende del nivel de conciencia desde el cual actuamos individual y colectivamente.',
+    'podcast.eye.ep10.description': 'Este episodio final reúne los hilos centrales: la idea de que la crisis ecológica es un llamado a la evolución espiritual de la humanidad. La sostenibilidad del planeta depende del nivel de consciencia desde el cual actuamos individual y colectivamente.',
     
     // Podcast episodes - El arte de ser empresario
     'podcast.eadse.ep1.title': 'El impulso evolutivo y la vocación',
     'podcast.eadse.ep1.description': 'Este episodio explora la vocación como una fuerza interior que no se elige, sino que se descubre. Inspirado en la visión de Marcos Constandse Madrazo, revela que detrás de cada impulso creativo existe una energía evolutiva que busca expresarse a través de nosotros. La vocación se presenta como la brújula que guía nuestra vida hacia aquello que nos hace sentir plenos, auténticos y en coherencia con nuestra esencia.',
     'podcast.eadse.ep2.title': 'Abundancia, bienestar, y felicidad',
-    'podcast.eadse.ep2.description': 'Este episodio nos invita a replantear tres conceptos que el mundo moderno ha simplificado en exceso. Inspirado en la obra de Marcos Constandse Madrazo, explora la abundancia como una experiencia interior de confianza y apertura, más allá de la acumulación material. La abundancia aparece cuando dejamos de vivir desde la carencia y empezamos a relacionarnos con la vida desde la gratitud, la creatividad y la conciencia.',
+    'podcast.eadse.ep2.description': 'Este episodio nos invita a replantear tres conceptos que el mundo moderno ha simplificado en exceso. Inspirado en la obra de Marcos Constandse Madrazo, explora la abundancia como una experiencia interior de confianza y apertura, más allá de la acumulación material. La abundancia aparece cuando dejamos de vivir desde la carencia y empezamos a relacionarnos con la vida desde la gratitud, la creatividad y la consciencia.',
     'podcast.eadse.ep3.title': 'La lucha de los opuestos y el pensamiento',
     'podcast.eadse.ep3.description': 'Este episodio explora una verdad fundamental del pensamiento de Marcos Constandse Madrazo: la vida avanza gracias a la tensión entre opuestos. Luz y sombra, libertad y justicia, individuo y comunidad… la historia humana está hecha de fuerzas que chocan, pero que también se necesitan para que la evolución ocurra.',
     'podcast.eadse.ep4.title': 'La empresa como organismo con ADN',
-    'podcast.eadse.ep4.description': 'Este episodio invita a ver la empresa desde una perspectiva completamente distinta: no como una máquina de procesos o una estructura rígida, sino como un organismo vivo, con un espíritu, una identidad y un ADN propios. Inspirado en la visión de Marcos Constandse Madrazo, explora cómo cada organización posee una esencia formada por su misión, sus valores, sus creencias, sus relaciones y la conciencia de quienes la lideran.',
+    'podcast.eadse.ep4.description': 'Este episodio invita a ver la empresa desde una perspectiva completamente distinta: no como una máquina de procesos o una estructura rígida, sino como un organismo vivo, con un espíritu, una identidad y un ADN propios. Inspirado en la visión de Marcos Constandse Madrazo, explora cómo cada organización posee una esencia formada por su misión, sus valores, sus creencias, sus relaciones y la consciencia de quienes la lideran.',
     'podcast.eadse.ep5.title': 'Capital, trabajando, y calidad de vida',
     'podcast.eadse.ep5.description': 'Este episodio replantea la relación entre capital, trabajo y bienestar desde una mirada más humana y consciente. Inspirado en la obra de Marcos Constandse Madrazo, explora cómo el capital no es un fin en sí mismo, sino una energía potencial que cobra verdadero valor cuando se pone al servicio de la vida, del crecimiento humano y del bien común.',
     'podcast.eadse.ep6.title': 'Capital, trabajador, y calidad de vida',
     'podcast.eadse.ep6.description': 'Este episodio revela la relación esencial entre tres fuerzas que sostienen a toda empresa: el capital, el trabajador y la calidad de vida. Inspirado en la visión de Marcos Constandse Madrazo, explora cómo el capital —lejos de ser un fin en sí mismo— es una energía potencial que solo cobra verdadero sentido cuando se orienta a crear bienestar, crecimiento humano y evolución social.',
     'podcast.eadse.ep7.title': 'El marco legal y los nuevos mercados',
     'podcast.eadse.ep7.description': 'Este episodio explora la relación entre la empresa, la ley y el cambio constante del mercado desde una mirada consciente. Inspirado en la obra de Marcos Constandse Madrazo, muestra cómo el marco legal no es una barrera para la libertad empresarial, sino el terreno ético y estructural que permite que la creatividad, la competencia y la dignidad humana convivan sin caer en el abuso o el caos.',
-    'podcast.eadse.ep8.title': 'Ego y conciencia en los negocios',
-    'podcast.eadse.ep8.description': 'Este episodio profundiza en una de las tensiones más decisivas de la vida empresarial: la relación entre el ego y la conciencia. Inspirado en la obra de Marcos Constandse Madrazo, revela cómo el ego —esa fuerza que busca control, reconocimiento y certeza— puede impulsar al empresario a crear, pero también puede cegarlo, endurecer su liderazgo y contaminar la cultura de la empresa.',
-    'podcast.eadse.ep9.title': 'El bien común y la revolución de la conciencia',
-    'podcast.eadse.ep9.description': 'Este episodio explora una idea poderosa en la obra de Marcos Constandse Madrazo: el bien común no es un concepto político abstracto, sino una práctica cotidiana que nace de la conciencia individual. Aquí descubrimos que cada gesto ético dentro de una empresa —cada decisión justa, cada conversación honesta, cada relación basada en respeto— es una contribución directa al tejido social.',
+    'podcast.eadse.ep8.title': 'Ego y consciencia en los negocios',
+    'podcast.eadse.ep8.description': 'Este episodio profundiza en una de las tensiones más decisivas de la vida empresarial: la relación entre el ego y la consciencia. Inspirado en la obra de Marcos Constandse Madrazo, revela cómo el ego —esa fuerza que busca control, reconocimiento y certeza— puede impulsar al empresario a crear, pero también puede cegarlo, endurecer su liderazgo y contaminar la cultura de la empresa.',
+    'podcast.eadse.ep9.title': 'El bien común y la revolución de la consciencia',
+    'podcast.eadse.ep9.description': 'Este episodio explora una idea poderosa en la obra de Marcos Constandse Madrazo: el bien común no es un concepto político abstracto, sino una práctica cotidiana que nace de la consciencia individual. Aquí descubrimos que cada gesto ético dentro de una empresa —cada decisión justa, cada conversación honesta, cada relación basada en respeto— es una contribución directa al tejido social.',
     'podcast.eadse.ep10.title': 'Democracia y cultura del "no hacer pero si querer"',
     'podcast.eadse.ep10.description': 'Este episodio aborda una de las sombras más extendidas de nuestra vida social y organizacional: la tendencia a exigir sin participar, a querer resultados sin asumir responsabilidad, a desear cambios mientras permanecemos pasivos. Inspirado en la mirada lúcida de Marcos Constandse Madrazo, explora cómo esta actitud deteriora la democracia, empobrece la cultura laboral y limita el crecimiento humano.',
     'podcast.eadse.ep11.title': 'Vocaciones, sentido, y el ente creador',
     'podcast.eadse.ep11.description': 'Este episodio nos lleva al corazón de la vida interior del empresario consciente. Inspirado en la obra de Marcos Constandse Madrazo, explora la vocación como un llamado profundo, una fuerza interior que busca expresarse a través de nuestro trabajo y que señala aquello que nos hace auténticos, plenos y verdaderamente vivos. La vocación no se elige: se descubre, se escucha y se reconoce.',
     'podcast.eadse.ep12.title': 'Aplicar el conocimiento y el imperativo ético',
-    'podcast.eadse.ep12.description': 'Este episodio cierra el recorrido del empresario consciente recordándonos una verdad esencial: el conocimiento solo tiene valor cuando se practica. No basta con entender conceptos como vocación, sentido, ego o conciencia; la verdadera transformación ocurre cuando esas ideas se convierten en decisiones, hábitos y gestos concretos dentro de la empresa.',
+    'podcast.eadse.ep12.description': 'Este episodio cierra el recorrido del empresario consciente recordándonos una verdad esencial: el conocimiento solo tiene valor cuando se practica. No basta con entender conceptos como vocación, sentido, ego o consciencia; la verdadera transformación ocurre cuando esas ideas se convierten en decisiones, hábitos y gestos concretos dentro de la empresa.',
     
     // Podcast episodes - Y lo mejor está por venir
     'podcast.ylmepv.ep1.title': 'Prólogo y el Mapa del Viaje',
-    'podcast.ylmepv.ep1.description': 'En este episodio iniciamos el viaje por ¡Y lo mejor aún está por venir! explorando el prólogo, donde Marcos Constandse nos invita a abrir un mapa interior. Con una mezcla de ciencia, filosofía y experiencia personal, el autor propone una ruta para vivir con mayor claridad, conciencia y aceptación. Con honestidad, comparte su propia transformación y nos anima a cuestionar, reflexionar y trazar nuestro propio camino. Este episodio establece el espíritu del podcast: evolucionar conscientemente, integrar conocimiento y experiencia, y descubrir una brújula interior que nos guíe hacia una vida más plena.',
+    'podcast.ylmepv.ep1.description': 'En este episodio iniciamos el viaje por ¡Y lo mejor aún está por venir! explorando el prólogo, donde Marcos Constandse nos invita a abrir un mapa interior. Con una mezcla de ciencia, filosofía y experiencia personal, el autor propone una ruta para vivir con mayor claridad, consciencia y aceptación. Con honestidad, comparte su propia transformación y nos anima a cuestionar, reflexionar y trazar nuestro propio camino. Este episodio establece el espíritu del podcast: evolucionar conscientemente, integrar conocimiento y experiencia, y descubrir una brújula interior que nos guíe hacia una vida más plena.',
     'podcast.ylmepv.ep2.title': 'El Origen del Todo',
-    'podcast.ylmepv.ep2.description': 'En este episodio exploramos el origen del universo desde la visión integradora de Marcos Constandse. Partimos del Big Bang como el inicio de toda energía, materia y movimiento, y recorremos la formación de la Tierra y las condiciones que permitieron el surgimiento de la vida. Más allá de lo científico, el capítulo propone una mirada espiritual del cosmos: nada está separado, todo es energía en proceso evolutivo. Comprender que provenimos de una misma historia cósmica nos invita a vivir con más conciencia, humildad y sentido.',
+    'podcast.ylmepv.ep2.description': 'En este episodio exploramos el origen del universo desde la visión integradora de Marcos Constandse. Partimos del Big Bang como el inicio de toda energía, materia y movimiento, y recorremos la formación de la Tierra y las condiciones que permitieron el surgimiento de la vida. Más allá de lo científico, el capítulo propone una mirada espiritual del cosmos: nada está separado, todo es energía en proceso evolutivo. Comprender que provenimos de una misma historia cósmica nos invita a vivir con más consciencia, humildad y sentido.',
     'podcast.ylmepv.ep3.title': 'Conocimiento, Lenguaje y Realidad',
     'podcast.ylmepv.ep3.description': 'En este episodio exploramos cómo construimos lo que llamamos realidad. Marcos Constandse explica que el conocimiento no es un reflejo exacto del mundo, sino una interpretación moldeada por nuestros sentidos, la cultura y el lenguaje. Las palabras no solo describen: delimitan lo que podemos pensar y condicionan nuestra percepción. Vemos según nuestros filtros internos, nuestras creencias y nuestra historia. Constandse nos invita a reconocer los límites del saber, a habitar la incertidumbre con humildad y a comprometernos con una búsqueda auténtica de la verdad.',
     'podcast.ylmepv.ep4.title': 'El Ser Humano: Cuerpo, Alma y Espíritu',
@@ -285,19 +314,19 @@ const translations = {
     'podcast.ylmepv.ep5.title': 'Energía y Ego',
     'podcast.ylmepv.ep5.description': 'En este episodio exploramos la tensión vital entre dos fuerzas que habitan en cada persona: la energía, entendida por Constandse como la esencia universal que sostiene la vida, y el ego, la estructura psicológica que nos da identidad pero que también puede limitarnos. El capítulo muestra que todo es energía en movimiento, y que cuando fluye, vivimos con claridad, creatividad y apertura. El ego, necesario para navegar el mundo, se vuelve obstáculo cuando domina nuestra percepción y nos encierra en miedos, roles y defensas.',
     'podcast.ylmepv.ep6.title': 'Trabajo, Dinero y Valores',
-    'podcast.ylmepv.ep6.description': 'En este episodio reflexionamos sobre tres pilares de la vida humana: el trabajo, el dinero y los valores, y cómo su integración determina nuestra plenitud. Constandse plantea que el trabajo es una expresión del ser, una vía para manifestar talento y propósito, pero pierde sentido cuando se desconecta de lo que amamos. El dinero, herramienta necesaria, puede liberar o esclavizar según el lugar que ocupa en nuestra conciencia. Y los valores funcionan como brújula ética que orienta decisiones y nos devuelve coherencia interior.',
-    'podcast.ylmepv.ep7.title': 'La Conciencia y la Visión del Mundo',
-    'podcast.ylmepv.ep7.description': 'En este episodio exploramos cómo la conciencia define la manera en que interpretamos la realidad. Constandse propone que no vemos el mundo tal como es, sino tal como somos: nuestros filtros emocionales, culturales y mentales colorean cada experiencia. A medida que la conciencia se expande, también lo hace nuestra capacidad de comprendernos, relacionarnos y actuar con mayor lucidez. El capítulo invita a reconocer la visión del mundo que habitamos y a transformarla desde dentro.',
+    'podcast.ylmepv.ep6.description': 'En este episodio reflexionamos sobre tres pilares de la vida humana: el trabajo, el dinero y los valores, y cómo su integración determina nuestra plenitud. Constandse plantea que el trabajo es una expresión del ser, una vía para manifestar talento y propósito, pero pierde sentido cuando se desconecta de lo que amamos. El dinero, herramienta necesaria, puede liberar o esclavizar según el lugar que ocupa en nuestra consciencia. Y los valores funcionan como brújula ética que orienta decisiones y nos devuelve coherencia interior.',
+    'podcast.ylmepv.ep7.title': 'La Consciencia y la Visión del Mundo',
+    'podcast.ylmepv.ep7.description': 'En este episodio exploramos cómo la consciencia define la manera en que interpretamos la realidad. Constandse propone que no vemos el mundo tal como es, sino tal como somos: nuestros filtros emocionales, culturales y mentales colorean cada experiencia. A medida que la consciencia se expande, también lo hace nuestra capacidad de comprendernos, relacionarnos y actuar con mayor lucidez. El capítulo invita a reconocer la visión del mundo que habitamos y a transformarla desde dentro.',
     'podcast.ylmepv.ep8.title': 'Lucha de los Opuestos: Un Camino a la Comprensión',
-    'podcast.ylmepv.ep8.description': 'En este episodio exploramos cómo la vida está tejida por polaridades: luz y sombra, razón y emoción, placer y dolor. Constandse explica que esta tensión no es un error, sino el motor del pensamiento y de la conciencia. El conflicto entre opuestos activa la reflexión, nos obliga a comparar, elegir y comprender. El capítulo propone integrar los opuestos, no diluirlos: reconocer su valor, sostener la paradoja y permitir que convivan dentro de nosotros.',
+    'podcast.ylmepv.ep8.description': 'En este episodio exploramos cómo la vida está tejida por polaridades: luz y sombra, razón y emoción, placer y dolor. Constandse explica que esta tensión no es un error, sino el motor del pensamiento y de la consciencia. El conflicto entre opuestos activa la reflexión, nos obliga a comparar, elegir y comprender. El capítulo propone integrar los opuestos, no diluirlos: reconocer su valor, sostener la paradoja y permitir que convivan dentro de nosotros.',
     'podcast.ylmepv.ep9.title': 'Empresa, Capital y Mercado',
     'podcast.ylmepv.ep9.description': 'En este episodio exploramos la mirada profunda de Constandse sobre la economía moderna. La empresa, lejos de ser solo una máquina de producción, es presentada como una comunidad humana donde el trabajo adquiere sentido, donde se crean vínculos y donde la dignidad debe ser prioridad. El capital aparece como una herramienta poderosa, útil para impulsar proyectos y transformar realidades, siempre que se mantenga como medio y no como fin absoluto.',
     'podcast.ylmepv.ep10.title': 'Sociedad, Legalidad y Calidad de Vida',
     'podcast.ylmepv.ep10.description': 'En este episodio analizamos cómo una sociedad verdaderamente desarrollada no se mide solo por su crecimiento económico, sino por la calidad de vida, la justicia y la dignidad que ofrece a sus miembros. Constandse subraya que la legalidad, si no está guiada por la ética, se vacía de sentido y puede convertirse en instrumento de opresión. Una sociedad con alma requiere leyes legítimas, instituciones al servicio del bien común y ciudadanos conscientes.',
     'podcast.ylmepv.ep11.title': 'Casos de Estudio: Modelos de Desarrollo',
     'podcast.ylmepv.ep11.description': 'En este episodio analizamos cómo los distintos modelos de desarrollo impactan la vida humana y la salud del planeta. Constandse muestra que no todo "progreso" genera bienestar: muchos modelos centrados en el crecimiento económico producen desconexión, deterioro ecológico y pérdida cultural. Frente a ello, explora ejemplos reales —comunidades colaborativas, economías locales, proyectos sustentables— que demuestran que otro desarrollo es posible.',
-    'podcast.ylmepv.ep12.title': 'Revolución de la Conciencia y Bien Común',
-    'podcast.ylmepv.ep12.description': 'En este episodio exploramos la propuesta de Constandse de una revolución silenciosa que no se libra en las calles, sino en la conciencia. Un cambio que comienza dentro: cuestionando patrones de miedo, ego y fragmentación, y abriéndonos a una forma de vivir basada en la empatía, la unidad y la responsabilidad compartida. El capítulo plantea que el verdadero progreso no depende solo de leyes o sistemas, sino de la transformación ética, emocional y espiritual de cada persona.',
+    'podcast.ylmepv.ep12.title': 'Revolución de la Consciencia y Bien Común',
+    'podcast.ylmepv.ep12.description': 'En este episodio exploramos la propuesta de Constandse de una revolución silenciosa que no se libra en las calles, sino en la consciencia. Un cambio que comienza dentro: cuestionando patrones de miedo, ego y fragmentación, y abriéndonos a una forma de vivir basada en la empatía, la unidad y la responsabilidad compartida. El capítulo plantea que el verdadero progreso no depende solo de leyes o sistemas, sino de la transformación ética, emocional y espiritual de cada persona.',
     'podcast.ylmepv.ep13.title': 'El Imperativo Ético',
     'podcast.ylmepv.ep13.description': 'En este episodio exploramos la propuesta de Constandse de una ética viva y necesaria para afrontar la crisis civilizatoria actual. Más que normas externas, plantea una brújula interior basada en la interdependencia: entender que nuestras decisiones afectan a otros, a la sociedad y al planeta. La ética deja de ser moralismo y se convierte en coherencia: alinear lo que pensamos, sentimos y hacemos.',
     'podcast.ylmepv.ep14.title': 'Vocación, Espiritualidad y Trascendencia',
@@ -348,14 +377,14 @@ const translations = {
     // Conferencia de la Paz 2025
     'event.paz.title': 'La Conferencia de la Paz',
     'event.paz.description': 'Esta conferencia es una invitación a mirar la vida como un mapa en constante evolución. No pretende ser un compendio de todo el conocimiento humano ni un tratado histórico, sino un ensayo filosófico vivencial, sustentado en la observación, la ciencia y la experiencia personal.',
-    'event.paz.section1.title': 'Un mapa para vivir con conciencia',
+    'event.paz.section1.title': 'Un mapa para vivir con consciencia',
     'event.paz.section1.content': 'Esta conferencia es una invitación a mirar la vida como un mapa en constante evolución. No pretende ser un compendio de todo el conocimiento humano ni un tratado histórico, sino un ensayo filosófico vivencial, sustentado en la observación, la ciencia y la experiencia personal. Su propósito es inspirar a reflexionar sobre nuestra existencia, nuestras decisiones y la manera en que cada acción puede orientarse hacia una vida más consciente, plena y coherente con la realidad.',
     'event.paz.section2.title': 'Del origen del universo al despertar humano',
-    'event.paz.section2.content': 'El recorrido parte del Big Bang, cuando energía e información dieron origen a la materia y, con el tiempo, a la vida. Desde las primeras partículas hasta la aparición del ser humano, la evolución ha sido un proceso de expansión y conciencia creciente. Este viaje, que une ciencia y espiritualidad, nos recuerda que todos formamos parte del mismo impulso creador: una corriente universal que nos invita a comprender que la historia del cosmos también es nuestra propia historia.',
+    'event.paz.section2.content': 'El recorrido parte del Big Bang, cuando energía e información dieron origen a la materia y, con el tiempo, a la vida. Desde las primeras partículas hasta la aparición del ser humano, la evolución ha sido un proceso de expansión y consciencia creciente. Este viaje, que une ciencia y espiritualidad, nos recuerda que todos formamos parte del mismo impulso creador: una corriente universal que nos invita a comprender que la historia del cosmos también es nuestra propia historia.',
     'event.paz.section3.title': 'La evolución como guía cotidiana',
-    'event.paz.section3.content': 'Más que un evento biológico, la evolución es una herramienta para vivir. Comprenderla como un proceso continuo nos permite usarla como brújula en la vida diaria: observar, comparar y aprender de los resultados, las tendencias y las realidades que nos rodean. En cada pensamiento y en cada acto está la posibilidad de avanzar un paso más en la conciencia, reconociendo que el verdadero progreso humano ocurre cuando se une la razón con la sensibilidad y la acción con la intención.',
+    'event.paz.section3.content': 'Más que un evento biológico, la evolución es una herramienta para vivir. Comprenderla como un proceso continuo nos permite usarla como brújula en la vida diaria: observar, comparar y aprender de los resultados, las tendencias y las realidades que nos rodean. En cada pensamiento y en cada acto está la posibilidad de avanzar un paso más en la consciencia, reconociendo que el verdadero progreso humano ocurre cuando se une la razón con la sensibilidad y la acción con la intención.',
     'event.paz.section4.title': 'El imperativo ético: el otro es como yo',
-    'event.paz.section4.content': 'El camino hacia la plenitud culmina en una propuesta humanista: reconocer al otro como una expresión del mismo espíritu que nos habita. Vivir con conciencia es aceptar que la evolución también ocurre en el corazón, a través del amor, la empatía y la colaboración. Este mensaje invita a no rechazar las ideas que nos incomodan, sino a explorarlas como oportunidades de crecimiento, entendiendo que la felicidad surge cuando actuamos con coherencia entre lo que pensamos, sentimos y hacemos.',
+    'event.paz.section4.content': 'El camino hacia la plenitud culmina en una propuesta humanista: reconocer al otro como una expresión del mismo espíritu que nos habita. Vivir con consciencia es aceptar que la evolución también ocurre en el corazón, a través del amor, la empatía y la colaboración. Este mensaje invita a no rechazar las ideas que nos incomodan, sino a explorarlas como oportunidades de crecimiento, entendiendo que la felicidad surge cuando actuamos con coherencia entre lo que pensamos, sentimos y hacemos.',
     
     // Videos
     'video1.title': 'Conferencia: Yo Soy Nosotros - Una Visión Integral',
@@ -401,7 +430,7 @@ const translations = {
     'book.yosoynosotros.desc1': 'En Yo Soy Nosotros, Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano.',
     'book.yosoynosotros.desc2': 'Este libro propone una reflexión profunda sobre nuestro papel en el universo, el sentido de la vida y la necesidad urgente de trascender el individualismo para abrazar una consciencia colectiva.',
     'book.yosoynosotros.desc3': 'A través de un enfoque transpersonal, el autor plantea que el ser humano no es un ente aislado, sino una expresión del Todo que sólo puede realizarse plenamente en comunión con los demás y con la naturaleza.',
-    'book.yosoynosotros.desc4': 'La obra desarrolla la filosofía del Humanismo Evolutivo: la evolución desde la consciencia individual hacia la consciencia colectiva como proceso transformador.',
+    'book.yosoynosotros.desc4': 'La obra desarrolla la filosofía del Humanismo Evolutivo Transpersonal: la evolución desde la consciencia individual hacia la consciencia colectiva como proceso transformador.',
     'book.yosoynosotros.desc5': 'Esta obra es tanto una guía espiritual como una propuesta ética para vivir con plenitud en un mundo interconectado.',
     
     'book.ecologia.title': 'Ecología y espiritualidad',
@@ -412,7 +441,7 @@ const translations = {
     'book.ecologia.desc3': 'Con un llamado ético al respeto del otro —y de uno mismo— esta obra propone que solo una transformación interior, basada en la unidad y compasión, puede conducirnos a una acción colectiva que salve nuestro entorno.',
     'book.ecologia.desc4': 'Este libro es una guía para quienes entienden que cuidar la Tierra comienza con una revolución en la consciencia.',
     
-    'book.dejaloser.title': 'Déjalo ser',
+    'book.dejaloser.title': '¡Dejalo Ser!',
     'book.dejaloser.subtitle': 'Una novela sobre identidad, memoria y libertad',
     'book.dejaloser.excerpt': 'Déjalo ser es una novela que entrelaza memoria, identidad y tecnología en un relato íntimo y visionario. Marcos Constandse nos conduce a un futuro posible, donde la acumulación de datos personales confronta a sus protagonistas con sus raíces más profundas y sus decisiones más humanas.',
     'book.dejaloser.desc1': 'Déjalo ser es una novela que entrelaza memoria, identidad y tecnología en un relato íntimo y visionario. Marcos Constandse nos conduce a un futuro posible, donde la acumulación de datos personales confronta a sus protagonistas con sus raíces más profundas y sus decisiones más humanas.',
@@ -465,7 +494,7 @@ const translations = {
     'autor.philosophy.card2.title': 'Visión Transpersonal',
     'autor.philosophy.card2.description': 'Propone una visión del ser humano que trasciende el individualismo para reconocer nuestra interdependencia fundamental con los demás y con toda la vida.',
     'autor.philosophy.card3.title': 'Ética Evolutiva',
-    'autor.philosophy.card3.description': 'Defiende una ética basada en la expansión de la conciencia, que reconoce la responsabilidad que tenemos hacia nosotros mismos, hacia los demás y hacia el planeta.',
+    'autor.philosophy.card3.description': 'Defiende una ética basada en la expansión de la consciencia, que reconoce la responsabilidad que tenemos hacia nosotros mismos, hacia los demás y hacia el planeta.',
     
     // Author page - Timeline
     'autor.timeline.description': 'A lo largo de su vida, Marcos Constandse ha recorrido un camino marcado por la búsqueda del conocimiento, la transformación personal y el compromiso con una vida consciente.',
@@ -474,12 +503,33 @@ const translations = {
     'autor.timeline.milestone2.title': 'Camino Empresarial',
     'autor.timeline.milestone2.description': 'Su trayectoria como empresario le permitió poner a prueba sus ideas en el terreno práctico. Enfrentó desafíos éticos y estructurales que moldearon su visión sobre el rol de la empresa en la sociedad, y lo llevaron a defender una forma de hacer negocios más consciente, ética y con sentido.',
     'autor.timeline.milestone3.title': 'Exploración Espiritual',
-    'autor.timeline.milestone3.description': 'La dimensión espiritual ha sido una constante en su vida, no como evasión, sino como una forma más profunda de habitar la realidad. A través de diversas tradiciones y prácticas contemplativas, ha cultivado una conciencia expandida que lo conecta con lo trascendente.',
+    'autor.timeline.milestone3.description': 'La dimensión espiritual ha sido una constante en su vida, no como evasión, sino como una forma más profunda de habitar la realidad. A través de diversas tradiciones y prácticas contemplativas, ha cultivado una consciencia expandida que lo conecta con lo trascendente.',
     'autor.timeline.milestone4.title': 'Proyecto Literario',
     'autor.timeline.milestone4.description': 'La obra escrita de Marcos Constandse es el fruto de décadas de reflexión, experiencia y búsqueda interior. Cada uno de sus libros aborda distintas facetas del ser humano —desde lo cósmico hasta lo cotidiano— y juntos conforman un proyecto literario integral.',
     
     // Author page - Quote section
-    'autor.quote.text': 'Entre sus obras más reconocidas se encuentran Yo soy nosotros —ganadora del Premio Nacional de Ensayo Filosófico—, Ecología y espiritualidad, Déjalo ser, El arte de ser empresario y Y lo mejor aún está por venir. En cada una de ellas se entrelazan la reflexión personal, el análisis riguroso y una profunda fe en la capacidad del ser humano para evolucionar hacia estados más plenos de conciencia.',
+    'autor.quote.text': 'Entre sus obras más reconocidas se encuentran Yo soy nosotros —ganadora del Premio Nacional de Ensayo Filosófico—, Ecología y espiritualidad, Déjalo ser, El arte de ser empresario y Y lo mejor aún está por venir. En cada una de ellas se entrelazan la reflexión personal, el análisis riguroso y una profunda fe en la capacidad del ser humano para evolucionar hacia estados más plenos de consciencia.',
+
+    // Footer
+    'footer.newsletter.title': 'Recibe nuestras novedades',
+    'footer.newsletter.description': 'Suscríbete para recibir información sobre nuevos libros, eventos y reflexiones filosóficas.',
+    'footer.newsletter.emailLabel': 'Correo electrónico',
+    'footer.newsletter.emailPlaceholder': 'tu@correo.com',
+    'footer.newsletter.submit': 'Suscribirme',
+    'footer.newsletter.submitting': 'Guardando…',
+    'footer.newsletter.success': '¡Gracias! Tu correo quedó registrado.',
+    'footer.newsletter.invalidEmail': 'Ingresa un correo electrónico válido.',
+    'footer.newsletter.error': 'No pudimos guardar tu suscripción. Intenta de nuevo.',
+    'footer.newsletter.privacyPrefix': 'Al suscribirte, aceptas nuestra',
+    'footer.newsletter.privacyLink': 'Política de privacidad.',
+    'footer.about': 'Una visión transpersonal del mundo a través de la filosofía, la espiritualidad y la ecología.',
+    'footer.quickLinks': 'Enlaces rápidos',
+    'footer.home': 'Inicio',
+    'footer.author': 'Sobre el autor',
+    'footer.podcast': 'Podcast',
+    'footer.works': 'Obras',
+    'footer.privacy': 'Política de privacidad',
+    'footer.terms': 'Términos y condiciones',
     
     // Vision page
     'vision.title': 'Mi visión del mundo',
@@ -505,21 +555,23 @@ const translations = {
     
     // Video Section
     'video.title': 'An Introduction to Our Philosophy',
-    'video.subtitle': 'Discover the essence of Evolutionary Humanism in this introductory presentation.',
+    'video.subtitle': 'Discover the essence of Transpersonal Evolutionary Humanism in this introductory presentation.',
     
     // About Section
     'about.subtitle': 'ABOUT THE AUTHOR',
     'about.name': 'Marcos Constandse Madrazo',
     'about.description1': 'Marcos Constandse Madrazo is a tireless thinker, visionary entrepreneur and explorer of the human soul. For more than three decades, he has traveled a unique path that integrates science, philosophy, ecology and spirituality to offer a vision of the world where everything is deeply connected: the universe, the Earth, life, the human being and their conscious evolution.',
     'about.business': 'In his business life he formed four groups. The initial group where he gained experience, Grupo Mezcalapa, which managed a variety of companies. The second group he co-founded was Grupo Ritco. The third group he formed as co-founder and contributing the basic ideas was Grupo Palace, a group of Palace hotels in Cancún. And the fourth group he co-founded and led the spiritual, financial, legal and audit formation was Grupo Xcaret. Of those four groups he was part of founding, three of them have been ranked among Mexico\'s 200 most important companies.',
-    'about.literature': 'His literary work develops the philosophy of Evolutionary Humanism, proposing evolution from individual consciousness to collective consciousness as a transformative process for humanity. His book "Yo soy nosotros" was awarded the National Philosophical Essay Prize.',
+    'about.literature': 'His literary work develops the philosophy of Transpersonal Evolutionary Humanism, proposing evolution from individual consciousness to collective consciousness as a transformative process for humanity. His book "Yo soy nosotros" was awarded the National Philosophical Essay Prize.',
     'about.works': 'Author of works such as "Yo soy nosotros", "Ecology and spirituality", "Let it be", "The art of being an entrepreneur" and "The best is yet to come", Constandse has dedicated his life to exploring the deep connections between all aspects of existence.',
+    'about.learnMore': 'Learn more',
     
     // Books Section
     'books.title': 'Philosophical Library',
     'books.subtitle': 'A collection of works exploring the evolution of human consciousness',
     'books.read': 'Read more',
     'books.download': 'Download',
+    'books.viewAll': 'View all books',
     
     // Featured Book
     'featured.label': 'Featured Work',
@@ -532,7 +584,7 @@ const translations = {
     // Podcast Section
     'podcast.title': 'Media and Podcast',
     'podcast.subtitle': 'Conversations connecting science, spirituality and consciousness',
-    'podcast.intro': 'In our podcast we explore the central themes of his work and the philosophy of Evolutionary Humanism, the integration of science and spirituality, the evolution of consciousness, and building a more connected and conscious world.',
+    'podcast.intro': 'In our podcast we explore the central themes of his work and the philosophy of Transpersonal Evolutionary Humanism, the integration of science and spirituality, the evolution of consciousness, and building a more connected and conscious world.',
     'podcast.listen': 'Listen to Episode',
     'podcast.moreInfo': 'More information',
     'podcast.view': 'View all episodes',
@@ -575,6 +627,20 @@ const translations = {
     'libros.hero.title.highlight': 'Library',
     'libros.hero.subtitle': 'Explore the works of Marcos Constandse that connect science, philosophy, spirituality and ecology under an integrative vision of human knowledge.',
     'libros.explore': 'Explore Work',
+    'book.detail.notFound': 'Book not found',
+    'book.detail.notFoundDescription': 'We are sorry, but the book you are looking for is not available.',
+    'book.detail.back': 'Back to the library',
+    'book.detail.aria': 'Book details',
+    'book.detail.author': 'Author',
+    'book.detail.download': 'Download book',
+    'book.detail.about': 'About the book',
+    'book.detail.ctaTitle': 'Would you like to read this book?',
+    'book.detail.ctaDescription': 'Download it for free and begin a journey toward a deeper understanding of the human being and our place in the universe.',
+    'book.detail.downloadNow': 'Download now',
+    'book.detail.prologue': 'Prologue',
+    'book.detail.summary': 'Summary',
+    'book.detail.relatedTitle': 'You may also be interested in',
+    'book.detail.relatedDescription': 'Explore other works by Marcos Constandse that complement the ideas and reflections in this book.',
     
     // Autor Page
     'autor.hero.badge': 'Philosopher • Writer • Thinker',
@@ -626,6 +692,19 @@ const translations = {
     'chatbot.notify.title': 'Be the first to know!',
     'chatbot.notify.description': 'Sign up to receive a notification when the chatbot is available.',
     'chatbot.notify.button': 'Notify Me',
+    'chatbot.feature.deepDialogues': 'Deep dialogues about philosophical and spiritual concepts',
+    'chatbot.feature.interactiveBooks': 'Interactive exploration of the author’s books and essays',
+    'chatbot.feature.textVoice': 'Real-time conversations by text and voice',
+    'chatbot.feature.personalized': 'Personalized answers based on your spiritual questions',
+    'chatbot.notify.placeholder': 'Your email address',
+    'chatbot.experience.title': 'An Experience of Deep Dialogue',
+    'chatbot.experience.description': 'This experience will make it possible to explore the author’s ideas interactively and personally as never before.',
+    'chatbot.experience.smart.title': 'Intelligent Dialogue',
+    'chatbot.experience.smart.description': 'Natural conversations grounded in the author’s thought',
+    'chatbot.experience.philosophy.title': 'Philosophical Exploration',
+    'chatbot.experience.philosophy.description': 'Explore concepts of consciousness, spirituality, and ethics in depth',
+    'chatbot.experience.learning.title': 'Continuous Learning',
+    'chatbot.experience.learning.description': 'Each conversation adapts to your level of understanding',
     
     // Videos Section
     'videos.coming.soon': 'Coming Soon',
@@ -638,7 +717,7 @@ const translations = {
     'chatbot.section.title': 'Chat with the Author',
     'chatbot.section.description': 'A unique experience to dialogue directly with Marcos Constandse about his work, his thinking and his vision of the world through artificial intelligence.',
     'chatbot.section.question1': 'What is transpersonal consciousness?',
-    'chatbot.section.answer1': 'Transpersonal consciousness transcends the boundaries of the individual ego and connects us with the totality of being. It allows us to experience that we are part of an interconnected whole. This is the essence of Evolutionary Humanism.',
+    'chatbot.section.answer1': 'Transpersonal consciousness transcends the boundaries of the individual ego and connects us with the totality of being. It allows us to experience that we are part of an interconnected whole. This is the essence of Transpersonal Evolutionary Humanism.',
     'chatbot.section.question2': 'How can we apply this in our daily life?',
     'chatbot.section.answer2': 'We can begin by recognizing our interdependence with others and with the planet. Every decision we make affects the whole. Expanded consciousness leads us to act from love and responsibility.',
     'chatbot.section.placeholder': 'Write your question here...',
@@ -653,7 +732,7 @@ const translations = {
     // Podcast Page
     'podcast.page.badge': 'Podcasts and Interviews',
     'podcast.page.title': 'Media',
-    'podcast.page.intro': 'In this section you will find live, close and profound conversations inspired by the thought of Marcos Constandse. Through interviews, reflections and open dialogues, we explore the central themes of his work and the philosophy of Evolutionary Humanism, the evolution of consciousness, practical spirituality, ethics in everyday life, the role of the conscious entrepreneur, and the balance between humanity and planet.',
+    'podcast.page.intro': 'In this section you will find live, close and profound conversations inspired by the thought of Marcos Constandse. Through interviews, reflections and open dialogues, we explore the central themes of his work and the philosophy of Transpersonal Evolutionary Humanism, the evolution of consciousness, practical spirituality, ethics in everyday life, the role of the conscious entrepreneur, and the balance between humanity and planet.',
     'podcast.page.series.title': 'Evolutionary Humanism',
     'podcast.page.series.description': 'Podcast series exploring the central themes of Marcos Constandse\'s thought',
     'podcast.page.tab.podcasts': 'Podcasts',
@@ -901,7 +980,7 @@ const translations = {
     'book.yosoynosotros.desc1': 'In Yo Soy Nosotros, Marcos Constandse invites us to travel through a map of knowledge that connects science, philosophy, psychology, spirituality and ecology under an evolutionary and integrative vision of the human being.',
     'book.yosoynosotros.desc2': 'This book proposes a deep reflection on our role in the universe, the meaning of life and the urgent need to transcend individualism to embrace a collective consciousness.',
     'book.yosoynosotros.desc3': 'Through a transpersonal approach, the author proposes that the human being is not an isolated entity, but an expression of the Whole that can only be fully realized in communion with others and with nature.',
-    'book.yosoynosotros.desc4': 'The work develops the philosophy of Evolutionary Humanism: the evolution from individual consciousness to collective consciousness as a transformative process.',
+    'book.yosoynosotros.desc4': 'The work develops the philosophy of Transpersonal Evolutionary Humanism: the evolution from individual consciousness to collective consciousness as a transformative process.',
     'book.yosoynosotros.desc5': 'This work is both a spiritual guide and an ethical proposal to live fully in an interconnected world.',
     
     'book.ecologia.title': 'Ecology and Spirituality',
@@ -980,6 +1059,27 @@ const translations = {
     
     // Author page - Quote section
     'autor.quote.text': 'Among his most recognized works are Yo soy nosotros —winner of the National Prize for Philosophical Essay—, Ecology and Spirituality, Let It Be, The Art of Being an Entrepreneur and The Best Is Yet To Come. In each of them, personal reflection, rigorous analysis and a deep faith in the capacity of the human being to evolve towards fuller states of consciousness are intertwined.',
+
+    // Footer
+    'footer.newsletter.title': 'Receive our latest news',
+    'footer.newsletter.description': 'Subscribe for updates about new books, events, and philosophical reflections.',
+    'footer.newsletter.emailLabel': 'Email address',
+    'footer.newsletter.emailPlaceholder': 'you@email.com',
+    'footer.newsletter.submit': 'Subscribe',
+    'footer.newsletter.submitting': 'Saving…',
+    'footer.newsletter.success': 'Thank you! Your email has been saved.',
+    'footer.newsletter.invalidEmail': 'Enter a valid email address.',
+    'footer.newsletter.error': 'We could not save your subscription. Please try again.',
+    'footer.newsletter.privacyPrefix': 'By subscribing, you agree to our',
+    'footer.newsletter.privacyLink': 'Privacy Policy.',
+    'footer.about': 'A transpersonal view of the world through philosophy, spirituality, and ecology.',
+    'footer.quickLinks': 'Quick links',
+    'footer.home': 'Home',
+    'footer.author': 'About the author',
+    'footer.podcast': 'Podcast',
+    'footer.works': 'Works',
+    'footer.privacy': 'Privacy policy',
+    'footer.terms': 'Terms and conditions',
     
     // Vision page
     'vision.title': 'My Vision of the World',
@@ -988,17 +1088,23 @@ const translations = {
 };
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = React.useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('language');
-      return (saved as Language) || 'es';
-    }
-    return 'es';
-  });
+  const [language, setLanguageState] = React.useState<Language>('es');
 
   React.useEffect(() => {
-    localStorage.setItem('language', language);
+    const saved = localStorage.getItem('language');
+    if (saved === 'es' || saved === 'en') {
+      setLanguageState(saved);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    document.documentElement.lang = language;
   }, [language]);
+
+  const setLanguage = React.useCallback((nextLanguage: Language) => {
+    setLanguageState(nextLanguage);
+    localStorage.setItem('language', nextLanguage);
+  }, []);
 
   const t = (key: string): string => {
     return (translations[language] as Record<string, string>)[key] || key;

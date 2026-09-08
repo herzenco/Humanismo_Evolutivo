@@ -6,12 +6,13 @@ import { motion, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { books } from '@/data/books';
+import { books, localizeBook } from '@/data/books';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const FeaturedBooksCarousel = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
+  const localizedBooks = books.map((book) => localizeBook(book, t));
   const isInView = useInView(ref, {
     once: true,
     amount: 0.2
@@ -63,7 +64,7 @@ const FeaturedBooksCarousel = () => {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6"
         >
-          {books.map((book) => (
+          {localizedBooks.map((book) => (
             <div key={book.id} className="group relative h-full">
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10 shadow-2xl transform group-hover:scale-105 transition-all duration-500"></div>
               <div className="relative p-4 lg:p-6 h-full flex flex-col">
@@ -119,7 +120,7 @@ const FeaturedBooksCarousel = () => {
             }}
           >
             <Link href="/libros" className="inline-flex items-center">
-              Ver Todos los Libros
+              {t('books.viewAll')}
               <ArrowRight size={18} className="ml-2" />
             </Link>
           </Button>

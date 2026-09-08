@@ -13,7 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
 const Podcast = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const router = useRouter();
   const initialTab = (() => {
     try {
@@ -189,12 +189,12 @@ const Podcast = () => {
                         <img
                           src={series.coverImage}
                           alt={t(series.titleKey)}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-contain bg-cream-light p-3 transition-transform duration-500 group-hover:scale-[1.02]"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/40 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
                         <div className="absolute top-4 right-4">
                           <div className="bg-gold/90 backdrop-blur-sm text-navy-dark px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider shadow-lg">
-                            {series.episodes.length} episodios
+                            {series.episodes.length} {language === 'es' ? 'episodios' : 'episodes'}
                           </div>
                         </div>
                       </div>
@@ -213,7 +213,7 @@ const Podcast = () => {
                           className="w-full group/btn border-2 border-navy text-navy hover:bg-navy hover:text-white transition-all duration-300 py-5 rounded-xl font-medium"
                         >
                           <span className="flex items-center justify-center gap-2">
-                            Ver episodios
+                            {language === 'es' ? 'Ver episodios' : 'View episodes'}
                             <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
                           </span>
                         </Button>
@@ -261,7 +261,7 @@ const Podcast = () => {
                     <div className="flex items-center gap-3 mb-4 text-sm text-gray-600">
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-4 h-4 text-gold" />
-                        <span>{new Date(item.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <span>{new Date(item.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                       </div>
                       <span className="text-gray-400">•</span>
                       <div className="flex items-center gap-1.5">

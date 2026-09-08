@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Search as SearchIcon, BookOpen, Headphones, Video } from 'lucide-react';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { books } from '@/data/books';
+import { books, localizeBook } from '@/data/books';
 import { podcasts, videos } from '@/data/media';
 import { getPodcastEpisodeContent } from '@/data/podcastEpisodeContent';
 import { Badge } from '@/components/ui/badge';
@@ -52,8 +52,10 @@ const Search = () => {
     const searchTerm = query.toLowerCase();
     const normalizedSearch = normalizeString(searchTerm);
 
+    const localizedBooks = books.map((book) => localizeBook(book, t));
+
     // Search books with fuzzy matching
-    const matchedBooks = books.filter(book =>
+    const matchedBooks = localizedBooks.filter(book =>
       fuzzyMatch(searchTerm, book.title) ||
       fuzzyMatch(searchTerm, book.subtitle) ||
       book.description.some(desc => fuzzyMatch(searchTerm, desc)) ||
@@ -258,7 +260,9 @@ const Search = () => {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {searchResults.podcasts.map((podcast) => {
-                      const suppliedContent = getPodcastEpisodeContent(podcast.audioUrl);
+                      const suppliedContent = language === 'es'
+                        ? getPodcastEpisodeContent(podcast.audioUrl)
+                        : undefined;
                       const podcastTitle = suppliedContent?.title ?? t(podcast.titleKey);
                       const podcastDescription = suppliedContent?.description ?? t(podcast.descriptionKey);
 

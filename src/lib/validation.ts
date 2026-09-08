@@ -18,6 +18,17 @@ export const bookDownloadSchema = z.object({
 
 export type BookDownloadFormData = z.infer<typeof bookDownloadSchema>;
 
+export const newsletterSubscriptionSchema = z.object({
+  email: z.string()
+    .trim()
+    .toLowerCase()
+    .email({ message: 'Invalid email address' })
+    .max(254, { message: 'Email must be less than 255 characters' }),
+  locale: z.enum(['es', 'en']),
+});
+
+export type NewsletterSubscriptionFormData = z.infer<typeof newsletterSubscriptionSchema>;
+
 /**
  * Helper to sanitize strings for analytics tracking
  * Removes potentially dangerous characters that could cause XSS

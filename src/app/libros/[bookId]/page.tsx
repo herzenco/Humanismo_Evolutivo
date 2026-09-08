@@ -5,7 +5,7 @@ import { use } from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
-import { books } from '@/data/books';
+import { books, localizeBook } from '@/data/books';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -24,6 +24,7 @@ import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
 import { z } from 'zod';
 import { BookStructuredData } from '@/components/seo/StructuredData';
 import { useBookImages } from '@/hooks/useBookImages';
+import { englishBookLongform } from '@/data/bookLongform';
 
 export default function BookDetailPage({ params }: { params: Promise<{ bookId: string }> }) {
   const { bookId } = use(params);
@@ -35,23 +36,26 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
-  const book = books.find(b => b.id === bookId);
-  const bookCoverImage = bookImages?.[bookId!] || book?.coverImage;
+  const sourceBook = books.find(b => b.id === bookId);
+  const book = sourceBook ? localizeBook(sourceBook, t) : undefined;
+  const localizedBooks = books.map((item) => localizeBook(item, t));
+  const bookCoverImage = bookImages?.[bookId!] || sourceBook?.coverImage;
+  const englishLongform = bookId ? englishBookLongform[bookId] : undefined;
 
   if (!book) {
     return (
       <PageWrapper>
         <div className="container mx-auto px-6 py-20 text-center">
-          <h1 className="text-2xl font-bold mb-4">Libro no encontrado</h1>
-          <p className="mb-6">Lo sentimos, el libro que buscas no está disponible.</p>
+          <h1 className="text-2xl font-bold mb-4">{t('book.detail.notFound')}</h1>
+          <p className="mb-6">{t('book.detail.notFoundDescription')}</p>
           <Link
             href="/libros"
             className="inline-flex items-center text-gold hover:underline"
           >
             <ArrowLeft size={16} className="mr-2" />
-            Volver a la biblioteca
+            {t('book.detail.back')}
           </Link>
         </div>
       </PageWrapper>
@@ -223,7 +227,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
         url={`https://yosoynosotros.com/libros/${book.id}`}
       />
       {/* Book Header */}
-      <section className="relative py-20 lg:py-28 bg-navy-dark text-white overflow-hidden" aria-label="Detalles del libro">
+      <section className="relative py-20 lg:py-28 bg-navy-dark text-white overflow-hidden" aria-label={t('book.detail.aria')}>
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-[20%] left-[15%] w-64 h-64 bg-gold/20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-[10%] right-[10%] w-80 h-80 bg-primary/30 rounded-full blur-3xl"></div>
@@ -234,7 +238,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
             className="inline-flex items-center text-white/70 hover:text-white mb-8"
           >
             <ArrowLeft size={16} className="mr-2" />
-            Volver a la biblioteca
+            {t('book.detail.back')}
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -264,7 +268,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
 
                 <div className="mb-8">
                   <div>
-                    <p className="text-white/70 text-sm">Autor</p>
+                    <p className="text-white/70 text-sm">{t('book.detail.author')}</p>
                     <p className="font-medium">{book.author}</p>
                   </div>
                 </div>
@@ -275,7 +279,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   size="lg"
                 >
                   <Download size={18} className="mr-2" />
-                  Descargar Libro
+                  {t('book.detail.download')}
                 </Button>
               </motion.div>
             </div>
@@ -288,8 +292,8 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
               >
                 <div className="book-3d">
                   <img
-                    src={`${bookCoverImage || book.coverImage}?t=${Date.now()}`}
-                    alt={`Portada del libro ${book.title} - ${book.subtitle}`}
+                    src={bookCoverImage || book.coverImage}
+                    alt={`${t('book.detail.aria')}: ${book.title} — ${book.subtitle}`}
                     className="rounded-md shadow-2xl max-w-xs"
                     loading="eager"
                   />
@@ -311,7 +315,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
               transition={{ duration: 0.5 }}
             >
               <h2 className="font-heading text-3xl font-semibold text-navy-dark mb-6">
-                Sobre el Libro
+                {t('book.detail.about')}
               </h2>
 
               <div className="prose prose-lg max-w-none text-navy-light">
@@ -336,17 +340,16 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                 </div>
                 <div>
                   <h3 className="font-heading text-xl font-semibold text-navy-dark mb-3">
-                    ¿Te gustaría leer este libro?
+                    {t('book.detail.ctaTitle')}
                   </h3>
                   <p className="text-navy-light mb-4">
-                    Descarga gratuitamente "{book.title}" y comienza tu viaje hacia una
-                    comprensión más profunda del ser humano y su lugar en el universo.
+                    {t('book.detail.ctaDescription')}
                   </p>
                   <Button
                     onClick={handleDownload}
                     className="bg-navy hover:bg-navy-dark"
                   >
-                    Descargar Ahora
+                    {t('book.detail.downloadNow')}
                   </Button>
                 </div>
               </div>
@@ -362,18 +365,27 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                 className="mt-16"
               >
                 <h2 className="font-heading text-3xl font-semibold text-navy-dark mb-8 text-center">
-                  Prólogo
+                  {t('book.detail.prologue')}
                 </h2>
 
+                {language === 'en' && (
+                  <div className="prose prose-lg max-w-none text-navy-light space-y-6">
+                    {englishLongform?.prologue.map((paragraph, index) => (
+                      <p key={index} className="text-lg leading-relaxed">{paragraph}</p>
+                    ))}
+                  </div>
+                )}
+
+                {language === 'es' && (
                 <div className="prose prose-lg max-w-none text-navy-light space-y-6">
                   {book.id === 'yo-soy-nosotros' && (
                     <>
                       <p className="text-lg leading-relaxed">
-                        <span className="font-semibold text-navy-dark">Yo Soy Nosotros</span> es una invitación a mirar el mundo con nuevos ojos: los de la conciencia que reconoce su unidad con el universo, con la vida y con los demás. En estas páginas, Marcos Constandse comparte el fruto de más de tres décadas de búsqueda espiritual, filosófica y científica, en un recorrido que abarca el origen del cosmos, la evolución de la vida, la ecología, la filosofía, la psicología, las tradiciones espirituales y, sobre todo, el amor como fuerza esencial de la existencia.
+                        <span className="font-semibold text-navy-dark">Yo Soy Nosotros</span> es una invitación a mirar el mundo con nuevos ojos: los de la consciencia que reconoce su unidad con el universo, con la vida y con los demás. En estas páginas, Marcos Constandse comparte el fruto de más de tres décadas de búsqueda espiritual, filosófica y científica, en un recorrido que abarca el origen del cosmos, la evolución de la vida, la ecología, la filosofía, la psicología, las tradiciones espirituales y, sobre todo, el amor como fuerza esencial de la existencia.
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        Su visión transpersonal propone que la finalidad última del cosmos es el ser humano, y que el verdadero sentido de nuestra existencia está en la evolución de la conciencia hacia niveles más elevados. No se trata de un conocimiento fragmentado, sino de una integración que une ciencia y espiritualidad, razón y contemplación, individuo y comunidad.
+                        Su visión transpersonal propone que la finalidad última del cosmos es el ser humano, y que el verdadero sentido de nuestra existencia está en la evolución de la consciencia hacia niveles más elevados. No se trata de un conocimiento fragmentado, sino de una integración que une ciencia y espiritualidad, razón y contemplación, individuo y comunidad.
                       </p>
 
                       <p className="text-lg leading-relaxed">
@@ -393,15 +405,15 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        El autor plantea que la verdadera evolución humana no se mide únicamente en avances tecnológicos o económicos, sino en la capacidad de integrar la conciencia ecológica con la ética y la espiritualidad. La degradación ambiental y el cambio climático nos enfrentan a un reto sin precedentes, que no puede resolverse únicamente con soluciones técnicas: requiere una transformación profunda de valores y de visión del mundo.
+                        El autor plantea que la verdadera evolución humana no se mide únicamente en avances tecnológicos o económicos, sino en la capacidad de integrar la consciencia ecológica con la ética y la espiritualidad. La degradación ambiental y el cambio climático nos enfrentan a un reto sin precedentes, que no puede resolverse únicamente con soluciones técnicas: requiere una transformación profunda de valores y de visión del mundo.
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        Con claridad y fuerza, este libro denuncia los riesgos del egoísmo humano y la indiferencia, pero también ofrece esperanza al señalar que el desarrollo de una conciencia espiritual —el imperativo ético de reconocer que "el otro es como yo"— puede guiar nuestras decisiones hacia un futuro más justo y sostenible.
+                        Con claridad y fuerza, este libro denuncia los riesgos del egoísmo humano y la indiferencia, pero también ofrece esperanza al señalar que el desarrollo de una consciencia espiritual —el imperativo ético de reconocer que "el otro es como yo"— puede guiar nuestras decisiones hacia un futuro más justo y sostenible.
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        <span className="font-semibold text-navy-dark">Ecología y espiritualidad</span> nos invita a actuar desde la responsabilidad compartida, a unir ciencia y espíritu, razón y amor, en la construcción de un planeta donde la vida no solo sobreviva, sino que florezca. Es un testimonio de que la preservación de la Tierra comienza en la conciencia de cada uno de nosotros.
+                        <span className="font-semibold text-navy-dark">Ecología y espiritualidad</span> nos invita a actuar desde la responsabilidad compartida, a unir ciencia y espíritu, razón y amor, en la construcción de un planeta donde la vida no solo sobreviva, sino que florezca. Es un testimonio de que la preservación de la Tierra comienza en la consciencia de cada uno de nosotros.
                       </p>
                     </>
                   )}
@@ -417,7 +429,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        Más que una narración futurista, <span className="font-semibold text-navy-dark">¡Déjalo ser!</span> es una meditación sobre lo que significa ser humano en medio de un mundo que cambia vertiginosamente. Nos recuerda que, aun en la era de la información y del control, la libertad más auténtica sigue siendo la de vivir en plenitud, con amor, con conciencia y con la capacidad de aceptar lo que es.
+                        Más que una narración futurista, <span className="font-semibold text-navy-dark">¡Déjalo ser!</span> es una meditación sobre lo que significa ser humano en medio de un mundo que cambia vertiginosamente. Nos recuerda que, aun en la era de la información y del control, la libertad más auténtica sigue siendo la de vivir en plenitud, con amor, con consciencia y con la capacidad de aceptar lo que es.
                       </p>
 
                       <p className="text-lg leading-relaxed">
@@ -441,7 +453,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        <span className="font-semibold text-navy-dark">El arte de ser empresario</span> es, en última instancia, una invitación a concebir la actividad empresarial como un camino de conciencia y de servicio, donde el éxito se mide no sólo en resultados económicos, sino en la capacidad de generar justicia, solidaridad y felicidad compartida.
+                        <span className="font-semibold text-navy-dark">El arte de ser empresario</span> es, en última instancia, una invitación a concebir la actividad empresarial como un camino de consciencia y de servicio, donde el éxito se mide no sólo en resultados económicos, sino en la capacidad de generar justicia, solidaridad y felicidad compartida.
                       </p>
                     </>
                   )}
@@ -453,19 +465,20 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        El autor propone la evolución como guía para comprender nuestra realidad: el universo, la materia, la vida y la conciencia son parte de un mismo proceso en constante transformación. En este recorrido, nos invita a cuestionar nuestras creencias, a observar las ideologías y los sistemas que nos rodean, y a encontrar nuestra propia ruta hacia la felicidad.
+                        El autor propone la evolución como guía para comprender nuestra realidad: el universo, la materia, la vida y la consciencia son parte de un mismo proceso en constante transformación. En este recorrido, nos invita a cuestionar nuestras creencias, a observar las ideologías y los sistemas que nos rodean, y a encontrar nuestra propia ruta hacia la felicidad.
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        Con un estilo cercano y honesto, Marcos entrelaza conceptos de física cuántica, ecología, psicología, economía y espiritualidad, mostrando que el conocimiento, cuando se vive con conciencia, puede convertirse en una brújula para orientar nuestras decisiones.
+                        Con un estilo cercano y honesto, Marcos entrelaza conceptos de física cuántica, ecología, psicología, economía y espiritualidad, mostrando que el conocimiento, cuando se vive con consciencia, puede convertirse en una brújula para orientar nuestras decisiones.
                       </p>
 
                       <p className="text-lg leading-relaxed">
-                        <span className="font-semibold text-navy-dark">Y lo mejor aún está por venir</span> es, en esencia, una celebración de la vida y una afirmación de esperanza: la certeza de que cada experiencia, incluso las crisis, nos acercan a una conciencia más amplia y profunda. Es una invitación a mirar hacia adelante con confianza, sabiendo que lo más valioso de nuestro camino está aún por descubrirse.
+                        <span className="font-semibold text-navy-dark">Y lo mejor aún está por venir</span> es, en esencia, una celebración de la vida y una afirmación de esperanza: la certeza de que cada experiencia, incluso las crisis, nos acercan a una consciencia más amplia y profunda. Es una invitación a mirar hacia adelante con confianza, sabiendo que lo más valioso de nuestro camino está aún por descubrirse.
                       </p>
                     </>
                   )}
                 </div>
+                )}
               </motion.div>
             )}
 
@@ -479,9 +492,18 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                 className="mt-16"
               >
                 <h2 className="font-heading text-3xl font-semibold text-navy-dark mb-8 text-center">
-                  Resumen
+                  {t('book.detail.summary')}
                 </h2>
 
+                {language === 'en' && (
+                  <div className="prose prose-lg max-w-none text-navy-light space-y-6">
+                    {englishLongform?.summary.map((paragraph, index) => (
+                      <p key={index} className="text-base leading-relaxed">{paragraph}</p>
+                    ))}
+                  </div>
+                )}
+
+                {language === 'es' && (
                 <div className="prose prose-lg max-w-none text-navy-light space-y-6">
                   {book.id === 'yo-soy-nosotros' && (
                     <div className="space-y-4">
@@ -526,7 +548,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   {book.id === 'ecologia-y-espiritualidad' && (
                     <div className="space-y-4">
                       <p className="text-base leading-relaxed">
-                        El libro Ecología y Espiritualidad, de Marcos Constandse, constituye un intento lúcido y comprometido por abordar uno de los grandes dilemas del siglo XXI: la relación del ser humano con la naturaleza y la necesidad urgente de integrar la conciencia ecológica con una visión espiritual. Lejos de quedarse en un enfoque técnico o científico de la ecología, Constandse propone un horizonte más amplio en el que se cruzan filosofía, ética, política y espiritualidad.
+                        El libro Ecología y Espiritualidad, de Marcos Constandse, constituye un intento lúcido y comprometido por abordar uno de los grandes dilemas del siglo XXI: la relación del ser humano con la naturaleza y la necesidad urgente de integrar la consciencia ecológica con una visión espiritual. Lejos de quedarse en un enfoque técnico o científico de la ecología, Constandse propone un horizonte más amplio en el que se cruzan filosofía, ética, política y espiritualidad.
                       </p>
 
                       <p className="text-base leading-relaxed">
@@ -538,7 +560,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                       </p>
 
                       <p className="text-base leading-relaxed">
-                        Constandse vincula esta mirada con el concepto de imperativo ético: "el otro es como yo". Esto significa que la naturaleza no debe ser cuidada por sí misma de manera abstracta, sino en tanto que está íntimamente ligada a la vida humana y a nuestra supervivencia. Degradar el entorno es degradarnos a nosotros mismos. Así, la espiritualidad se entiende como la conciencia de la interdependencia de todo lo existente y como la capacidad de actuar en consecuencia.
+                        Constandse vincula esta mirada con el concepto de imperativo ético: "el otro es como yo". Esto significa que la naturaleza no debe ser cuidada por sí misma de manera abstracta, sino en tanto que está íntimamente ligada a la vida humana y a nuestra supervivencia. Degradar el entorno es degradarnos a nosotros mismos. Así, la espiritualidad se entiende como la consciencia de la interdependencia de todo lo existente y como la capacidad de actuar en consecuencia.
                       </p>
 
                       <p className="text-base leading-relaxed">
@@ -590,11 +612,11 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   {book.id === 'lo-mejor-esta-por-venir' && (
                     <div className="space-y-4">
                       <p className="text-base leading-relaxed">
-                        El libro Y lo mejor aún está por venir de Marcos Constandse se presenta como un ensayo filosófico de autoayuda que busca orientar al lector hacia una vida con mayor conciencia, plenitud y sentido. A través de su experiencia personal y de un sólido recorrido por distintos saberes científicos, filosóficos y espirituales, el autor plantea que la clave para enfrentar la incertidumbre y la confusión del mundo contemporáneo se encuentra en comprender el proceso de la evolución y aplicarlo como guía en nuestra existencia.
+                        El libro Y lo mejor aún está por venir de Marcos Constandse se presenta como un ensayo filosófico de autoayuda que busca orientar al lector hacia una vida con mayor consciencia, plenitud y sentido. A través de su experiencia personal y de un sólido recorrido por distintos saberes científicos, filosóficos y espirituales, el autor plantea que la clave para enfrentar la incertidumbre y la confusión del mundo contemporáneo se encuentra en comprender el proceso de la evolución y aplicarlo como guía en nuestra existencia.
                       </p>
 
                       <p className="text-base leading-relaxed">
-                        Desde el inicio, Constandse advierte que no se trata de un compendio de historia universal ni de un manual de fórmulas, sino de una reflexión personal que utiliza herramientas del método científico, de la observación y de la filosofía para extraer enseñanzas prácticas. El concepto central es que la evolución no es un hecho aislado del pasado, sino un proceso constante que se manifiesta en todos los aspectos de la vida. Vivir con conciencia de ese proceso significa aprender a reconocer las tendencias, comparar resultados y orientar nuestras acciones hacia la construcción de un futuro mejor.
+                        Desde el inicio, Constandse advierte que no se trata de un compendio de historia universal ni de un manual de fórmulas, sino de una reflexión personal que utiliza herramientas del método científico, de la observación y de la filosofía para extraer enseñanzas prácticas. El concepto central es que la evolución no es un hecho aislado del pasado, sino un proceso constante que se manifiesta en todos los aspectos de la vida. Vivir con consciencia de ese proceso significa aprender a reconocer las tendencias, comparar resultados y orientar nuestras acciones hacia la construcción de un futuro mejor.
                       </p>
 
                       <p className="text-base leading-relaxed">
@@ -602,11 +624,11 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                       </p>
 
                       <p className="text-base leading-relaxed">
-                        En la segunda propuesta, el autor se centra en la aplicación práctica de estas ideas. Expone su visión sobre el empresario, la empresa, el capital y el trabajador, en un diálogo entre economía, ética y espiritualidad. Defiende la necesidad de orientar la actividad económica hacia el bien común, superando los extremos del materialismo y del fanatismo ideológico. Para Constandse, el verdadero motor del progreso no es la lucha de clases ni el afán desmedido de lucro, sino la conciencia de interdependencia y el impulso evolutivo que nos llama a buscar justicia, verdad y belleza.
+                        En la segunda propuesta, el autor se centra en la aplicación práctica de estas ideas. Expone su visión sobre el empresario, la empresa, el capital y el trabajador, en un diálogo entre economía, ética y espiritualidad. Defiende la necesidad de orientar la actividad económica hacia el bien común, superando los extremos del materialismo y del fanatismo ideológico. Para Constandse, el verdadero motor del progreso no es la lucha de clases ni el afán desmedido de lucro, sino la consciencia de interdependencia y el impulso evolutivo que nos llama a buscar justicia, verdad y belleza.
                       </p>
 
                       <p className="text-base leading-relaxed">
-                        El libro también dedica espacio a los grandes retos contemporáneos: la globalización, la democracia, el medio ambiente, la cultura del consumo y los desequilibrios sociales. Frente a ellos, el autor propone una revolución de la conciencia, en la que cada individuo asuma su responsabilidad de transformar el mundo empezando por sí mismo. Este proceso exige reconocer la dignidad del otro como fin y no como medio, lo que Constandse denomina el imperativo ético.
+                        El libro también dedica espacio a los grandes retos contemporáneos: la globalización, la democracia, el medio ambiente, la cultura del consumo y los desequilibrios sociales. Frente a ellos, el autor propone una revolución de la consciencia, en la que cada individuo asuma su responsabilidad de transformar el mundo empezando por sí mismo. Este proceso exige reconocer la dignidad del otro como fin y no como medio, lo que Constandse denomina el imperativo ético.
                       </p>
 
                       <p className="text-base leading-relaxed">
@@ -614,7 +636,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                       </p>
 
                       <p className="text-base leading-relaxed">
-                        En conclusión, Y lo mejor aún está por venir es una obra que combina reflexión filosófica, propuestas éticas y experiencias personales en un mismo horizonte: el de una vida guiada por la conciencia evolutiva y el compromiso con el bien común. El mensaje central es optimista y esperanzador: a pesar de las crisis y los desafíos, el futuro puede ser mejor si aprendemos a vivir en congruencia con la evolución de la vida, de la conciencia y del espíritu humano.
+                        En conclusión, Y lo mejor aún está por venir es una obra que combina reflexión filosófica, propuestas éticas y experiencias personales en un mismo horizonte: el de una vida guiada por la consciencia evolutiva y el compromiso con el bien común. El mensaje central es optimista y esperanzador: a pesar de las crisis y los desafíos, el futuro puede ser mejor si aprendemos a vivir en congruencia con la evolución de la vida, de la consciencia y del espíritu humano.
                       </p>
                     </div>
                   )}
@@ -622,7 +644,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   {book.id === 'el-arte-de-ser-empresario' && (
                     <div className="space-y-4">
                       <p className="text-base leading-relaxed">
-                        El libro El arte de ser empresario, en su tercera edición, representa una síntesis de la visión filosófica, ética y práctica que Marcos Constandse desarrolla en torno al quehacer empresarial. Más allá de un manual técnico de administración o de economía, esta obra busca ofrecer un marco integral donde la actividad empresarial se conciba como una vocación orientada al bien común y a la evolución de la conciencia.
+                        El libro El arte de ser empresario, en su tercera edición, representa una síntesis de la visión filosófica, ética y práctica que Marcos Constandse desarrolla en torno al quehacer empresarial. Más allá de un manual técnico de administración o de economía, esta obra busca ofrecer un marco integral donde la actividad empresarial se conciba como una vocación orientada al bien común y a la evolución de la consciencia.
                       </p>
 
                       <p className="text-base leading-relaxed">
@@ -655,6 +677,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                     </div>
                   )}
                 </div>
+                )}
               </motion.div>
             )}
           </div>
@@ -672,11 +695,10 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
             className="mb-12 text-center"
           >
             <h2 className="font-heading text-3xl font-semibold text-navy-dark mb-4">
-              También te puede interesar
+              {t('book.detail.relatedTitle')}
             </h2>
             <p className="text-navy-light max-w-2xl mx-auto">
-              Explora otras obras de Marcos Constandse que complementan
-              las ideas y reflexiones de este libro.
+              {t('book.detail.relatedDescription')}
             </p>
           </motion.div>
 
@@ -687,7 +709,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
             transition={{ duration: 0.5, delay: 0.2 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            {books.filter(b => b.id !== book.id).slice(0, 3).map((relatedBook) => (
+            {localizedBooks.filter(b => b.id !== book.id).slice(0, 3).map((relatedBook) => (
               <Link
                 key={relatedBook.id}
                 href={`/libros/${relatedBook.id}`}
@@ -722,9 +744,10 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-heading">
-              {isSubmitted ? '¡Gracias!' : `Descargar ${book.title}`}
+              {isSubmitted ? t('download.dialog.thanks') : `${t('book.detail.download')} ${book.title}`}
             </DialogTitle>
-            <DialogDescription className="text-center">
+            <DialogDescription asChild>
+              <div className="text-center">
               {isSubmitted ? (
                 <div className="flex flex-col items-center py-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
@@ -750,6 +773,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                     : `Complete the form to download ${book.title}.`}
                 </p>
               )}
+              </div>
             </DialogDescription>
           </DialogHeader>
 
@@ -758,27 +782,27 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <label htmlFor="name" className="text-sm font-medium">
-                    Nombre completo
+                    {t('download.form.fullName')}
                   </label>
                   <Input
                     id="name"
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Tu nombre"
+                    placeholder={t('download.form.namePlaceholder')}
                     required
                   />
                 </div>
                 <div className="grid gap-2">
                   <label htmlFor="email" className="text-sm font-medium">
-                    Correo electrónico
+                    {t('download.form.email')}
                   </label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="correo@ejemplo.com"
+                    placeholder={t('download.form.emailPlaceholder')}
                     required
                   />
                 </div>

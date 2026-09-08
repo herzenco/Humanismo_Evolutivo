@@ -5,16 +5,16 @@ import { Providers } from "./providers";
 export const metadata: Metadata = {
   metadataBase: new URL("https://yosoynosotros.com"),
   title: {
-    default: "Humanismo Evolutivo - Marcos Constandse Madrazo",
-    template: "%s | Humanismo Evolutivo",
+    default: "Humanismo Evolutivo Transpersonal - Marcos Constandse Madrazo",
+    template: "%s | Humanismo Evolutivo Transpersonal",
   },
   description:
-    "Explora la obra filosófica de Marcos Constandse Madrazo. Un viaje de conciencia que conecta ciencia, espiritualidad y humanidad hacia una visión transpersonal del mundo.",
+    "Explora la obra filosófica de Marcos Constandse Madrazo. Un viaje de consciencia que conecta ciencia, espiritualidad y humanidad hacia una visión transpersonal del mundo.",
   keywords: [
     "Marcos Constandse",
-    "Humanismo Evolutivo",
+    "Humanismo Evolutivo Transpersonal",
     "filosofía transpersonal",
-    "conciencia",
+    "consciencia",
     "espiritualidad",
     "ecología",
     "México",
@@ -24,17 +24,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_MX",
-    siteName: "Humanismo Evolutivo",
-    title: "Humanismo Evolutivo - Marcos Constandse Madrazo",
+    siteName: "Humanismo Evolutivo Transpersonal",
+    title: "Humanismo Evolutivo Transpersonal - Marcos Constandse Madrazo",
     description:
-      "Un viaje de conciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos",
+      "Un viaje de consciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos",
     url: "https://yosoynosotros.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Humanismo Evolutivo - Marcos Constandse Madrazo",
+    title: "Humanismo Evolutivo Transpersonal - Marcos Constandse Madrazo",
     description:
-      "Un viaje de conciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos",
+      "Un viaje de consciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos",
   },
   robots: {
     index: true,

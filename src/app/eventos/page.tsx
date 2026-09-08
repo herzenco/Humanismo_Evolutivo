@@ -42,7 +42,7 @@ const Eventos = () => {
   return (
     <PageWrapper>
       {/* Hero Section */}
-      <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden" aria-label="Sección principal de eventos">
+      <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden" aria-label={language === 'es' ? 'Sección principal de eventos' : 'Events introduction'}>
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"

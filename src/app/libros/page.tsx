@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Download, BookOpen, Star } from 'lucide-react';
 import Link from 'next/link';
-import { books } from '@/data/books';
+import { books, localizeBook } from '@/data/books';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState } from 'react';
@@ -35,6 +35,7 @@ const Libros = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const localizedBooks = books.map((book) => localizeBook(book, t));
 
   const handleDownload = (bookId: string) => {
     setSelectedBook(bookId);
@@ -159,7 +160,7 @@ const Libros = () => {
   return (
     <PageWrapper>
       {/* Sophisticated Hero Section */}
-      <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden" aria-label="Sección principal de libros">
+      <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden" aria-label={language === 'es' ? 'Sección principal de libros' : 'Book library introduction'}>
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
@@ -212,7 +213,7 @@ const Libros = () => {
             viewport={{ once: true }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto"
           >
-            {books.map((book) => (
+            {localizedBooks.map((book) => (
               <motion.div
                 key={book.id}
                 variants={itemVariants}
@@ -223,8 +224,8 @@ const Libros = () => {
                   <div className="flex flex-col lg:flex-row h-full">
                     <div className="lg:w-2/5 h-80 lg:h-auto relative flex items-center justify-center p-6 bg-gray-50">
                        <img
-                        src={`${bookImages?.[book.id] || book.image}?t=${Date.now()}`}
-                        alt={`Portada del libro ${book.title} por Marcos Constandse Madrazo`}
+                        src={bookImages?.[book.id] || book.image}
+                        alt={`${language === 'es' ? 'Portada del libro' : 'Book cover'} ${book.title} — Marcos Constandse Madrazo`}
                         className="max-h-full w-auto object-contain transition-transform duration-700 group-hover:scale-105 shadow-lg rounded-lg"
                         loading="lazy"
                       />
@@ -296,11 +297,12 @@ const Libros = () => {
             <DialogTitle className="text-center text-2xl font-heading">
               {isSubmitted
                 ? (language === 'es' ? '¡Gracias!' : 'Thank you!')
-                : (selectedBook && books.find(b => b.id === selectedBook)?.title
-                    ? `${language === 'es' ? 'Descargar' : 'Download'} ${books.find(b => b.id === selectedBook)?.title}`
+                : (selectedBook && localizedBooks.find(b => b.id === selectedBook)?.title
+                    ? `${language === 'es' ? 'Descargar' : 'Download'} ${localizedBooks.find(b => b.id === selectedBook)?.title}`
                     : (language === 'es' ? 'Descargar Libro' : 'Download Book'))}
             </DialogTitle>
-            <DialogDescription className="text-center">
+            <DialogDescription asChild>
+              <div className="text-center">
               {isSubmitted ? (
                 <div className="flex flex-col items-center py-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
@@ -321,15 +323,16 @@ const Libros = () => {
                 </div>
               ) : (
                 <p className="mt-2">
-                  {selectedBook && books.find(b => b.id === selectedBook)?.title
+                  {selectedBook && localizedBooks.find(b => b.id === selectedBook)?.title
                     ? (language === 'es'
-                        ? `Completa el formulario para descargar ${books.find(b => b.id === selectedBook)?.title}.`
-                        : `Complete the form to download ${books.find(b => b.id === selectedBook)?.title}.`)
+                        ? `Completa el formulario para descargar ${localizedBooks.find(b => b.id === selectedBook)?.title}.`
+                        : `Complete the form to download ${localizedBooks.find(b => b.id === selectedBook)?.title}.`)
                     : (language === 'es'
                         ? 'Completa el formulario para descargar.'
                         : 'Complete the form to download.')}
                 </p>
               )}
+              </div>
             </DialogDescription>
           </DialogHeader>
 

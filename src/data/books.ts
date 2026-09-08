@@ -21,6 +21,38 @@ export interface Book {
   downloadAvailable: boolean;
 }
 
+type Translator = (key: string) => string;
+
+const bookTranslationKeys: Record<string, string> = {
+  'yo-soy-nosotros': 'book.yosoynosotros',
+  'ecologia-y-espiritualidad': 'book.ecologia',
+  'dejalo-ser': 'book.dejaloser',
+  'lo-mejor-esta-por-venir': 'book.lomejor',
+  'el-arte-de-ser-empresario': 'book.elarte',
+};
+
+const bookKeywordKeys: Record<string, string[]> = {
+  'yo-soy-nosotros': ['keyword.transpersonal', 'keyword.philosophy', 'keyword.consciousness', 'keyword.spirituality', 'keyword.ecology', 'keyword.national.prize'],
+  'ecologia-y-espiritualidad': ['keyword.ecology', 'keyword.spirituality', 'keyword.environmental.ethics', 'keyword.consciousness', 'keyword.sustainability'],
+  'dejalo-ser': ['keyword.novel', 'keyword.identity', 'keyword.memory', 'keyword.technology', 'keyword.freedom'],
+  'lo-mejor-esta-por-venir': ['keyword.self.help', 'keyword.philosophy', 'keyword.personal.evolution', 'keyword.consciousness', 'keyword.happiness'],
+  'el-arte-de-ser-empresario': ['keyword.business', 'keyword.ethics', 'keyword.leadership', 'keyword.evolution', 'keyword.common.good'],
+};
+
+export const localizeBook = (book: Book, t: Translator): Book => {
+  const prefix = bookTranslationKeys[book.id];
+  if (!prefix) return book;
+
+  return {
+    ...book,
+    title: t(`${prefix}.title`),
+    subtitle: t(`${prefix}.subtitle`),
+    excerpt: t(`${prefix}.excerpt`),
+    description: book.description.map((_, index) => t(`${prefix}.desc${index + 1}`)),
+    keywords: (bookKeywordKeys[book.id] || []).map(t),
+  };
+};
+
 export const books: Book[] = [
   {
     id: 'yo-soy-nosotros',
@@ -36,7 +68,7 @@ export const books: Book[] = [
       'En Yo soy nosotros, Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano.',
       'Este libro propone una reflexión profunda sobre nuestro papel en el universo, el sentido de la vida y la necesidad urgente de trascender el individualismo para abrazar una consciencia colectiva.',
       'A través de un enfoque transpersonal, el autor plantea que el ser humano no es un ente aislado, sino una expresión del Todo que sólo puede realizarse plenamente en comunión con los demás y con la naturaleza.',
-      'La obra desarrolla la filosofía del Humanismo Evolutivo: la evolución desde la consciencia individual hacia la consciencia colectiva como proceso transformador.',
+      'La obra desarrolla la filosofía del Humanismo Evolutivo Transpersonal: la evolución desde la consciencia individual hacia la consciencia colectiva como proceso transformador.',
       'Esta obra es tanto una guía espiritual como una propuesta ética para vivir con plenitud en un mundo interconectado.'
     ],
     keywords: ['Transpersonal', 'Filosofía', 'Consciencia', 'Espiritualidad', 'Ecología', 'Premio Nacional'],
@@ -63,7 +95,7 @@ export const books: Book[] = [
   },
   {
     id: 'dejalo-ser',
-    title: 'Déjalo ser',
+    title: '¡Dejalo Ser!',
     subtitle: 'Una novela sobre identidad, memoria y libertad',
     image: dejaloSerCover,
     coverImage: dejaloSerCover,

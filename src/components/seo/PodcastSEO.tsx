@@ -25,7 +25,7 @@ export const PodcastEpisodeSEO = ({
   episodeNumber,
   url,
 }: PodcastEpisodeSEOProps) => {
-  const fullTitle = `${title} | ${seriesTitle} - Humanismo Evolutivo`;
+  const fullTitle = `${title} | ${seriesTitle} - Humanismo Evolutivo Transpersonal`;
   const truncatedDescription = description.length > 160
     ? description.substring(0, 157) + '...'
     : description;
@@ -47,13 +47,13 @@ export const PodcastEpisodeSEO = ({
     };
 
     setMeta('description', truncatedDescription);
-    setMeta('keywords', `${title}, ${seriesTitle}, Marcos Constandse, Humanismo Evolutivo, podcast, filosofía, espiritualidad`);
+    setMeta('keywords', `${title}, ${seriesTitle}, Marcos Constandse, Humanismo Evolutivo Transpersonal, podcast, filosofía, espiritualidad`);
     setMeta('og:type', truncatedDescription, true);
     setMeta('og:title', fullTitle, true);
     setMeta('og:description', truncatedDescription, true);
     setMeta('og:image', coverImage, true);
     setMeta('og:url', url, true);
-    setMeta('og:site_name', 'Humanismo Evolutivo', true);
+    setMeta('og:site_name', 'Humanismo Evolutivo Transpersonal', true);
     setMeta('twitter:card', 'summary_large_image');
     setMeta('twitter:title', fullTitle);
     setMeta('twitter:description', truncatedDescription);
