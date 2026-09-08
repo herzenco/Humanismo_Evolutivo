@@ -28,11 +28,13 @@ export async function subscribeToNewsletter(
     return { status: 'error', code: 'invalid_email' };
   }
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseUrl = process.env.NEWSLETTER_SUPABASE_URL
+    ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEWSLETTER_SUPABASE_PUBLISHABLE_KEY
+    ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    console.error('Newsletter subscription is unavailable: Supabase public environment variables are missing.');
+    console.error('Newsletter subscription is unavailable: newsletter backend environment variables are missing.');
     return { status: 'error', code: 'unavailable' };
   }
 

@@ -137,6 +137,11 @@ requireText('src/components/layout/Footer.tsx', '<NewsletterSignup />', 'HER-197
 requireText('src/components/layout/NewsletterSignup.tsx', "name=\"email\"", 'HER-197');
 requireText('src/app/actions/newsletter.ts', ".from('newsletter_subscriptions')", 'HER-197');
 requireText(
+  'src/app/actions/newsletter.ts',
+  'NEWSLETTER_SUPABASE_PUBLISHABLE_KEY',
+  'HER-197',
+);
+requireText(
   'supabase/migrations/20260908154044_create_newsletter_subscriptions.sql',
   'grant insert (email, locale)',
   'HER-197',
