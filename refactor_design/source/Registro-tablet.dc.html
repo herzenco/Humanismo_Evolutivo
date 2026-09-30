@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Registro en el portal educativo (iPad) — Humanismo Evolutivo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;background:#FAF7EF;font-variant-numeric:lining-nums}
+a{color:#2F6B45}a:hover{color:#173F2C}
+li::marker{color:#6E9A45}
+strong{font-weight:700;color:#1D2B22}
+</style>
+</helmet>
+<div style="width: 834px; height: 3010px; box-sizing: border-box; display: flex; flex-direction: column; background: #FAF7EF; font-family: 'Source Sans 3', system-ui, sans-serif; color: #1D2B22;">
+<dc-import name="SiteHeaderTablet" hint-size="834px,76px"></dc-import>
+
+<!-- ============ REGISTRO (iPad) ============ -->
+<main style="padding: 56px 40px 80px; background: #FAF7EF; display: flex; flex-direction: column;">
+
+<!-- Presentación -->
+<div style="display: flex; flex-direction: column; gap: 22px;">
+<span style="align-self: flex-start; height: 38px; padding: 0 18px; border-radius: 999px; background: #EAF0E1; color: #2F6B45; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"></path><path d="M5 19l8-8"></path></svg>
+Un espacio para aprender y profundizar</span>
+<h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 64px; line-height: 1.02; font-weight: 600; letter-spacing: -0.01em; color: #173F2C;">Portal educativo</h1>
+<p style="margin: 0; width: 600px; font-size: 19px; line-height: 1.6; color: #3E4D43; text-wrap: balance;">Crea tu cuenta gratuita para estudiar los cursos de Humanismo Evolutivo Transpersonal.</p>
+</div>
+
+<!-- Tarjeta de registro -->
+<section aria-labelledby="registro-titulo" style="margin-top: 36px; box-sizing: border-box; padding: 40px; background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 28px; display: flex; flex-direction: column; gap: 26px;">
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<h2 id="registro-titulo" style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 40px; line-height: 1.05; font-weight: 600; color: #173F2C;">Bienvenido</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3E4D43;">Inicia sesión o registra una cuenta nueva en menos de un minuto.</p>
+</div>
+
+<div role="tablist" aria-label="Acceso al portal" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 999px; background: #F4F7EF; border: 1px solid #E1E7D8;">
+<a href="Acceso-tablet.dc.html" role="tab" aria-selected="false" style="height: 46px; border-radius: 999px; color: #1D2B22; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; text-decoration: none;">Iniciar sesión</a>
+<a href="Registro-tablet.dc.html" role="tab" aria-selected="true" style="height: 46px; border-radius: 999px; background: #173F2C; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; text-decoration: none;">Crear cuenta</a>
+</div>
+
+<form style="margin: 0; display: flex; flex-direction: column; gap: 20px;">
+<!-- Ejemplo de estado: registro enviado -->
+<div role="status" style="padding: 16px 18px; background: #EAF0E1; border: 1px solid #CADBBB; border-radius: 14px; display: flex; gap: 14px; align-items: flex-start;">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F6B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px;"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.8 2.8L16 9.8"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 16px; line-height: 1.4; font-weight: 700; color: #173F2C;">Revisa tu correo</span>
+<span style="font-size: 15px; line-height: 1.5; color: #3E4D43;">Si tu cuenta necesita confirmación, recibirás un enlace por correo para entrar al portal. Si ya tienes una cuenta, inicia sesión o recupera tu contraseña.</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="registro-nombre" style="font-size: 14px; font-weight: 600; color: #1D2B22;">Nombre</label>
+<div style="position: relative; display: flex;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5A4F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px;"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+<input id="registro-nombre" type="text" autocomplete="name" maxlength="80" value="María Fernández" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px 0 48px; border-radius: 12px; border: 1px solid #CBD6C0; background: #FFFFFF; font-family: inherit; font-size: 16px; color: #1D2B22;">
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="registro-correo" style="font-size: 14px; font-weight: 600; color: #1D2B22;">Correo electrónico</label>
+<div style="position: relative; display: flex;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5A4F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px;"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+<input id="registro-correo" type="email" autocomplete="email" inputmode="email" placeholder="tu@email.com" value="maria@ejemplo.com" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px 0 48px; border-radius: 12px; border: 1px solid #CBD6C0; background: #FFFFFF; font-family: inherit; font-size: 16px; color: #1D2B22;">
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start;">
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="registro-clave" style="font-size: 14px; font-weight: 600; color: #1D2B22;">Contraseña</label>
+<div style="position: relative; display: flex;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5A4F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px;"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+<input id="registro-clave" type="password" autocomplete="new-password" minlength="8" maxlength="128" aria-describedby="registro-clave-ayuda" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px 0 48px; border-radius: 12px; border: 1px solid #CBD6C0; background: #FFFFFF; font-family: inherit; font-size: 16px; color: #1D2B22;">
+</div>
+<span id="registro-clave-ayuda" style="font-size: 14px; line-height: 1.4; color: #4A5A4F;">Usa al menos 8 caracteres.</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="registro-confirmar" style="font-size: 14px; font-weight: 600; color: #1D2B22;">Confirmar contraseña</label>
+<div style="position: relative; display: flex;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5A4F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px;"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+<input id="registro-confirmar" type="password" autocomplete="new-password" minlength="8" maxlength="128" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px 0 48px; border-radius: 12px; border: 1px solid #CBD6C0; background: #FFFFFF; font-family: inherit; font-size: 16px; color: #1D2B22;">
+</div>
+</div>
+</div>
+
+<a href="PortalCursos-tablet.dc.html" style="margin-top: 4px; width: 100%; box-sizing: border-box; height: 54px; border-radius: 999px; background: #2F6B45; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; text-decoration: none;">Crear mi cuenta
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+<p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4A5A4F; text-align: center; text-wrap: balance;">Tu cuenta es gratuita y te da acceso a todos los cursos publicados. Tu avance se guarda para que continúes a tu ritmo.</p>
+</form>
+</section>
+
+<!-- Beneficios -->
+<div style="margin-top: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
+<div style="padding: 20px; background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 18px; display: flex; gap: 14px; align-items: flex-start;">
+<span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EAF0E1; color: #2F6B45; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5c2.5-1 5.5-1 9 1 3.5-2 6.5-2 9-1v13c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1z"></path><path d="M12 6.5v13"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 17px; line-height: 1.3; font-weight: 700; color: #1D2B22;">Todo en un lugar</span>
+<span style="font-size: 15px; line-height: 1.5; color: #4A5A4F;">Cursos organizados por partes y clases.</span>
+</div>
+</div>
+<div style="padding: 20px; background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 18px; display: flex; gap: 14px; align-items: flex-start;">
+<span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EAF0E1; color: #2F6B45; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 17px; line-height: 1.3; font-weight: 700; color: #1D2B22;">Acceso personal</span>
+<span style="font-size: 15px; line-height: 1.5; color: #4A5A4F;">Tu avance guardado en una cuenta segura.</span>
+</div>
+</div>
+</div>
+
+<!-- Visual: los cuatro cursos -->
+<section aria-label="Cursos del portal" style="margin-top: 20px; padding: 28px; background: #173F2C; border-radius: 24px; display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.16em; color: #D4AF5A;">CURSOS DEL PORTAL</span>
+<span style="font-size: 15px; color: rgba(255,255,255,0.85);">4 cursos · 146 clases · Acceso libre</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+<div style="padding: 14px; background: #1F4B36; border-radius: 16px; display: flex; gap: 16px; align-items: center;">
+<img src="/_blob/93f963ec6c044b62ae621d38fefc05c7" alt="Portada de El arte de ser empresario" style="width: 56px; height: auto; flex-shrink: 0; border-radius: 6px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #D4AF5A;">CURSO <span style="font-family: 'Source Sans 3', system-ui, sans-serif; font-weight: 700; letter-spacing: 0;">1</span></span>
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 21px; line-height: 1.15; font-weight: 600; color: #FFFFFF;">El arte de ser empresario</span>
+</div>
+</div>
+<div style="padding: 14px; background: #1F4B36; border-radius: 16px; display: flex; gap: 16px; align-items: center;">
+<div role="img" aria-label="Portada de Humanismo evolutivo (pendiente)" style="width: 56px; height: 84px; flex-shrink: 0; box-sizing: border-box; border-radius: 6px; background: #0F2E20; border: 1px solid rgba(212,175,90,0.45); display: flex; align-items: center; justify-content: center;">
+<svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#FFFFFF"></circle><path d="M12 2A10 10 0 0 0 12 22A5 5 0 0 0 12 12A5 5 0 0 1 12 2Z" fill="#0F2E20"></path><circle cx="12" cy="17" r="1.5" fill="#FFFFFF"></circle><circle cx="12" cy="7" r="1.5" fill="#0F2E20"></circle></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #D4AF5A;">CURSO <span style="font-family: 'Source Sans 3', system-ui, sans-serif; font-weight: 700; letter-spacing: 0;">2</span></span>
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 21px; line-height: 1.15; font-weight: 600; color: #FFFFFF;">Introducción al Humanismo Evolutivo Transpersonal</span>
+</div>
+</div>
+<div style="padding: 14px; background: #1F4B36; border-radius: 16px; display: flex; gap: 16px; align-items: center;">
+<img src="/_blob/daba8e942d8f02d4888334c0e1ea21e4" alt="Portada de Ecología y espiritualidad" style="width: 56px; height: auto; flex-shrink: 0; border-radius: 6px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #D4AF5A;">CURSO <span style="font-family: 'Source Sans 3', system-ui, sans-serif; font-weight: 700; letter-spacing: 0;">3</span></span>
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 21px; line-height: 1.15; font-weight: 600; color: #FFFFFF;">Introducción a Ecología y Espiritualidad</span>
+</div>
+</div>
+<div style="padding: 14px; background: #1F4B36; border-radius: 16px; display: flex; gap: 16px; align-items: center;">
+<img src="/_blob/456d7db8a3c876f22040458c07c9eb30" alt="Portada de Yo soy nosotros" style="width: 56px; height: auto; flex-shrink: 0; border-radius: 6px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #D4AF5A;">CURSO <span style="font-family: 'Source Sans 3', system-ui, sans-serif; font-weight: 700; letter-spacing: 0;">4</span></span>
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 21px; line-height: 1.15; font-weight: 600; color: #FFFFFF;">Introducción a la filosofía de Yo Soy Nosotros</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<dc-import name="SiteFooterTablet" hint-size="834px,1210px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":834,"height":3010}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

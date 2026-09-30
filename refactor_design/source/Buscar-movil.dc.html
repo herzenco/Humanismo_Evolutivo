@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Buscar (móvil) — Humanismo Evolutivo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;background:#FAF7EF;font-variant-numeric:lining-nums}
+a{color:#2F6B45}a:hover{color:#173F2C}
+li::marker{color:#6E9A45}
+strong{font-weight:700;color:#1D2B22}
+</style>
+</helmet>
+<div style="width: 390px; height: 6030px; box-sizing: border-box; display: flex; flex-direction: column; background: #FAF7EF; font-family: 'Source Sans 3', system-ui, sans-serif; color: #1D2B22;">
+<dc-import name="SiteHeaderMobile" hint-size="390px,68px"></dc-import>
+
+<!-- ============ HERO + BUSCADOR ============ -->
+<section style="background: #173F2C; color: #FFFFFF; padding: 40px 20px 44px; display: flex; flex-direction: column; gap: 20px;">
+<div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.16em; color: #D4AF5A;">BUSCAR EN EL SITIO</div>
+<h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 46px; line-height: 1.05; font-weight: 600;">Resultados de búsqueda</h1>
+
+<form role="search" action="Buscar-movil.dc.html" style="margin: 4px 0 0; display: flex; flex-direction: column; gap: 10px;">
+<label for="buscar-m-q" style="font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);">Busca libros, episodios de podcast y videos</label>
+<div style="height: 56px; box-sizing: border-box; padding: 0 5px 0 18px; border-radius: 999px; background: #FFFFFF; border: 1px solid #CBD6C0; display: flex; align-items: center; gap: 8px; color: #2F6B45;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+<input id="buscar-m-q" name="q" type="search" value="conocimiento" placeholder="¿Qué quieres explorar?" style="flex-grow: 1; min-width: 0; height: 50px; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 17px; color: #1D2B22;">
+<a href="Buscar-estados-movil.dc.html" aria-label="Borrar búsqueda" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F4F7EF; color: #4A5A4F; display: flex; align-items: center; justify-content: center;">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</a>
+</div>
+<a href="Buscar-movil.dc.html" style="height: 52px; border-radius: 999px; background: #D4AF5A; color: #173F2C; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">Buscar
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</form>
+
+<div style="display: flex; flex-direction: column; gap: 4px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
+<p style="margin: 0; font-size: 18px; line-height: 1.4; color: rgba(255,255,255,0.9);">Buscando por: <span style="color: #D4AF5A; font-weight: 600;">“conocimiento”</span></p>
+<p style="margin: 0; font-size: 16px; color: rgba(255,255,255,0.78);" aria-live="polite">12 resultado(s) encontrado(s)</p>
+</div>
+<nav aria-label="Ir a un grupo de resultados" style="display: flex; gap: 8px;">
+<a href="#libros" style="height: 44px; padding: 0 14px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 600; text-decoration: none;">Libros (2)</a>
+<a href="#podcasts" style="height: 44px; padding: 0 14px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 600; text-decoration: none;">Podcasts (9)</a>
+<a href="#videos" style="height: 44px; padding: 0 14px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 600; text-decoration: none;">Videos (1)</a>
+</nav>
+</section>
+
+<!-- ============ RESULTADOS ============ -->
+<section style="padding: 48px 20px 56px; background: #FAF7EF; display: flex; flex-direction: column; gap: 56px;">
+
+<!-- Libros -->
+<div id="libros" style="display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #DCE5D2;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EAF0E1; color: #2F6B45; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5c2.5-1 5.5-1 9 1 3.5-2 6.5-2 9-1v13c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1z"></path><path d="M12 6.5v13"></path></svg></span>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 34px; line-height: 1.05; font-weight: 600; color: #173F2C;">Libros <span style="font-weight: 500; color: #4A5A4F;">(2)</span></h2>
+</div>
+<a href="Libros-movil.dc.html" style="min-height: 44px; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: #2F6B45; text-decoration: none;">Ver todos
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+
+<a href="Libro-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 16px; text-decoration: none; color: #1D2B22;">
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+<img src="/_blob/456d7db8a3c876f22040458c07c9eb30" alt="Portada de Yo soy nosotros" style="width: 92px; height: auto; flex-shrink: 0; border-radius: 6px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #2F6B45;">LIBRO</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 26px; line-height: 1.1; font-weight: 600; color: #173F2C;">Yo soy nosotros</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">En Yo soy nosotros, Marcos Constandse nos invita a recorrer un mapa del <mark style="background: #EAF0E1; color: #173F2C; font-weight: 600; padding: 0 3px; border-radius: 4px;">conocimiento</mark> que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano. Esta obra ganó el premio Nacional de Ensayo Filosófico.</p>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px;">
+<span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #EAF0E1; color: #2F6B45; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Transpersonal</span>
+<span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #EAF0E1; color: #2F6B45; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Filosofía</span>
+<span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #EAF0E1; color: #2F6B45; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Conciencia</span>
+</div>
+</a>
+
+<a href="Libro-dejalo-ser-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 16px; text-decoration: none; color: #1D2B22;">
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+<img src="/_blob/ed689a07290096a7574e1b91b2c72a4e" alt="Portada de ¡Déjalo ser!" style="width: 92px; height: auto; flex-shrink: 0; border-radius: 6px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #2F6B45;">LIBRO</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 26px; line-height: 1.1; font-weight: 600; color: #173F2C;">¡Déjalo ser!</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Déjalo ser es una novela que entrelaza memoria, identidad y tecnología en un relato íntimo y visionario. Marcos Constandse nos conduce a un futuro posible, donde la acumulación de datos personales confronta a sus protagonistas con sus raíces más profundas y sus decisiones más humanas.</p>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px;">
+<span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #EAF0E1; color: #2F6B45; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Novela</span>
+<span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #EAF0E1; color: #2F6B45; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Identidad</span>
+<span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #EAF0E1; color: #2F6B45; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Memoria</span>
+</div>
+</a>
+</div>
+
+<!-- Podcasts -->
+<div id="podcasts" style="display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 4px; border-bottom: 1px solid #DCE5D2;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EAF0E1; color: #2F6B45; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15v-3a8 8 0 0 1 16 0v3"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg></span>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 34px; line-height: 1.05; font-weight: 600; color: #173F2C;">Podcasts <span style="font-weight: 500; color: #4A5A4F;">(9)</span></h2>
+</div>
+<a href="Medios-movil.dc.html" style="min-height: 44px; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: #2F6B45; text-decoration: none;">Ver series
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/456d7db8a3c876f22040458c07c9eb30" alt="Portada de la serie Yo soy nosotros" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Espiritualidad · Yo soy nosotros</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">El Inicio de la Búsqueda</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Este primer episodio se enfoca en presentar el propósito del libro y del proyecto. Se relata cómo Marcos Constandse emprendió una búsqueda de sentido a lo largo de su vida.</p>
+<span style="font-size: 14px; color: #4A5A4F;">38 min · 8 ene 2024</span>
+</div>
+</a>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/456d7db8a3c876f22040458c07c9eb30" alt="Portada de la serie Yo soy nosotros" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Psicología · Yo soy nosotros</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">La Psicología</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Este episodio presenta a la psicología como un puente entre el <mark style="background: #EAF0E1; color: #173F2C; font-weight: 600; padding: 0 3px; border-radius: 4px;">conocimiento</mark> interior y la transformación personal.</p>
+<span style="font-size: 14px; color: #4A5A4F;">50 min · 12 feb 2024</span>
+</div>
+</a>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/456d7db8a3c876f22040458c07c9eb30" alt="Portada de la serie Yo soy nosotros" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Filosofía · Yo soy nosotros</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">La Filosofía</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Este episodio reflexiona sobre la filosofía como herramienta esencial para el despertar de la conciencia.</p>
+<span style="font-size: 14px; color: #4A5A4F;">48 min · 19 feb 2024</span>
+</div>
+</a>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/456d7db8a3c876f22040458c07c9eb30" alt="Portada de la serie Yo soy nosotros" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Conciencia · Yo soy nosotros</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">El Desarrollo Transpersonal</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Este episodio explora el concepto de desarrollo transpersonal como la evolución de la conciencia más allá del ego individual.</p>
+<span style="font-size: 14px; color: #4A5A4F;">46 min · 4 mar 2024</span>
+</div>
+</a>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/67949123c5d2ce183c6e143227e64975" alt="Portada de la serie ¡Y lo mejor aún está por venir!" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Filosofía · ¡Y lo mejor aún está por venir!</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Prólogo y el Mapa del Viaje</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">En este episodio iniciamos el viaje por ¡Y lo mejor aún está por venir! explorando el prólogo, donde Marcos Constandse nos invita a abrir un mapa interior.</p>
+<span style="font-size: 14px; color: #4A5A4F;">45 min · 1 abr 2024</span>
+</div>
+</a>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/67949123c5d2ce183c6e143227e64975" alt="Portada de la serie ¡Y lo mejor aún está por venir!" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Filosofía · ¡Y lo mejor aún está por venir!</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Conocimiento, Lenguaje y Realidad</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">En este episodio exploramos cómo construimos lo que llamamos realidad. Marcos Constandse explica que el <mark style="background: #EAF0E1; color: #173F2C; font-weight: 600; padding: 0 3px; border-radius: 4px;">conocimiento</mark> no es un reflejo exacto del mundo.</p>
+<span style="font-size: 14px; color: #4A5A4F;">46 min · 15 abr 2024</span>
+</div>
+</a>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/93f963ec6c044b62ae621d38fefc05c7" alt="Portada de la serie El arte de ser empresario" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Empresarial · El arte de ser empresario</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Ego y Conciencia en los Negocios</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">“Ego y conciencia en los negocios” es un episodio que entra en uno de los territorios más delicados y decisivos del liderazgo.</p>
+<span style="font-size: 14px; color: #4A5A4F;">48 min · 19 sep 2024</span>
+</div>
+</a>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/93f963ec6c044b62ae621d38fefc05c7" alt="Portada de la serie El arte de ser empresario" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Empresarial · El arte de ser empresario</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Aplicar el Conocimiento y el Imperativo Ético</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">“Aplicar el <mark style="background: #EAF0E1; color: #173F2C; font-weight: 600; padding: 0 3px; border-radius: 4px;">conocimiento</mark> y el imperativo ético” es un episodio que marca el cierre natural del camino evolutivo del empresario consciente.</p>
+<span style="font-size: 14px; color: #4A5A4F;">53 min · 17 oct 2024</span>
+</div>
+</a>
+
+<a href="Episodio-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: #1D2B22;">
+<img src="/_blob/daba8e942d8f02d4888334c0e1ea21e4" alt="Portada de la serie Ecología y espiritualidad" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
+<span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Ciencia · Ecología y espiritualidad</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Ciencia, Tecnología y Conciencia del Límite</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">La ciencia amplía nuestro entendimiento del mundo y la tecnología amplifica nuestras acciones.</p>
+<span style="font-size: 14px; color: #4A5A4F;">49 min · 6 dic 2024</span>
+</div>
+</a>
+</div>
+
+<!-- Videos -->
+<div id="videos" style="display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #DCE5D2;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EAF0E1; color: #2F6B45; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg></span>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 34px; line-height: 1.05; font-weight: 600; color: #173F2C;">Videos <span style="font-weight: 500; color: #4A5A4F;">(1)</span></h2>
+</div>
+<a href="Medios-movil.dc.html" style="min-height: 44px; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: #2F6B45; text-decoration: none;">Ver todos
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+
+<a href="Video-movil.dc.html" style="background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; color: #1D2B22;">
+<div style="height: 196px; display: grid;">
+<img src="/_blob/9f8c10ae4e5f3253977827d80cd05a7c" alt="Panel de cinco personas sentadas frente a libreros" style="grid-area: 1 / 1; width: 100%; height: 196px; object-fit: cover; display: block;">
+<div style="grid-area: 1 / 1; box-sizing: border-box; padding: 14px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; background: rgba(15,46,32,0.28);">
+<span style="align-self: flex-start; height: 28px; padding: 0 10px; border-radius: 999px; background: rgba(15,46,32,0.82); color: #FFFFFF; font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.12em; display: flex; align-items: center;">VIDEO</span>
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #D4AF5A; color: #173F2C; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg></span>
+<span style="align-self: flex-end; height: 28px; padding: 0 10px; border-radius: 6px; background: rgba(15,46,32,0.82); color: #FFFFFF; font-size: 14px; font-weight: 600; display: flex; align-items: center;">1:15:30</span>
+</div>
+</div>
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+<span style="align-self: flex-start; height: 30px; padding: 0 12px; border-radius: 999px; background: #EAF0E1; color: #2F6B45; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Conferencia</span>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.15; font-weight: 600; color: #173F2C;">Sesión Solemne de Ingreso a la Sociedad Mexicana de Geografía y Estadística</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">El 28 de octubre de 2025, Marcos Constandse Madrazo fue recibido como socio correspondiente de la Sociedad Mexicana de Geografía y Estadística.</p>
+<span style="font-size: 14px; color: #4A5A4F;">1:15:30 · 28 oct 2025</span>
+</div>
+</a>
+</div>
+
+<!-- Sigue explorando -->
+<aside style="background: #EAF0E1; border-radius: 18px; padding: 28px 22px; display: flex; flex-direction: column; gap: 14px;">
+<div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.16em; color: #2F6B45;">SIGUE EXPLORANDO</div>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 30px; line-height: 1.1; font-weight: 600; color: #173F2C;">¿No encontraste lo que buscabas?</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3E4D43;">Prueba con otra palabra o recorre las secciones completas del sitio.</p>
+<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 4px;">
+<a href="Libros-movil.dc.html" style="height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; background: #2F6B45; color: #FFFFFF; border-radius: 999px; font-size: 16px; font-weight: 700; text-decoration: none;">Libros
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+<a href="Medios-movil.dc.html" style="height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid #2F6B45; color: #2F6B45; border-radius: 999px; font-size: 16px; font-weight: 700; text-decoration: none;">Podcast y videos</a>
+<a href="Eventos-movil.dc.html" style="height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid #2F6B45; color: #2F6B45; border-radius: 999px; font-size: 16px; font-weight: 700; text-decoration: none;">Eventos</a>
+</div>
+</div>
+<a href="Buscar-estados-movil.dc.html" style="min-height: 44px; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: #2F6B45;">Ver una búsqueda sin resultados
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</aside>
+</section>
+
+<dc-import name="SiteFooterMobile" hint-size="390px,1810px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":6030}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

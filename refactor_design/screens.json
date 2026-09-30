@@ -1,0 +1,1295 @@
+[
+ {
+  "section": "Sitio público",
+  "screens": [
+   {
+    "title": "Inicio",
+    "route": "/",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Inicio.html",
+      "width": 1440,
+      "height": 6630
+     },
+     {
+      "file": "html/Inicio-bienvenida.html",
+      "width": 1440,
+      "height": 900,
+      "state": "Video de bienvenida"
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Inicio-tablet.html",
+      "width": 834,
+      "height": 4780
+     },
+     {
+      "file": "html/Inicio-tablet-2.html",
+      "width": 834,
+      "height": 3420,
+      "continues": true
+     },
+     {
+      "file": "html/Inicio-bienvenida-tablet.html",
+      "width": 834,
+      "height": 1194,
+      "state": "Video de bienvenida"
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Inicio-movil.html",
+      "width": 390,
+      "height": 6460
+     },
+     {
+      "file": "html/Inicio-movil-2.html",
+      "width": 390,
+      "height": 4790,
+      "continues": true
+     },
+     {
+      "file": "html/Inicio-bienvenida-movil.html",
+      "width": 390,
+      "height": 844,
+      "state": "Video de bienvenida"
+     }
+    ]
+   },
+   {
+    "title": "Descubre todo su contenido",
+    "route": "/descubre (página nueva propuesta)",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Main.html",
+      "width": 1440,
+      "height": 7990
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Descubre-tablet.html",
+      "width": 834,
+      "height": 5680
+     },
+     {
+      "file": "html/Descubre-tablet-2.html",
+      "width": 834,
+      "height": 5080,
+      "continues": true
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Descubre-movil.html",
+      "width": 390,
+      "height": 6420
+     },
+     {
+      "file": "html/Descubre-movil-2.html",
+      "width": 390,
+      "height": 6630,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Autor",
+    "route": "/autor",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Autor.html",
+      "width": 1440,
+      "height": 6440
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Autor-tablet.html",
+      "width": 834,
+      "height": 7200
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Autor-movil.html",
+      "width": 390,
+      "height": 5110
+     },
+     {
+      "file": "html/Autor-movil-2.html",
+      "width": 390,
+      "height": 5170,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Mi visión del mundo",
+    "route": "/vision",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Vision.html",
+      "width": 1440,
+      "height": 7150
+     },
+     {
+      "file": "html/Vision-2.html",
+      "width": 1440,
+      "height": 5790,
+      "continues": true
+     },
+     {
+      "file": "html/Vision-3.html",
+      "width": 1440,
+      "height": 4000,
+      "continues": true
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Vision-tablet.html",
+      "width": 834,
+      "height": 7350
+     },
+     {
+      "file": "html/Vision-tablet-2.html",
+      "width": 834,
+      "height": 5930,
+      "continues": true
+     },
+     {
+      "file": "html/Vision-tablet-3.html",
+      "width": 834,
+      "height": 5520,
+      "continues": true
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Vision-movil.html",
+      "width": 390,
+      "height": 6210
+     },
+     {
+      "file": "html/Vision-movil-2.html",
+      "width": 390,
+      "height": 7600,
+      "continues": true
+     },
+     {
+      "file": "html/Vision-movil-3.html",
+      "width": 390,
+      "height": 6360,
+      "continues": true
+     },
+     {
+      "file": "html/Vision-movil-4.html",
+      "width": 390,
+      "height": 6000,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Libros",
+    "route": "/libros",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Libros.html",
+      "width": 1440,
+      "height": 4550
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Libros-tablet.html",
+      "width": 834,
+      "height": 5700
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Libros-movil.html",
+      "width": 390,
+      "height": 7300
+     }
+    ]
+   },
+   {
+    "title": "Libro · Yo soy nosotros",
+    "route": "/libros/yo-soy-nosotros",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Libro.html",
+      "width": 1440,
+      "height": 6520
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Libro-tablet.html",
+      "width": 834,
+      "height": 7500
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Libro-movil.html",
+      "width": 390,
+      "height": 4390
+     },
+     {
+      "file": "html/Libro-movil-2.html",
+      "width": 390,
+      "height": 5760,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Libro · Ecología y espiritualidad",
+    "route": "/libros/ecologia-y-espiritualidad",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Libro-ecologia.html",
+      "width": 1440,
+      "height": 6310
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Libro-ecologia-tablet.html",
+      "width": 834,
+      "height": 7530
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Libro-ecologia-movil.html",
+      "width": 390,
+      "height": 4460
+     },
+     {
+      "file": "html/Libro-ecologia-movil-2.html",
+      "width": 390,
+      "height": 5360,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Libro · ¡Déjalo ser!",
+    "route": "/libros/dejalo-ser",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Libro-dejalo-ser.html",
+      "width": 1440,
+      "height": 6120
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Libro-dejalo-ser-tablet.html",
+      "width": 834,
+      "height": 7250
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Libro-dejalo-ser-movil.html",
+      "width": 390,
+      "height": 4350
+     },
+     {
+      "file": "html/Libro-dejalo-ser-movil-2.html",
+      "width": 390,
+      "height": 5220,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Libro · ¡Y lo mejor aún está por venir!",
+    "route": "/libros/lo-mejor-esta-por-venir",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Libro-lo-mejor.html",
+      "width": 1440,
+      "height": 6240
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Libro-lo-mejor-tablet.html",
+      "width": 834,
+      "height": 7350
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Libro-lo-mejor-movil.html",
+      "width": 390,
+      "height": 4220
+     },
+     {
+      "file": "html/Libro-lo-mejor-movil-2.html",
+      "width": 390,
+      "height": 5530,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Libro · El arte de ser empresario",
+    "route": "/libros/el-arte-de-ser-empresario",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Libro-empresario.html",
+      "width": 1440,
+      "height": 6440
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Libro-empresario-tablet.html",
+      "width": 834,
+      "height": 7820
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Libro-empresario-movil.html",
+      "width": 390,
+      "height": 4500
+     },
+     {
+      "file": "html/Libro-empresario-movil-2.html",
+      "width": 390,
+      "height": 5440,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Descargar libro",
+    "route": "diálogo de descarga en /libros y /libros/[bookId]",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/DescargarLibro.html",
+      "width": 1440,
+      "height": 900,
+      "state": "Formulario"
+     },
+     {
+      "file": "html/DescargarLibro-exito.html",
+      "width": 1440,
+      "height": 900,
+      "state": "Confirmación"
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/DescargarLibro-tablet.html",
+      "width": 834,
+      "height": 1194,
+      "state": "Formulario"
+     },
+     {
+      "file": "html/DescargarLibro-exito-tablet.html",
+      "width": 834,
+      "height": 1194,
+      "state": "Confirmación"
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/DescargarLibro-movil.html",
+      "width": 390,
+      "height": 844,
+      "state": "Formulario"
+     },
+     {
+      "file": "html/DescargarLibro-exito-movil.html",
+      "width": 390,
+      "height": 844,
+      "state": "Confirmación"
+     }
+    ]
+   },
+   {
+    "title": "Medios",
+    "route": "/medios",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Medios.html",
+      "width": 1440,
+      "height": 3700
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Medios-tablet.html",
+      "width": 834,
+      "height": 4550
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Medios-movil.html",
+      "width": 390,
+      "height": 6310
+     }
+    ]
+   },
+   {
+    "title": "Serie · Yo soy nosotros",
+    "route": "/medios/show/yo-soy-nosotros",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Serie.html",
+      "width": 1440,
+      "height": 6580
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Serie-tablet.html",
+      "width": 834,
+      "height": 7670
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Serie-movil.html",
+      "width": 390,
+      "height": 7030
+     },
+     {
+      "file": "html/Serie-movil-2.html",
+      "width": 390,
+      "height": 2610,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Serie · Y lo mejor está por venir",
+    "route": "/medios/show/lo-mejor-esta-por-venir",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Serie-lo-mejor.html",
+      "width": 1440,
+      "height": 7140
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Serie-lo-mejor-tablet.html",
+      "width": 834,
+      "height": 6460
+     },
+     {
+      "file": "html/Serie-lo-mejor-tablet-2.html",
+      "width": 834,
+      "height": 1900,
+      "continues": true
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Serie-lo-mejor-movil.html",
+      "width": 390,
+      "height": 3100
+     },
+     {
+      "file": "html/Serie-lo-mejor-movil-2.html",
+      "width": 390,
+      "height": 7620,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Serie · El arte de ser empresario",
+    "route": "/medios/show/el-arte-de-ser-empresario",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Serie-empresario.html",
+      "width": 1440,
+      "height": 5400
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Serie-empresario-tablet.html",
+      "width": 834,
+      "height": 6690
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Serie-empresario-movil.html",
+      "width": 390,
+      "height": 7860
+     }
+    ]
+   },
+   {
+    "title": "Serie · Ecología y espiritualidad",
+    "route": "/medios/show/ecologia-y-espiritualidad",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Serie-ecologia.html",
+      "width": 1440,
+      "height": 6650
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Serie-ecologia-tablet.html",
+      "width": 834,
+      "height": 7950
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Serie-ecologia-movil.html",
+      "width": 390,
+      "height": 4300
+     },
+     {
+      "file": "html/Serie-ecologia-movil-2.html",
+      "width": 390,
+      "height": 6090,
+      "continues": true
+     }
+    ]
+   },
+   {
+    "title": "Episodio",
+    "route": "/medios/[showId]/[episodeSlug]",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Episodio.html",
+      "width": 1440,
+      "height": 3320
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Episodio-tablet.html",
+      "width": 834,
+      "height": 4420
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Episodio-movil.html",
+      "width": 390,
+      "height": 4820
+     }
+    ]
+   },
+   {
+    "title": "Eventos",
+    "route": "/eventos",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Eventos.html",
+      "width": 1440,
+      "height": 3210
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Eventos-tablet.html",
+      "width": 834,
+      "height": 4430
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Eventos-movil.html",
+      "width": 390,
+      "height": 4830
+     }
+    ]
+   },
+   {
+    "title": "Evento · Sociedad Mexicana de Geografía y Estadística",
+    "route": "/eventos/smge-2025",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Evento.html",
+      "width": 1440,
+      "height": 5320
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Evento-tablet.html",
+      "width": 834,
+      "height": 5550
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Evento-movil.html",
+      "width": 390,
+      "height": 7000
+     }
+    ]
+   },
+   {
+    "title": "Evento · La Conferencia de la Paz",
+    "route": "/eventos/conferencia-paz-2025",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Evento-paz.html",
+      "width": 1440,
+      "height": 5500
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Evento-paz-tablet.html",
+      "width": 834,
+      "height": 6620
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Evento-paz-movil.html",
+      "width": 390,
+      "height": 7620
+     }
+    ]
+   },
+   {
+    "title": "Video",
+    "route": "/video/1",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Video.html",
+      "width": 1440,
+      "height": 4070
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Video-tablet.html",
+      "width": 834,
+      "height": 4820
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Video-movil.html",
+      "width": 390,
+      "height": 5690
+     }
+    ]
+   },
+   {
+    "title": "Recursos",
+    "route": "/resources (rama feat/education-portal-qa)",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/Recursos.html",
+      "width": 1440,
+      "height": 2660
+     },
+     {
+      "file": "html/Recursos-vacio.html",
+      "width": 1440,
+      "height": 2390,
+      "state": "Sin artículos"
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Recursos-tablet.html",
+      "width": 834,
+      "height": 2920
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Recursos-movil.html",
+      "width": 390,
+      "height": 3960
+     }
+    ]
+   },
+   {
+    "title": "Recurso · artículo",
+    "route": "/resources/[slug] (rama feat/education-portal-qa)",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/Recurso.html",
+      "width": 1440,
+      "height": 3780
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Recurso-tablet.html",
+      "width": 834,
+      "height": 4310
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Recurso-movil.html",
+      "width": 390,
+      "height": 5760
+     }
+    ]
+   },
+   {
+    "title": "Contacto",
+    "route": "/contacto",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Contacto.html",
+      "width": 1440,
+      "height": 3420
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Contacto-tablet.html",
+      "width": 834,
+      "height": 3980
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Contacto-movil.html",
+      "width": 390,
+      "height": 4890
+     }
+    ]
+   },
+   {
+    "title": "Buscar",
+    "route": "/buscar",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Buscar.html",
+      "width": 1440,
+      "height": 4280,
+      "state": "Resultados"
+     },
+     {
+      "file": "html/Buscar-estados.html",
+      "width": 1440,
+      "height": 990,
+      "state": "Estados vacíos"
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Buscar-tablet.html",
+      "width": 834,
+      "height": 5750,
+      "state": "Resultados"
+     },
+     {
+      "file": "html/Buscar-estados-tablet.html",
+      "width": 834,
+      "height": 1610,
+      "state": "Estados vacíos"
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Buscar-movil.html",
+      "width": 390,
+      "height": 6030,
+      "state": "Resultados"
+     },
+     {
+      "file": "html/Buscar-estados-movil.html",
+      "width": 390,
+      "height": 1740,
+      "state": "Estados vacíos"
+     }
+    ]
+   },
+   {
+    "title": "Charla con el autor",
+    "route": "/chatbot",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Charla.html",
+      "width": 1440,
+      "height": 3730
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Charla-tablet.html",
+      "width": 834,
+      "height": 4200
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Charla-movil.html",
+      "width": 390,
+      "height": 5740
+     }
+    ]
+   },
+   {
+    "title": "Política de privacidad",
+    "route": "/privacidad",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Privacidad.html",
+      "width": 1440,
+      "height": 4630
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Privacidad-tablet.html",
+      "width": 834,
+      "height": 5370
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Privacidad-movil.html",
+      "width": 390,
+      "height": 6670
+     }
+    ]
+   },
+   {
+    "title": "Términos y condiciones",
+    "route": "/terminos",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Terminos.html",
+      "width": 1440,
+      "height": 4950
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Terminos-tablet.html",
+      "width": 834,
+      "height": 5710
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Terminos-movil.html",
+      "width": 390,
+      "height": 6980
+     }
+    ]
+   },
+   {
+    "title": "Página no encontrada (404)",
+    "route": "src/app/not-found.tsx",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Error404.html",
+      "width": 1440,
+      "height": 1570
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Error404-tablet.html",
+      "width": 834,
+      "height": 1920
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Error404-movil.html",
+      "width": 390,
+      "height": 2930
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section": "Portal educativo",
+  "screens": [
+   {
+    "title": "Acceso al portal",
+    "route": "/auth",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/Acceso.html",
+      "width": 1440,
+      "height": 1920
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Acceso-tablet.html",
+      "width": 834,
+      "height": 2860
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Acceso-movil.html",
+      "width": 390,
+      "height": 3760
+     }
+    ]
+   },
+   {
+    "title": "Crear cuenta",
+    "route": "/auth?mode=signup",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/Registro.html",
+      "width": 1440,
+      "height": 2120
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Registro-tablet.html",
+      "width": 834,
+      "height": 3010
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Registro-movil.html",
+      "width": 390,
+      "height": 4070
+     }
+    ]
+   },
+   {
+    "title": "Recuperar contraseña",
+    "route": "/auth/recover",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/Recuperar.html",
+      "width": 1440,
+      "height": 1750
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Recuperar-tablet.html",
+      "width": 834,
+      "height": 2050
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Recuperar-movil.html",
+      "width": 390,
+      "height": 2570
+     }
+    ]
+   },
+   {
+    "title": "Nueva contraseña",
+    "route": "/auth/reset-password",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/NuevaClave.html",
+      "width": 1440,
+      "height": 1910
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/NuevaClave-tablet.html",
+      "width": 834,
+      "height": 2190
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/NuevaClave-movil.html",
+      "width": 390,
+      "height": 2710
+     }
+    ]
+   },
+   {
+    "title": "Tus cursos",
+    "route": "/portal",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/PortalCursos.html",
+      "width": 1440,
+      "height": 1600
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/PortalCursos-tablet.html",
+      "width": 834,
+      "height": 2090
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/PortalCursos-movil.html",
+      "width": 390,
+      "height": 2370
+     }
+    ]
+   },
+   {
+    "title": "Curso · El arte de ser empresario",
+    "route": "/portal/courses/[courseId]",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/PortalCurso.html",
+      "width": 1440,
+      "height": 2730
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/PortalCurso-tablet.html",
+      "width": 834,
+      "height": 2780
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/PortalCurso-movil.html",
+      "width": 390,
+      "height": 3400
+     }
+    ]
+   },
+   {
+    "title": "Lector de clase",
+    "route": "/portal/classes/[classId]",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/PortalClase.html",
+      "width": 1440,
+      "height": 6130
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/PortalClase-tablet.html",
+      "width": 834,
+      "height": 6150
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/PortalClase-movil.html",
+      "width": 390,
+      "height": 6120
+     }
+    ]
+   },
+   {
+    "title": "Calendario 2027 · Agenda",
+    "route": "/portal/calendar (vista Agenda)",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/PortalCalendario.html",
+      "width": 1440,
+      "height": 4860
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/PortalCalendario-tablet.html",
+      "width": 834,
+      "height": 5350
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/PortalCalendario-movil.html",
+      "width": 390,
+      "height": 7470
+     }
+    ]
+   },
+   {
+    "title": "Calendario 2027 · Mes",
+    "route": "/portal/calendar (vista Mes)",
+    "unpublished": true,
+    "laptop": [
+     {
+      "file": "html/PortalCalendarioMes.html",
+      "width": 1440,
+      "height": 2670
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/PortalCalendarioMes-tablet.html",
+      "width": 834,
+      "height": 3220
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/PortalCalendarioMes-movil.html",
+      "width": 390,
+      "height": 4090
+     }
+    ]
+   },
+   {
+    "title": "Panel de administración",
+    "route": "/admin",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/Admin.html",
+      "width": 1440,
+      "height": 4050
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/Admin-tablet.html",
+      "width": 834,
+      "height": 5120
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/Admin-movil.html",
+      "width": 390,
+      "height": 5680
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section": "Componentes",
+  "screens": [
+   {
+    "title": "Encabezado",
+    "route": "componente compartido (src/components/layout)",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/SiteHeader.html",
+      "width": 1440,
+      "height": 88
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/SiteHeaderTablet.html",
+      "width": 834,
+      "height": 76
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/SiteHeaderMobile.html",
+      "width": 390,
+      "height": 68
+     }
+    ]
+   },
+   {
+    "title": "Menú",
+    "route": "componente compartido (menú móvil / iPad)",
+    "unpublished": false,
+    "laptop": [],
+    "ipad": [
+     {
+      "file": "html/MenuTablet.html",
+      "width": 834,
+      "height": 1194
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/MenuMovil.html",
+      "width": 390,
+      "height": 844
+     }
+    ]
+   },
+   {
+    "title": "Pie de página",
+    "route": "componente compartido (src/components/layout)",
+    "unpublished": false,
+    "laptop": [
+     {
+      "file": "html/SiteFooter.html",
+      "width": 1440,
+      "height": 840
+     }
+    ],
+    "ipad": [
+     {
+      "file": "html/SiteFooterTablet.html",
+      "width": 834,
+      "height": 1210
+     }
+    ],
+    "iphone": [
+     {
+      "file": "html/SiteFooterMobile.html",
+      "width": 390,
+      "height": 1810
+     }
+    ]
+   }
+  ]
+ }
+]

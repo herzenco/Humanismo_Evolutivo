@@ -1,0 +1,68 @@
+{
+  "name": "Humanismo Evolutivo — refactor 2026",
+  "breakpoints": {
+    "laptop": { "width": 1440, "contentWidth": 1200, "gutter": 120 },
+    "ipad": { "width": 834, "contentWidth": 754, "gutter": 40 },
+    "iphone": { "width": 390, "contentWidth": 350, "gutter": 20 }
+  },
+  "color": {
+    "forest": "#173F2C",
+    "forestDeep": "#0F2E20",
+    "cardOnDark": "#1F4B36",
+    "green": "#2F6B45",
+    "moss": "#6E9A45",
+    "sage": "#EAF0E1",
+    "sageLight": "#F4F7EF",
+    "line": "#DCE5D2",
+    "lineSoft": "#E1E7D8",
+    "fieldBorder": "#CBD6C0",
+    "ivory": "#FAF7EF",
+    "portalGround": "#F7F5EF",
+    "white": "#FFFFFF",
+    "ink": "#1D2B22",
+    "body": "#3E4D43",
+    "muted": "#4A5A4F",
+    "gold": "#D4AF5A",
+    "goldTextOnLight": "#7A5C18",
+    "progressTrack": "#E6EBDD",
+    "usage": {
+      "gold": "accents on dark grounds only (eyebrows, buttons, number circles on forest)",
+      "goldTextOnLight": "the only gold allowed as text on light grounds",
+      "sections": "alternate ivory / sage; forest for hero, emphasis bands, header and footer"
+    }
+  },
+  "font": {
+    "display": { "family": "Cormorant Garamond", "weights": [500, 600, 700], "italic": [500, 600], "use": "headings, display, quotes" },
+    "label": { "family": "Cinzel", "weights": [500, 600], "use": "uppercase eyebrows and small caps labels (letter-spacing .12–.2em), Roman numerals, the CONOCER band" },
+    "text": { "family": "Source Sans 3", "weights": [400, 600, 700], "use": "body, UI, buttons, forms" },
+    "numerals": "font-variant-numeric: lining-nums everywhere; never set Arabic digits in Cinzel (its 1 reads as a Roman I) — use Cormorant Garamond 700 or Source Sans 3",
+    "googleFontsCss": "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+3:wght@400;600;700&display=swap"
+  },
+  "typeScale": {
+    "laptop": { "h1": "72–84px / 1.0", "h2": "46px", "h3": "28–38px", "lead": "19–20px", "body": "17px / 1.6", "small": "14–15px" },
+    "ipad": { "h1": "56–64px / 1.02", "h2": "38–40px", "h3": "26–30px", "lead": "19px", "body": "17px / 1.6", "small": "14px" },
+    "iphone": { "h1": "44–48px / 1.05", "h2": "32–34px", "h3": "24–26px", "lead": "18px", "body": "16–17px / 1.6", "small": "14px (minimum)" }
+  },
+  "spacing": {
+    "sectionPadding": { "laptop": "112px 120px", "ipad": "80px 40px", "iphone": "56px 20px" },
+    "heroPadding": { "laptop": "72px 120px 112px", "ipad": "56px 40px 80px", "iphone": "40px 20px 56px" },
+    "readingColumnMax": "680–720px"
+  },
+  "radius": { "card": "16–28px", "image": "16–18px", "pill": "999px", "field": "12px", "cover": "6px", "arch": "160px 160px 18px 18px" },
+  "components": {
+    "buttonPrimary": { "height": { "laptop": 56, "ipad": 54, "iphone": 52 }, "background": "#2F6B45", "color": "#FFFFFF", "radius": "999px", "font": "Source Sans 3 700 16–17px" },
+    "buttonOnDark": { "background": "#D4AF5A", "color": "#173F2C" },
+    "buttonSecondary": { "border": "1.5px solid #2F6B45 (on dark: rgba(255,255,255,.6))", "color": "#2F6B45" },
+    "chip": { "background": "#EAF0E1", "color": "#2F6B45", "font": "13–14px 600", "radius": "999px" },
+    "numberCircle": { "size": { "laptop": 64, "ipad": 56, "iphone": 48 }, "background": "#173F2C", "color": "#FFFFFF", "font": "Cormorant Garamond 700, lining-nums" },
+    "field": { "height": 52, "border": "1px solid #CBD6C0", "radius": "12px (single search/email fields: 999px)", "label": "14px 600 above the field" },
+    "bookCover": { "sizing": "fixed width, height auto (never crop)", "radius": "6px", "shadow": "0 8px 18px rgba(23,63,44,0.18)" },
+    "touchTarget": "≥ 44px"
+  },
+  "imagery": {
+    "illustrationsIntact": ["assets/de-donde-venimos.jpg", "assets/hacia-donde-podemos-evolucionar.jpg"],
+    "rule": "the two illustrations have baked-in text: never crop, overlay or recolor; object-fit: contain; keep aspect ratio",
+    "lowRes": ["jardin-evolucion", "jardin-meditacion", "jardin-filosofia", "estatua", "socrates", "platon", "aristoteles", "logo-parque", "qr"],
+    "avoid": "no stock photos, no gradient washes, no left-border accent cards, no emoji"
+  }
+}

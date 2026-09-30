@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nueva contraseña — móvil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;background:#FAF7EF;font-variant-numeric:lining-nums}
+a{color:#2F6B45}a:hover{color:#173F2C}
+li::marker{color:#6E9A45}
+strong{font-weight:700;color:#1D2B22}
+</style>
+</helmet>
+<div style="width: 390px; height: 2710px; box-sizing: border-box; display: flex; flex-direction: column; background: #FAF7EF; font-family: 'Source Sans 3', system-ui, sans-serif; color: #1D2B22;">
+<dc-import name="SiteHeaderMobile" hint-size="390px,68px"></dc-import>
+
+<!-- ============ NUEVA CONTRASEÑA ============ -->
+<main style="padding: 48px 20px 64px; background: #FAF7EF; display: flex; flex-direction: column; gap: 32px;">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;">
+<span style="width: 56px; height: 56px; border-radius: 50%; background: #173F2C; color: #D4AF5A; display: flex; align-items: center; justify-content: center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.16em; color: #2F6B45;">PORTAL EDUCATIVO</span>
+<h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 46px; line-height: 1.05; font-weight: 600; letter-spacing: -0.01em; color: #173F2C;">Nueva contraseña</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3E4D43; text-wrap: balance;">Elige una nueva contraseña para tu cuenta. Después podrás iniciar sesión con ella.</p>
+</div>
+<section aria-label="Formulario de nueva contraseña" style="box-sizing: border-box; padding: 24px; background: #FFFFFF; border: 1px solid #DCE5D2; border-radius: 24px;">
+<form style="margin: 0; display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="nueva-clave" style="font-size: 14px; font-weight: 600; color: #1D2B22;">Nueva contraseña</label>
+<div style="position: relative; display: flex;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5A4F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px;"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+<input id="nueva-clave" type="password" autocomplete="new-password" minlength="8" maxlength="128" aria-describedby="nueva-clave-ayuda" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px 0 48px; border-radius: 12px; border: 1px solid #CBD6C0; background: #FFFFFF; font-family: inherit; font-size: 16px; color: #1D2B22;">
+</div>
+<span id="nueva-clave-ayuda" style="font-size: 14px; line-height: 1.4; color: #4A5A4F;">Usa al menos 8 caracteres.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="nueva-confirmar" style="font-size: 14px; font-weight: 600; color: #1D2B22;">Confirmar nueva contraseña</label>
+<div style="position: relative; display: flex;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5A4F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px;"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+<input id="nueva-confirmar" type="password" autocomplete="new-password" minlength="8" maxlength="128" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px 0 48px; border-radius: 12px; border: 1px solid #CBD6C0; background: #FFFFFF; font-family: inherit; font-size: 16px; color: #1D2B22;">
+</div>
+</div>
+<a href="Acceso-movil.dc.html" style="margin-top: 4px; width: 100%; box-sizing: border-box; height: 52px; border-radius: 999px; background: #2F6B45; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; text-decoration: none;">Guardar nueva contraseña
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+<div style="padding-top: 8px; border-top: 1px solid #E1E7D8; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+<a href="Acceso-movil.dc.html" style="min-height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; color: #2F6B45; text-decoration: none;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>
+<span style="text-decoration: underline; text-underline-offset: 4px;">Volver a iniciar sesión</span></a>
+<a href="Recuperar-movil.dc.html" style="min-height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; color: #2F6B45; text-decoration: none;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+<span style="text-decoration: underline; text-underline-offset: 4px;">Solicitar otro enlace</span></a>
+</div>
+</form>
+</section>
+</main>
+
+<dc-import name="SiteFooterMobile" hint-size="390px,1810px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2710}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
