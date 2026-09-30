@@ -10,6 +10,10 @@ body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;bac
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>
@@ -69,7 +73,7 @@ strong{font-weight:700;color:#1D2B22}
 <img src="../assets/libro-arte-empresario.jpg" alt="Portada de El arte de ser empresario" style="width: 76px; height: auto; flex-shrink: 0; border-radius: 6px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px;">
-<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #7A5C18;">CURSO <span style="font-family: \'Source Sans 3\', sans-serif; font-weight: 700; letter-spacing: 0.04em;">1</span></span>
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #7A5C18;">CURSO <span style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; letter-spacing: 0.04em;">1</span></span>
 <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.1; font-weight: 600; color: #173F2C;">El arte de ser empresario</h3>
 <p style="margin: 0; font-size: 14px; line-height: 1.45; color: #4A5A4F;">5 partes · 11 clases · Acceso libre</p>
 </div>
@@ -91,7 +95,7 @@ strong{font-weight:700;color:#1D2B22}
 </div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px;">
-<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #7A5C18;">CURSO <span style="font-family: \'Source Sans 3\', sans-serif; font-weight: 700; letter-spacing: 0.04em;">2</span></span>
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #7A5C18;">CURSO <span style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; letter-spacing: 0.04em;">2</span></span>
 <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.1; font-weight: 600; color: #173F2C;">Introducción al Humanismo Evolutivo Transpersonal</h3>
 <p style="margin: 0; font-size: 14px; line-height: 1.45; color: #4A5A4F;">8 partes · 45 clases · Acceso libre</p>
 </div>
@@ -110,7 +114,7 @@ strong{font-weight:700;color:#1D2B22}
 <img src="../assets/libro-ecologia-espiritualidad.jpg" alt="Portada de Ecología y espiritualidad" style="width: 76px; height: auto; flex-shrink: 0; border-radius: 6px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px;">
-<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #7A5C18;">CURSO <span style="font-family: \'Source Sans 3\', sans-serif; font-weight: 700; letter-spacing: 0.04em;">3</span></span>
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #7A5C18;">CURSO <span style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; letter-spacing: 0.04em;">3</span></span>
 <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.1; font-weight: 600; color: #173F2C;">Introducción a Ecología y Espiritualidad</h3>
 <p style="margin: 0; font-size: 14px; line-height: 1.45; color: #4A5A4F;">8 partes · 45 clases · Acceso libre</p>
 </div>
@@ -129,7 +133,7 @@ strong{font-weight:700;color:#1D2B22}
 <img src="../assets/libro-yo-soy-nosotros.jpg" alt="Portada de Yo soy nosotros" style="width: 76px; height: auto; flex-shrink: 0; border-radius: 6px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px;">
-<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #7A5C18;">CURSO <span style="font-family: \'Source Sans 3\', sans-serif; font-weight: 700; letter-spacing: 0.04em;">4</span></span>
+<span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #7A5C18;">CURSO <span style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; letter-spacing: 0.04em;">4</span></span>
 <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.1; font-weight: 600; color: #173F2C;">Introducción a la filosofía de Yo Soy Nosotros</h3>
 <p style="margin: 0; font-size: 14px; line-height: 1.45; color: #4A5A4F;">8 partes · 45 clases · Acceso libre</p>
 </div>

@@ -25,6 +25,74 @@
     "gold": "#D4AF5A",
     "goldTextOnLight": "#7A5C18",
     "progressTrack": "#E6EBDD",
+    "supporting": {
+      "portalLine": "#EDF0E6",
+      "portalCanvas": "#FAFAF6",
+      "portalInk": "#2A3A30",
+      "warmWhite": "#FFFDF7",
+      "softLine": "#DDE5D3",
+      "softLineStrong": "#D3DEC6",
+      "greenTint": "#E2EFE0",
+      "greenTintBorder": "#B3D3B1",
+      "greenTintText": "#1D4A2E",
+      "greenTintMuted": "#D7E4DF",
+      "confirmationTint": "#DFE9D2",
+      "confirmationBorder": "#CADBBB",
+      "confirmationSoft": "#EEF2E7",
+      "confirmationText": "#C7D8D1",
+      "warmNeutral": "#EFE8D6",
+      "warmNeutralBorder": "#DCD3BC",
+      "warmNeutralStrong": "#D8C9A0"
+    },
+    "semantic": {
+      "focus": {
+        "onLight": "#2F6B45",
+        "onDark": "#D4AF5A",
+        "offsetLight": "#FFFFFF",
+        "offsetDark": "#173F2C",
+        "usage": "2px visible focus ring plus 2px offset; never remove focus without a replacement"
+      },
+      "success": {
+        "text": "#1F5A3A",
+        "background": "#DBE9DE",
+        "border": "#B2CFBA"
+      },
+      "warning": {
+        "text": "#5A4310",
+        "accent": "#B08419",
+        "background": "#F6ECD4",
+        "backgroundSoft": "#FBF3DC",
+        "border": "#E4CF9C",
+        "borderSoft": "#EAD7A4"
+      },
+      "error": {
+        "text": "#9A3A2E",
+        "textStrong": "#7A2615",
+        "textDeep": "#6B2A1C",
+        "accent": "#9B3520",
+        "background": "#FBEEEA",
+        "border": "#E6C4BE",
+        "borderStrong": "#EBC9BE"
+      },
+      "disabled": {
+        "text": "#9AA89E",
+        "background": "#EDF0E6",
+        "border": "#DDE5D3"
+      }
+    },
+    "calendarCourses": {
+      "identidadCivismo": { "accent": "#B08419", "background": "#F6ECD4", "border": "#E4CF9C" },
+      "ecologiaEspiritualidad": { "accent": "#7C9A2A", "background": "#EAF1D6", "border": "#CFDDA8" },
+      "historiaArte": { "accent": "#2B7A6D", "background": "#DDEEEA", "border": "#B6D8D0" },
+      "humanismoEvolutivo": { "accent": "#1F5A3A", "background": "#DBE9DE", "border": "#B2CFBA" },
+      "introduccionFilosofia": { "accent": "#6953A0", "background": "#E9E5F4", "border": "#CDC4E6" },
+      "yoSoyNosotros": { "accent": "#A0487A", "background": "#F5E1EB", "border": "#E3BFD1" },
+      "antropologia": { "accent": "#7D4A8A", "background": "#EFE3F0", "border": "#D8C2DB" },
+      "filosofiaNinos": { "accent": "#4659A6", "background": "#E1E7F5", "border": "#C3CEEA" },
+      "religionesLectura": { "accent": "#2F6F9B", "background": "#DDEBF4", "border": "#B9D5E8" },
+      "serEmpresario": { "accent": "#B55E27", "background": "#F7E5D8", "border": "#E9C6AC" },
+      "accessibility": "Course names must accompany color in legends and details; color is never the only identifier."
+    },
     "usage": {
       "gold": "accents on dark grounds only (eyebrows, buttons, number circles on forest)",
       "goldTextOnLight": "the only gold allowed as text on light grounds",

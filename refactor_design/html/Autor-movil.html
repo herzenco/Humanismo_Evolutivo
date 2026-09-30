@@ -10,6 +10,10 @@ body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;bac
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>
@@ -69,7 +73,7 @@ strong{font-weight:700;color:#1D2B22}
 </div>
 </div>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3E4D43;">En su vida empresarial formó cuatro grupos. El grupo inicial en el que adquiere experiencia, <strong>Grupo Mezcalapa</strong>, que administró una diversidad de empresas. El segundo grupo que fue cofundador fue <strong>Grupo Ritco</strong>. El tercer grupo que formó como cofundador también y aportando las ideas básicas del mismo fue <strong>Grupo Palace</strong>, grupo de hoteles Palace en Cancún. Y el cuarto grupo que fue cofundador y que estuvo al frente de la formación espiritual, financiera, legal y de auditoría fue <strong>Grupo Xcaret</strong>. De esos cuatro grupos que formó parte en su fundación, tres de ellos, en su momento, han estado calificados como las 200 empresas más importantes de México.</p>
-<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3E4D43;">Autor de obras como <em>Yo soy nosotros</em>, <em>Ecología y espiritualidad</em>, <em>Déjalo ser</em>, <em>El arte de ser empresario</em> y <em>¡Y lo mejor aún está por venir!</em>, Constandse ha dedicado su vida a explorar las conexiones profundas entre todos los aspectos de la existencia.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3E4D43;">Autor de obras como <em>Yo soy nosotros</em>, <em>Ecología y espiritualidad</em>, <em>¡Déjalo ser!</em>, <em>El arte de ser empresario</em> y <em>¡Y lo mejor aún está por venir!</em>, Constandse ha dedicado su vida a explorar las conexiones profundas entre todos los aspectos de la existencia.</p>
 <div style="background: #EAF0E1; border-radius: 18px; padding: 22px 20px; display: flex; flex-direction: column; gap: 10px;">
 <span style="font-family: 'Cormorant Garamond', serif; font-size: 30px; line-height: 1.05; font-weight: 600; color: #173F2C;">Más de tres décadas</span>
 <span style="font-size: 16px; line-height: 1.5; color: #3E4D43;">de un camino único que integra:</span>

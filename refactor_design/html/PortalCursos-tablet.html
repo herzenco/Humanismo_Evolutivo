@@ -10,6 +10,10 @@ body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;bac
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>

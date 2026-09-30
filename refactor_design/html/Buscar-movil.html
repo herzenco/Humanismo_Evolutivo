@@ -10,6 +10,10 @@ body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;bac
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>
@@ -43,21 +47,21 @@ strong{font-weight:700;color:#1D2B22}
 <label for="buscar-m-q" style="font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);">Busca libros, episodios de podcast y videos</label>
 <div style="height: 56px; box-sizing: border-box; padding: 0 5px 0 18px; border-radius: 999px; background: #FFFFFF; border: 1px solid #CBD6C0; display: flex; align-items: center; gap: 8px; color: #2F6B45;">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-<input id="buscar-m-q" name="q" type="search" value="conocimiento" placeholder="¿Qué quieres explorar?" style="flex-grow: 1; min-width: 0; height: 50px; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 17px; color: #1D2B22;">
+<input id="buscar-m-q" name="q" type="search" value="conocimiento" placeholder="¿Qué quieres explorar?" style="flex-grow: 1; min-width: 0; height: 50px; border: 0; background: transparent; font-family: inherit; font-size: 17px; color: #1D2B22;">
 <a href="Buscar-estados-movil.html" aria-label="Borrar búsqueda" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F4F7EF; color: #4A5A4F; display: flex; align-items: center; justify-content: center;">
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
 </a>
 </div>
-<a href="Buscar-movil.html" style="height: 52px; border-radius: 999px; background: #D4AF5A; color: #173F2C; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">Buscar
+<button type="submit" style="height: 52px; border-radius: 999px; background: #D4AF5A; color: #173F2C; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; border: 0; font-family: inherit; cursor: pointer;">Buscar
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-</a>
+</button>
 </form>
 
 <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
 <p style="margin: 0; font-size: 18px; line-height: 1.4; color: rgba(255,255,255,0.9);">Buscando por: <span style="color: #D4AF5A; font-weight: 600;">“conocimiento”</span></p>
 <p style="margin: 0; font-size: 16px; color: rgba(255,255,255,0.78);" aria-live="polite">12 resultado(s) encontrado(s)</p>
 </div>
-<nav aria-label="Ir a un grupo de resultados" style="display: flex; gap: 8px;">
+<nav aria-label="Ir a un grupo de resultados" style="position: sticky; top: 8px; z-index: 2; padding: 8px; border-radius: 999px; background: #173F2C; overflow-x: auto; display: flex; gap: 8px;">
 <a href="#libros" style="height: 44px; padding: 0 14px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 600; text-decoration: none;">Libros (2)</a>
 <a href="#podcasts" style="height: 44px; padding: 0 14px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 600; text-decoration: none;">Podcasts (9)</a>
 <a href="#videos" style="height: 44px; padding: 0 14px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 600; text-decoration: none;">Videos (1)</a>
@@ -100,7 +104,7 @@ strong{font-weight:700;color:#1D2B22}
 <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
 <span style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #2F6B45;">LIBRO</span>
 <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 26px; line-height: 1.1; font-weight: 600; color: #173F2C;">¡Déjalo ser!</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Déjalo ser es una novela que entrelaza memoria, identidad y tecnología en un relato íntimo y visionario. Marcos Constandse nos conduce a un futuro posible, donde la acumulación de datos personales confronta a sus protagonistas con sus raíces más profundas y sus decisiones más humanas.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">¡Déjalo ser! [Descripción definitiva por confirmar].</p>
 </div>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px;">
@@ -118,7 +122,7 @@ strong{font-weight:700;color:#1D2B22}
 <span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EAF0E1; color: #2F6B45; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15v-3a8 8 0 0 1 16 0v3"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg></span>
 <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 34px; line-height: 1.05; font-weight: 600; color: #173F2C;">Podcasts <span style="font-weight: 500; color: #4A5A4F;">(9)</span></h2>
 </div>
-<a href="Medios-movil.html" style="min-height: 44px; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: #2F6B45; text-decoration: none;">Ver series
+<a href="Medios-movil.html" style="min-height: 44px; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: #2F6B45; text-decoration: none;">Ver todas las series
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
 
@@ -176,7 +180,7 @@ strong{font-weight:700;color:#1D2B22}
 <img src="../assets/libro-lo-mejor.jpg" alt="Portada de la serie ¡Y lo mejor aún está por venir!" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
 <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
 <span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Filosofía · ¡Y lo mejor aún está por venir!</span>
-<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Conocimiento, Lenguaje y Realidad</h3>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Conocimiento, lenguaje y realidad</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">En este episodio exploramos cómo construimos lo que llamamos realidad. Marcos Constandse explica que el <mark style="background: #EAF0E1; color: #173F2C; font-weight: 600; padding: 0 3px; border-radius: 4px;">conocimiento</mark> no es un reflejo exacto del mundo.</p>
 <span style="font-size: 14px; color: #4A5A4F;">46 min · 15 abr 2024</span>
 </div>
@@ -196,7 +200,7 @@ strong{font-weight:700;color:#1D2B22}
 <img src="../assets/libro-arte-empresario.jpg" alt="Portada de la serie El arte de ser empresario" style="width: 64px; height: auto; flex-shrink: 0; border-radius: 4px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18);">
 <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; flex-grow: 1;">
 <span style="font-size: 14px; font-weight: 600; color: #2F6B45;">Empresarial · El arte de ser empresario</span>
-<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Aplicar el Conocimiento y el Imperativo Ético</h3>
+<h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #173F2C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Aplicar el conocimiento y el imperativo ético</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3E4D43; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">“Aplicar el <mark style="background: #EAF0E1; color: #173F2C; font-weight: 600; padding: 0 3px; border-radius: 4px;">conocimiento</mark> y el imperativo ético” es un episodio que marca el cierre natural del camino evolutivo del empresario consciente.</p>
 <span style="font-size: 14px; color: #4A5A4F;">53 min · 17 oct 2024</span>
 </div>
@@ -230,7 +234,7 @@ strong{font-weight:700;color:#1D2B22}
 <div style="grid-area: 1 / 1; box-sizing: border-box; padding: 14px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; background: rgba(15,46,32,0.28);">
 <span style="align-self: flex-start; height: 28px; padding: 0 10px; border-radius: 999px; background: rgba(15,46,32,0.82); color: #FFFFFF; font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.12em; display: flex; align-items: center;">VIDEO</span>
 <span style="width: 60px; height: 60px; border-radius: 50%; background: #D4AF5A; color: #173F2C; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg></span>
-<span style="align-self: flex-end; height: 28px; padding: 0 10px; border-radius: 6px; background: rgba(15,46,32,0.82); color: #FFFFFF; font-size: 14px; font-weight: 600; display: flex; align-items: center;">1:15:30</span>
+<span style="align-self: flex-end; height: 28px; padding: 0 10px; border-radius: 6px; background: rgba(15,46,32,0.82); color: #FFFFFF; font-size: 14px; font-weight: 600; display: flex; align-items: center;">[Duración por confirmar]</span>
 </div>
 </div>
 <div style="padding: 20px; display: flex; flex-direction: column; gap: 10px;">
@@ -282,12 +286,12 @@ strong{font-weight:700;color:#1D2B22}
 </span>
 <p style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 1.35; font-weight: 600; color: rgba(255,255,255,0.88);">Una visión transpersonal del mundo a través de la filosofía, espiritualidad y ecología.</p>
 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-<a href="#facebook" aria-label="Facebook" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8.5a.5.5 0 0 1 .5-.5z"></path></svg></a>
-<a href="#instagram" aria-label="Instagram" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.6"></circle></svg></a>
-<a href="#youtube" aria-label="YouTube" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10 9.5v5l4.5-2.5z"></path></svg></a>
-<a href="#tiktok" aria-label="TikTok" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.5 2.8 2.4 4.6 5 5"></path></svg></a>
-<a href="#x" aria-label="X" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"></path></svg></a>
-<a href="#linkedin" aria-label="LinkedIn" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.5a2.5 2.5 0 0 1 5 0V17"></path></svg></a>
+<a aria-disabled="true" title="Enlace por confirmar" aria-label="Facebook" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8.5a.5.5 0 0 1 .5-.5z"></path></svg></a>
+<a aria-disabled="true" title="Enlace por confirmar" aria-label="Instagram" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.6"></circle></svg></a>
+<a aria-disabled="true" title="Enlace por confirmar" aria-label="YouTube" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10 9.5v5l4.5-2.5z"></path></svg></a>
+<a aria-disabled="true" title="Enlace por confirmar" aria-label="TikTok" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.5 2.8 2.4 4.6 5 5"></path></svg></a>
+<a aria-disabled="true" title="Enlace por confirmar" aria-label="X" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"></path></svg></a>
+<a aria-disabled="true" title="Enlace por confirmar" aria-label="LinkedIn" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #FFFFFF;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.5a2.5 2.5 0 0 1 5 0V17"></path></svg></a>
 </div>
 </div>
 
@@ -301,14 +305,6 @@ strong{font-weight:700;color:#1D2B22}
 <a href="Medios-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Podcast y videos</a>
 <a href="Eventos-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Eventos</a>
 </nav>
-<nav aria-labelledby="footer-m-participa" style="display: flex; flex-direction: column; gap: 4px;">
-<h3 id="footer-m-participa" style="margin: 0 0 6px; font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #D4AF5A;">PARTICIPA</h3>
-<a href="Acceso-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Portal educativo</a>
-<a href="Recursos-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Recursos</a>
-<a href="Charla-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Charla con el autor</a>
-<a href="Buscar-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Buscar</a>
-<a href="Contacto-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Contacto</a>
-</nav>
 <nav aria-labelledby="footer-m-obras" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 4px;">
 <h3 id="footer-m-obras" style="margin: 0 0 6px; font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #D4AF5A;">OBRAS</h3>
 <a href="Libro-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Yo soy nosotros</a>
@@ -318,12 +314,21 @@ strong{font-weight:700;color:#1D2B22}
 <a href="Libro-empresario-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">El arte de ser empresario</a>
 <a href="Libros-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Humanismo evolutivo</a>
 </nav>
+
+<nav aria-labelledby="footer-m-participa" style="display: flex; flex-direction: column; gap: 4px;">
+<h3 id="footer-m-participa" style="margin: 0 0 6px; font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #D4AF5A;">PARTICIPA</h3>
+<a href="Acceso-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Portal educativo</a>
+<a href="Recursos-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Recursos</a>
+<a href="Charla-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Charla con el autor</a>
+<a href="Buscar-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Buscar</a>
+<a href="Contacto-movil.html" style="min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 16px;">Contacto</a>
+</nav>
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 12px;">
 <h3 style="margin: 0 0 4px; font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #D4AF5A;">CONTACTO</h3>
-<a href="tel:9988888888" style="min-height: 36px; display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-size: 16px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>998.8888888</a>
-<a href="mailto:humanismoevolutivo@gmail.com" style="min-height: 36px; display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-size: 16px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>humanismoevolutivo@gmail.com</a>
+<a aria-disabled="true" title="Teléfono por confirmar" style="min-height: 36px; display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-size: 16px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>[Teléfono por confirmar]</a>
+<a aria-disabled="true" title="Correo por confirmar" style="min-height: 36px; display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-size: 16px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>[Correo por confirmar]</a>
 <span style="min-height: 36px; display: flex; align-items: center; gap: 10px; font-size: 16px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>www.humanismoevolutivo.com</span>
 <div style="display: flex; gap: 12px; padding-top: 6px;">
 <div style="background: #FFFFFF; border-radius: 14px; padding: 10px 12px; display: flex; align-items: center;"><img src="../assets/logo-parque.jpg" alt="Parque Cancún · Tuyo. Mío. Nuestro." style="width: 170px; height: 62px; object-fit: contain; display: block;"></div>

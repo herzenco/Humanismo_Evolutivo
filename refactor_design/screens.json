@@ -605,7 +605,7 @@
      {
       "file": "html/Episodio-movil.html",
       "width": 390,
-      "height": 4820
+      "height": 5320
      }
     ]
    },
@@ -735,6 +735,12 @@
       "file": "html/Recursos-tablet.html",
       "width": 834,
       "height": 2920
+     },
+     {
+      "file": "html/Recursos-vacio-tablet.html",
+      "width": 834,
+      "height": 2640,
+      "state": "Sin artículos"
      }
     ],
     "iphone": [
@@ -742,6 +748,12 @@
       "file": "html/Recursos-movil.html",
       "width": 390,
       "height": 3960
+     },
+     {
+      "file": "html/Recursos-vacio-movil.html",
+      "width": 390,
+      "height": 3150,
+      "state": "Sin artículos"
      }
     ]
    },
@@ -819,7 +831,7 @@
      {
       "file": "html/Buscar-tablet.html",
       "width": 834,
-      "height": 5750,
+      "height": 5250,
       "state": "Resultados"
      },
      {
@@ -930,21 +942,21 @@
      {
       "file": "html/Error404.html",
       "width": 1440,
-      "height": 1570
+      "height": 950
      }
     ],
     "ipad": [
      {
       "file": "html/Error404-tablet.html",
       "width": 834,
-      "height": 1920
+      "height": 950
      }
     ],
     "iphone": [
      {
       "file": "html/Error404-movil.html",
       "width": 390,
-      "height": 2930
+      "height": 1420
      }
     ]
    }
@@ -961,21 +973,21 @@
      {
       "file": "html/Acceso.html",
       "width": 1440,
-      "height": 1920
+      "height": 1300
      }
     ],
     "ipad": [
      {
       "file": "html/Acceso-tablet.html",
       "width": 834,
-      "height": 2860
+      "height": 1890
      }
     ],
     "iphone": [
      {
       "file": "html/Acceso-movil.html",
       "width": 390,
-      "height": 3760
+      "height": 2250
      }
     ]
    },
@@ -987,21 +999,21 @@
      {
       "file": "html/Registro.html",
       "width": 1440,
-      "height": 2120
+      "height": 1500
      }
     ],
     "ipad": [
      {
       "file": "html/Registro-tablet.html",
       "width": 834,
-      "height": 3010
+      "height": 2040
      }
     ],
     "iphone": [
      {
       "file": "html/Registro-movil.html",
       "width": 390,
-      "height": 4070
+      "height": 2560
      }
     ]
    },
@@ -1013,21 +1025,21 @@
      {
       "file": "html/Recuperar.html",
       "width": 1440,
-      "height": 1750
+      "height": 1130
      }
     ],
     "ipad": [
      {
       "file": "html/Recuperar-tablet.html",
       "width": 834,
-      "height": 2050
+      "height": 1080
      }
     ],
     "iphone": [
      {
       "file": "html/Recuperar-movil.html",
       "width": 390,
-      "height": 2570
+      "height": 1060
      }
     ]
    },
@@ -1039,21 +1051,21 @@
      {
       "file": "html/NuevaClave.html",
       "width": 1440,
-      "height": 1910
+      "height": 1290
      }
     ],
     "ipad": [
      {
       "file": "html/NuevaClave-tablet.html",
       "width": 834,
-      "height": 2190
+      "height": 1220
      }
     ],
     "iphone": [
      {
       "file": "html/NuevaClave-movil.html",
       "width": 390,
-      "height": 2710
+      "height": 1200
      }
     ]
    },

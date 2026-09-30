@@ -3,7 +3,7 @@
 Design-only handoff for the full redesign of the public site and the education portal.
 **Nothing here is implemented yet**: this folder is the reference to build from.
 
-- 42 screens × 3 breakpoints = **156 designs**: Laptop **1440 px**, iPad **834 px**, iPhone **390 px**.
+- **42 screen groups and 158 design files** across Laptop **1440 px**, iPad **834 px** and iPhone **390 px**. The total is greater than 42 × 3 because it includes continuation canvases, component sheets and UI states. The two additional files complete the tablet and mobile versions of the Recursos empty state.
 - Presentation for the client: [`Humanismo-Evolutivo-Propuesta-Rediseno.pdf`](Humanismo-Evolutivo-Propuesta-Rediseno.pdf) (cover, clickable index, visual system, one page per screen with the three breakpoints side by side, pending items).
 - Browse every screen: open [`index.html`](index.html) in a browser (it links to each screen at each breakpoint; screens link to each other like the real site).
 - Tokens: [`design-tokens.json`](design-tokens.json) · Screen map: [`screens.json`](screens.json).
@@ -19,6 +19,16 @@ Design-only handoff for the full redesign of the public site and the education p
 | `assets/*.jpg` | every image used, with readable names |
 | `screens.json` | machine-readable screen list: section, title, route, `unpublished`, and per breakpoint the files, sizes, states and continuation parts |
 | `design-tokens.json` | colors, fonts, type scale per breakpoint, spacing, radii, component specs, imagery rules |
+| `SEO-AEO-PAGE-INVENTORY.md` | deduplicated real-route inventory with proposed Spanish metadata, canonical/indexing guidance and structured-data opportunities |
+| `scripts/validate_design.py` | dependency-free, read-only integrity validator for the manifest, canvases, links, accessibility basics, tokens, typography and protected imagery |
+
+Run the design-source validator from the repository root:
+
+```bash
+python3 refactor_design/scripts/validate_design.py
+```
+
+The validator returns a non-zero exit code for blocking integrity errors. Known placeholder destinations such as unconfirmed social links are grouped as warnings; pass `--show-pending` to list every file and line.
 
 File naming: `Name.html` = laptop, `Name-tablet.html` = iPad, `Name-movil.html` = iPhone. Long pages were split only because
 the design canvas caps a frame at 8000 px: `Name-movil-2.html` is simply the continuation of `Name-movil.html` (the
@@ -50,13 +60,13 @@ See `screens.json` / `index.html` for the full list. Highlights:
 - Episode titles normalized to sentence case with obvious typos fixed ("Transpersona" → "Transpersonal", "Prologo" → "Prólogo", "Energia" → "Energía", "Adn" → "ADN").
 - The "Y lo mejor está por venir" series description had lost its first paragraph in `src/data/showLongform.ts` (dropped in commit f0853e6); the design restores it from commit 9a634e5.
 - Raw translation keys and English error strings on the live site were replaced with the intended Spanish copy.
-- Site-wide contact data used: humanismoevolutivo@gmail.com · 998.8888888 · www.humanismoevolutivo.com · @humanismoevolutivo · Cancún, Quintana Roo.
+- Provisional telephone and email values were removed from actionable links. The designs show `[Teléfono por confirmar]` and `[Correo por confirmar]` until the owner resolves the conflicting source data; unresolved social, language, video, audio and community destinations are visibly disabled.
 - Placeholders in `[brackets]` mark content that still has to be supplied (e.g. `[Dirección por confirmar]`, `[PORTADA PENDIENTE]`, portal user data, lesson text — the private curriculum is never reproduced).
 
 ## Pending before/while implementing
 
 **Images needed:** high-res originals of the three gardens, the sculpture and the three philosophers (current files are low-res crops from the brochure); Parque·Cancún logo (vector) and the original QR; cover for book VI; a portrait-format author photo; stills for the Parque Cancún documentary, the welcome video and the SMGE video; podcast series artwork; photos for Recursos articles and the current edition of *El arte de ser empresario*.
 
-**Data to confirm:** physical address and phone (998.8888888 looks provisional); one contact email (gmail vs hello@humanismoevolutivo.com in the legal pages); real social URLs (the live footer points to bare facebook.com etc.); SMGE video date/duration/ID (data disagrees: 42:53 · 2025-01-01 · HLHjY3NnX2k vs 1:15:30 · 2024-10-28 · LRr-CKjfmrE; the event was 2025-10-28); exact title of book IV; the *¡Déjalo ser!* description (site: near-future data/identity novel; brochure: Maya family over three generations); whether downloads are full books or summaries (files are `*_Resumen.pdf`), and book year/page counts; podcast episode dates (exact weekly sequence — looks like filler) and slugs that don't match titles; real Recursos articles (the design uses the 3 demo articles from `resources.demo.ts`); venue of the 2027 in-person classes.
+**Data to confirm:** physical address and phone (998.8888888 looks provisional); one contact email (gmail vs hello@humanismoevolutivo.com in the legal pages); real social URLs (the live footer points to bare facebook.com etc.); SMGE video date/duration/ID (data disagrees: 42:53 · 2025-01-01 · HLHjY3NnX2k vs 1:15:30 · 2024-10-28 · LRr-CKjfmrE; the event was 2025-10-28); exact title of book IV; the *¡Déjalo ser!* description (site: near-future data/identity novel; brochure: Maya family over three generations); whether downloads are full books or summaries (files are `*_Resumen.pdf`), and book year/page counts; podcast episode dates (exact weekly sequence — looks like filler) and slugs that don't match titles; real Recursos articles (the design uses the 3 demo articles from `resources.demo.ts`); venue of the 2027 in-person classes. The source designs now expose these gaps with neutral `[Por confirmar]` copy or disabled controls instead of presenting provisional data as final.
 
 **Code issues noticed while inventorying (not fixed here):** dates parsed as UTC show a day early in Mexico (`new Date('YYYY-MM-DD')`); `/libros` has no PDF mapped for *Y lo mejor…* so that download fails; the book download handler pushes name + email into the GTM dataLayer; the 404 page is English with no header/footer; `/contacto` is not linked from the nav; three different site domains appear in metadata/sitemap/legal pages.

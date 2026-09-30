@@ -3,13 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=834">
-<title>Descargar libro (iPad) — Humanismo Evolutivo</title>
+<title>Solicitar descarga (iPad) — Humanismo Evolutivo</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;background:#FAF7EF;font-variant-numeric:lining-nums}
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>
@@ -27,7 +31,7 @@ strong{font-weight:700;color:#1D2B22}
 <a href="Buscar-tablet.html" aria-label="Buscar" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.28); display: flex; align-items: center; justify-content: center; color: #FFFFFF;">
 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
 </a>
-<a href="#idioma" aria-label="Cambiar idioma: Español" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); display: flex; align-items: center; gap: 8px; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.04em;">
+<a aria-disabled="true" title="Enlace por confirmar" aria-label="Cambiar idioma: Español" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); display: flex; align-items: center; gap: 8px; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.04em;">
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>
 ES
 </a>
@@ -82,15 +86,15 @@ Portal educativo
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
 <img src="../assets/libro-yo-soy-nosotros.jpg" alt="Portada de Yo soy nosotros" style="width: 76px; height: auto; border-radius: 5px; display: block; box-shadow: 0 8px 18px rgba(23,63,44,0.18); margin-bottom: 6px;">
-<div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.16em; color: #2F6B45;">DESCARGA GRATUITA</div>
-<h2 id="dlt-titulo" style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 34px; line-height: 1.1; font-weight: 600; color: #173F2C;">Descargar Yo soy nosotros</h2>
-<p id="dlt-desc" style="margin: 0; font-size: 17px; line-height: 1.55; color: #3E4D43;">Completa el formulario para descargar Yo soy nosotros.</p>
+<div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.16em; color: #2F6B45;">DESCARGA POR CONFIRMAR</div>
+<h2 id="dlt-titulo" style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 34px; line-height: 1.1; font-weight: 600; color: #173F2C;">Solicitar descarga de Yo soy nosotros</h2>
+<p id="dlt-desc" style="margin: 0; font-size: 17px; line-height: 1.55; color: #3E4D43;">Completa el formulario para solicitar la descarga. [Libro completo o resumen por confirmar].</p>
 </div>
 
-<form style="margin: 0; display: flex; flex-direction: column; gap: 18px;">
+<form action="DescargarLibro-exito-tablet.html" style="margin: 0; display: flex; flex-direction: column; gap: 18px;">
 <div style="display: flex; flex-direction: column; gap: 8px;">
 <label for="dlt-nombre" style="font-size: 14px; font-weight: 600; color: #1D2B22;">Nombre completo</label>
-<input id="dlt-nombre" type="text" autocomplete="name" placeholder="Tu nombre" style="height: 52px; box-sizing: border-box; padding: 0 16px; border-radius: 12px; border: 1.5px solid #2F6B45; box-shadow: 0 0 0 4px rgba(47,107,69,0.15); background: #FFFFFF; color: #1D2B22; font-size: 16px; font-family: inherit; outline: none;">
+<input id="dlt-nombre" type="text" autocomplete="name" placeholder="Tu nombre" style="height: 52px; box-sizing: border-box; padding: 0 16px; border-radius: 12px; border: 1.5px solid #2F6B45; box-shadow: 0 0 0 4px rgba(47,107,69,0.15); background: #FFFFFF; color: #1D2B22; font-size: 16px; font-family: inherit;">
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px;">
 <label for="dlt-correo" style="font-size: 14px; font-weight: 600; color: #1D2B22;">Correo electrónico</label>
@@ -98,11 +102,11 @@ Portal educativo
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-top: 10px;">
 <a href="Libros-tablet.html" style="height: 54px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid #CBD6C0; color: #1D2B22; border-radius: 999px; font-size: 16px; font-weight: 700; text-decoration: none;">Cancelar</a>
-<a href="DescargarLibro-exito-tablet.html" style="height: 54px; display: flex; align-items: center; justify-content: center; gap: 10px; background: #2F6B45; color: #FFFFFF; border-radius: 999px; font-size: 16px; font-weight: 700; text-decoration: none;">
+<button type="submit" style="height: 54px; display: flex; align-items: center; justify-content: center; gap: 10px; background: #2F6B45; color: #FFFFFF; border-radius: 999px; font-size: 16px; font-weight: 700; border: 0; font-family: inherit; cursor: pointer;">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
-Descargar libro</a>
+Solicitar descarga</button>
 </div>
-<p style="margin: 0; text-align: center; font-size: 14px; line-height: 1.5; color: #4A5A4F;">Al descargar, aceptas nuestra <a href="Privacidad-tablet.html" style="color: #2F6B45; font-weight: 600;">Política de privacidad</a>.</p>
+<p style="margin: 0; text-align: center; font-size: 14px; line-height: 1.5; color: #4A5A4F;">Al solicitar la descarga, aceptas nuestra <a href="Privacidad-tablet.html" style="color: #2F6B45; font-weight: 600;">Política de privacidad</a>.</p>
 </form>
 </section>
 </div>

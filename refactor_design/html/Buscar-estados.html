@@ -10,6 +10,10 @@ body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;bac
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>
@@ -25,7 +29,7 @@ strong{font-weight:700;color:#1D2B22}
 
 <!-- Estado 1: sin término -->
 <article style="display: flex; flex-direction: column; gap: 14px;">
-<div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #4A5A4F;"><span style="font-family: \'Source Sans 3\', sans-serif; font-weight: 700; letter-spacing: 0.04em;">1</span> · SIN TÉRMINO DE BÚSQUEDA</div>
+<div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #4A5A4F;"><span style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; letter-spacing: 0.04em;">1</span> · SIN TÉRMINO DE BÚSQUEDA</div>
 <div style="border-radius: 24px; overflow: hidden; border: 1px solid #DCE5D2; display: flex; flex-direction: column;">
 <div style="background: #173F2C; color: #FFFFFF; padding: 32px 36px; display: flex; flex-direction: column; gap: 18px;">
 <span style="font-family: 'Cormorant Garamond', serif; font-size: 40px; line-height: 1.05; font-weight: 600;">Resultados de búsqueda</span>
@@ -34,9 +38,9 @@ strong{font-weight:700;color:#1D2B22}
 <div style="display: flex; gap: 10px;">
 <div style="flex-grow: 1; height: 52px; box-sizing: border-box; padding: 0 18px; border-radius: 999px; background: #FFFFFF; border: 1px solid #CBD6C0; display: flex; align-items: center; gap: 10px; color: #2F6B45;">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-<input id="estado-q1" name="q" type="search" placeholder="¿Qué quieres explorar?" style="flex-grow: 1; min-width: 0; height: 48px; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 17px; color: #1D2B22;">
+<input id="estado-q1" name="q" type="search" placeholder="¿Qué quieres explorar?" style="flex-grow: 1; min-width: 0; height: 48px; border: 0; background: transparent; font-family: inherit; font-size: 17px; color: #1D2B22;">
 </div>
-<a href="Buscar.html" style="height: 52px; padding: 0 24px; border-radius: 999px; background: #D4AF5A; color: #173F2C; font-size: 16px; font-weight: 700; display: flex; align-items: center; text-decoration: none;">Buscar</a>
+<button type="submit" style="height: 52px; padding: 0 24px; border-radius: 999px; background: #D4AF5A; color: #173F2C; font-size: 16px; font-weight: 700; display: flex; align-items: center; border: 0; font-family: inherit; cursor: pointer;">Buscar</button>
 </div>
 </form>
 </div>
@@ -58,7 +62,7 @@ strong{font-weight:700;color:#1D2B22}
 
 <!-- Estado 2: sin resultados -->
 <article style="display: flex; flex-direction: column; gap: 14px;">
-<div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #4A5A4F;"><span style="font-family: \'Source Sans 3\', sans-serif; font-weight: 700; letter-spacing: 0.04em;">2</span> · SIN RESULTADOS</div>
+<div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #4A5A4F;"><span style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; letter-spacing: 0.04em;">2</span> · SIN RESULTADOS</div>
 <div style="border-radius: 24px; overflow: hidden; border: 1px solid #DCE5D2; display: flex; flex-direction: column;">
 <div style="background: #173F2C; color: #FFFFFF; padding: 32px 36px; display: flex; flex-direction: column; gap: 18px;">
 <span style="font-family: 'Cormorant Garamond', serif; font-size: 40px; line-height: 1.05; font-weight: 600;">Resultados de búsqueda</span>
@@ -67,10 +71,10 @@ strong{font-weight:700;color:#1D2B22}
 <div style="display: flex; gap: 10px;">
 <div style="flex-grow: 1; height: 52px; box-sizing: border-box; padding: 0 3px 0 18px; border-radius: 999px; background: #FFFFFF; border: 1px solid #CBD6C0; display: flex; align-items: center; gap: 10px; color: #2F6B45;">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-<input id="estado-q2" name="q" type="search" value="astrología" placeholder="¿Qué quieres explorar?" style="flex-grow: 1; min-width: 0; height: 48px; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 17px; color: #1D2B22;">
+<input id="estado-q2" name="q" type="search" value="astrología" placeholder="¿Qué quieres explorar?" style="flex-grow: 1; min-width: 0; height: 48px; border: 0; background: transparent; font-family: inherit; font-size: 17px; color: #1D2B22;">
 <a href="Buscar-estados.html" aria-label="Borrar búsqueda" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F4F7EF; color: #4A5A4F; display: flex; align-items: center; justify-content: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
 </div>
-<a href="Buscar.html" style="height: 52px; padding: 0 24px; border-radius: 999px; background: #D4AF5A; color: #173F2C; font-size: 16px; font-weight: 700; display: flex; align-items: center; text-decoration: none;">Buscar</a>
+<button type="submit" style="height: 52px; padding: 0 24px; border-radius: 999px; background: #D4AF5A; color: #173F2C; font-size: 16px; font-weight: 700; display: flex; align-items: center; border: 0; font-family: inherit; cursor: pointer;">Buscar</button>
 </div>
 </form>
 <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.14);">

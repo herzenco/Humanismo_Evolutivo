@@ -10,6 +10,10 @@ body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;bac
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>
@@ -77,7 +81,7 @@ Volver a la biblioteca</a>
 <div style="display: flex; flex-direction: column; gap: 12px;">
 <a href="DescargarLibro-movil.html" style="height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; background: #D4AF5A; color: #173F2C; border-radius: 999px; font-size: 16px; font-weight: 700; text-decoration: none;">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
-Descargar libro</a>
+Solicitar descarga</a>
 <a href="#prologo" style="height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgba(255,255,255,0.6); color: #FFFFFF; border-radius: 999px; font-size: 16px; font-weight: 600; text-decoration: none;">Leer el prólogo</a>
 </div>
 </header>
@@ -89,7 +93,7 @@ Descargar libro</a>
 <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 34px; line-height: 1.08; font-weight: 600; color: #173F2C;">Sobre el libro</h2>
 </div>
 <div style="display: flex; flex-direction: column; gap: 18px;">
-<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #1D2B22;">Déjalo ser es una novela que entrelaza memoria, identidad y tecnología en un relato íntimo y visionario. Marcos Constandse nos conduce a un futuro posible, donde la acumulación de datos personales confronta a sus protagonistas con sus raíces más profundas y sus decisiones más humanas.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #1D2B22;">¡Déjalo ser! [Descripción definitiva por confirmar].</p>
 <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3E4D43;">A través de una narrativa envolvente, la novela explora temas universales como el libre albedrío, la autenticidad y la búsqueda de sentido en un mundo hiperconectado.</p>
 <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3E4D43;">Esta obra invita a reflexionar sobre el equilibrio entre control y libertad, entre conocimiento y sabiduría, entre ser quien creemos que somos y quien realmente podemos llegar a ser.</p>
 <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3E4D43;">Una historia que desafía nuestras percepciones sobre la identidad y nos recuerda la importancia de mantener nuestra humanidad en un mundo tecnológico.</p>
@@ -130,7 +134,7 @@ Descargar ahora</a>
 </div>
 <article style="background: #FFFFFF; border-radius: 20px; padding: 28px 22px; display: flex; flex-direction: column; gap: 18px;">
 <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #3E4D43;"><strong style="color: #173F2C;">¡Déjalo ser!</strong> es una novela de reflexión que entrelaza ficción y realidad para invitarnos a mirar el futuro de la humanidad a través de la vida de sus protagonistas. En un mundo atravesado por la tecnología, la memoria digital y los dilemas éticos, Marcos Constandse plantea preguntas profundas sobre la identidad, la libertad y el sentido de la vida.</p>
-<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #3E4D43;">La obra nos conduce a un viaje íntimo y a la vez colectivo: el de un joven que, al buscar sus raíces en archivos y registros digitales, se enfrenta con la historia de su familia, sus contradicciones y su legado. A través de esta trama, el autor explora los retos de la modernidad —la vigilancia tecnológica, la pérdida de intimidad, el choque entre tradición y cambio— y los ilumina con una visión espiritual y humanista.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #3E4D43;">[Sinopsis definitiva por confirmar].</p>
 <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #3E4D43;">Más que una narración futurista, <strong style="color: #173F2C;">¡Déjalo ser!</strong> es una meditación sobre lo que significa ser humano en medio de un mundo que cambia vertiginosamente. Nos recuerda que, aun en la era de la información y del control, la libertad más auténtica sigue siendo la de vivir en plenitud, con amor, con conciencia y con la capacidad de aceptar lo que es.</p>
 <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #3E4D43;">Es una invitación a reconciliarnos con nuestro pasado, a confiar en el presente y a soltar el futuro: dejar ser a la vida misma.</p>
 </article>

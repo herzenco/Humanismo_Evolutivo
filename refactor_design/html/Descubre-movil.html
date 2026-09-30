@@ -10,6 +10,10 @@ body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;bac
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>
@@ -87,7 +91,7 @@ Ver documental completo</a>
 <div style="padding: 12px 11px; background: #FFFFFF; border-radius: 999px; font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F6B45; text-align: center; white-space: nowrap;">PREGUNTAR · REFLEXIONAR · COMPRENDER</div>
 <aside style="padding: 18px 20px; background: #FFFFFF; border-radius: 16px; display: flex; flex-direction: column; gap: 6px;">
 <div style="font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #2F6B45;">Nota sobre los personajes</div>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3E4D43;">Platón, Sócrates y Aristóteles son recursos didácticos. No reproducen literalmente sus palabras ni sus doctrinas históricas.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3E4D43;">Platón, Sócrates y Aristóteles son recursos didácticos. No reproducen literalmente sus palabras ni sus doctrinas históricas. [Retratos en alta resolución por confirmar].</p>
 </aside>
 
 <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 6px;">
@@ -135,6 +139,7 @@ Ver documental completo</a>
 <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 34px; line-height: 1.05; font-weight: 600; color: #173F2C;">Un camino a través de los jardines</h2>
 </div>
 <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3E4D43;">Conoce el camino del Humanismo Evolutivo Transpersonal a través de sus tres Jardines:</p>
+<p style="margin: 0; font-size: 14px; font-weight: 700; color: #7A5C18;">[Fotografías en alta resolución por confirmar]</p>
 <div style="font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; letter-spacing: 0.06em; color: #2F6B45; white-space: nowrap;">EVOLUCIÓN · MEDITACIÓN · FILOSOFÍA</div>
 </div>
 

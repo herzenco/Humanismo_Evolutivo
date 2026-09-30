@@ -3,13 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1440">
-<title>Descarga iniciada — Humanismo Evolutivo</title>
+<title>Solicitud registrada — Humanismo Evolutivo</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:#1D2B22;background:#FAF7EF;font-variant-numeric:lining-nums}
 a{color:#2F6B45}a:hover{color:#173F2C}
 li::marker{color:#6E9A45}
 strong{font-weight:700;color:#1D2B22}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #2F6B45;outline-offset:3px}
+:where(header,footer) :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#D4AF5A}
+:where([aria-disabled="true"]){cursor:not-allowed;pointer-events:none}
+:where(a,button,div,form)[aria-disabled="true"]{opacity:.58}
 </style>
 </head>
 <body>
@@ -35,7 +39,7 @@ strong{font-weight:700;color:#1D2B22}
 <a href="Buscar.html" aria-label="Buscar" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.28); display: flex; align-items: center; justify-content: center; color: #FFFFFF;">
 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
 </a>
-<a href="#idioma" aria-label="Cambiar idioma: Español" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); display: flex; align-items: center; gap: 8px; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.04em;">
+<a aria-disabled="true" title="Enlace por confirmar" aria-label="Cambiar idioma: Español" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); display: flex; align-items: center; gap: 8px; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.04em;">
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>
 ES
 </a>
@@ -81,8 +85,8 @@ Portal educativo
 </div>
 <div style="display: flex; flex-direction: column; gap: 12px;">
 <h2 id="ok-titulo" style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 44px; line-height: 1.05; font-weight: 600; color: #173F2C;">¡Gracias!</h2>
-<p id="ok-desc" style="margin: 0; font-size: 19px; line-height: 1.5; color: #1D2B22;">Tu descarga comenzará en unos segundos.</p>
-<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4A5A4F;">Si la descarga no inicia automáticamente, verifica tu carpeta de descargas.</p>
+<p id="ok-desc" style="margin: 0; font-size: 19px; line-height: 1.5; color: #1D2B22;">Tu solicitud se registró correctamente. [Entrega por confirmar].</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4A5A4F;">[Archivo y mecanismo de entrega por confirmar].</p>
 </div>
 <div style="align-self: stretch; box-sizing: border-box; padding: 16px 20px; border-radius: 16px; background: #F4F7EF; display: flex; align-items: center; gap: 16px; text-align: left;">
 <img src="../assets/libro-yo-soy-nosotros.jpg" alt="" style="width: 48px; height: auto; flex-shrink: 0; border-radius: 3px; display: block; box-shadow: 0 6px 12px rgba(23,63,44,0.18);">
