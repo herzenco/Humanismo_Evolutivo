@@ -1,4 +1,17 @@
+import importedQuestions from "../generated/questions.json" with { type: "json" };
+
+export type QuestionVideo = {
+  label: string;
+  kind: "narration" | "dialogue";
+  orientation: "horizontal" | "vertical";
+  src: string;
+  poster: string;
+  durationSeconds: number;
+  uploadedAt?: string;
+};
+
 export type QuestionSection = {
+  kind?: "narration" | "dialogue";
   heading?: string;
   paragraphs: string[];
 };
@@ -9,13 +22,15 @@ export type Question = {
   description: string;
   status: 'draft' | 'published';
   sections: QuestionSection[];
+  videos?: QuestionVideo[];
+  sourceTitle?: string;
   author?: string;
   publishedAt?: string;
   updatedAt?: string;
 };
 
-// Populate with the user's supplied questions and answers. No sample pages are published.
-export const questions: Question[] = [];
+// Generated from the user-supplied Markdown files; see scripts/import-questions.mjs.
+export const questions: Question[] = importedQuestions as Question[];
 
 export function questionPath(number: number): string {
   if (!Number.isInteger(number) || number < 1 || number > 51) {
@@ -34,6 +49,11 @@ export function publishedQuestions(source: readonly Question[] = questions): Que
     if (!question.title.trim() || !question.description.trim() ||
       !question.sections.some(section => section.paragraphs.some(paragraph => paragraph.trim()))) {
       throw new Error(`Published question ${question.number} needs a title, description and answer.`);
+    }
+    for (const video of question.videos || []) {
+      if (!video.src.startsWith('https://') || !video.poster.startsWith('https://') || video.durationSeconds <= 0) {
+        throw new Error(`Invalid video on question ${question.number}.`);
+      }
     }
     for (const date of [question.publishedAt, question.updatedAt]) {
       if (date && Number.isNaN(Date.parse(date))) throw new Error(`Invalid date on question ${question.number}.`);
