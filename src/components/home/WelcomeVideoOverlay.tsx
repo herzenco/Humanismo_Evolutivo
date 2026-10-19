@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { X } from 'lucide-react';
 
-const WELCOME_VIDEO_ID = '5rmKRNZbmoQ';
+const WELCOME_VIDEO_ID = 'FbRIey3dFwA';
 const WELCOME_VIDEO_STORAGE_KEY = `welcomeVideoSeen:${WELCOME_VIDEO_ID}`;
 const WELCOME_VIDEO_URL = `https://www.youtube.com/embed/${WELCOME_VIDEO_ID}?autoplay=1&rel=0`;
 const WELCOME_VIDEO_DELAY_MS = 5000;
