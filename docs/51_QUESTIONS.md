@@ -6,7 +6,7 @@ The homepage section `#s5` links to `/51preguntas`. The directory lists all publ
 
 The 51 Markdown files were supplied in `HUMANISMO EVOLUTIVO/VIDEOS SITIO WEB/51 PREGUNTAS/Pregunta <number>/Pregunta <number>.md`. Unmodified copies are stored in `content/questions/pregunta_<number>.md`.
 
-Each page preserves the supplied question title, narrated version and three-character dialogue. Production annotations such as estimated recording duration/word count are kept in the Markdown sources but omitted from the published reading text. Speaker emphasis is rendered safely as React markup. No author name or original publication date has been inferred.
+Each page displays the supplied question as its heading and only the narrated version as its reading text. The dialogue remains archived in the source and generated data but is not displayed or included in article structured data. All supplied video variants remain available. Production annotations such as estimated recording duration/word count are kept in the Markdown sources but omitted from the published reading text. Speaker emphasis is rendered safely as React markup. No author name or original publication date has been inferred.
 
 The original folder includes video files for questions 1–25. Questions 26–51 have Markdown only. For 1–10, horizontal dialogue, vertical dialogue and vertical narration are available; 11–25 have vertical dialogue and narration. Original MOV files remain in the source folders. Optimized H.264/AAC MP4 copies and JPEG posters are served from the project's public Vercel Blob store, not from Git or the application deployment bundle.
 
