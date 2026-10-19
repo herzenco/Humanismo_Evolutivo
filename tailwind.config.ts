@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        sans: ['Source Sans 3', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'serif'],
         heading: ['Cormorant Garamond', 'serif'],
       },
       colors: {
@@ -56,19 +56,19 @@ export default {
           foreground: 'hsl(var(--card-foreground))'
         },
         gold: {
-          light: '#D4AF37',
-          DEFAULT: '#C5A028',
-          dark: '#9E7E23'
+          light: '#E6CA87',
+          DEFAULT: '#D4AF5A',
+          dark: '#7A5C18'
         },
         navy: {
-          light: '#2C3E50',
-          DEFAULT: '#1A2833',
-          dark: '#0F1921'
+          light: '#2F6B45',
+          DEFAULT: '#1F4B36',
+          dark: '#173F2C'
         },
         cream: {
-          light: '#F8F4E3',
-          DEFAULT: '#F2ECD8',
-          dark: '#E6D9B8'
+          light: '#FAF7EF',
+          DEFAULT: '#EAF0E1',
+          dark: '#DCE5D2'
         },
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',

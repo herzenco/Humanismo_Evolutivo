@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageWrapper from '@/components/layout/PageWrapper';
+import VisionEditorial from "@/components/design/VisionEditorial";
 import { motion } from 'framer-motion';
 
 const Vision = () => {
@@ -9,6 +10,7 @@ const Vision = () => {
 
   return (
     <PageWrapper>
+      {language === "es" ? <VisionEditorial /> : <>
       <article className="container mx-auto px-4 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -263,7 +265,7 @@ const Vision = () => {
             {/* Credo Personal */}
             <section className="mt-16 border-t pt-12">
               <h2 className="text-3xl font-bold text-center mb-8">
-                {language === 'es' ? 'Credo Personal' : 'Personal Creed'}
+                {'Personal Creed'}
               </h2>
 
               <div className="space-y-4 bg-muted/30 p-8 rounded-lg">
@@ -328,6 +330,7 @@ const Vision = () => {
           </div>
         </motion.div>
       </article>
+    </>}
     </PageWrapper>
   );
 };
