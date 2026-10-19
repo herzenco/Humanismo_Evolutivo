@@ -29,3 +29,36 @@ test('duplicate numbers and invalid publication metadata prevent ambiguous pages
   for (const number of [0, 52, 1.5]) assert.throws(() => publishedQuestions([question(number)]), /integers from 1 to 51/);
   assert.throws(() => publishedQuestions([question(1, { publishedAt: 'invalid' })]), /Invalid date/);
 });
+
+test('all 51 supplied questions preserve their Markdown titles and both complete text versions', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const published = publishedQuestions();
+  assert.equal(published.length, 51);
+  assert.deepEqual(published.map(item => item.number), Array.from({ length: 51 }, (_, index) => index + 1));
+  for (const item of published) {
+    const source = await readFile(new URL(`../content/questions/pregunta_${item.number}.md`, import.meta.url), 'utf8');
+    assert.equal(item.title, source.split('\n')[0].replace(/^# Pregunta \d+: /, ''));
+    assert.deepEqual(item.sections.map(section => section.kind), ['narration', 'dialogue']);
+    assert.equal(item.sections[1].paragraphs.length, 3);
+    for (const section of item.sections) {
+      for (const paragraph of section.paragraphs) assert.ok(source.includes(paragraph), `Question ${item.number} contains text absent from its source.`);
+    }
+  }
+});
+
+test('published video variants stay paired with their supplied question and missing videos are explicit', () => {
+  const published = publishedQuestions();
+  let count = 0;
+  for (const item of published) {
+    const videos = item.videos || [];
+    assert.equal(videos.length, item.number <= 10 ? 3 : item.number <= 25 ? 2 : 0, `Question ${item.number} video inventory differs from the supplied folders.`);
+    for (const video of videos) {
+      assert.ok(video.src.includes(`/51preguntas/pregunta_${item.number}/`));
+      assert.ok(video.poster.includes(`/51preguntas/pregunta_${item.number}/`));
+      assert.ok(video.durationSeconds > 0);
+    }
+    assert.equal(new Set(videos.map(video => video.src)).size, videos.length);
+    count += videos.length;
+  }
+  assert.equal(count, 60);
+});
