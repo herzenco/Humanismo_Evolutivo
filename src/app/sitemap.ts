@@ -3,6 +3,7 @@ import { books } from '@/data/books'
 import { events } from '@/data/events'
 import { podcastSeries } from '@/data/media'
 import { resourceArticles } from '@/data/resources'
+import { publishedQuestions, questionPath, questionsCanonicalOrigin } from '@/data/questions'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = (process.env.SITE_URL || 'https://yosoynosotros.org').replace(/\/$/, '')
@@ -69,5 +70,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...bookPages, ...eventPages, ...showPages, ...episodePages, ...resourcePages]
+  const published = publishedQuestions()
+  const questionPages: MetadataRoute.Sitemap = published.length ? [
+    { url: `${questionsCanonicalOrigin}/51preguntas`, changeFrequency: 'weekly', priority: 0.8 },
+    ...published.map(question => ({
+      url: `${questionsCanonicalOrigin}${questionPath(question.number)}`,
+      ...(question.updatedAt || question.publishedAt ? { lastModified: new Date((question.updatedAt || question.publishedAt)!) } : {}),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ] : []
+
+  return [...staticPages, ...bookPages, ...eventPages, ...showPages, ...episodePages, ...resourcePages, ...questionPages]
 }

@@ -426,7 +426,7 @@ export default function HomeEditorial() { return <div className="editorial">
 <p className="he-a752415ad">
 {"Encuentra las respuestas que deseas conocer."}
 </p>
-<Link href="/medios/show/yo-soy-nosotros" prefetch={false} className="he-ff88883eb he-row">
+<Link href="/51preguntas" prefetch={false} className="he-ff88883eb he-row">
 {"Las 51 preguntas\n"}
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
