@@ -10,7 +10,7 @@ export default function QuestionVideoPlayer({ title, videos }: Props) {
   const video = videos[selected] || videos[0];
   if (!video) return null;
   return <section className="question-video" aria-label={`Video: ${title}`}>
-    <div className="question-video-heading"><h2><Film size={22} aria-hidden="true" />Mira y reflexiona</h2><a href={`#question-${video.kind}`}><FileText size={16} aria-hidden="true" />Leer transcripción</a></div>
+    <div className="question-video-heading"><h2><Film size={22} aria-hidden="true" />Mira y reflexiona</h2><a href="#question-narration"><FileText size={16} aria-hidden="true" />Leer reflexión</a></div>
     {videos.length > 1 ? <div className="question-video-options" role="group" aria-label="Versión del video">{videos.map((option, index) => <button key={option.src} type="button" aria-pressed={selected === index} onClick={() => setSelected(index)}>{option.label}</button>)}</div> : null}
     <div className={`question-video-frame question-video-${video.orientation}`}>
       <video key={video.src} controls playsInline preload="none" poster={video.poster} aria-label={`${title} — ${video.label}`}>
