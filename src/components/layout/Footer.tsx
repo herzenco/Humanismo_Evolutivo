@@ -1,229 +1,25 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import Link from 'next/link';
+import { Leaf, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-const Footer = () => {
-  const trackFooterLink = (linkType: string, linkName: string, destination: string) => {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: "footer_link_click",
-      link_type: linkType,
-      link_name: linkName,
-      destination: destination,
-    });
-  };
-
-  const trackSocialClick = (platform: string, url: string) => {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: "social_media_click",
-      social_platform: platform,
-      destination_url: url,
-    });
-  };
-
-  return (
-    <footer className="bg-navy-dark text-white pt-16 pb-8">
-      <div className="container mx-auto">
-        {/* Newsletter Signup */}
-        <div className="mb-12 p-8 bg-navy-light rounded-lg shadow-lg">
-          <h3 className="text-2xl font-heading font-medium mb-2 text-center">Recibe nuestras novedades</h3>
-          <p className="text-white/80 mb-6 text-center">
-            Suscríbete para recibir información sobre nuevos libros, eventos y reflexiones filosóficas.
-          </p>
-          <iframe
-            src="https://api.leadconnectorhq.com/widget/form/L88rd23ASEnrMJtyLFfo"
-            style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
-            id="inline-L88rd23ASEnrMJtyLFfo"
-            data-layout='{"id":"INLINE"}'
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Newsletter - Humanismo Evolutivo"
-            data-height="400"
-            data-layout-iframe-id="inline-L88rd23ASEnrMJtyLFfo"
-            data-form-id="L88rd23ASEnrMJtyLFfo"
-            title="Newsletter - Humanismo Evolutivo"
-          ></iframe>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {/* About */}
-          <div>
-            <h2 className="font-heading text-xl font-medium">Humanismo Evolutivo</h2>
-            <p className="mt-1 mb-4 text-[10px] font-medium uppercase tracking-[0.32em] text-gold/80">
-              Transpersonal
-            </p>
-            <p className="text-white/70 mb-4">
-              Una visión transpersonal del mundo a través de la filosofía, espiritualidad y ecología.
-            </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://facebook.com"
-                className="text-white/70 hover:text-gold transition-colors"
-                aria-label="Facebook"
-                onClick={() => trackSocialClick("facebook", "https://facebook.com")}
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href="https://instagram.com"
-                className="text-white/70 hover:text-gold transition-colors"
-                aria-label="Instagram"
-                onClick={() => trackSocialClick("instagram", "https://instagram.com")}
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="https://twitter.com"
-                className="text-white/70 hover:text-gold transition-colors"
-                aria-label="Twitter"
-                onClick={() => trackSocialClick("twitter", "https://twitter.com")}
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href="https://youtube.com"
-                className="text-white/70 hover:text-gold transition-colors"
-                aria-label="Youtube"
-                onClick={() => trackSocialClick("youtube", "https://youtube.com")}
-              >
-                <Youtube size={20} />
-              </a>
-            </div>
-          </div>
-
-          {/* Links 1 */}
-          <div>
-            <h3 className="font-heading text-lg font-medium mb-4">Enlaces Rápidos</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() => trackFooterLink("quick_links", "Inicio", "/")}
-                >
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/autor"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() => trackFooterLink("quick_links", "Sobre el Autor", "/autor")}
-                >
-                  Sobre el Autor
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/libros"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() => trackFooterLink("quick_links", "Libros", "/libros")}
-                >
-                  Libros
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/medios"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() => trackFooterLink("quick_links", "Podcast", "/medios")}
-                >
-                  Podcast
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/resources"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() => trackFooterLink("quick_links", "Recursos", "/resources")}
-                >
-                  Recursos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/portal"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() => trackFooterLink("quick_links", "Portal educativo", "/portal")}
-                >
-                  Portal educativo
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Links 2 */}
-          <div>
-            <h3 className="font-heading text-lg font-medium mb-4">Obras</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/libros/yo-soy-nosotros"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() => trackFooterLink("books", "Yo soy nosotros", "/libros/yo-soy-nosotros")}
-                >
-                  Yo soy nosotros
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/libros/lo-mejor-esta-por-venir"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() =>
-                    trackFooterLink("books", "Y lo mejor aún está por venir", "/libros/lo-mejor-esta-por-venir")
-                  }
-                >
-                  Y lo mejor aún está por venir
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/libros/el-arte-de-ser-empresario"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() =>
-                    trackFooterLink("books", "El arte de ser empresario", "/libros/el-arte-de-ser-empresario")
-                  }
-                >
-                  El arte de ser empresario
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/libros/ecologia-y-espiritualidad"
-                  className="text-white/70 hover:text-gold transition-colors"
-                  onClick={() =>
-                    trackFooterLink("books", "Ecología y espiritualidad", "/libros/ecologia-y-espiritualidad")
-                  }
-                >
-                  Ecología y espiritualidad
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom Footer */}
-        <div className="border-t border-white/10 pt-8 mt-8 text-center text-white/50 text-sm">
-          <p>&copy; {new Date().getFullYear()} Fundación Humanismo Evolutivo. Todos los derechos reservados.</p>
-          <div className="mt-2 space-x-4">
-            <Link href="/privacidad" className="hover:text-gold transition-colors">
-              Política de Privacidad
-            </Link>
-            <span>|</span>
-            <Link href="/terminos" className="hover:text-gold transition-colors">
-              Términos y Condiciones
-            </Link>
-          </div>
-        </div>
+export default function Footer() {
+  const { language } = useLanguage();
+  const es = language === 'es';
+  return <footer className="site-footer">
+    <div className="site-footer-inner">
+      <section className="site-newsletter" aria-labelledby="newsletter-title">
+        <div><span className="design-eyebrow">Humanismo Evolutivo</span><h2 id="newsletter-title">{es ? 'Recibe nuestras novedades' : 'Stay connected'}</h2><p>{es ? 'Reflexiones, nuevos contenidos y eventos para seguir evolucionando juntos.' : 'Reflections, new content and events to keep growing together.'}</p></div>
+        <div className="newsletter-embed"><iframe src="https://api.leadconnectorhq.com/widget/form/L88rd23ASEnrMJtyLFfo" title={es ? 'Suscripción al boletín' : 'Newsletter subscription'} loading="lazy" className="w-full border-0" height="280" /><p>{es ? 'Al suscribirte, aceptas nuestra ' : 'By subscribing you accept our '}<Link href="/privacidad">{es ? 'Política de privacidad' : 'Privacy policy'}</Link>.</p></div>
+      </section>
+      <div className="site-footer-grid">
+        <div><Link href="/" className="site-brand"><Leaf aria-hidden="true" /><span><span className="site-brand-name">Humanismo Evolutivo</span><span className="site-brand-caption">Transpersonal</span></span></Link><p className="footer-description">{es ? 'Una visión transpersonal del mundo que conecta ciencia, espíritu y humanidad.' : 'A transpersonal vision connecting science, spirit and humanity.'}</p><p className="footer-author">Marcos Constandse Madrazo</p></div>
+        <nav aria-label="Explorar"><h3>{es ? 'Explora' : 'Explore'}</h3>{[['/',es ? 'Inicio' : 'Home'],['/autor',es ? 'Sobre el autor' : 'About the author'],['/vision',es ? 'Visión' : 'Vision'],['/medios',es ? 'Podcast y videos' : 'Podcasts and videos'],['/eventos',es ? 'Eventos' : 'Events'],['/resources',es ? 'Recursos' : 'Resources']].map(([href,label]) => <Link key={href} href={href}>{label}</Link>)}</nav>
+        <nav aria-label="Obras"><h3>{es ? 'Biblioteca filosófica' : 'Philosophical library'}</h3>{[['yo-soy-nosotros','Yo soy nosotros'],['ecologia-y-espiritualidad','Ecología y espiritualidad'],['dejalo-ser','¡Déjalo ser!'],['lo-mejor-esta-por-venir','¡Y lo mejor aún está por venir!'],['el-arte-de-ser-empresario','El arte de ser empresario']].map(([id,label]) => <Link href={`/libros/${id}`} key={id}>{label}</Link>)}</nav>
+        <nav aria-label="Comunidad"><h3>{es ? 'Sigamos en contacto' : 'Stay in touch'}</h3><Link href="/contacto">{es ? 'Escríbenos' : 'Contact us'} <ArrowUpRight size={16} /></Link><Link href="/portal">{es ? 'Portal educativo' : 'Education portal'}</Link><Link href="/auth?mode=signup">{es ? 'Únete a la comunidad' : 'Join the community'}</Link></nav>
       </div>
-    </footer>
-  );
-};
-
-export default Footer;
+      <div className="site-footer-bottom"><p>© {new Date().getFullYear()} Humanismo Evolutivo. {es ? 'Todos los derechos reservados.' : 'All rights reserved.'}</p><div><Link href="/privacidad">{es ? 'Privacidad' : 'Privacy'}</Link><Link href="/terminos">{es ? 'Términos y condiciones' : 'Terms and conditions'}</Link></div></div>
+    </div>
+  </footer>;
+}

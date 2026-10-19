@@ -1,5 +1,6 @@
 "use client";
 
+import ContactIntro from "@/components/design/ContactIntro";
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, MessageSquare } from 'lucide-react';
 import Script from 'next/script';
@@ -32,49 +33,10 @@ const Contacto = () => {
   return (
     <PageWrapper>
       {/* Sophisticated Hero Section */}
-      <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 to-transparent"></div>
-        </div>
-
-        {/* Floating elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-[15%] left-[8%] w-32 h-32 bg-gold/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-[60%] right-[10%] w-40 h-40 bg-primary/15 rounded-full blur-3xl"></div>
-          <MessageSquare className="absolute top-[25%] right-[15%] w-20 h-20 text-gold/20" />
-          <Mail className="absolute bottom-[30%] left-[20%] w-16 h-16 text-primary/30" />
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="mb-8">
-              <span className="inline-block px-4 py-2 bg-gold/20 text-gold rounded-full text-sm font-medium tracking-wider uppercase backdrop-blur-sm">
-                {t('contacto.hero.badge')}
-              </span>
-            </div>
-            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl font-light mb-8 leading-tight">
-              {t('contacto.hero.title')}
-            </h1>
-            <p className="text-xl md:text-2xl text-white/85 leading-relaxed max-w-3xl mx-auto font-light">
-              {t('contacto.hero.subtitle')}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <ContactIntro />
 
       {/* Premium Contact Section */}
-      <section className="py-32 bg-gradient-to-br from-white via-cream-light/30 to-white">
+      <section id="contacto" className="py-32 bg-gradient-to-br from-white via-cream-light/30 to-white">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">

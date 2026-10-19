@@ -1,5 +1,6 @@
 "use client";
 
+import AuthorEditorial from "@/components/design/AuthorEditorial";
 import { motion } from 'framer-motion';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -36,6 +37,8 @@ const Autor = () => {
         image="https://yosoynosotros.com/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.png"
         url="https://yosoynosotros.com/autor"
       />
+      {language === "es" ? <AuthorEditorial /> : <>
+
       {/* Elegant Hero Section */}
       <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden" aria-label="Sección principal del autor">
         <div className="absolute inset-0">
@@ -259,6 +262,7 @@ const Autor = () => {
           </motion.div>
         </div>
       </section>
+    </>}
     </PageWrapper>
   );
 };
