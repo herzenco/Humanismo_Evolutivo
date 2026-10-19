@@ -151,6 +151,11 @@ const Search = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
+            <form action="/buscar" method="get" className="design-search-form" role="search">
+              <label htmlFor="content-search" className="sr-only">{language === 'es' ? 'Buscar contenido' : 'Search content'}</label>
+              <input id="content-search" name="q" type="search" defaultValue={query} placeholder={language === 'es' ? '¿Qué te gustaría explorar?' : 'What would you like to explore?'} required />
+              <button type="submit" aria-label={language === 'es' ? 'Buscar' : 'Search'}><SearchIcon size={22} /></button>
+            </form>
             <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight">
               {language === 'es' ? 'Resultados de búsqueda' : 'Search Results'}
             </h1>

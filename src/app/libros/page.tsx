@@ -1,22 +1,20 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { Download, BookOpen, Star } from 'lucide-react';
+import BooksIntro from "@/components/design/BooksIntro";
+import { Download, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { books } from '@/data/books';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -35,6 +33,14 @@ const Libros = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const requestedBook = new URLSearchParams(window.location.search).get('descargar');
+    if (requestedBook && books.some(book => book.id === requestedBook)) {
+      setSelectedBook(requestedBook);
+      setIsDialogOpen(true);
+    }
+  }, []);
 
   const handleDownload = (bookId: string) => {
     setSelectedBook(bookId);
@@ -66,6 +72,9 @@ const Libros = () => {
       } else if (book.id === 'ecologia-y-espiritualidad') {
         pdfFileName = language === 'es' ? 'Ecologia_y_Espiritualidad.pdf' : 'Ecology_and_Spirituality.pdf';
         bookName = language === 'es' ? 'Ecología y Espiritualidad' : 'Ecology and Spirituality';
+      } else if (book.id === 'lo-mejor-esta-por-venir') {
+        pdfFileName = 'Lo_mejor_esta_por_venir.pdf';
+        bookName = book.title;
       } else if (book.id === 'el-arte-de-ser-empresario') {
         pdfFileName = language === 'es' ? 'El_arte_de_ser_empresario_Resumen.pdf' : 'The_art_of_being_an_entrepreneur_Summary.pdf';
         bookName = language === 'es' ? 'El Arte de Ser Empresario' : 'The Art of Being an Entrepreneur';
@@ -136,162 +145,25 @@ const Libros = () => {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
 
   return (
     <PageWrapper>
       {/* Sophisticated Hero Section */}
-      <section className="relative py-32 md:py-40 bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden" aria-label="Sección principal de libros">
-        <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
-            style={{
-              backgroundImage: `url('/lovable-uploads/bd0dec77-828d-40b0-8bcc-30690a3a1fb3.png')`
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 to-transparent"></div>
-        </div>
-
-        {/* Floating decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-[15%] left-[8%] w-32 h-32 bg-gold/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-[60%] right-[10%] w-40 h-40 bg-primary/15 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-[25%] left-[75%] w-24 h-24 bg-gold/8 rounded-full blur-2xl"></div>
-          <BookOpen className="absolute top-[20%] right-[20%] w-16 h-16 text-gold/20" />
-          <Star className="absolute bottom-[40%] left-[15%] w-12 h-12 text-primary/30" />
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="mb-8">
-              <span className="inline-block px-4 py-2 bg-gold/20 text-gold rounded-full text-sm font-medium tracking-wider uppercase backdrop-blur-sm">
-                {t('libros.hero.badge')}
-              </span>
-            </div>
-            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl font-light mb-8 leading-tight">
-              {t('libros.hero.title')}
-              <span className="block text-gold font-medium">{t('libros.hero.title.highlight')}</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/85 leading-relaxed mb-12 max-w-3xl mx-auto font-light">
-              {t('libros.hero.subtitle')}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <BooksIntro />
 
       {/* Premium Books Grid */}
-      <section className="py-32 bg-gradient-to-br from-white via-cream-light/30 to-white">
-        <div className="container mx-auto px-6">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto"
-          >
-            {books.map((book) => (
-              <motion.div
-                key={book.id}
-                variants={itemVariants}
-                className="group relative h-full"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white to-cream-light rounded-3xl shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500"></div>
-                <div className="relative overflow-hidden rounded-3xl h-full">
-                  <div className="flex flex-col lg:flex-row h-full">
-                    <div className="lg:w-2/5 h-80 lg:h-auto relative flex items-center justify-center p-6 bg-gray-50">
-                       <img
-                        src={`${bookImages?.[book.id] || book.image}?t=${Date.now()}`}
-                        alt={`Portada del libro ${book.title} por Marcos Constandse Madrazo`}
-                        className="max-h-full w-auto object-contain transition-transform duration-700 group-hover:scale-105 shadow-lg rounded-lg"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-white/10 rounded-tl-3xl lg:rounded-tl-3xl lg:rounded-bl-3xl lg:rounded-tr-none"></div>
-                      <div className="absolute bottom-4 left-4 lg:hidden">
-                        <h3 className="font-heading text-2xl font-semibold text-white mb-1">{book.title}</h3>
-                        <p className="text-white/90 text-sm italic">{book.subtitle}</p>
-                      </div>
-                    </div>
-
-                    <div className="lg:w-3/5 p-8 lg:p-10 flex flex-col h-full">
-                      <div className="flex-grow flex flex-col">
-                        <div className="hidden lg:block mb-6">
-                          <h3 className="font-heading text-3xl font-light text-navy-dark mb-2 leading-tight">{book.title}</h3>
-                          <p className="text-gold italic text-lg font-medium">{book.subtitle}</p>
-                        </div>
-
-                        <p className="text-navy-light text-lg leading-relaxed mb-6 min-h-[120px]">{book.excerpt}</p>
-
-                        <div className="mb-6 mt-auto">
-                          <div className="flex flex-wrap gap-2 min-h-[80px] content-start">
-                            {book.keywords.map((keyword, index) => (
-                              <span
-                                key={index}
-                                className="px-3 py-1 bg-navy/10 text-navy text-sm rounded-full font-medium h-fit"
-                              >
-                                {keyword}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-4 pt-4">
-                        <Link
-                          href={`/libros/${book.id}`}
-                          className="px-6 py-3 bg-navy text-white rounded-xl hover:bg-navy-dark transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                          onClick={() => {
-                            (window as any).dataLayer?.push({
-                              event: 'book_explore_click',
-                              book_id: book.id,
-                              book_title: book.title,
-                              location: 'libros_page'
-                            });
-                          }}
-                        >
-                          {t('libros.explore')}
-                        </Link>
-                        <button
-                          className="px-6 py-3 border-2 border-gold text-gold rounded-xl hover:bg-gold hover:text-navy-dark transition-all duration-300 inline-flex items-center font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                          onClick={() => handleDownload(book.id)}
-                        >
-                          <Download size={18} className="mr-2" />
-                          {t('books.download')}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+      <section id="obras" className="design-book-list">
+        <div className="design-content-width">
+          <div className="design-section-heading"><span className="design-eyebrow">{language === 'es' ? 'LAS OBRAS' : 'THE BOOKS'}</span><h2>{language === 'es' ? 'Un camino a través de la lectura' : 'A journey through reading'}</h2></div>
+          {books.map((book, index) => <article className="design-book-row" key={book.id}>
+            <Link href={`/libros/${book.id}`} className="design-book-cover" aria-label={book.title}><img src={bookImages?.[book.id] || book.coverImage} alt={book.title} loading="lazy" /></Link>
+            <div className="design-book-body"><span className="design-eyebrow">{String(index + 1).padStart(2, '0')} · {book.keywords[0]}</span><h2><Link href={`/libros/${book.id}`}>{book.title}</Link></h2><p className="design-book-subtitle">{book.subtitle}</p><p>{book.excerpt}</p><div className="design-tags">{book.keywords.slice(0, 3).map(keyword => <span key={keyword}>{keyword}</span>)}</div><div className="design-actions"><Link href={`/libros/${book.id}`} className="design-button">{language === 'es' ? 'Explorar el libro' : 'Explore the book'} <BookOpen size={18} /></Link>{book.downloadAvailable ? <button type="button" className="design-button design-button-outline" onClick={() => handleDownload(book.id)}><Download size={18} />{language === 'es' ? 'Descargar resumen' : 'Download summary'}</button> : null}</div></div>
+          </article>)}
         </div>
       </section>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md" aria-describedby="download-description">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-heading">
               {isSubmitted
@@ -300,7 +172,7 @@ const Libros = () => {
                     ? `${language === 'es' ? 'Descargar' : 'Download'} ${books.find(b => b.id === selectedBook)?.title}`
                     : (language === 'es' ? 'Descargar Libro' : 'Download Book'))}
             </DialogTitle>
-            <DialogDescription className="text-center">
+            <div className="text-center" id="download-description">
               {isSubmitted ? (
                 <div className="flex flex-col items-center py-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
@@ -330,7 +202,7 @@ const Libros = () => {
                         : 'Complete the form to download.')}
                 </p>
               )}
-            </DialogDescription>
+            </div>
           </DialogHeader>
 
           {!isSubmitted && (

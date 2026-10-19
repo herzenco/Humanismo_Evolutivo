@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageWrapper from "@/components/layout/PageWrapper";
+import HomeEditorial from "@/components/design/HomeEditorial";
 import HeroSection from "@/components/home/HeroSection";
 import VideoSection from "@/components/home/VideoSection";
 import AboutSection from "@/components/home/AboutSection";
@@ -11,17 +12,19 @@ import DownloadSection from "@/components/home/DownloadSection";
 import WelcomeVideoOverlay from "@/components/home/WelcomeVideoOverlay";
 
 const Index = () => {
-  useLanguage();
+  const { language } = useLanguage();
 
   return (
     <PageWrapper>
       <WelcomeVideoOverlay />
+      {language === "es" ? <HomeEditorial /> : <>
       <HeroSection />
       <AboutSection />
       <VideoSection />
       <FeaturedBooksCarousel />
       <PodcastSection />
       <DownloadSection />
+      </>}
     </PageWrapper>
   );
 };

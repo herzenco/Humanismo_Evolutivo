@@ -1,10 +1,9 @@
-// Portadas cargadas desde Lovable Cloud Storage
-const STORAGE_URL = 'https://qlqkdininewormskpnya.supabase.co/storage/v1/object/public/admin-uploads';
+// Local cover assets from the supplied design.
 
-const ecologiaEspiritualidadCover = `${STORAGE_URL}/ecologia-y-espiritualidad-cover.jpg`;
-const dejaloSerCover = `${STORAGE_URL}/dejalo-ser-cover.jpeg`;
-const loMejorEstaPorVenirCover = `${STORAGE_URL}/lo-mejor-esta-por-venir-cover.jpg`;
-const elArteEmpresarioCover = `${STORAGE_URL}/el-arte-de-ser-empresario-cover.png`;
+const ecologiaEspiritualidadCover = "/design/daba8e942d8f02d4888334c0e1ea21e4.jpg";
+const dejaloSerCover = "/design/ed689a07290096a7574e1b91b2c72a4e.jpg";
+const loMejorEstaPorVenirCover = "/design/67949123c5d2ce183c6e143227e64975.jpg";
+const elArteEmpresarioCover = "/design/93f963ec6c044b62ae621d38fefc05c7.jpg";
 
 export interface Book {
   id: string;
@@ -26,8 +25,8 @@ export const books: Book[] = [
     id: 'yo-soy-nosotros',
     title: 'Yo soy nosotros',
     subtitle: 'Una visión transpersonal del mundo',
-    image: '/lovable-uploads/0d55a7a0-122e-48c1-831c-66a04590c495.png',
-    coverImage: '/lovable-uploads/0d55a7a0-122e-48c1-831c-66a04590c495.png',
+    image: '/design/456d7db8a3c876f22040458c07c9eb30.jpg',
+    coverImage: '/design/456d7db8a3c876f22040458c07c9eb30.jpg',
     author: 'Marcos Constandse Madrazo',
     year: '2019',
     pages: '284',
