@@ -1,0 +1,31 @@
+name: Promotion policy
+on:
+  pull_request_target:
+    branches: [dev, qa, main]
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+permissions:
+  contents: read
+jobs:
+  promotion-policy:
+    name: Promotion policy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce promotion order
+        env:
+          BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+          HEAD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+          REPOSITORY: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$HEAD_REPOSITORY" != "$REPOSITORY" ]]; then
+            echo 'Use a feature branch in this repository.'
+            exit 1
+          fi
+          case "$BASE_BRANCH" in
+            main) [[ "$HEAD_BRANCH" == qa ]] || { echo 'Production accepts pull requests only from qa.'; exit 1; } ;;
+            qa) [[ "$HEAD_BRANCH" == dev ]] || { echo 'QA accepts pull requests only from dev.'; exit 1; } ;;
+            dev) [[ "$HEAD_BRANCH" != main && "$HEAD_BRANCH" != qa ]] || { echo 'Develop features in feature/* or fix/* branches based on dev.'; exit 1; } ;;
+            *) exit 1 ;;
+          esac
