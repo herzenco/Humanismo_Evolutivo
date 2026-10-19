@@ -359,3 +359,51 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
  .editorial .he-b2cfcf5a6 { width:100%; max-width:100%; flex:none; }
  .editorial .he-af487b7eb { font-size:42px; overflow-wrap:anywhere; }
 }
+/* Homepage review: navigable content cards and responsive author portrait. */
+.editorial .home-content-buttons {
+ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;
+ flex:1; min-width:0; margin:0; padding:0; list-style:none;
+}
+.home-content-buttons li { min-width:0; }
+.editorial .home-content-button {
+ display:flex; align-items:center; gap:12px; min-height:82px; height:100%;
+ padding:14px 16px; border:1px solid #B9CCAC; border-radius:16px;
+ background:#fff; color:#173F2C; font-size:16px; line-height:1.35; font-weight:600;
+ box-shadow:0 3px 0 #173F2C12; text-decoration:none;
+ transition:background .2s,border-color .2s,box-shadow .2s,transform .2s;
+}
+.editorial .home-content-button:hover { background:#EAF0E1; border-color:#2F6B45; box-shadow:0 5px 12px #173F2C12; transform:translateY(-2px); filter:none; }
+.editorial .home-content-button:active { transform:translateY(0); box-shadow:none; }
+.home-content-number { width:38px; height:38px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; background:#173F2C; color:#fff; font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; }
+.home-content-arrow { margin-left:auto; color:#2F6B45; font-size:22px; flex-shrink:0; }
+.editorial #sobre-el-autor { display:grid; grid-template-columns:minmax(0,440px) minmax(0,1fr); gap:72px; align-items:center; }
+.editorial #sobre-el-autor .home-author-portrait { margin:0; width:100%; min-width:0; }
+.editorial #sobre-el-autor .home-author-portrait-frame { width:100%; height:auto; max-height:none; aspect-ratio:44 / 58; border-radius:50% 50% 18px 18px; border:1px solid #2F6B4566; padding:10px; }
+.editorial #sobre-el-autor .home-author-portrait-frame img { width:100%; height:100%; display:block; object-fit:cover; object-position:left center; border-radius:50% 50% 10px 10px; }
+.home-tutorial { display:flex; align-items:flex-start; flex-direction:column; gap:10px; }
+.home-tutorial-button { display:inline-flex; align-items:center; gap:10px; padding:14px 24px; min-height:54px; border-radius:999px; background:#2F6B45; color:#fff; font-weight:700; font-size:16px; }
+.home-tutorial-button:disabled { cursor:not-allowed; background:#496D50; }
+.editorial .home-tutorial-button:disabled:hover { filter:none; }
+.editorial .home-video-status { margin:0; font-size:14px; line-height:1.4; color:#536357; }
+.editorial #s1 { flex-wrap:wrap; }
+.editorial #s1 > .home-philosophers-video { flex:0 0 100%; width:100%; margin-top:8px; }
+.home-philosophers-video { min-height:260px; border-radius:24px; border:1px solid #B9CCAC; background:#173F2C; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:32px; text-align:center; }
+.home-philosophers-video > svg { color:#D4AF5A; flex-shrink:0; }
+.home-philosophers-video > span { font-family:'Cormorant Garamond',serif; font-size:32px; line-height:1.1; font-weight:600; }
+.home-philosophers-video p,.home-philosophers-video > span:last-child:not(:first-of-type) { font-family:'Source Sans 3',sans-serif; font-size:15px; color:#ffffffbf; }
+.home-video-pending { background:#FAF7EF; border-style:dashed; color:#173F2C; }
+.home-video-pending > svg { color:#2F6B45; }
+.editorial .home-video-pending p { color:#536357; font-size:15px; margin:0; }
+@media(max-width:1199px) { .editorial #sobre-el-autor { grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:40px; } }
+@media(max-width:899px) {
+ .editorial #sobre-el-autor { grid-template-columns:minmax(0,1fr); gap:32px; }
+ .editorial #sobre-el-autor .home-author-portrait { width:min(100%,400px); margin-inline:auto; }
+ .editorial .home-content-buttons { flex-basis:100%; }
+}
+@media(max-width:639px) {
+ .editorial .home-content-buttons { grid-template-columns:minmax(0,1fr); padding:0; gap:12px; }
+ .editorial .home-content-button { min-height:72px; }
+ .editorial #s1 > .home-philosophers-video { flex-basis:auto; }
+ .home-philosophers-video { min-height:220px; padding:24px; }
+ .home-tutorial-button { padding-inline:20px; text-align:left; }
+}

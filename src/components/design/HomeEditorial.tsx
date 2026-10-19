@@ -1,5 +1,6 @@
 import Link from "next/link";
 import VideoDialog from "./VideoDialog";
+import { PhilosophersVideo, TutorialVideoButton } from "./HomepageVideos";
 
 // Ported from the supplied Inicio.html; navigation uses application routes.
 export default function HomeEditorial() { return <div className="editorial">
@@ -45,101 +46,24 @@ export default function HomeEditorial() { return <div className="editorial">
 <h2 id="hub-title" className="he-5865219a8 he-h2">
 {"Explora, conoce y profundiza a través de estos 8 contenidos:"}
 </h2>
-<a href="#s1" className="he-e002036e7 he-row">
-{"Descubre todo su contenido\n"}
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M5 12h14M13 6l6 6-6 6">
-
-</path>
-</svg>
-</a>
+<TutorialVideoButton />
 </div>
-<ol aria-label="Los 8 contenidos" className="he-8a9539383 he-grid">
-<li className="he-8b8d57ae6">
-<a href="#s1" className="he-224ccae1c he-row">
-<span className="he-ddc598989 he-row he-sized">
-{"1"}
-</span>
-<span className="he-7f248fa2e">
-{"Conoce a los tres filósofos"}
-</span>
-</a>
-</li>
-<li className="he-8b8d57ae6">
-<a href="#s2" className="he-224ccae1c he-row">
-<span className="he-ddc598989 he-row he-sized">
-{"2"}
-</span>
-<span className="he-7f248fa2e">
-{"Las grandes preguntas"}
-</span>
-</a>
-</li>
-<li className="he-8b8d57ae6">
-<a href="#s3" className="he-224ccae1c he-row">
-<span className="he-ddc598989 he-row he-sized">
-{"3"}
-</span>
-<span className="he-7f248fa2e">
-{"Un camino a través de los jardines"}
-</span>
-</a>
-</li>
-<li className="he-8b8d57ae6">
-<a href="#s4" className="he-224ccae1c he-row">
-<span className="he-ddc598989 he-row he-sized">
-{"4"}
-</span>
-<span className="he-7f248fa2e">
-{"Documental completo"}
-</span>
-</a>
-</li>
-<li className="he-8b8d57ae6">
-<Link href="/medios/show/yo-soy-nosotros" prefetch={false} className="he-224ccae1c he-row">
-<span className="he-ddc598989 he-row he-sized">
-{"5"}
-</span>
-<span className="he-7f248fa2e">
-{"Las 51 preguntas"}
-</span>
-</Link>
-</li>
-<li className="he-8b8d57ae6">
-<a href="#s6" className="he-224ccae1c he-row">
-<span className="he-ddc598989 he-row he-sized">
-{"6"}
-</span>
-<span className="he-7f248fa2e">
-{"Profundiza en los libros"}
-</span>
-</a>
-</li>
-<li>
-<Link href="/medios?tab=videos" prefetch={false} className="he-224ccae1c he-row">
-<span className="he-ddc598989 he-row he-sized">
-{"7"}
-</span>
-<span className="he-7f248fa2e">
-{"Más contenido en nuestras plataformas"}
-</span>
-</Link>
-</li>
-<li>
-<a href="#s8" className="he-224ccae1c he-row">
-<span className="he-ddc598989 he-row he-sized">
-{"8"}
-</span>
-<span className="he-7f248fa2e">
-{"Únete al Club de Amigos que Evolucionan"}
-</span>
-</a>
-</li>
+<ol aria-label="Los 8 contenidos" className="home-content-buttons">
+{[
+  ['s1', 'Conoce a los tres filósofos'],
+  ['s2', 'Las grandes preguntas'],
+  ['s3', 'Un camino a través de los jardines'],
+  ['s4', 'Documental completo'],
+  ['s5', 'Las 51 preguntas'],
+  ['s6', 'Profundiza en los libros'],
+  ['s7', 'Más contenido en nuestras plataformas'],
+  ['s8', 'Únete al Club de Amigos que Evolucionan'],
+].map(([id, label], index) => <li key={id}><a href={`#${id}`} className="home-content-button"><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></a></li>)}
 </ol>
 </section>
 <section id="sobre-el-autor" aria-labelledby="about-title" className="he-af688e964 he-row">
-<figure className="he-4d0442769 he-sized">
-<div className="he-281df505e he-sized">
+<figure className="home-author-portrait">
+<div className="home-author-portrait-frame">
 <img src="/design/d0c13d41b6fee9d4b2f4174db365259c.jpg" alt="Marcos Constandse Madrazo, sonriente, en su escritorio" loading="lazy" className="he-8f6f0f1a2" />
 </div>
 </figure>
@@ -292,6 +216,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 </div>
 </div>
+<PhilosophersVideo />
 </section>
 <section id="s2" className="he-1da7f6aa5">
 <div className="he-3619f855d he-row">
