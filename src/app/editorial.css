@@ -328,3 +328,9 @@
 .he-89036cfd7{width: 100%; height: 100%; border-radius: 160px 160px 10px 10px; background: #1F4B36; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding-top: 24px; box-sizing: border-box;}
 .he-645cf7080{width: 44px; height: 1px; background: rgba(212,175,90,0.6);}
 .he-054fe1430{font-family: 'Cinzel', serif; font-size: 18px; font-weight: 500; letter-spacing: 0.22em; line-height: 2.1; color: #FFFFFF; text-align: center;}
+
+/* Video thumbnail beneath the accessible dialog trigger and play control. */
+.he-60b095486 { position:relative; overflow:hidden; isolation:isolate; }
+.he-60b095486 .introduction-video-thumbnail { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+.he-60b095486::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 35%,rgba(0,0,0,.72)); z-index:-1; }
+.he-60b095486 .he-305e26cca { text-align:left; text-shadow:0 1px 5px rgba(0,0,0,.5); }
