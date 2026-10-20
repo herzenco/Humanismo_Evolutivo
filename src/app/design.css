@@ -538,3 +538,34 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .portal-school-pagination { display:flex; gap:24px; }
 .portal-school-space button:disabled { opacity:.5; cursor:not-allowed; }
 .portal-member-actions { display:grid; gap:8px; min-width:130px; }
+/* QA role walkthrough: real access remains server-authorized. */
+.portal-role-navigation { display:grid; gap:12px; margin-bottom:32px; }
+.portal-role-navigation > div { display:flex; flex-wrap:wrap; gap:8px; border:1px solid #DCE5D2; padding:6px; border-radius:16px; width:fit-content; background:white; }
+.portal-role-navigation button { border-radius:12px; padding:12px 24px; font-weight:600; color:#173f2c; min-height:48px; }
+.portal-role-navigation button[aria-pressed="true"] { background:#173f2c; color:white; }
+.portal-role-navigation p { color:#536357; font-size:14px; }
+.portal-demo-notice { padding:24px; border:1px solid #D4AF5A; background:#fbf3dc; border-radius:16px; }
+.portal-demo-notice strong { color:#5A4310; }
+.portal-demo-form { display:flex; flex-wrap:wrap; gap:18px; align-items:end; margin:24px 0; }
+.portal-demo-form label { flex:1; min-width:200px; }
+.portal-demo-space section { display:grid; gap:18px; }
+.portal-demo-teachers,.portal-demo-activity { list-style:none; padding:0; }
+.portal-demo-teachers li,.portal-demo-activity li { display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; padding:20px; background:white; border:1px solid #DCE5D2; border-radius:12px; margin:12px 0; }
+.portal-demo-teachers button,.portal-demo-space td button { color:#2F6B45; text-decoration:underline; min-height:44px; }
+.portal-main-calendar { max-width:none; padding:40px 28px; }
+.portal-calendar-scroll { width:100%; overflow-x:auto; }
+.portal-calendar-scroll .portal-calendar-grid { min-width:1120px; }
+.portal-calendar-scroll .portal-day { padding:16px 12px; min-height:110px; }
+.portal-calendar-classes { list-style:none; padding:0; display:grid; gap:12px; margin:14px 0 0; }
+.portal-calendar-classes li { min-width:0; }
+.portal-calendar-classes li a { display:grid; gap:8px; margin:0; padding:14px 10px; border:1px solid #cbdac4; border-radius:10px; background:#EAF0E1; color:#173f2c; font-size:14px; line-height:1.45; overflow-wrap:normal; word-break:normal; }
+.portal-calendar-classes time { font-size:12px; font-weight:600; }
+.portal-calendar-classes strong { font-weight:600; }
+.portal-calendar-classes a:hover { background:#dce8d5; border-color:#2F6B45; }
+.portal-class-facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; padding:28px; border:1px solid #DCE5D2; border-radius:18px; background:white; }
+.portal-class-facts dt { color:#536357; font-size:14px; margin-bottom:8px; }
+.portal-class-facts dd { color:#173f2c; font-size:19px; }
+.portal-class-material { padding:28px; border:1px solid #DCE5D2; border-radius:18px; }
+@media(max-width:640px) { .portal-role-navigation button { padding:12px 14px; } .portal-class-facts { grid-template-columns:1fr; } .portal-main-calendar { padding:28px 16px; } }
+
+.portal-demo-space .portal-member-actions > div { display:flex; flex-wrap:wrap; gap:12px; }
