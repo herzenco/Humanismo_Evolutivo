@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, BookOpen, FileText, Headphones, Search, Video } from 'lucide-react';
 import { books } from '@/data/books';
 import { podcastSeries, videos } from '@/data/media';
+import { getPodcastEpisodeContent } from '@/data/podcastEpisodeContent';
 import { publishedQuestions } from '@/data/questions';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { ResourceArticle } from '@/data/resources';
@@ -60,8 +61,11 @@ export default function PortalLibrary({ articles }: { articles: ResourceArticle[
       const series = podcastSeries.find(series => series.id === item);
       if (!series) return missing;
       return <section className="portal-reader">{back}<h2>{t(series.titleKey)}</h2><p>{t(series.descriptionKey)}</p><div className="portal-episodes">{series.episodes.map(episode => {
+        const content = getPodcastEpisodeContent(episode.audioUrl);
+        const episodeTitle = content?.title || t(episode.titleKey);
+        const episodeDescription = content?.description || t(episode.descriptionKey);
         const id = /open\.spotify\.com\/episode\/([A-Za-z0-9]+)/.exec(episode.audioUrl)?.[1];
-        return <article key={episode.slug}><h3>{t(episode.titleKey)}</h3><p>{t(episode.descriptionKey)}</p>{id ? <iframe src={`https://open.spotify.com/embed/episode/${id}`} title={t(episode.titleKey)} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" height="152" /> : <p>El audio estará disponible próximamente.</p>}</article>;
+        return <article key={episode.slug}><h3>{episodeTitle}</h3><p>{episodeDescription}</p>{id ? <iframe src={`https://open.spotify.com/embed/episode/${id}`} title={episodeTitle} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" height="152" /> : <p>El audio estará disponible próximamente.</p>}</article>;
       })}</div></section>;
     }
     if (category === 'media' && kind === 'video') {
