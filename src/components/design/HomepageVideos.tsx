@@ -19,7 +19,7 @@ export function TutorialVideoButton() {
 
 export function PhilosophersVideo() {
   return (<VideoDialog aria-label="Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal" videoId="5rmKRNZbmoQ" title="Introducción al Humanismo Evolutivo" className="he-60b095486 home-philosophers-video home-philosophers-video-ready">
-<img className="introduction-video-thumbnail" src="https://i.ytimg.com/vi/5rmKRNZbmoQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
+<img className="introduction-video-thumbnail" src="https://i.ytimg.com/vi/5rmKRNZbmoQ/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
 <div className="he-204b18f8e he-row">
 <span className="he-7cde224f7">
 {"PRESENTACIÓN INTRODUCTORIA"}
