@@ -519,3 +519,4 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .portal-day-count[aria-pressed="true"] { background:#173f2c; color:#fff; }
 .portal-day-detail-heading { padding:24px; font-size:26px; color:#173f2c; }
 @media(max-width:640px) { .portal-day-count { font-size:10px; padding:6px 2px; } }
+.portal-episodes p { white-space:pre-line; }
