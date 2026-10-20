@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { resourceArticles } from "@/data/resources";
 import PortalDashboard from "@/components/portal/PortalDashboard";
 
 import { createClient } from "@/lib/supabase/server";
@@ -50,5 +51,5 @@ export default async function PortalPage() {
   const claims = data.claims;
   const firstName = getFriendlyFirstName(claims);
 
-  return <PortalDashboard firstName={firstName} email={claims.email} />;
+  return <PortalDashboard firstName={firstName} email={claims.email} articles={resourceArticles} />;
 }
