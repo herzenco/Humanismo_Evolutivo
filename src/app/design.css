@@ -569,3 +569,9 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 @media(max-width:640px) { .portal-role-navigation button { padding:12px 14px; } .portal-class-facts { grid-template-columns:1fr; } .portal-main-calendar { padding:28px 16px; } }
 
 .portal-demo-space .portal-member-actions > div { display:flex; flex-wrap:wrap; gap:12px; }
+
+/* Keep every numbered homepage section distinct from its neighbors. */
+.editorial > #s1,.editorial > #s3,.editorial > #s5,.editorial > #s7 { background:#FAF7EF; }
+.editorial > #s4,.editorial > #s6,.editorial > #s8 { background:#EAF0E1; }
+/* Number badges must not inherit the general row shrink behavior. */
+.editorial .he-702f28551,.editorial .he-9a7a98995 { flex-shrink:0; aspect-ratio:1; }
