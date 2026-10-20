@@ -2,23 +2,26 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, ChevronLeft, ChevronRight, GraduationCap, Leaf, Library, LogOut, Menu, X } from 'lucide-react';
-import { events } from '@/data/events';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useRouter, useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
+import PortalCalendar from './PortalCalendar';
+import { portalCourses, portalClasses } from '@/data/portal';
+import type { ResourceArticle } from '@/data/resources';
+import { ArrowLeft, ArrowRight, CalendarDays, GraduationCap, Leaf, Library, LogOut, Menu, X } from 'lucide-react';
+
+const PortalLibrary = dynamic(() => import('./PortalLibrary'), { loading: () => <p role="status">Cargando biblioteca…</p> });
 
 type View = 'courses' | 'library' | 'calendar';
-export default function PortalDashboard({ firstName, email }: { firstName: string; email?: string }) {
-  const [view, setView] = useState<View>('courses');
+export default function PortalDashboard({ firstName, email, articles }: { firstName: string; email?: string; articles: ResourceArticle[] }) {
+  const params = useSearchParams();
+  const router = useRouter();
+  const selectedView = params.get('view');
+  const view: View = selectedView === 'library' || selectedView === 'calendar' ? selectedView : 'courses';
   const [menu, setMenu] = useState(false);
-  const [month, setMonth] = useState(() => new Date(new Date().getFullYear(), new Date().getMonth(), 1));
-  const { t } = useLanguage();
   const title = view === 'courses' ? 'Mis cursos' : view === 'library' ? 'Biblioteca' : 'Calendario';
-  const weekdays = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-  const offset = (month.getDay() + 6) % 7;
-  const days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
-  const today = new Date();
-  const monthEvents = events.filter(event => { const date = new Date(`${event.date}T12:00:00`); return date.getMonth() === month.getMonth() && date.getFullYear() === month.getFullYear(); });
-  const navigate = (next: View) => { setView(next); setMenu(false); };
+  const course = portalCourses.find(item => item.id === params.get('course'));
+  const lesson = course?.lessons.find(item => item.id === params.get('lesson'));
+  const navigate = (next: View) => { router.push(`/portal?view=${next}`); setMenu(false); };
   return <div className="portal-app">
     <aside className={`portal-sidebar ${menu ? 'portal-sidebar-open' : ''}`}>
       <Link href="/" className="site-brand"><Leaf /><span><span className="site-brand-name">Humanismo Evolutivo</span><span className="site-brand-caption">Transpersonal</span></span></Link>
@@ -27,14 +30,16 @@ export default function PortalDashboard({ firstName, email }: { firstName: strin
       <div className="portal-sidebar-bottom"><Link href="/"><ArrowLeft size={18} />Volver al sitio</Link><form action="/auth/signout" method="post"><button type="submit"><LogOut size={18} />Cerrar sesión</button></form><p>Aprender es una forma de evolucionar.</p></div>
     </aside>
     <div className="portal-workspace"><header className="portal-topbar"><div><button type="button" className="portal-mobile-toggle" aria-expanded={menu} aria-label={menu ? 'Cerrar menú del portal' : 'Abrir menú del portal'} onClick={() => setMenu(value => !value)}>{menu ? <X /> : <Menu />}</button><span>Portal educativo <span aria-hidden="true">/</span> <strong>{title}</strong></span></div><div><span className="portal-avatar" aria-hidden="true">{firstName.charAt(0).toUpperCase()}</span><span className="portal-user">{firstName}<small>{email}</small></span></div></header>
-      <main className="portal-main" id="contenido-principal"><div className="portal-welcome"><span className="design-eyebrow">TU ESPACIO PARA EVOLUCIONAR</span><h1>{view === 'courses' ? `Bienvenido, ${firstName}` : title}</h1><p>{view === 'courses' ? 'Cada nueva perspectiva es un paso hacia una vida más consciente. Continúa tu camino de aprendizaje.' : view === 'library' ? 'Explora las lecturas, reflexiones y conversaciones de Humanismo Evolutivo.' : 'Un espacio para consultar nuestros encuentros y presentaciones.'}</p></div>
-        {view === 'courses' ? <><div className="portal-stats"><div><GraduationCap /><strong>0</strong><span>Cursos disponibles</span></div><div><BookOpen /><strong>0</strong><span>Cursos en progreso</span></div><div><CalendarDays /><strong>{monthEvents.length}</strong><span>Encuentros este mes</span></div></div><section aria-labelledby="courses-title"><div className="portal-section-heading"><h2 id="courses-title">Tu camino de aprendizaje</h2><span>Mis cursos</span></div><div className="portal-empty"><GraduationCap size={48} strokeWidth={1.2} /><h3>Estamos preparando tus próximos pasos</h3><p>Los cursos aparecerán aquí cuando se publiquen. Mientras tanto, descubre los libros y las conversaciones que dan vida a nuestra filosofía.</p><button type="button" className="design-button" onClick={() => navigate('library')}>Explorar la biblioteca<ArrowRight size={18} /></button></div></section></> : null}
-        {view === 'library' ? <div className="portal-library-grid">{[{ title: 'Libros', description: 'Cinco obras para conectar ciencia, filosofía y espiritualidad.', href: '/libros', icon: BookOpen }, { title: 'Podcast y videos', description: 'Conversaciones e ideas para acompañar tu búsqueda.', href: '/medios', icon: GraduationCap }, { title: 'Artículos y recursos', description: 'Lecturas y materiales publicados para profundizar.', href: '/resources', icon: Library }].map(item => <article key={item.href}><item.icon size={32} strokeWidth={1.4} /><h2>{item.title}</h2><p>{item.description}</p><Link href={item.href} className="design-text-link">Explorar<ArrowRight size={18} /></Link></article>)}</div> : null}
-        {view === 'calendar' ? <section className="portal-calendar" aria-label="Calendario de eventos"><div className="portal-calendar-heading"><h2 aria-live="polite">{month.toLocaleDateString('es-MX', { month: 'long', year: 'numeric' })}</h2><div><button type="button" aria-label="Mes anterior" onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))}><ChevronLeft /></button><button type="button" onClick={() => setMonth(new Date(today.getFullYear(), today.getMonth(), 1))}>Hoy</button><button type="button" aria-label="Mes siguiente" onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))}><ChevronRight /></button></div></div><div className="portal-calendar-grid">{weekdays.map(day => <div className="portal-weekday" key={day}>{day}</div>)}{Array.from({ length: offset }, (_, i) => <div className="portal-day portal-day-empty" key={`empty-${i}`} />)}{Array.from({ length: days }, (_, i) => {
-          const day = i + 1;
-          const isToday = today.getDate() === day && today.getMonth() === month.getMonth() && today.getFullYear() === month.getFullYear();
-          return <div className={`portal-day ${isToday ? 'portal-day-today' : ''}`} key={day}><span>{day}</span>{monthEvents.filter(event => Number(event.date.slice(-2)) === day).map(event => <Link href={`/eventos/${event.id}`} key={event.id}>{t(event.titleKey)}</Link>)}</div>;
-        })}</div>{monthEvents.length === 0 ? <p className="portal-calendar-empty">No hay encuentros publicados para este mes.</p> : null}</section> : null}
+      <main className="portal-main" id="contenido-principal"><div className="portal-welcome"><span className="design-eyebrow">TU ESPACIO PARA EVOLUCIONAR</span><h1>{title}</h1><p>{view === 'courses' ? 'Explora todos los cursos disponibles y elige tu próximo paso de aprendizaje.' : view === 'library' ? 'Explora las lecturas, reflexiones y conversaciones de Humanismo Evolutivo.' : 'Consulta todas las clases programadas en vista de calendario o lista.'}</p></div>
+        {view === 'courses' ? <section aria-labelledby="courses-title">
+          <div className="portal-section-heading"><h2 id="courses-title">{course ? course.title : 'Todos los cursos'}</h2><span>{portalCourses.length} cursos disponibles</span></div>
+          {course ? <div className="portal-reader"><Link href="/portal?view=courses" className="design-text-link"><ArrowLeft size={17} />Todos los cursos</Link><p>{course.description}</p>{lesson ? <article><h3>{lesson.title}</h3><p>{lesson.text}</p>{lesson.videoUrl ? <video controls preload="none" src={lesson.videoUrl} aria-label={lesson.title} /> : null}<Link href={`/portal?view=courses&course=${encodeURIComponent(course.id)}`} className="design-text-link">Volver a las clases</Link></article> : <ol className="portal-lesson-list">{course.lessons.map((item, index) => <li key={item.id}><Link href={`/portal?view=courses&course=${encodeURIComponent(course.id)}&lesson=${encodeURIComponent(item.id)}`}><span>{index + 1}</span>{item.title}<ArrowRight size={18} /></Link></li>)}</ol>}</div>
+            : params.get('course') ? <div className="portal-empty"><h3>Curso no disponible</h3><Link href="/portal?view=courses">Ver cursos disponibles</Link></div>
+            : portalCourses.length ? <div className="portal-content-grid">{portalCourses.map(item => <article className="portal-content-card" key={item.id}><div><GraduationCap size={32} /><h3>{item.title}</h3><p>{item.description}</p><span>{item.lessons.length} clases</span><Link href={`/portal?view=courses&course=${encodeURIComponent(item.id)}`} className="design-text-link">Explorar curso<ArrowRight size={18} /></Link></div></article>)}</div>
+            : <div className="portal-empty"><GraduationCap size={48} strokeWidth={1.2} /><h3>Próximamente, nuevos cursos</h3><p>Aquí encontrarás todas las clases disponibles cuando se publique el catálogo. Mientras tanto, puedes explorar las lecturas y conversaciones de nuestra biblioteca.</p><button type="button" className="design-button" onClick={() => navigate('library')}>Explorar la biblioteca<ArrowRight size={18} /></button></div>}
+        </section> : null}
+        {view === 'library' ? <PortalLibrary key={params.get('category') || 'all'} articles={articles} /> : null}
+        {view === 'calendar' ? <PortalCalendar sessions={portalClasses} /> : null}
       </main><footer className="portal-bottom">Humanismo Evolutivo · Portal educativo<span>Un camino de conciencia compartida</span></footer>
     </div>
   </div>;
