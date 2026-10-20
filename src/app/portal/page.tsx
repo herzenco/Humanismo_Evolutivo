@@ -1,3 +1,4 @@
+import { getEducationContext } from "@/lib/education/server";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { resourceArticles } from "@/data/resources";
@@ -51,5 +52,7 @@ export default async function PortalPage() {
   const claims = data.claims;
   const firstName = getFriendlyFirstName(claims);
 
-  return <PortalDashboard firstName={firstName} email={claims.email} articles={resourceArticles} />;
+  const educationContext = await getEducationContext();
+
+  return <PortalDashboard firstName={firstName} email={claims.email} articles={resourceArticles} educationContext={educationContext} />;
 }
