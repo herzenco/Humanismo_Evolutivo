@@ -193,6 +193,10 @@ export default function HomeEditorial() { return <div className="editorial">
 <img src="/design/17d4f7daf232ea4fbcaa033a26207ca3.jpg" alt="¿De dónde venimos? Preguntar es el inicio del conocimiento. El Jardín de la Evolución." loading="lazy" className="he-0ded6cc87" />
 <img src="/design/04392e0cfc55badb8bb441819c60883b.jpg" alt="¿Hacia dónde podemos evolucionar? Conocer · Comprender · Transformar · Evolucionar." loading="lazy" className="he-3667c6366" />
 </div>
+<div className="home-great-questions-summary">
+<p>Del origen del universo y la vida a los sentidos, la conciencia y los valores: 51 preguntas para explorar quiénes somos y cómo podemos evolucionar. Desde la mirada del Humanismo Evolutivo Transpersonal, conectan ciencia, filosofía y espiritualidad con el trabajo, la convivencia y la búsqueda de sentido y autorrealización.</p>
+<Link href="/51preguntas" prefetch={false} className="design-button design-button-gold">Explorar las 51 preguntas<span aria-hidden="true">→</span></Link>
+</div>
 </section>
 <section id="s3" className="he-2ce0874f2">
 <div className="he-e0ac64c88 he-sized">

@@ -575,3 +575,6 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .editorial > #s4,.editorial > #s6,.editorial > #s8 { background:#EAF0E1; }
 /* Number badges must not inherit the general row shrink behavior. */
 .editorial .he-702f28551,.editorial .he-9a7a98995 { flex-shrink:0; aspect-ratio:1; }
+
+.home-great-questions-summary { display:grid; justify-items:start; gap:24px; max-width:900px; }
+.home-great-questions-summary p { margin:0; color:#ffffffeb; font-size:20px; line-height:1.65; }
