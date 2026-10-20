@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { portalRoleSuffix } from '@/lib/portal-role';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, BookOpen, FileText, Headphones, Search, Video } from 'lucide-react';
@@ -26,12 +27,12 @@ const bookFiles: Record<string, { path: string; label: string }> = {
   'lo-mejor-esta-por-venir': { path: '/books/Lo_mejor_esta_por_venir.pdf', label: 'Leer libro (PDF)' },
   'el-arte-de-ser-empresario': { path: '/books/El_arte_de_ser_empresario_Resumen.pdf', label: 'Leer resumen (PDF)' },
 };
-const libraryLink = (category?: string, kind?: string, item?: string) => {
+const libraryHref = (category?: string, kind?: string, item?: string, role?: string | null) => {
   const query = new URLSearchParams({ view: 'library' });
   if (category) query.set('category', category);
   if (kind) query.set('kind', kind);
   if (item) query.set('item', item);
-  return `/portal?${query}`;
+  return `/portal?${query}${portalRoleSuffix(role ?? null)}`;
 };
 function youtubeEmbed(value: string) {
   try { const url = new URL(value); const id = url.hostname === 'youtu.be' ? url.pathname.slice(1) : ['www.youtube.com', 'youtube.com'].includes(url.hostname) ? url.searchParams.get('v') : null; return id && /^[\w-]{11}$/.test(id) ? `https://www.youtube-nocookie.com/embed/${id}` : null; } catch { return null; }
@@ -39,6 +40,7 @@ function youtubeEmbed(value: string) {
 
 export default function PortalLibrary({ articles }: { articles: ResourceArticle[] }) {
   const params = useSearchParams();
+  const libraryLink = (category?: string, kind?: string, item?: string) => libraryHref(category, kind, item, params.get('role'));
   const category = params.get('category');
   const kind = params.get('kind');
   const item = params.get('item');
