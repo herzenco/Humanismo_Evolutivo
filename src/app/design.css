@@ -520,3 +520,21 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .portal-day-detail-heading { padding:24px; font-size:26px; color:#173f2c; }
 @media(max-width:640px) { .portal-day-count { font-size:10px; padding:6px 2px; } }
 .portal-episodes p { white-space:pre-line; }
+.portal-school-space,.portal-school-report { display:grid; gap:24px; }
+.portal-school-space h2 { font-size:30px; color:#173f2c; }
+.portal-school-space h3 { font-size:24px; }
+.portal-school-space p { line-height:1.7; color:#536357; }
+.portal-school-space label { display:grid; gap:8px; }
+.portal-school-space select,.portal-school-space input { padding:12px; border:1px solid #DCE5D2; border-radius:10px; background:white; width:100%; max-width:480px; }
+.portal-school-invitation { padding:24px; border:1px solid #DCE5D2; border-radius:18px; display:grid; gap:18px; background:#fff; }
+.portal-school-invite-form { display:flex; flex-wrap:wrap; gap:16px; align-items:end; }
+.portal-school-invite-form label { flex:1; min-width:200px; }
+.portal-school-table { overflow-x:auto; }
+.portal-school-table table { width:100%; border-collapse:collapse; background:#fff; font-size:15px; }
+.portal-school-table th,.portal-school-table td { padding:16px; text-align:left; border-bottom:1px solid #DCE5D2; }
+.portal-school-table th { color:#173f2c; }
+.portal-school-table small { display:block; color:#536357; overflow-wrap:anywhere; }
+.portal-school-table button,.portal-school-pagination button { text-decoration:underline; color:#2F6B45; min-height:44px; }
+.portal-school-pagination { display:flex; gap:24px; }
+.portal-school-space button:disabled { opacity:.5; cursor:not-allowed; }
+.portal-member-actions { display:grid; gap:8px; min-width:130px; }

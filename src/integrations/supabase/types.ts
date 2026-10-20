@@ -169,6 +169,11 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      education_qa_access: {
+        Args: { p_action: string; p_input?: Json }
+        Returns: Json
+      }
+
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
