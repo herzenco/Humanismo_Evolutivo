@@ -334,3 +334,6 @@
 .he-60b095486 .introduction-video-thumbnail { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
 .he-60b095486::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 35%,rgba(0,0,0,.72)); z-index:-1; }
 .he-60b095486 .he-305e26cca { text-align:left; text-shadow:0 1px 5px rgba(0,0,0,.5); }
+
+.home-philosophers-video-ready .he-204b18f8e { width:100%; }
+.home-philosophers-video-ready .he-305e26cca { align-self:flex-start; font-size:30px; color:white; width:min(560px,100%); }

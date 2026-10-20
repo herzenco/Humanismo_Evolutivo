@@ -1,10 +1,9 @@
-import { PlayCircle, Video } from 'lucide-react';
+import { PlayCircle } from 'lucide-react';
 import VideoDialog from './VideoDialog';
 
-// Add the supplied video IDs here when the tutorial and philosophers videos are ready.
-const homepageVideos: { tutorial: string | null; philosophers: string | null } = {
+// The tutorial is pending; the introduction video belongs in the philosophers section.
+const homepageVideos: { tutorial: string | null } = {
   tutorial: null,
-  philosophers: null,
 };
 
 export function TutorialVideoButton() {
@@ -19,14 +18,30 @@ export function TutorialVideoButton() {
 }
 
 export function PhilosophersVideo() {
-  const title = 'Conoce a los tres filósofos';
-  if (homepageVideos.philosophers) {
-    return <VideoDialog videoId={homepageVideos.philosophers} title={title} className="home-philosophers-video"><PlayCircle size={52} strokeWidth={1.4} /><span>Conoce a los tres filósofos</span><span>Reproducir video</span></VideoDialog>;
-  }
+  return (<VideoDialog aria-label="Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal" videoId="5rmKRNZbmoQ" title="Introducción al Humanismo Evolutivo" className="he-60b095486 home-philosophers-video home-philosophers-video-ready">
+<img className="introduction-video-thumbnail" src="https://i.ytimg.com/vi/5rmKRNZbmoQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
+<div className="he-204b18f8e he-row">
+<span className="he-7cde224f7">
+{"PRESENTACIÓN INTRODUCTORIA"}
+</span>
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+<rect x="3" y="6" width="13" height="12" rx="2">
 
-  return <div className="home-philosophers-video home-video-pending" role="region" aria-label="Próximo video de los tres filósofos">
-    <Video size={44} strokeWidth={1.3} aria-hidden="true" />
-    <span>Conoce a los tres filósofos</span>
-    <p>Video · Próximamente</p>
-  </div>;
+</rect>
+<path d="M16 10l5-3v10l-5-3z">
+
+</path>
+</svg>
+</div>
+<div className="he-0669f902d he-row he-sized">
+<svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M8 5v14l11-7z" fill="currentColor">
+
+</path>
+</svg>
+</div>
+<span className="he-305e26cca he-sized">
+{"Introducción a la filosofía del Humanismo Evolutivo Transpersonal"}
+</span>
+</VideoDialog>);
 }

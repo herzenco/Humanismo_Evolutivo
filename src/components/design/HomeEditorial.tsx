@@ -1,5 +1,4 @@
 import Link from "next/link";
-import VideoDialog from "./VideoDialog";
 import { PhilosophersVideo, TutorialVideoButton } from "./HomepageVideos";
 
 // Ported from the supplied Inicio.html; navigation uses application routes.
@@ -50,7 +49,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 <ol aria-label="Los 8 contenidos" className="home-content-buttons">
 {[
-  ['s1', 'Conoce a los tres filósofos'],
+  ['s1', 'Conozca a los tres filósofos'],
   ['s2', 'Las grandes preguntas'],
   ['s3', 'Un camino a través de los jardines'],
   ['s4', 'Documental completo'],
@@ -124,45 +123,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </Link>
 </div>
 </section>
-<section id="video-introduccion" aria-labelledby="video-title" className="he-0ee09cc2f he-row">
-<div className="he-05977cf55 he-sized">
-<div className="he-971633377">
-{"BIENVENIDO"}
-</div>
-<h2 id="video-title" className="he-22e182e34 he-h2">
-{"Una introducción a nuestra filosofía"}
-</h2>
-<p className="he-42c9249ac">
-{"Descubre la esencia del Humanismo Evolutivo Transpersonal en esta presentación introductoria."}
-</p>
-</div>
-<VideoDialog aria-label="Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal" videoId="5rmKRNZbmoQ" title="Introducción al Humanismo Evolutivo" className="he-60b095486">
-<img className="introduction-video-thumbnail" src="https://i.ytimg.com/vi/5rmKRNZbmoQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
-<div className="he-204b18f8e he-row">
-<span className="he-7cde224f7">
-{"PRESENTACIÓN INTRODUCTORIA"}
-</span>
-<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<rect x="3" y="6" width="13" height="12" rx="2">
 
-</rect>
-<path d="M16 10l5-3v10l-5-3z">
-
-</path>
-</svg>
-</div>
-<div className="he-0669f902d he-row he-sized">
-<svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true">
-<path d="M8 5v14l11-7z" fill="currentColor">
-
-</path>
-</svg>
-</div>
-<span className="he-305e26cca he-sized">
-{"Introducción a la filosofía del Humanismo Evolutivo Transpersonal"}
-</span>
-</VideoDialog>
-</section>
 <section id="s1" className="he-580031031 he-row">
 <div className="he-c2365a66f he-sized">
 <div className="he-3619f855d he-row">
@@ -170,7 +131,7 @@ export default function HomeEditorial() { return <div className="editorial">
 {"1"}
 </span>
 <h2 className="he-22e182e34 he-h2">
-{"Conoce a los tres filósofos"}
+{"Conozca a los tres filósofos"}
 </h2>
 </div>
 <p className="he-42c9249ac">
