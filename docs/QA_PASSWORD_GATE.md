@@ -10,7 +10,7 @@ El proxy se ubica en `src/proxy.ts`, junto a `src/app`, para que Next.js lo incl
 - Solo `/qa-access`, una página HTML autónoma sin recursos externos, es accesible para introducir la contraseña.
 - El proyecto de QA se identifica por su ID de Vercel. La aplicación pública no activa esta barrera. Para pruebas locales se usa `QA_GATE_ENABLED=true`.
 - Si QA carece de configuración válida, responde 503 en lugar de dejar entrar.
-- Cookie `__Host-qa-access`: firmada con HMAC-SHA256, vinculada al host, HttpOnly, Secure, SameSite=Lax, Path=/, sin Domain y con vencimiento de 8 horas. La contraseña nunca se usa como cookie.
+- Cookie `__Host-qa-access`: firmada con HMAC-SHA256, vinculada al host, HttpOnly, Secure, SameSite=Lax, Path=/, sin Domain y persistente hasta 30 días, incluso tras cerrar el navegador. Se renueva una vez al día mientras se utiliza QA; las cookies anteriores de 8 horas se amplían en la siguiente visita si todavía son válidas. La contraseña nunca se usa como cookie.
 - Comparación de contraseñas en tiempo constante sobre SHA-256. La contraseña generada es aleatoria y de alta entropía. Las respuestas de acceso incorrecto incorporan una demora de 500 ms; no se afirma que esto sea un limitador de intentos distribuido.
 - POST exige el mismo origen, un formulario URL-encoded y un cuerpo pequeño. Los destinos externos y el retorno recursivo al acceso se rechazan.
 - Respuestas de QA privadas, sin caché y con `X-Robots-Tag: noindex, nofollow, noarchive`. La página de acceso tiene CSP y no permite ser enmarcada.

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
 import { setTimeout as delay } from 'node:timers/promises';
-import { QA_PROJECT_ID } from '../src/lib/qa-gate.ts';
+import { QA_PROJECT_ID, QA_SESSION_SECONDS, createQaSession } from '../src/lib/qa-gate.ts';
 
 // Exercises the optimized build, not a mocked proxy or an isolated password helper.
 const password = randomBytes(24).toString('base64url');
@@ -39,9 +39,15 @@ await withServer({},3169,async(request,base)=>{
   assert.equal((await request('/qa-access',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({password})})).status,403);
   const bad=await post({password:'incorrect',next:'/portal'});assert.equal(bad.status,303);assert.ok(bad.headers.get('location').includes('error=invalid'));assert.equal(bad.headers.get('set-cookie'),null);
   const unlocked=await post({password,next:'/'});assert.equal(unlocked.status,303);
-  const cookie=unlocked.headers.get('set-cookie');for(const flag of ['HttpOnly','Secure','SameSite=lax','Path=/','Max-Age=28800'])assert.ok(cookie.toLowerCase().includes(flag.toLowerCase()),flag);assert.equal(cookie.includes(password),false);
+  const cookie=unlocked.headers.get('set-cookie');for(const flag of ['HttpOnly','Secure','SameSite=lax','Path=/','Max-Age=2592000'])assert.ok(cookie.toLowerCase().includes(flag.toLowerCase()),flag);assert.equal(cookie.includes(password),false);
   const headers={Cookie:cookie.split(';')[0]};
   const home=await request('/',{headers});assert.equal(home.status,200);assert.match(home.headers.get('cache-control'),/no-store/);assert.match(home.headers.get('x-robots-tag'),/noindex/);
+  assert.equal(home.headers.get('set-cookie'),null);
+  const legacy=createQaSession(new URL(base).host,{passwordHash,secret},Math.floor(Date.now()/1000)-QA_SESSION_SECONDS+8*3600);
+  const remembered=await request('/',{headers:{Cookie:`__Host-qa-access=${legacy}`}});
+  assert.equal(remembered.status,200);assert.match(remembered.headers.get('set-cookie'),/Max-Age=2592000/);
+  const renewed=remembered.headers.get('set-cookie').split(';')[0];
+  assert.equal((await request('/',{headers:{Cookie:renewed}})).status,200);
   const html=await home.text();const asset=html.match(/src="([^" ]*\/_next\/static\/[^" ]+)"/)[1];assert.equal((await request(asset,{headers})).status,200);assert.equal((await request(asset)).status,401);
   assert.equal((await request('/favicon.png',{headers})).status,200);
   const logout=await post({logout:'1'});assert.match(logout.headers.get('set-cookie'),/Max-Age=0/);

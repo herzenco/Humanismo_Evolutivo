@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { QA_COOKIE, qaGateConfig, qaGateEnabled, validQaSession } from './qa-gate';
+import { QA_COOKIE, QA_SESSION_SECONDS, createQaSession, shouldRenewQaSession, qaGateConfig, qaGateEnabled, validQaSession } from './qa-gate';
 
 // Next's route-handler URL can use an internal hostname. Bind redirects and
 // cookies to the actual Host received by this deployment, never forwarded-host.
@@ -34,4 +34,16 @@ export function qaGateResponse(request: NextRequest): NextResponse | null {
   const destination = new URL('/qa-access', qaRequestOrigin(request));
   destination.searchParams.set('next', `${request.nextUrl.pathname}${request.nextUrl.search}`);
   return privateQaResponse(NextResponse.redirect(destination, 303));
+}
+
+export function rememberQaAccess(request: NextRequest, response: NextResponse) {
+  if (!qaGateEnabled() || request.nextUrl.pathname === '/qa-access') return response;
+  const config = qaGateConfig();
+  const host = new URL(qaRequestOrigin(request)).host;
+  if (shouldRenewQaSession(request.cookies.get(QA_COOKIE)?.value, host, config)) {
+    response.cookies.set(QA_COOKIE, createQaSession(host, config), {
+      httpOnly:true, secure:true, sameSite:'lax', path:'/', maxAge:QA_SESSION_SECONDS,
+    });
+  }
+  return response;
 }
