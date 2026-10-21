@@ -34,3 +34,7 @@ No guardar ninguna de estas credenciales en el repositorio. Para rotar el acceso
 Pruebas automatizadas de aislamiento de QA, configuración incompleta, contraseña incorrecta, firma manipulada, vencimiento, otro host, rotación y retorno seguro. Además, comprobar mediante HTTP el rechazo de páginas/API/archivos sin acceso, el POST correcto/incorrecto, la cookie y el cierre de acceso. Validar también que la aplicación sin configuración de QA se sirve normalmente.
 
 La barrera cubre lo que sirve este proyecto. Los archivos o videos alojados en servicios públicos externos conservan las políticas de acceso de esos servicios.
+
+## Compatibilidad con formularios del navegador
+
+La página de acceso usa `Referrer-Policy: same-origin`. `no-referrer` puede hacer que un POST de formulario nativo envíe `Origin: null`, que la comprobación CSRF rechaza correctamente. Se conserva la comprobación exacta del origen; no se permiten orígenes nulos o ausentes. La prueba HTTP comprueba esta política y el rechazo de orígenes nulos/ausentes.
