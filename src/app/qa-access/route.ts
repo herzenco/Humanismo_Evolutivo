@@ -19,7 +19,9 @@ export function GET(request: NextRequest) {
   const response = privateQaResponse(new NextResponse(html, { headers:{'Content-Type':'text/html; charset=utf-8'} }));
   response.headers.set('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
   response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('Referrer-Policy', 'no-referrer');
+  // Native form POSTs need a same-origin Origin header for CSRF validation.
+  // no-referrer makes browsers serialize that Origin as null.
+  response.headers.set('Referrer-Policy', 'same-origin');
   return response;
 }
 

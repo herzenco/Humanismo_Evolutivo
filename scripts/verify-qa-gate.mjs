@@ -32,9 +32,11 @@ await withServer({},3169,async(request,base)=>{
   assert.equal((await request('/_next/static/test.js')).status,401);
   assert.equal((await request('/portal',{headers:{RSC:'1'}})).status,303);
   assert.equal((await request('/',{headers:{Cookie:'__Host-qa-access=forged'}})).status,303);
-  const page=await request('/qa-access');assert.equal(page.status,200);assert.match(await page.text(),/Acceso privado/);assert.match(page.headers.get('content-security-policy'),/frame-ancestors 'none'/);
+  const page=await request('/qa-access');assert.equal(page.status,200);assert.match(await page.text(),/Acceso privado/);assert.match(page.headers.get('content-security-policy'),/frame-ancestors 'none'/);assert.equal(page.headers.get('referrer-policy'),'same-origin','Native form POST must retain its same-origin Origin header');
   const post=(body,origin=base)=>request('/qa-access',{method:'POST',headers:{Origin:origin,'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(body)});
   assert.equal((await post({password},'https://evil.test')).status,403);
+  assert.equal((await post({password},'null')).status,403);
+  assert.equal((await request('/qa-access',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({password})})).status,403);
   const bad=await post({password:'incorrect',next:'/portal'});assert.equal(bad.status,303);assert.ok(bad.headers.get('location').includes('error=invalid'));assert.equal(bad.headers.get('set-cookie'),null);
   const unlocked=await post({password,next:'/'});assert.equal(unlocked.status,303);
   const cookie=unlocked.headers.get('set-cookie');for(const flag of ['HttpOnly','Secure','SameSite=lax','Path=/','Max-Age=28800'])assert.ok(cookie.toLowerCase().includes(flag.toLowerCase()),flag);assert.equal(cookie.includes(password),false);
