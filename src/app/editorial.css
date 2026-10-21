@@ -344,3 +344,8 @@
 .he-documentary-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.08) 45%,rgba(0,0,0,.8));z-index:-1;}
 .he-abf7b48b8 .he-b3f106d02{color:#fff;}
 .he-abf7b48b8:focus-visible{outline:3px solid #173F2C;outline-offset:4px;}
+
+.home-great-questions article{min-width:0;}
+.home-great-questions h3{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,2.4vw,36px);line-height:1.15;margin:24px 0 16px;color:#fff;}
+.home-great-questions p{font-size:20px;line-height:1.7;margin:0;color:#fff;}
+@media(max-width:767px){.home-great-questions{grid-template-columns:1fr;gap:40px;}}

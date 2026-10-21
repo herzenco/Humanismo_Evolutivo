@@ -8,14 +8,11 @@ import { PhilosophersVideo, TutorialVideoButton } from "./HomepageVideos";
 export default function HomeEditorial() { return <div className="editorial">
 <section aria-labelledby="hero-title" className="he-e149bc314 he-row">
 <div className="he-42a6ea32f he-sized">
-<div className="he-11a930e85">
-{"TRANSPERSONAL"}
-</div>
 <h1 id="hero-title" className="he-274ef8b1e he-h1">
 {"Humanismo Evolutivo"}
 </h1>
 <p className="he-57a52e76d">
-{"Yo soy nosotros"}
+{"Transpersonal"}
 </p>
 <p className="he-b485a87c8 he-sized">
 {"Un viaje de conciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos, conectando ciencia, espíritu y humanidad."}
@@ -192,13 +189,17 @@ export default function HomeEditorial() { return <div className="editorial">
 {"Las grandes preguntas"}
 </h2>
 </div>
-<div className="he-f97962489 he-grid">
+<div className="he-f97962489 he-grid home-great-questions">
+<article aria-labelledby="question-origin">
 <img src="/design/17d4f7daf232ea4fbcaa033a26207ca3.jpg" alt="¿De dónde venimos? Preguntar es el inicio del conocimiento. El Jardín de la Evolución." loading="lazy" className="he-0ded6cc87" />
+<h3 id="question-origin">¿De dónde venimos?</h3>
+<p>Venimos del Big Bang, el origen del universo, hace unos 13,800 millones de años. Para el Humanismo Evolutivo, aquellas primeras partículas ya llevaban información, y esa información fue organizando la materia, la vida y la conciencia. Literalmente, “somos polvo de estrellas” que ha aprendido a darse cuenta de sí mismo.</p>
+</article>
+<article aria-labelledby="question-evolution">
 <img src="/design/04392e0cfc55badb8bb441819c60883b.jpg" alt="¿Hacia dónde podemos evolucionar? Conocer · Comprender · Transformar · Evolucionar." loading="lazy" className="he-3667c6366" />
-</div>
-<div className="home-great-questions-summary">
-<p>Del origen del universo y la vida a los sentidos, la conciencia y los valores: 51 preguntas para explorar quiénes somos y cómo podemos evolucionar. Desde la mirada del Humanismo Evolutivo Transpersonal, conectan ciencia, filosofía y espiritualidad con el trabajo, la convivencia y la búsqueda de sentido y autorrealización.</p>
-<Link href="/51preguntas" prefetch={false} className="design-button design-button-gold">Explorar las 51 preguntas<span aria-hidden="true">→</span></Link>
+<h3 id="question-evolution">¿Hacia dónde podemos evolucionar?</h3>
+<p>Hacia el espíritu. En el Humanismo Evolutivo, el espíritu no es un fantasma ni un dogma: es lo que nos hace “como yo”, es decir, la conciencia, la libertad y el reconocimiento del otro como igual. Evolucionar es elevar nuestro nivel de conciencia hasta vivir lo que Lolo llama “yo soy nosotros”.</p>
+</article>
 </div>
 </section>
 <section id="s3" className="he-2ce0874f2">
