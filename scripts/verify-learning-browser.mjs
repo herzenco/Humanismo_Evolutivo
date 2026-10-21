@@ -6,7 +6,7 @@ const context=await browser.newContext({viewport:{width:1440,height:1100}});
 const session=await (await fetch('http://127.0.0.1:54339/test/session')).json();
 await context.addCookies([{name:'sb-127-auth-token',value:'base64-'+Buffer.from(JSON.stringify(session)).toString('base64url'),domain:'localhost',path:'/'}]);
 const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
-await page.goto('http://localhost:3036/portal');
+await page.goto('http://localhost:3036/portal?view=courses');
 await page.getByRole('heading',{name:'Todos los cursos',exact:true}).waitFor();
 assert.equal(await page.getByRole('link',{name:'Explorar curso'}).count(),4);
 await page.screenshot({path:'/tmp/course-catalog-desktop.png',fullPage:true});
