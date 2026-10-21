@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import type { EducationContext } from '@/lib/education/contracts';
 import type { AttendanceRequest, AttendanceStudent } from '@/lib/attendance/contracts';
 import { portalClasses } from '@/data/portal';
@@ -11,9 +12,10 @@ async function access<T>(request:AttendanceRequest,signal?:AbortSignal):Promise<
  return result.data;
 }
 export default function PortalAttendance({context}:{context:EducationContext}) {
+ const params=useSearchParams();
  const teaching=context.memberships.filter(m=>m.role==='teacher'&&m.status==='active'&&m.schoolStatus==='active');
  const [schools,setSchools]=useState(teaching.map(m=>({id:m.schoolId,name:m.schoolName})));
- const [schoolId,setSchoolId]=useState(teaching[0]?.schoolId || '');
+ const [schoolId,setSchoolId]=useState(teaching.find(m=>m.schoolId===params.get('school'))?.schoolId || teaching[0]?.schoolId || '');
  const [sessionId,setSessionId]=useState(portalClasses[0]?.id || '');
  const [students,setStudents]=useState<AttendanceStudent[]>([]);
  const [offset,setOffset]=useState(0);

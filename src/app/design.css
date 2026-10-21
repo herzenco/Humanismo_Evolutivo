@@ -656,3 +656,21 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .portal-attendance-buttons button[aria-pressed="true"] { background:#315C3B; color:#fff; border-color:#315C3B; }
 @media(max-width:1150px) { .portal-student-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .portal-student-course-heading { flex-direction:column; } }
 @media(max-width:640px) { .portal-student-courses { grid-template-columns:1fr; } .portal-student-metrics { gap:12px; } .portal-student-metrics article { padding:18px; } .portal-student-metrics strong { font-size:36px; } .portal-student-metrics article>span { min-height:60px; } .portal-student-course { padding:22px; } }
+
+.portal-teacher-dashboard { display:grid; gap:32px; }
+.portal-teacher-school-label { color:#DCE5D2; font-size:14px; line-height:1.5; margin:-12px 8px 24px; }
+.portal-teacher-school { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; padding:28px; background:#EAF0E1; border:1px solid #DCE5D2; border-radius:20px; }
+.portal-teacher-school .design-eyebrow { display:flex; align-items:center; gap:8px; }
+.portal-teacher-school h2 { font-size:34px; line-height:1.2; margin:12px 0; color:#173f2c; }
+.portal-teacher-school p { color:#536357; line-height:1.6; }
+.portal-teacher-dashboard .portal-section-heading h2 { font-size:30px; color:#173f2c; }
+.portal-teacher-search { display:flex; align-items:center; gap:12px; flex:2 1 350px; }
+.portal-teacher-search .portal-search { min-width:0; flex:1; }
+.portal-teacher-search .design-button { flex-shrink:0; min-height:52px; }
+.portal-teacher-feedback { color:#536357; line-height:1.7; padding:20px 0; }
+.portal-teacher-dashboard td { vertical-align:middle; }
+.portal-teacher-dashboard td progress { display:block; height:8px; width:160px; max-width:100%; margin-top:10px; accent-color:#315C3B; }
+.portal-teacher-student-detail { display:grid; gap:24px; scroll-margin-top:24px; }
+.portal-teacher-student-detail:empty { display:none; }
+.portal-teacher-student-detail .portal-section-heading p { color:#536357; font-size:15px; margin-top:10px; }
+@media(max-width:640px) { .portal-teacher-school { padding:22px; align-items:flex-start; } .portal-teacher-school h2 { font-size:28px; } .portal-teacher-search { flex-wrap:wrap; flex-basis:100%; } .portal-teacher-search .portal-search { flex-basis:200px; } .portal-teacher-school-label { margin-bottom:18px; } }

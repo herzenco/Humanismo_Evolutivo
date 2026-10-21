@@ -5,7 +5,7 @@ import {readFile} from 'node:fs/promises';
 import {PGlite} from '@electric-sql/pglite';
 const db=new PGlite();
 await db.exec(await readFile(new URL('../supabase/tests/education-school-fixture.sql',import.meta.url),'utf8'));
-for(const file of ['20261020005503_education_qa_school_access.sql','20261021165012_portal_course_progress.sql','20261021212020_teacher_attendance_dashboard.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+for(const file of ['20261020005503_education_qa_school_access.sql','20261021165012_portal_course_progress.sql','20261021212020_teacher_attendance_dashboard.sql','20261021231408_teacher_dashboard_progress.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
 const schoolId='20000000-0000-4000-8000-000000000001';
 await db.query("insert into education_qa_private.schools(id,name,slug) values($1,'Escuela de prueba local','escuela-local')",[schoolId]);
 const people=['student','teacher'].map((name,i)=>({id:`10000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`,aud:'authenticated',role:'authenticated',email:`${name}@example.test`,user_metadata:{first_name:i?'Maestro local':'Estudiante'},app_metadata:{},email_confirmed_at:new Date().toISOString(),created_at:new Date().toISOString()}));
@@ -37,6 +37,7 @@ http.createServer(async(req,res)=>{
     let result;
     if(url.pathname.endsWith('/portal_learning_access'))result=await db.query('select public.portal_learning_access($1,$2,$3,$4,$5) result',[body.p_action,body.p_course??null,body.p_lesson??null,body.p_reflection??'',body.p_reviewed??false]);
     else if(url.pathname.endsWith('/portal_attendance_access'))result=await db.query('select public.portal_attendance_access($1,$2) result',[body.p_action,body.p_input||{}]);
+    else if(url.pathname.endsWith('/portal_teacher_dashboard'))result=await db.query('select public.portal_teacher_dashboard($1,$2,$3,$4) result',[body.p_school,body.p_query??'',body.p_limit??25,body.p_offset??0]);
     else if(url.pathname.endsWith('/education_qa_access'))result=await db.query('select public.education_qa_access($1,$2) result',[body.p_action,body.p_input||{}]);
     else return send({message:'Unknown RPC'},404);
     send(result.rows[0].result);
