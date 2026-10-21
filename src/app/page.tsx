@@ -9,14 +9,12 @@ import AboutSection from "@/components/home/AboutSection";
 import FeaturedBooksCarousel from "@/components/home/FeaturedBooksCarousel";
 import PodcastSection from "@/components/home/PodcastSection";
 import DownloadSection from "@/components/home/DownloadSection";
-import WelcomeVideoOverlay from "@/components/home/WelcomeVideoOverlay";
 
 const Index = () => {
   const { language } = useLanguage();
 
   return (
     <PageWrapper>
-      <WelcomeVideoOverlay />
       {language === "es" ? <HomeEditorial /> : <>
       <HeroSection />
       <AboutSection />

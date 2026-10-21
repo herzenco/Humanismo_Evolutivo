@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PhilosophersVideo, TutorialVideoButton } from "./HomepageVideos";
+import { DocumentaryVideo, PhilosophersVideo, TutorialVideoButton } from "./HomepageVideos";
 
 // Ported from the supplied Inicio.html; navigation uses application routes.
 export default function HomeEditorial() { return <div className="editorial">
@@ -193,9 +193,9 @@ export default function HomeEditorial() { return <div className="editorial">
 <img src="/design/17d4f7daf232ea4fbcaa033a26207ca3.jpg" alt="¿De dónde venimos? Preguntar es el inicio del conocimiento. El Jardín de la Evolución." loading="lazy" className="he-0ded6cc87" />
 <img src="/design/04392e0cfc55badb8bb441819c60883b.jpg" alt="¿Hacia dónde podemos evolucionar? Conocer · Comprender · Transformar · Evolucionar." loading="lazy" className="he-3667c6366" />
 </div>
-<div className="home-great-questions-summary">
-<p>Del origen del universo y la vida a los sentidos, la conciencia y los valores: 51 preguntas para explorar quiénes somos y cómo podemos evolucionar. Desde la mirada del Humanismo Evolutivo Transpersonal, conectan ciencia, filosofía y espiritualidad con el trabajo, la convivencia y la búsqueda de sentido y autorrealización.</p>
-<Link href="/51preguntas" prefetch={false} className="design-button design-button-gold">Explorar las 51 preguntas<span aria-hidden="true">→</span></Link>
+<div className="home-great-questions-summary home-big-questions">
+<article><h3>¿De dónde venimos?</h3><p><strong>TODO · Texto provisional para revisión:</strong> Del Big Bang y de sus partículas portadoras de información, que dieron origen al universo y a la vida.</p></article>
+<article><h3>¿Hacia dónde podemos evolucionar?</h3><p><strong>TODO · Texto provisional para revisión:</strong> Hacia el espíritu, ampliando nuestra conciencia y nuestra conexión con los demás.</p></article>
 </div>
 </section>
 <section id="s3" className="he-2ce0874f2">
@@ -346,35 +346,8 @@ export default function HomeEditorial() { return <div className="editorial">
 <p className="he-42c9249ac">
 {"Conoce Parque Cancún, sus Jardines y sus conclusiones. Tú decides cuándo y cómo verlo."}
 </p>
-<a href="#s4" className="he-ff88883eb he-row">
-<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-<path d="M8 5v14l11-7z" fill="currentColor">
-
-</path>
-</svg>
-{"\nVer documental completo"}
-</a>
 </div>
-<Link href="/medios?tab=videos" aria-label="Reproducir el documental de Parque Cancún" className="he-abf7b48b8">
-<div className="he-b3f106d02">
-{"DOCUMENTAL"}
-</div>
-<div className="he-0a9386c3f he-row he-sized">
-<svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true">
-<path d="M8 5v14l11-7z" fill="currentColor">
-
-</path>
-</svg>
-</div>
-<div className="he-32bee0594">
-<span className="he-ad30132fc">
-{"Parque-Cancún"}
-</span>
-<span className="he-196e7ed56">
-{"TUYO · MÍO · NUESTRO"}
-</span>
-</div>
-</Link>
+<DocumentaryVideo />
 </section>
 <section id="s5" className="he-0ee09cc2f he-row">
 <div className="he-c2365a66f he-sized">
