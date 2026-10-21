@@ -10,7 +10,8 @@
     "build": "npm run sync-resources && npm test && next build",
     "build:site": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:qa-gate": "node scripts/verify-qa-gate.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
