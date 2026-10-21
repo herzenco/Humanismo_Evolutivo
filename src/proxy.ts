@@ -1,3 +1,5 @@
+import { qaGateResponse, privateQaResponse } from '@/lib/qa-gate-response'
+import { qaGateEnabled } from '@/lib/qa-gate'
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { isEmailAccountClaims } from '@/lib/auth'
@@ -16,7 +18,7 @@ function copyAuthState(source: NextResponse, target: NextResponse) {
   return target
 }
 
-export async function proxy(request: NextRequest) {
+async function authProxy(request: NextRequest) {
   if (!isSupabaseConfigured) {
     return NextResponse.next({ request })
   }
@@ -68,6 +70,13 @@ export async function proxy(request: NextRequest) {
   return supabaseResponse
 }
 
-export const config = {
-  matcher: ['/auth/:path*', '/portal/:path*', '/admin/:path*'],
+export async function proxy(request: NextRequest) {
+  const blocked = qaGateResponse(request)
+  if (blocked) return blocked
+  const authRoute = /^\/(auth|portal|admin)(\/|$)/.test(request.nextUrl.pathname)
+  const response = authRoute ? await authProxy(request) : NextResponse.next({ request })
+  return qaGateEnabled() ? privateQaResponse(response) : response
 }
+
+// No extension/API exclusions: QA pages, RSC, images and downloads all require access.
+export const config = { matcher: ['/:path*'] }
