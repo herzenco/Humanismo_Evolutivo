@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import VideoDialog from './VideoDialog';
 import { homeVideos } from '@/config/home-videos';
 import Link from "next/link";
@@ -358,6 +359,8 @@ export default function HomeEditorial() { return <div className="editorial">
 </VideoDialog>
 </div>
 <VideoDialog videoId={homeVideos.documentary.youtubeId} title="Documental completo · Parque Cancún" aria-label="Reproducir el documental de Parque Cancún" className="he-abf7b48b8">
+<Image src={homeVideos.documentary.poster} alt="" fill sizes="(max-width: 900px) 100vw, 50vw" className="he-documentary-poster" />
+<span className="he-documentary-shade" aria-hidden="true" />
 <div className="he-b3f106d02">
 {"DOCUMENTAL"}
 </div>
