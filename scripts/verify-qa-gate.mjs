@@ -29,6 +29,7 @@ await withServer({},3169,async(request,base)=>{
     const response=await request(path);assert.equal(response.status,303,path);assert.ok(response.headers.get('location').includes('/qa-access?next='));
   }
   assert.equal((await request('/api/education/access')).status,401);
+  assert.equal((await request('/api/qa-media/introduction',{headers:{Range:'bytes=0-1'}})).status,401);
   assert.equal((await request('/_next/static/test.js')).status,401);
   assert.equal((await request('/portal',{headers:{RSC:'1'}})).status,303);
   assert.equal((await request('/',{headers:{Cookie:'__Host-qa-access=forged'}})).status,303);

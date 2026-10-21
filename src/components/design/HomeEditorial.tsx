@@ -1,3 +1,5 @@
+import VideoDialog from './VideoDialog';
+import { homeVideos } from '@/config/home-videos';
 import Link from "next/link";
 import { PhilosophersVideo, TutorialVideoButton } from "./HomepageVideos";
 
@@ -346,16 +348,16 @@ export default function HomeEditorial() { return <div className="editorial">
 <p className="he-42c9249ac">
 {"Conoce Parque Cancún, sus Jardines y sus conclusiones. Tú decides cuándo y cómo verlo."}
 </p>
-<a href="#s4" className="he-ff88883eb he-row">
+<VideoDialog videoId={homeVideos.documentary.youtubeId} title="Documental completo · Parque Cancún" className="he-ff88883eb he-row">
 <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
 <path d="M8 5v14l11-7z" fill="currentColor">
 
 </path>
 </svg>
 {"\nVer documental completo"}
-</a>
+</VideoDialog>
 </div>
-<Link href="/medios?tab=videos" aria-label="Reproducir el documental de Parque Cancún" className="he-abf7b48b8">
+<VideoDialog videoId={homeVideos.documentary.youtubeId} title="Documental completo · Parque Cancún" aria-label="Reproducir el documental de Parque Cancún" className="he-abf7b48b8">
 <div className="he-b3f106d02">
 {"DOCUMENTAL"}
 </div>
@@ -374,7 +376,7 @@ export default function HomeEditorial() { return <div className="editorial">
 {"TUYO · MÍO · NUESTRO"}
 </span>
 </div>
-</Link>
+</VideoDialog>
 </section>
 <section id="s5" className="he-0ee09cc2f he-row">
 <div className="he-c2365a66f he-sized">
