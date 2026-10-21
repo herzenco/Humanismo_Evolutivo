@@ -1,4 +1,4 @@
-import { qaGateResponse, privateQaResponse } from '@/lib/qa-gate-response'
+import { qaGateResponse, privateQaResponse, rememberQaAccess } from '@/lib/qa-gate-response'
 import { qaGateEnabled } from '@/lib/qa-gate'
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
@@ -75,7 +75,7 @@ export async function proxy(request: NextRequest) {
   if (blocked) return blocked
   const authRoute = /^\/(auth|portal|admin)(\/|$)/.test(request.nextUrl.pathname)
   const response = authRoute ? await authProxy(request) : NextResponse.next({ request })
-  return qaGateEnabled() ? privateQaResponse(response) : response
+  return qaGateEnabled() ? rememberQaAccess(request, privateQaResponse(response)) : response
 }
 
 // No extension/API exclusions: QA pages, RSC, images and downloads all require access.

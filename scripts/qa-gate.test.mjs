@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { QA_PROJECT_ID, QA_SESSION_SECONDS, qaGateEnabled, qaGateConfig, validQaPassword, createQaSession, validQaSession, qaReturnPath } from '../src/lib/qa-gate.ts';
+import { QA_PROJECT_ID, QA_SESSION_SECONDS, qaGateEnabled, qaGateConfig, validQaPassword, createQaSession, validQaSession, shouldRenewQaSession, qaReturnPath } from '../src/lib/qa-gate.ts';
 
 const config = { passwordHash:createHash('sha256').update('test-only-password').digest('hex'),secret:'test-only-signing-key-with-at-least-32-chars' };
 test('only QA auto-enables the gate; missing QA secrets fail closed',()=>{
@@ -32,4 +32,16 @@ test('sessions reject forgery, expiry, another host and password/secret rotation
 test('return paths cannot redirect to an external site or back to the gate',()=>{
   assert.equal(qaReturnPath('/portal?view=library'),'/portal?view=library');
   for(const path of [null,'https://evil.test','//evil.test','/\\evil.test','/qa-access','/a/../qa-access','/\n/evil.test'])assert.equal(qaReturnPath(path),'/');
+});
+
+test('remembered access renews valid legacy sessions but not expired or invalid cookies',()=>{
+ const now=10000000,host='qa.example.test';
+ const fresh=createQaSession(host,config,now);
+ assert.equal(shouldRenewQaSession(fresh,host,config,now),false);
+ assert.equal(shouldRenewQaSession(fresh,host,config,now+86400),true);
+ const old=createQaSession(host,config,now-QA_SESSION_SECONDS+8*3600);
+ assert.equal(shouldRenewQaSession(old,host,config,now),true);
+ assert.equal(shouldRenewQaSession(old,host,config,now+8*3600),false);
+ assert.equal(shouldRenewQaSession(old,'other.example.test',config,now),false);
+ assert.equal(shouldRenewQaSession('forged',host,config,now),false);
 });

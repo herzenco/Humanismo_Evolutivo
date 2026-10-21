@@ -1,7 +1,7 @@
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 
 export const QA_PROJECT_ID = 'prj_54xZriv1qBcJTuNqy8nLoSSB04u1';
-export const QA_SESSION_SECONDS = 8 * 60 * 60;
+export const QA_SESSION_SECONDS = 30 * 24 * 60 * 60;
 export const QA_COOKIE = '__Host-qa-access';
 export type QaGateConfig = { passwordHash: string; secret: string };
 
@@ -49,4 +49,9 @@ export function qaReturnPath(value: string | null) {
   const url = new URL(value, 'https://qa.invalid');
   if (url.origin !== 'https://qa.invalid' || url.pathname.startsWith('/qa-access')) return '/';
   return `${url.pathname}${url.search}`;
+}
+
+export function shouldRenewQaSession(token: string | undefined, host: string, config: QaGateConfig, now = Math.floor(Date.now() / 1000)) {
+  return validQaSession(token, host, config, now) &&
+    Number(token!.split('.')[0]) <= now + QA_SESSION_SECONDS - 24 * 60 * 60;
 }
