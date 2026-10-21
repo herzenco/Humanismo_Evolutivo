@@ -6,7 +6,7 @@ export const homeVideos = {
     poster: '/api/qa-media/introduction-poster',
     durationSeconds: 186.1,
   },
-  documentary: { youtubeId: 'FbRIey3dFwA' },
+  documentary: { youtubeId: 'FbRIey3dFwA', poster: '/design/documentary-parque-cancun.jpg' },
 } as const;
 
 // Exact allowlist: clients cannot choose arbitrary blob paths or URLs.
