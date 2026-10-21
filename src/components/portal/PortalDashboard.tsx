@@ -4,19 +4,20 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import CourseCatalog from './CourseCatalog';
 import PortalCalendar from './PortalCalendar';
-import { portalCourses, portalClasses } from '@/data/portal';
+import { portalClasses } from '@/data/portal';
 import type { EducationContext } from '@/lib/education/contracts';
 import PortalSchools from './PortalSchools';
 import PortalRolePreview, { createDemoEducation } from './PortalRolePreview';
 import { portalRole, portalRoleSuffix, type PortalRole } from '@/lib/portal-role';
 import type { ResourceArticle } from '@/data/resources';
-import { ArrowLeft, ArrowRight, CalendarDays, GraduationCap, Leaf, Library, LogOut, Menu, X } from 'lucide-react';
+import { ArrowLeft, CalendarDays, GraduationCap, Leaf, Library, LogOut, Menu, X } from 'lucide-react';
 
 const PortalLibrary = dynamic(() => import('./PortalLibrary'), { loading: () => <p role="status">Cargando biblioteca…</p> });
 
 type View = 'courses' | 'library' | 'calendar' | 'school';
-export default function PortalDashboard({ firstName, email, articles, educationContext, rolePreviewEnabled = false }: { firstName: string; email?: string; articles: ResourceArticle[]; educationContext?: EducationContext | null; rolePreviewEnabled?: boolean }) {
+export default function PortalDashboard({ firstName, email, articles, educationContext, rolePreviewEnabled = false, courseWorkspace }: { firstName: string; email?: string; articles: ResourceArticle[]; educationContext?: EducationContext | null; rolePreviewEnabled?: boolean; courseWorkspace?: React.ReactNode }) {
   const params = useSearchParams();
   const router = useRouter();
   const role = portalRole(params.get('role'), rolePreviewEnabled);
@@ -29,8 +30,6 @@ export default function PortalDashboard({ firstName, email, articles, educationC
   const view: View = selectedView === 'library' || selectedView === 'calendar' || (selectedView === 'school' && (educationContext || role !== 'student')) ? selectedView : 'courses';
   const [menu, setMenu] = useState(false);
   const title = view === 'courses' ? 'Mis cursos' : view === 'library' ? 'Biblioteca' : view === 'school' ? role === 'admin' ? 'Administración educativa' : role === 'teacher' ? 'Mi escuela y estudiantes' : 'Mis escuelas' : 'Calendario';
-  const course = portalCourses.find(item => item.id === params.get('course'));
-  const lesson = course?.lessons.find(item => item.id === params.get('lesson'));
   const navigate = (next: View) => { router.push(`/portal?view=${next}${roleSuffix}`); setMenu(false); };
   return <div className="portal-app">
     <aside className={`portal-sidebar ${menu ? 'portal-sidebar-open' : ''}`}>
@@ -43,13 +42,7 @@ export default function PortalDashboard({ firstName, email, articles, educationC
       <main className={`portal-main ${view === 'calendar' ? 'portal-main-calendar' : ''}`} id="contenido-principal">
         {rolePreviewEnabled ? <div className="portal-role-navigation"><div role="group" aria-label="Vista del portal por rol">{([{id:'student',label:'Estudiante'},{id:'teacher',label:'Maestro'},{id:'admin',label:'Administrador'}] as const).map(tab=><button key={tab.id} type="button" aria-pressed={role===tab.id} onClick={()=>changeRole(tab.id)}>{tab.label}</button>)}</div><p>{role!=='student'&&!hasRealRole ? 'Vista de demostración con datos de ejemplo. Cambiar de vista no modifica los permisos de tu cuenta.' : 'Los permisos de tu cuenta se verifican en el servidor.'}</p></div> : null}
         <div className="portal-welcome"><span className="design-eyebrow">TU ESPACIO PARA EVOLUCIONAR</span><h1>{title}</h1><p>{view === 'courses' ? 'Explora todos los cursos disponibles y elige tu próximo paso de aprendizaje.' : view === 'library' ? 'Explora las lecturas, reflexiones y conversaciones de Humanismo Evolutivo.' : view === 'school' ? 'Tu comunidad, tus escuelas y el aprendizaje compartido.' : 'Consulta todas las clases programadas en vista de calendario o lista.'}</p></div>
-        {view === 'courses' ? <section aria-labelledby="courses-title">
-          <div className="portal-section-heading"><h2 id="courses-title">{course ? course.title : 'Todos los cursos'}</h2><span>{portalCourses.length} cursos disponibles</span></div>
-          {course ? <div className="portal-reader"><Link href={`/portal?view=courses${roleSuffix}`} className="design-text-link"><ArrowLeft size={17} />Todos los cursos</Link><p>{course.description}</p>{lesson ? <article><h3>{lesson.title}</h3><p>{lesson.text}</p>{lesson.videoUrl ? <video controls preload="none" src={lesson.videoUrl} aria-label={lesson.title} /> : null}<Link href={`/portal?view=courses&course=${encodeURIComponent(course.id)}${roleSuffix}`} className="design-text-link">Volver a las clases</Link></article> : <ol className="portal-lesson-list">{course.lessons.map((item, index) => <li key={item.id}><Link href={`/portal?view=courses&course=${encodeURIComponent(course.id)}&lesson=${encodeURIComponent(item.id)}${roleSuffix}`}><span>{index + 1}</span>{item.title}<ArrowRight size={18} /></Link></li>)}</ol>}</div>
-            : params.get('course') ? <div className="portal-empty"><h3>Curso no disponible</h3><Link href={`/portal?view=courses${roleSuffix}`}>Ver cursos disponibles</Link></div>
-            : portalCourses.length ? <div className="portal-content-grid">{portalCourses.map(item => <article className="portal-content-card" key={item.id}><div><GraduationCap size={32} /><h3>{item.title}</h3><p>{item.description}</p><span>{item.lessons.length} clases</span><Link href={`/portal?view=courses&course=${encodeURIComponent(item.id)}${roleSuffix}`} className="design-text-link">Explorar curso<ArrowRight size={18} /></Link></div></article>)}</div>
-            : <div className="portal-empty"><GraduationCap size={48} strokeWidth={1.2} /><h3>Próximamente, nuevos cursos</h3><p>Aquí encontrarás todas las clases disponibles cuando se publique el catálogo. Mientras tanto, puedes explorar las lecturas y conversaciones de nuestra biblioteca.</p><button type="button" className="design-button" onClick={() => navigate('library')}>Explorar la biblioteca<ArrowRight size={18} /></button></div>}
-        </section> : null}
+        {view === 'courses' ? courseWorkspace || <CourseCatalog /> : null}
         {view === 'library' ? <PortalLibrary key={params.get('category') || 'all'} articles={articles} /> : null}
         {view === 'school' && role !== 'student' && !hasRealRole ? <PortalRolePreview key={role} role={role} data={demoData} setData={setDemoData} /> : view === 'school' && scopedContext ? <PortalSchools key={JSON.stringify(scopedContext)} context={scopedContext} /> : null}
         {view === 'calendar' ? <PortalCalendar sessions={portalClasses} /> : null}

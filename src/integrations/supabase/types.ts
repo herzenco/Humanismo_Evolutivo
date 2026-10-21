@@ -169,6 +169,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      portal_learning_access: {
+        Args: { p_action: string; p_course?: string; p_lesson?: number; p_reflection?: string; p_reviewed?: boolean };
+        Returns: Json;
+      };
       education_qa_access: {
         Args: { p_action: string; p_input?: Json }
         Returns: Json
