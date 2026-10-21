@@ -337,3 +337,10 @@
 
 .home-philosophers-video-ready .he-204b18f8e { width:100%; }
 .home-philosophers-video-ready .he-305e26cca { align-self:flex-start; font-size:30px; color:white; width:min(560px,100%); }
+
+/* Documentary thumbnail with readable labels and a prominent play control. */
+.he-abf7b48b8{position:relative;overflow:hidden;isolation:isolate;cursor:pointer;}
+.he-documentary-poster{object-fit:cover;z-index:-2;}
+.he-documentary-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.08) 45%,rgba(0,0,0,.8));z-index:-1;}
+.he-abf7b48b8 .he-b3f106d02{color:#fff;}
+.he-abf7b48b8:focus-visible{outline:3px solid #173F2C;outline-offset:4px;}
