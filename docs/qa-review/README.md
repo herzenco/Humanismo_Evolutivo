@@ -18,6 +18,8 @@ Rama: `fix/oct20-qa-review`. Base y destino del PR: `dev`, según `AGENTS.md` y 
 
 Se realizó una petición real `auth.signUp` al proyecto compartido `iwtcdjkawcjsxmwhzlot`, con clave pública y un correo único del dominio reservado `example.invalid`. Resultado: sin error, usuario creado y sesión emitida. No requiere escuela. Se creó una identidad de prueba sin destinatario de correo real; no se guardaron contraseña, tokens ni identificador en el repositorio. Esta prueba directa del proveedor no equivale a una prueba integral del formulario desplegado.
 
+Seguimiento con la hora indicada: 20 de octubre, 13:30 de Nueva York (17:30 UTC). Se consultó la ventana 13:15–13:45 y el servicio de logs no devolvió eventos de ninguna fuente. Por tanto, no hay cobertura disponible en esa ventana para confirmar ni descartar el fallo.
+
 La inspección de solo lectura no encontró triggers personalizados en `auth.users`. En los registros disponibles del 20 de octubre (hora de Nueva York) no aparecieron errores de base de datos de Auth/Postgres. Sí apareció un intento de registro repetido (`user_already_exists`), que no demuestra la causa del fallo de la demo. Los registros privados y datos de cuentas no se incluyen aquí.
 
 Defecto independiente confirmado por código: `emailRedirectTo` recibía la raíz, mientras el intercambio PKCE/verificación OTP vive en `/auth/confirm` y `/auth/callback`. Se corrigió el destino. En proyectos con confirmación habilitada hay que permitir la URL de confirmación de QA en la configuración de Auth; no se modificó la configuración compartida.
@@ -64,6 +66,6 @@ Capturas móviles: [números](screenshots/numbers-mobile.png), [preguntas](scree
 2. Entregar/configurar el video resumen de 8 minutos.
 3. Verificar/configurar la URL del documental completo de 47 minutos.
 4. Entregar los videos de las preguntas 26–51.
-5. Obtener la hora y error/request ID del fallo de registro original si vuelve a ocurrir; contrastarlo con los nuevos códigos de diagnóstico. No hay una causa de base de datos demostrada ni un cambio de esquema justificado por la evidencia actual.
+5. Obtener el texto exacto o request ID del fallo de registro original si vuelve a ocurrir (hora indicada: 13:30); contrastarlo con los nuevos códigos de diagnóstico. No hay una causa de base de datos demostrada ni un cambio de esquema justificado por la evidencia actual.
 6. Definir los permisos de `escuela`, activar la infraestructura de escuelas en el entorno aprobado y verificar los roles con cuentas de prueba de cada alcance.
 7. Revisar la publicación del catálogo de cursos del portal y su correspondencia con la portada.
