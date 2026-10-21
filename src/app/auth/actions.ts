@@ -1,5 +1,6 @@
 'use server'
 
+import { registerAccount } from '@/lib/register-account'
 import { headers } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -141,20 +142,11 @@ export async function signUpAction(
     const origin = await getSiteOrigin()
 
     const supabase = await createClient()
-    const { data, error } = await supabase.auth.signUp({
-      email: parsed.data.email,
-      password: parsed.data.password,
-      options: {
-        emailRedirectTo: origin,
-        data: {
-          first_name: parsed.data.firstName,
-          last_name: parsed.data.lastName,
-          full_name: `${parsed.data.firstName} ${parsed.data.lastName}`,
-        },
-      },
-    })
+    const { data, error } = await registerAccount(supabase.auth, parsed.data, origin, next)
 
     if (error) {
+      // Codes only: never log credentials, email, metadata, or Auth response bodies.
+      console.error('portal_signup_failed', { code: error.code, status: error.status })
       return { status: 'error', message: authErrorMessage(error), values }
     }
 

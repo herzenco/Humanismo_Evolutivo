@@ -1,25 +1,22 @@
 import { PlayCircle } from 'lucide-react';
 import VideoDialog from './VideoDialog';
 
-// The tutorial is pending; the introduction video belongs in the philosophers section.
-const homepageVideos: { tutorial: string | null } = {
-  tutorial: null,
-};
+import { homepageVideos } from '@/config/videos';
 
 export function TutorialVideoButton() {
-  if (homepageVideos.tutorial) {
-    return <VideoDialog videoId={homepageVideos.tutorial} title="Descubre todo su contenido" className="home-tutorial-button"><PlayCircle size={20} />Descubre todo su contenido</VideoDialog>;
+  if (homepageVideos.overview.youtubeId) {
+    return <VideoDialog videoId={homepageVideos.overview.youtubeId} title="Descubre todo su contenido" className="home-tutorial-button"><PlayCircle size={20} />Descubre todo su contenido</VideoDialog>;
   }
 
   return <div className="home-tutorial">
     <button type="button" className="home-tutorial-button" disabled aria-describedby="tutorial-video-status"><PlayCircle size={20} />Descubre todo su contenido</button>
-    <p id="tutorial-video-status" className="home-video-status">Video tutorial · Próximamente</p>
+    <p id="tutorial-video-status" className="home-video-status">Resumen · 8 minutos · Próximamente</p>
   </div>;
 }
 
 export function PhilosophersVideo() {
-  return (<VideoDialog aria-label="Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal" videoId="5rmKRNZbmoQ" title="Introducción al Humanismo Evolutivo" className="he-60b095486 home-philosophers-video home-philosophers-video-ready">
-<img className="introduction-video-thumbnail" src="https://i.ytimg.com/vi/5rmKRNZbmoQ/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
+  return (<VideoDialog aria-label="Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal" videoId={homepageVideos.philosophers.youtubeId} title="Introducción al Humanismo Evolutivo" className="he-60b095486 home-philosophers-video home-philosophers-video-ready">
+<img className="introduction-video-thumbnail" src={`https://i.ytimg.com/vi/${homepageVideos.philosophers.youtubeId}/maxresdefault.jpg`} alt="" width="1280" height="720" loading="lazy" />
 <div className="he-204b18f8e he-row">
 <span className="he-7cde224f7">
 {"PRESENTACIÓN INTRODUCTORIA"}
@@ -44,4 +41,11 @@ export function PhilosophersVideo() {
 {"Introducción a la filosofía del Humanismo Evolutivo Transpersonal"}
 </span>
 </VideoDialog>);
+}
+
+export function DocumentaryVideo() {
+  const video = homepageVideos.documentary;
+  return <div className="home-documentary-video">
+    {video.youtubeId ? <VideoDialog videoId={video.youtubeId} title="Documental completo · 47 minutos" className="home-tutorial-button"><PlayCircle size={24} />Ver documental completo · 47 minutos</VideoDialog> : <><button type="button" className="home-tutorial-button" disabled aria-describedby="documentary-status"><PlayCircle size={24} />Documental completo · 47 minutos</button><p id="documentary-status">Próximamente</p></>}
+  </div>;
 }

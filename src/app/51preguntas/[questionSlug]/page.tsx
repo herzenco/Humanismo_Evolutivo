@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: question.title,
     description: question.description,
+    keywords: [question.title, `Pregunta ${question.number}`, 'Humanismo Evolutivo', 'Marcos Constandse', 'filosofía', 'conciencia'],
     alternates: { canonical },
     robots: { index: true, follow: true },
     openGraph: { type: 'article', title: question.title, description: question.description, url: canonical, ...(question.publishedAt ? { publishedTime: question.publishedAt } : {}), ...(question.updatedAt ? { modifiedTime: question.updatedAt } : {}) },

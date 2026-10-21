@@ -54,7 +54,7 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
       <section className="design-auth-section">
         <div className="design-auth-layout">
           <div className="design-auth-intro"><span className="design-eyebrow">PORTAL EDUCATIVO</span><h1>Un espacio para <em>seguir evolucionando</em></h1><p>La conciencia crece cuando compartimos el conocimiento. Entra a tu espacio de aprendizaje y continúa el camino.</p><div className="design-auth-benefits"><p><BookOpenCheck size={22} />Explora nuevas perspectivas</p><p><LibraryBig size={22} />Todo tu aprendizaje en un lugar</p><p><Sparkles size={22} />A tu propio ritmo</p></div></div>
-          <div className="design-auth-card"><span className="design-eyebrow">BIENVENIDO A TU ESPACIO</span><h2>{defaultMode === 'signup' ? 'Crea tu cuenta' : 'Nos alegra verte aquí'}</h2><p>Comienza o continúa tu camino de aprendizaje.</p><AuthForms configured={isSupabaseConfigured} defaultMode={defaultMode} next={next} pageMessage={pageMessage} /></div>
+          <div className="design-auth-card"><span className="design-eyebrow">BIENVENIDO A TU ESPACIO</span><h2>{defaultMode === 'signup' ? 'Crea tu cuenta' : 'Nos alegra verte aquí'}</h2><p>Comienza o continúa tu camino de aprendizaje. Puedes unirte a Amigos que Evolucionan sin pertenecer a una escuela.</p><AuthForms configured={isSupabaseConfigured} defaultMode={defaultMode} next={next} pageMessage={pageMessage} /></div>
         </div>
       </section>
     </PageWrapper>

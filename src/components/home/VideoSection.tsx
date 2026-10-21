@@ -1,5 +1,7 @@
 "use client";
 
+import { homepageVideos } from '@/config/videos';
+
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -12,7 +14,7 @@ const VideoSection = () => {
     amount: 0.3
   });
 
-  const featuredVideoUrl = 'https://www.youtube.com/embed/5rmKRNZbmoQ?rel=0';
+  const featuredVideoUrl = `https://www.youtube.com/embed/${homepageVideos.philosophers.youtubeId}?rel=0`;
 
   const videoConfig = {
     es: {
