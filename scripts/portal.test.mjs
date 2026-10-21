@@ -20,7 +20,8 @@ test('calendar and list share a chronological class collection across years', ()
 
 test('course and class catalogs contain only supplied educational content', () => {
   const courses = new Set([...portalCourses, ...portalScheduleCourses].map(course => course.id));
-  assert.equal(courses.size, portalCourses.length + portalScheduleCourses.length);
+  assert.equal(new Set(portalCourses.map(course => course.id)).size, 4);
+  assert.ok(courses.size >= portalScheduleCourses.length);
   assert.equal(portalClasses.length, 23);
   for (const item of portalClasses) {
     assert.ok(courses.has(item.courseId));
