@@ -6,7 +6,7 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import QuestionStructuredData from '@/components/questions/QuestionStructuredData';
 import QuestionVideoPlayer from '@/components/questions/QuestionVideoPlayer';
 import QuestionText from '@/components/questions/QuestionText';
-import { publishedQuestions, questionBySlug, questionPath, questionsCanonicalOrigin } from '@/data/questions';
+import { questionKeywords, publishedQuestions, questionBySlug, questionPath, questionsCanonicalOrigin } from '@/data/questions';
 
 type Props = { params: Promise<{ questionSlug: string }> };
 
@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: question.title,
     description: question.description,
+    keywords: questionKeywords(question),
     alternates: { canonical },
-    robots: { index: true, follow: true },
     openGraph: { type: 'article', title: question.title, description: question.description, url: canonical, ...(question.publishedAt ? { publishedTime: question.publishedAt } : {}), ...(question.updatedAt ? { modifiedTime: question.updatedAt } : {}) },
   };
 }

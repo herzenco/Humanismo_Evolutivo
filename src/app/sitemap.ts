@@ -6,7 +6,7 @@ import { resourceArticles } from '@/data/resources'
 import { publishedQuestions, questionPath, questionsCanonicalOrigin } from '@/data/questions'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = (process.env.SITE_URL || 'https://yosoynosotros.org').replace(/\/$/, '')
+  const baseUrl = 'https://humanismoevolutivo.com'
 
   // Static pages
   const staticPages = [
@@ -18,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/resources',
     '/contacto',
     '/vision',
-    '/chatbot',
     '/privacidad',
     '/terminos',
   ].map(route => ({

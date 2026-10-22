@@ -1,12 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { portalRole, portalRoleSuffix } from '../src/lib/portal-role.ts';
-test('role query cannot enable previews where server disables them', () => {
-  for (const role of ['admin', 'teacher', 'student', null, 'owner']) assert.equal(portalRole(role, false), 'student');
-  assert.equal(portalRole('admin', true), 'admin');
-  assert.equal(portalRole('teacher', true), 'teacher');
-  assert.equal(portalRole('owner', true), 'student');
-  assert.equal(portalRoleSuffix('admin'), '&role=admin');
-  assert.equal(portalRoleSuffix('teacher'), '&role=teacher');
-  assert.equal(portalRoleSuffix('admin&view=school'), '');
+import { availablePortalRoles, portalRole, portalRoleSuffix } from '../src/lib/portal-role.ts';
+test('query parameters cannot grant teacher, school or admin access',()=>{
+ for(const value of ['teacher','school','admin','owner',null]) assert.equal(portalRole(value,availablePortalRoles(null)),'student');
+ const context={isPlatformAdmin:false,memberships:[{role:'school',status:'active',schoolStatus:'active'}]};
+ assert.deepEqual(availablePortalRoles(context),['student','school']);
+ assert.equal(portalRole('admin',availablePortalRoles(context)),'school');
+ assert.equal(portalRole('school',availablePortalRoles(context)),'school');
+ assert.deepEqual(availablePortalRoles({...context,memberships:[{role:'school',status:'suspended',schoolStatus:'active'}]}),['student']);
+ assert.deepEqual(availablePortalRoles({isPlatformAdmin:true,memberships:[]}),['student','admin']);
+ assert.equal(portalRoleSuffix('school'),'&role=school');
+ assert.equal(portalRoleSuffix('owner'),'');
 });

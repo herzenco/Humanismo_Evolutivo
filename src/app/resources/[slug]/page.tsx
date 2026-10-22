@@ -37,10 +37,10 @@ export async function generateMetadata({
   return {
     title: { absolute: article.seoTitle },
     description: article.seoDescription,
-    alternates: { canonical: article.canonicalUrl },
+    alternates: { canonical: `https://humanismoevolutivo.com/resources/${article.slug}/` },
     openGraph: {
       type: "article",
-      url: article.canonicalUrl,
+      url: `https://humanismoevolutivo.com/resources/${article.slug}/`,
       title: article.seoTitle,
       description: article.seoDescription,
       publishedTime: article.publishedAt,
@@ -73,8 +73,8 @@ export default async function ResourceArticlePage({
     description: article.seoDescription,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
-    mainEntityOfPage: article.canonicalUrl,
-    url: article.canonicalUrl,
+    mainEntityOfPage: `https://humanismoevolutivo.com/resources/${article.slug}/`,
+    url: `https://humanismoevolutivo.com/resources/${article.slug}/`,
     author: {
       "@type": article.author === "Humanismo Evolutivo" ? "Organization" : "Person",
       name: article.author,
@@ -82,7 +82,7 @@ export default async function ResourceArticlePage({
     publisher: {
       "@type": "Organization",
       name: "Fundación Humanismo Evolutivo",
-      url: (process.env.SITE_URL || "https://yosoynosotros.org").replace(/\/$/, ""),
+      url: 'https://humanismoevolutivo.com',
     },
     ...(article.heroImageUrl ? { image: article.heroImageUrl } : {}),
   };

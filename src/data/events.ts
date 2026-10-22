@@ -22,12 +22,12 @@ export const events: Event[] = [
     date: '2025-10-28',
     location: 'Cancún, Quintana Roo',
     videoUrl: 'https://youtu.be/HLHjY3NnX2k',
-    imageUrl: '/lovable-uploads/bd0dec77-828d-40b0-8bcc-30690a3a1fb3.png',
+    imageUrl: '/lovable-uploads/bd0dec77-828d-40b0-8bcc-30690a3a1fb3.webp',
     categoryKey: 'event.category.conference',
     gallery: [
-      '/lovable-uploads/smge-2025-gallery-1.jpeg',
-      '/lovable-uploads/smge-2025-gallery-2.jpeg',
-      '/lovable-uploads/smge-2025-gallery-3.jpeg'
+      '/lovable-uploads/smge-2025-gallery-1.webp',
+      '/lovable-uploads/smge-2025-gallery-2.webp',
+      '/lovable-uploads/smge-2025-gallery-3.webp'
     ],
     sections: [
       {
@@ -50,15 +50,15 @@ export const events: Event[] = [
     descriptionKey: 'event.paz.description',
     date: '2025-09-18',
     location: 'Cancún, Quintana Roo',
-    imageUrl: '/lovable-uploads/conferencia-paz-2025-4.jpeg',
+    imageUrl: '/lovable-uploads/conferencia-paz-2025-4.webp',
     categoryKey: 'event.category.conference',
     gallery: [
-      '/lovable-uploads/conferencia-paz-2025-1.jpeg',
-      '/lovable-uploads/conferencia-paz-2025-3.jpeg',
-      '/lovable-uploads/conferencia-paz-2025-4.jpeg',
-      '/lovable-uploads/conferencia-paz-2025-5.jpeg',
-      '/lovable-uploads/conferencia-paz-2025-6.jpeg',
-      '/lovable-uploads/conferencia-paz-2025-7.jpeg'
+      '/lovable-uploads/conferencia-paz-2025-1.webp',
+      '/lovable-uploads/conferencia-paz-2025-3.webp',
+      '/lovable-uploads/conferencia-paz-2025-4.webp',
+      '/lovable-uploads/conferencia-paz-2025-5.webp',
+      '/lovable-uploads/conferencia-paz-2025-6.webp',
+      '/lovable-uploads/conferencia-paz-2025-7.webp'
     ],
     sections: [
       {

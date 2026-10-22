@@ -29,11 +29,12 @@ export default function HomeEditorial() { return <div className="editorial">
 <Link href="/autor" prefetch={false} className="he-b9cc09976 he-row">
 {"Sobre el autor"}
 </Link>
+<VideoDialog videoSrc={homeVideos.introduction.src} poster={homeVideos.introduction.poster} title="Introducción a Parque Cancún" className="design-button design-button-outline">Ver de nuevo la introducción</VideoDialog>
 </div>
 </div>
 <figure className="he-c6c41e2c2 he-sized">
 <div className="he-b64348458">
-<img src="/design/d9ef2c3feb3964e9f2f4951421e08277.jpg" alt="Marcos Constandse Madrazo sentado en su oficina, frente a un muro de fotografías de los parques de Xcaret" fetchPriority="high" className="he-6e3379ba7" />
+<img width="1200" height="800" src="/design/d9ef2c3feb3964e9f2f4951421e08277.webp" alt="Marcos Constandse Madrazo sentado en su oficina, frente a un muro de fotografías de los parques de Xcaret" fetchPriority="high" className="he-6e3379ba7" />
 </div>
 <figcaption className="he-9061e6128">
 {"MARCOS CONSTANDSE MADRAZO"}
@@ -49,7 +50,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 <ol aria-label="Los 8 contenidos" className="home-content-buttons">
 {[
-  ['s1', 'Conozca a los tres filósofos'],
+  ['s1', 'Conoce a los tres filósofos'],
   ['s2', 'Las grandes preguntas'],
   ['s3', 'Un camino a través de los jardines'],
   ['s4', 'Documental completo'],
@@ -63,7 +64,7 @@ export default function HomeEditorial() { return <div className="editorial">
 <section id="sobre-el-autor" aria-labelledby="about-title" className="he-af688e964 he-row">
 <figure className="home-author-portrait">
 <div className="home-author-portrait-frame">
-<img src="/design/d0c13d41b6fee9d4b2f4174db365259c.jpg" alt="Marcos Constandse Madrazo, sonriente, en su escritorio" loading="lazy" className="he-8f6f0f1a2" />
+<img width="1200" height="850" src="/design/d0c13d41b6fee9d4b2f4174db365259c.webp" alt="Marcos Constandse Madrazo, sonriente, en su escritorio" loading="lazy" className="he-8f6f0f1a2" />
 </div>
 </figure>
 <div className="he-3c083ca55">
@@ -131,7 +132,7 @@ export default function HomeEditorial() { return <div className="editorial">
 {"1"}
 </span>
 <h2 className="he-22e182e34 he-h2">
-{"Conozca a los tres filósofos"}
+{"Conoce a los tres filósofos"}
 </h2>
 </div>
 <p className="he-42c9249ac">
@@ -151,7 +152,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 <div className="he-400621ff7 he-grid">
 <div className="he-a1beba773">
-<img src="/design/e9d8b6dd9b5bae33ad53213e7108d372.jpg" alt="Ilustración de Sócrates" loading="lazy" className="he-77cc1379b he-sized" />
+<img width="165" height="165" src="/design/e9d8b6dd9b5bae33ad53213e7108d372.jpg" alt="Ilustración de Sócrates" loading="lazy" className="he-77cc1379b he-sized" />
 <div className="he-5836052f4">
 {"Sócrates"}
 </div>
@@ -160,7 +161,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 </div>
 <div className="he-a1beba773">
-<img src="/design/0a1d8b321a8a134ffb37fad57897d60e.jpg" alt="Ilustración de Platón" loading="lazy" className="he-77cc1379b he-sized" />
+<img width="165" height="165" src="/design/0a1d8b321a8a134ffb37fad57897d60e.jpg" alt="Ilustración de Platón" loading="lazy" className="he-77cc1379b he-sized" />
 <div className="he-5836052f4">
 {"Platón"}
 </div>
@@ -169,7 +170,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 </div>
 <div className="he-a1beba773">
-<img src="/design/e328f548b774f58907e42fe156bd5276.jpg" alt="Ilustración de Aristóteles" loading="lazy" className="he-77cc1379b he-sized" />
+<img width="165" height="165" src="/design/e328f548b774f58907e42fe156bd5276.jpg" alt="Ilustración de Aristóteles" loading="lazy" className="he-77cc1379b he-sized" />
 <div className="he-5836052f4">
 {"Aristóteles"}
 </div>
@@ -191,12 +192,12 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 <div className="he-f97962489 he-grid home-great-questions">
 <article aria-labelledby="question-origin">
-<img src="/design/17d4f7daf232ea4fbcaa033a26207ca3.jpg" alt="¿De dónde venimos? Preguntar es el inicio del conocimiento. El Jardín de la Evolución." loading="lazy" className="he-0ded6cc87" />
+<img width="1200" height="781" src="/design/17d4f7daf232ea4fbcaa033a26207ca3.webp" alt="¿De dónde venimos? Preguntar es el inicio del conocimiento. El Jardín de la Evolución." loading="lazy" className="he-0ded6cc87" />
 <h3 id="question-origin">¿De dónde venimos?</h3>
 <p>Venimos del Big Bang, el origen del universo, hace unos 13,800 millones de años. Para el Humanismo Evolutivo, aquellas primeras partículas ya llevaban información, y esa información fue organizando la materia, la vida y la conciencia. Literalmente, “somos polvo de estrellas” que ha aprendido a darse cuenta de sí mismo.</p>
 </article>
 <article aria-labelledby="question-evolution">
-<img src="/design/04392e0cfc55badb8bb441819c60883b.jpg" alt="¿Hacia dónde podemos evolucionar? Conocer · Comprender · Transformar · Evolucionar." loading="lazy" className="he-3667c6366" />
+<img width="1200" height="800" src="/design/04392e0cfc55badb8bb441819c60883b.webp" alt="¿Hacia dónde podemos evolucionar? Conocer · Comprender · Transformar · Evolucionar." loading="lazy" className="he-3667c6366" />
 <h3 id="question-evolution">¿Hacia dónde podemos evolucionar?</h3>
 <p>Hacia el espíritu. En el Humanismo Evolutivo, el espíritu no es un fantasma ni un dogma: es lo que nos hace “como yo”, es decir, la conciencia, la libertad y el reconocimiento del otro como igual. Evolucionar es elevar nuestro nivel de conciencia hasta vivir lo que Lolo llama “yo soy nosotros”.</p>
 </article>
@@ -221,7 +222,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 <article className="he-aba102a70 he-row">
 <div className="he-21067afe7 he-sized">
-<img src="/design/ed9c86fd90f33e7d1ba2e1287ad8bcb6.jpg" alt="Mosaicos del Jardín de la Evolución" loading="lazy" className="he-84253380f he-sized" />
+<img width="390" height="194" src="/design/ed9c86fd90f33e7d1ba2e1287ad8bcb6.jpg" alt="Mosaicos del Jardín de la Evolución" loading="lazy" className="he-84253380f he-sized" />
 <div className="he-9782dec4a">
 {"JARDÍN DE LA EVOLUCIÓN"}
 </div>
@@ -239,7 +240,7 @@ export default function HomeEditorial() { return <div className="editorial">
 {" del jardín de la evolución simbolizan los procesos más importantes, científicamente comprobados, del proceso evolutivo del universo, referido a los tiempos en que se llevaron a cabo."}
 </li>
 <li className="he-33b6c86b7">
-{"Por los tiempos evolutivos, una vez formado el cerebro humano del Homo Sapiens Sapiens (hace 300,000 años), a través de millones de años, la conclusión es, que todos los seres humanos tenemos el mismo número de neuronas, o sea, al nacer somos “potencialmente iguales”."}
+{"El Homo sapiens surgió hace unos 300,000 años. Compartimos un origen evolutivo y una dignidad común; las oportunidades de desarrollar nuestras capacidades dependen también de nuestras condiciones de vida."}
 </li>
 <li className="he-33b6c86b7">
 {"Tenemos el "}
@@ -251,12 +252,12 @@ export default function HomeEditorial() { return <div className="editorial">
 <li className="he-33b6c86b7">
 {"Tenemos la "}
 <strong>
-{"misma ancestro"}
+{"misma ancestra"}
 </strong>
 {", que fue la primera mujer Homo Sapiens Sapiens."}
 </li>
 <li className="he-33b6c86b7">
-{"Son las diferentes condiciones socioeconómico y ambientales lo que marca nuestras diversas “visiones del mundo” y capacidades. Por lo tanto, el esfuerzo humano se deben canalizar (para lograr el mayor grado de igualdades) las condiciones de inicio y desarrollo de nuestra conciencia y nuestras capacidades, y aplicarlas en nuestro "}
+{"Son las diferentes condiciones socioeconómicas y ambientales lo que marca nuestras diversas “visiones del mundo” y capacidades. Por lo tanto, el esfuerzo humano se debe canalizar hacia la mejora de las condiciones de inicio y desarrollo de nuestra conciencia y nuestras capacidades, para lograr una mayor igualdad y aplicarlas en nuestro "}
 <strong>
 {"trabajo"}
 </strong>
@@ -302,7 +303,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </ul>
 </div>
 <div className="he-21067afe7 he-sized">
-<img src="/design/e4ac4e8708df48eeccff81d2686c6998.jpg" alt="Esculturas del Jardín de la Meditación" loading="lazy" className="he-e8eda883c he-sized" />
+<img width="370" height="160" src="/design/e4ac4e8708df48eeccff81d2686c6998.jpg" alt="Esculturas del Jardín de la Meditación" loading="lazy" className="he-e8eda883c he-sized" />
 <div className="he-9782dec4a">
 {"JARDÍN DE LA MEDITACIÓN"}
 </div>
@@ -310,7 +311,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </article>
 <article className="he-aba102a70 he-row">
 <div className="he-21067afe7 he-sized">
-<img src="/design/26992f25dd3efc30930eb809112915c2.jpg" alt="Edificio del Jardín de la Filosofía" loading="lazy" className="he-21b002869 he-sized" />
+<img width="390" height="156" src="/design/26992f25dd3efc30930eb809112915c2.jpg" alt="Edificio del Jardín de la Filosofía" loading="lazy" className="he-21b002869 he-sized" />
 <div className="he-9782dec4a">
 {"JARDÍN DE LA FILOSOFÍA"}
 </div>
@@ -320,11 +321,11 @@ export default function HomeEditorial() { return <div className="editorial">
 {"El Jardín de la Filosofía"}
 </h3>
 <p className="he-9645b261d">
-{"Este jardín está diseñado para que aquellos que decidan "}
+{"Este jardín acompaña a quienes deciden "}
 <strong>
 {"profundizar"}
 </strong>
-{" más en "}
+{" en el "}
 <strong>
 {"conocimiento"}
 </strong>
@@ -332,7 +333,7 @@ export default function HomeEditorial() { return <div className="editorial">
 <strong>
 {"“Humanismo Evolutivo”"}
 </strong>
-{", puedan acceder a niveles superiores de conciencia y les sea más accesible la felicidad, la paz interior y la autorrealización."}
+{". Este camino busca ampliar la conciencia y acercarnos a la felicidad, la paz interior y la autorrealización."}
 </p>
 </div>
 </article>
@@ -374,7 +375,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 <div className="he-32bee0594">
 <span className="he-ad30132fc">
-{"Parque-Cancún"}
+{"Parque Cancún"}
 </span>
 <span className="he-196e7ed56">
 {"TUYO · MÍO · NUESTRO"}
@@ -438,12 +439,12 @@ export default function HomeEditorial() { return <div className="editorial">
 </h2>
 </div>
 <p className="he-42c9249ac">
-{"El humanismo evolutivo es una corriente de pensamiento filosófico que el Ing. Marcos Constandse Madrazo desarrolló, a través de la escritura de seis de sus libros:"}
+{"El humanismo evolutivo es una corriente de pensamiento filosófico que el Ing. Marcos Constandse Madrazo desarrolló, a través de la escritura de cinco de sus libros:"}
 </p>
 </div>
 <div className="he-a9bef34c5 he-grid">
 <div className="he-ff96ce4f1 he-row">
-<img src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-211d92610 he-sized" />
+<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-211d92610 he-sized" />
 <div className="he-355eeddb9">
 <span className="he-59f40951f">
 {"I"}
@@ -461,7 +462,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 </div>
 <div className="he-ff96ce4f1 he-row">
-<img src="/design/daba8e942d8f02d4888334c0e1ea21e4.jpg" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-211d92610 he-sized" />
+<img width="531" height="900" src="/design/daba8e942d8f02d4888334c0e1ea21e4.webp" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-211d92610 he-sized" />
 <div className="he-355eeddb9">
 <span className="he-59f40951f">
 {"II"}
@@ -475,7 +476,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 </div>
 <div className="he-ff96ce4f1 he-row">
-<img src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-211d92610 he-sized" />
+<img width="564" height="900" src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-211d92610 he-sized" />
 <div className="he-355eeddb9">
 <span className="he-59f40951f">
 {"III"}
@@ -493,7 +494,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 </div>
 <div className="he-ff96ce4f1 he-row">
-<img src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt="Portada de ¡Y lo mejor aún está por venir!" loading="lazy" className="he-211d92610 he-sized" />
+<img width="564" height="900" src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt="Portada de ¡Y lo mejor aún está por venir!" loading="lazy" className="he-211d92610 he-sized" />
 <div className="he-355eeddb9">
 <span className="he-59f40951f">
 {"IV"}
@@ -507,7 +508,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </div>
 </div>
 <div className="he-ff96ce4f1 he-row">
-<img src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt="Portada de El arte de ser empresario" loading="lazy" className="he-211d92610 he-sized" />
+<img width="542" height="900" src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt="Portada de El arte de ser empresario" loading="lazy" className="he-211d92610 he-sized" />
 <div className="he-355eeddb9">
 <span className="he-59f40951f">
 {"V"}
@@ -520,47 +521,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </p>
 </div>
 </div>
-<div className="he-ff96ce4f1 he-row">
-<div role="img" aria-label="Portada de Humanismo evolutivo" className="he-68882a153 he-sized">
-<span className="he-77c0bef52">
-{"HUMANISMO"}
-<br />
-{"EVOLUTIVO"}
-</span>
-<svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true">
-<circle cx="12" cy="12" r="10" fill="#FFFFFF">
 
-</circle>
-<path d="M12 2A10 10 0 0 0 12 22A5 5 0 0 0 12 12A5 5 0 0 1 12 2Z" fill="#0F2E20">
-
-</path>
-<circle cx="12" cy="17" r="1.5" fill="#FFFFFF">
-
-</circle>
-<circle cx="12" cy="7" r="1.5" fill="#0F2E20">
-
-</circle>
-</svg>
-<span className="he-1e39182c4">
-{"[PORTADA PENDIENTE]"}
-</span>
-</div>
-<div className="he-355eeddb9">
-<span className="he-59f40951f">
-{"VI"}
-</span>
-<h3 className="he-269aa0047 he-h3">
-{"Humanismo evolutivo"}
-</h3>
-<p className="he-d30482db2">
-{"Resumen explicativo de los Jardines de la Evolución, la Meditación y la Filosofía, y define al resumen del "}
-<strong>
-{"“pensamiento del humanismo evolutivo”"}
-</strong>
-{"."}
-</p>
-</div>
-</div>
 </div>
 <div className="he-70d97b874 he-row">
 <p className="he-112d2d8ab">
@@ -591,7 +552,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </p>
 </div>
 <div className="he-76a93d7e8 he-grid">
-<Link href="/" prefetch={false} className="he-a27bfcb8c">
+<Link href="/resources" prefetch={false} className="he-a27bfcb8c">
 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6B45" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <rect x="3" y="4" width="18" height="12" rx="2">
 
@@ -604,54 +565,13 @@ export default function HomeEditorial() { return <div className="editorial">
 </path>
 </svg>
 <span className="he-2ec7ee111">
-{"Página web"}
+{"Recursos"}
 </span>
 <span className="he-6663c68e7">
-{"www.humanismoevolutivo.com"}
+{"Lecturas y reflexiones"}
 </span>
 </Link>
-<Link href="/medios?tab=videos" prefetch={false} className="he-a27bfcb8c">
-<div className="he-b52f768c1 he-row">
-<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8.5a.5.5 0 0 1 .5-.5z">
-
-</path>
-</svg>
-<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<rect x="3" y="3" width="18" height="18" rx="5">
-
-</rect>
-<circle cx="12" cy="12" r="4">
-
-</circle>
-<circle cx="17.5" cy="6.5" r="0.6">
-
-</circle>
-</svg>
-<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5">
-
-</path>
-<path d="M14 3c.5 2.8 2.4 4.6 5 5">
-
-</path>
-</svg>
-<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<rect x="2.5" y="5.5" width="19" height="13" rx="4">
-
-</rect>
-<path d="M10 9.5v5l4.5-2.5z">
-
-</path>
-</svg>
-</div>
-<span className="he-2ec7ee111">
-{"Redes sociales"}
-</span>
-<span className="he-6663c68e7">
-{"@humanismoevolutivo"}
-</span>
-</Link>
+<Link href="/contacto" prefetch={false} className="he-a27bfcb8c"><span className="he-2ec7ee111">Conecta con la comunidad</span><span className="he-6663c68e7">Escríbenos</span></Link>
 <Link href="/medios" prefetch={false} className="he-a27bfcb8c">
 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6B45" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M6 3h9l3 3v15H6z">
@@ -795,7 +715,7 @@ export default function HomeEditorial() { return <div className="editorial">
 <div className="he-3dc4886ab he-grid">
 <article className="he-e480d9a91">
 <div className="he-c6882064a he-row">
-<img src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-bf7ebf40a he-sized" />
+<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-bf7ebf40a he-sized" />
 </div>
 <span className="he-080ac00a5">
 {"I"}
@@ -824,7 +744,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </article>
 <article className="he-bdf5742e3">
 <div className="he-77a465934 he-row">
-<img src="/design/daba8e942d8f02d4888334c0e1ea21e4.jpg" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-2daacf39a he-sized" />
+<img width="531" height="900" src="/design/daba8e942d8f02d4888334c0e1ea21e4.webp" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-2daacf39a he-sized" />
 <div className="he-9808a2141">
 <span className="he-a66a6c63b">
 {"II"}
@@ -855,7 +775,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </article>
 <article className="he-bdf5742e3">
 <div className="he-77a465934 he-row">
-<img src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-2daacf39a he-sized" />
+<img width="564" height="900" src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-2daacf39a he-sized" />
 <div className="he-9808a2141">
 <span className="he-a66a6c63b">
 {"III"}
@@ -885,7 +805,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </article>
 <article className="he-bdf5742e3">
 <div className="he-77a465934 he-row">
-<img src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt="Portada de ¡Y lo mejor aún está por venir!" loading="lazy" className="he-2daacf39a he-sized" />
+<img width="564" height="900" src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt="Portada de ¡Y lo mejor aún está por venir!" loading="lazy" className="he-2daacf39a he-sized" />
 <div className="he-9808a2141">
 <span className="he-a66a6c63b">
 {"IV"}
@@ -912,7 +832,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </article>
 <article className="he-bdf5742e3">
 <div className="he-77a465934 he-row">
-<img src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt="Portada de El arte de ser empresario" loading="lazy" className="he-2daacf39a he-sized" />
+<img width="542" height="900" src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt="Portada de El arte de ser empresario" loading="lazy" className="he-2daacf39a he-sized" />
 <div className="he-9808a2141">
 <span className="he-a66a6c63b">
 {"V"}
@@ -1088,7 +1008,7 @@ export default function HomeEditorial() { return <div className="editorial">
 <div className="he-2e74e6109 he-grid">
 <article className="he-7f09162ce">
 <div className="he-65419438f he-row">
-<img src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-3e3b1c439 he-sized" />
+<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-3e3b1c439 he-sized" />
 <div className="he-9808a2141">
 <h3 className="he-269aa0047 he-h3">
 {"Yo soy nosotros"}
@@ -1116,7 +1036,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </article>
 <article className="he-7f09162ce">
 <div className="he-65419438f he-row">
-<img src="/design/daba8e942d8f02d4888334c0e1ea21e4.jpg" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-3e3b1c439 he-sized" />
+<img width="531" height="900" src="/design/daba8e942d8f02d4888334c0e1ea21e4.webp" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-3e3b1c439 he-sized" />
 <div className="he-9808a2141">
 <h3 className="he-269aa0047 he-h3">
 {"Ecología y espiritualidad"}
@@ -1144,7 +1064,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </article>
 <article className="he-7f09162ce">
 <div className="he-65419438f he-row">
-<img src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-3e3b1c439 he-sized" />
+<img width="564" height="900" src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-3e3b1c439 he-sized" />
 <div className="he-9808a2141">
 <h3 className="he-269aa0047 he-h3">
 {"¡Déjalo ser!"}

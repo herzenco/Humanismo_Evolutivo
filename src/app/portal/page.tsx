@@ -54,5 +54,5 @@ export default async function PortalPage() {
 
   const educationContext = await getEducationContext();
 
-  return <PortalDashboard firstName={firstName} email={claims.email} articles={resourceArticles} educationContext={educationContext} rolePreviewEnabled={process.env.VERCEL_GIT_COMMIT_REF === 'qa' || (process.env.NODE_ENV === 'development' && process.env.PORTAL_ROLE_PREVIEW === 'true')} />;
+  return <PortalDashboard firstName={firstName} email={claims.email} articles={resourceArticles} educationContext={educationContext} />;
 }

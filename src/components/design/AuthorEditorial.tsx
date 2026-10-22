@@ -1,3 +1,5 @@
+import { homeVideos } from '@/config/home-videos';
+import VideoDialog from './VideoDialog';
 import Link from "next/link";
 
 // Ported from the supplied Autor.html; navigation uses application routes.
@@ -13,6 +15,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 <p className="he-cdd721b13 he-sized">
 {"Marcos Constandse une ciencia, espíritu y experiencia para inspirar una vida con conciencia."}
 </p>
+<VideoDialog videoSrc={homeVideos.introduction.src} poster={homeVideos.introduction.poster} title="Introducción a Parque Cancún" className="design-button design-button-gold">Ver de nuevo la introducción</VideoDialog>
 <div className="he-5be33d5bf he-row">
 <span className="he-5aa2d8a88 he-sized">
 
@@ -24,7 +27,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 </div>
 <figure className="he-cccf70b76 he-sized">
 <div className="he-d2590cccf he-sized">
-<img src="/design/d0c13d41b6fee9d4b2f4174db365259c.jpg" alt="Marcos Constandse Madrazo, sonriente, sentado ante su escritorio" loading="lazy" className="he-580cff987" />
+<img width="1200" height="850" src="/design/d0c13d41b6fee9d4b2f4174db365259c.webp" alt="Marcos Constandse Madrazo, sonriente, sentado ante su escritorio" loading="lazy" className="he-580cff987" />
 </div>
 </figure>
 </section>
@@ -93,9 +96,9 @@ export default function AuthorEditorial() { return <div className="editorial">
 </div>
 </div>
 <aside aria-label="Datos destacados" className="he-3c083ca55">
-<img src="/design/d9ef2c3feb3964e9f2f4951421e08277.jpg" alt="Marcos Constandse Madrazo en su oficina, frente a un muro con fotografías de los parques de Grupo Xcaret" loading="lazy" className="he-7e6f498cb he-sized" />
+<img width="1200" height="800" src="/design/d9ef2c3feb3964e9f2f4951421e08277.webp" alt="Marcos Constandse Madrazo en su oficina, frente a un muro con fotografías de los parques de Grupo Xcaret" loading="lazy" className="he-7e6f498cb he-sized" />
 <div className="he-6b1cac51f he-row">
-<img src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-4487acd3f he-sized" />
+<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-4487acd3f he-sized" />
 <div className="he-355eeddb9">
 <div className="he-394c53f26 he-row">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -314,7 +317,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 <p className="he-42c9249ac">
 {"A lo largo de su vida, Marcos Constandse ha recorrido un camino marcado por la búsqueda del conocimiento, la transformación personal y el compromiso con una vida consciente."}
 </p>
-<img src="/design/33d489c55ee203567f4ca5e04dfe647d.jpg" alt="A la izquierda, manos sostienen el libro El arte de ser empresario; a la derecha, Marcos Constandse habla con micrófono ante un librero" loading="lazy" className="he-8b9181b02 he-sized" />
+<img width="820" height="508" src="/design/33d489c55ee203567f4ca5e04dfe647d.jpg" alt="A la izquierda, manos sostienen el libro El arte de ser empresario; a la derecha, Marcos Constandse habla con micrófono ante un librero" loading="lazy" className="he-8b9181b02 he-sized" />
 </div>
 <ol className="he-62b4c79e2">
 <li className="he-6d9debe78 he-row">
@@ -431,7 +434,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 <li>
 <Link href="/libros/yo-soy-nosotros" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {"Yo soy nosotros"}
@@ -441,7 +444,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 <li>
 <Link href="/libros/ecologia-y-espiritualidad" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img src="/design/daba8e942d8f02d4888334c0e1ea21e4.jpg" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="531" height="900" src="/design/daba8e942d8f02d4888334c0e1ea21e4.webp" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {"Ecología y espiritualidad"}
@@ -451,7 +454,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 <li>
 <Link href="/libros/dejalo-ser" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="564" height="900" src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {"¡Déjalo ser!"}
@@ -461,7 +464,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 <li>
 <Link href="/libros/el-arte-de-ser-empresario" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt="Portada de El arte de ser empresario" loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="542" height="900" src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt="Portada de El arte de ser empresario" loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {"El arte de ser empresario"}
@@ -471,7 +474,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 <li>
 <Link href="/libros/lo-mejor-esta-por-venir" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt="Portada de ¡Y lo mejor aún está por venir!" loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="564" height="900" src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt="Portada de ¡Y lo mejor aún está por venir!" loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {"¡Y lo mejor aún está por venir!"}

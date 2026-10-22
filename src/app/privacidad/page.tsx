@@ -15,14 +15,14 @@ const Privacidad = () => {
         >
           {/* Header */}
           <div className="text-center mb-12">
-            <Shield className="w-16 h-16 mx-auto mb-6 text-gold" />
+            <Shield className="w-16 h-16 mx-auto mb-6 text-[#806018]" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Política de Privacidad
             </h1>
             <p className="text-xl text-muted-foreground">
               Fundación Humanismo Evolutivo
             </p>
-            <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-gold">
+            <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-[#806018]">
               Transpersonal
             </p>
             <p className="text-sm text-muted-foreground mt-2">
@@ -33,7 +33,7 @@ const Privacidad = () => {
           {/* Introduction */}
           <div className="prose prose-lg max-w-none mb-12">
             <p className="text-lg leading-relaxed mb-8">
-              En Fundación Humanismo Evolutivo, estamos comprometidos con la protección de los datos personales de nuestros beneficiarios, colaboradores, aliados y visitantes del sitio web www.yosoynosotros.org.
+              En Fundación Humanismo Evolutivo, estamos comprometidos con la protección de los datos personales de nuestros beneficiarios, colaboradores, aliados y visitantes del sitio web humanismoevolutivo.com.
             </p>
             <p className="text-lg leading-relaxed mb-12">
               La presente Política de Privacidad describe cómo recabamos, utilizamos, protegemos y, en su caso, compartimos la información personal que obtenemos a través de este sitio y de otros medios electrónicos relacionados con nuestras actividades.
@@ -45,7 +45,7 @@ const Privacidad = () => {
             {/* Section 1 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">1.</span>
+                <span className="text-[#806018]">1.</span>
                 Datos personales que recabamos
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -65,7 +65,7 @@ const Privacidad = () => {
             {/* Section 2 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">2.</span>
+                <span className="text-[#806018]">2.</span>
                 Finalidades del tratamiento de los datos
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -85,12 +85,12 @@ const Privacidad = () => {
             {/* Section 3 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">3.</span>
+                <span className="text-[#806018]">3.</span>
                 Uso de cookies y tecnologías similares
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
                 <p>
-                  El sitio web yosoynosotros.org utiliza cookies y tecnologías de seguimiento para analizar el tráfico, personalizar contenidos y mejorar la experiencia del usuario.
+                  El sitio web humanismoevolutivo.com utiliza cookies y tecnologías de seguimiento para analizar el tráfico, personalizar contenidos y mejorar la experiencia del usuario.
                 </p>
                 <p>
                   El visitante puede configurar su navegador para rechazar o eliminar cookies; sin embargo, algunas funcionalidades del sitio podrían verse afectadas.
@@ -101,7 +101,7 @@ const Privacidad = () => {
             {/* Section 4 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">4.</span>
+                <span className="text-[#806018]">4.</span>
                 Transferencia y resguardo de la información
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -122,7 +122,7 @@ const Privacidad = () => {
             {/* Section 5 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">5.</span>
+                <span className="text-[#806018]">5.</span>
                 Conservación de los datos
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -138,7 +138,7 @@ const Privacidad = () => {
             {/* Section 6 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">6.</span>
+                <span className="text-[#806018]">6.</span>
                 Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -146,10 +146,10 @@ const Privacidad = () => {
                   El titular de los datos podrá ejercer sus derechos ARCO enviando una solicitud al correo electrónico:
                 </p>
                 <div className="flex items-center gap-2 bg-accent/20 p-4 rounded-lg">
-                  <Mail className="w-5 h-5 text-gold" />
+                  <Mail className="w-5 h-5 text-[#806018]" />
                   <a
                     href="mailto:hello@yosoynosotros.com"
-                    className="text-gold hover:underline font-semibold"
+                    className="text-[#806018] hover:underline font-semibold"
                   >
                     hello@yosoynosotros.com
                   </a>
@@ -169,7 +169,7 @@ const Privacidad = () => {
             {/* Section 7 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">7.</span>
+                <span className="text-[#806018]">7.</span>
                 Revocación del consentimiento y limitación del uso
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -185,7 +185,7 @@ const Privacidad = () => {
             {/* Section 8 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">8.</span>
+                <span className="text-[#806018]">8.</span>
                 Enlaces a sitios externos
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -201,7 +201,7 @@ const Privacidad = () => {
             {/* Section 9 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">9.</span>
+                <span className="text-[#806018]">9.</span>
                 Modificaciones a la Política de Privacidad
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -209,7 +209,7 @@ const Privacidad = () => {
                   La Fundación podrá modificar en cualquier momento esta Política de Privacidad para adaptarla a nuevas disposiciones legales o a cambios en sus prácticas internas.
                 </p>
                 <p>
-                  Las actualizaciones se publicarán en www.yosoynosotros.org con la fecha de última modificación visible en la parte superior del documento.
+                  Las actualizaciones se publicarán en humanismoevolutivo.com con la fecha de última modificación visible en la parte superior del documento.
                 </p>
               </div>
             </section>
@@ -217,7 +217,7 @@ const Privacidad = () => {
             {/* Section 10 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">10.</span>
+                <span className="text-[#806018]">10.</span>
                 Aceptación de los términos
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -236,7 +236,7 @@ const Privacidad = () => {
             <div className="text-center space-y-4">
               <div>
                 <h3 className="text-2xl font-bold">Fundación Humanismo Evolutivo</h3>
-                <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-gold">
+                <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-[#806018]">
                   Transpersonal
                 </p>
               </div>
@@ -245,23 +245,23 @@ const Privacidad = () => {
               </p>
               <div className="flex flex-col items-center gap-3 pt-4">
                 <div className="flex items-center gap-2">
-                  <Mail className="w-5 h-5 text-gold" />
+                  <Mail className="w-5 h-5 text-[#806018]" />
                   <a
                     href="mailto:hello@yosoynosotros.com"
-                    className="text-gold hover:underline"
+                    className="text-[#806018] hover:underline"
                   >
                     hello@yosoynosotros.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Globe className="w-5 h-5 text-gold" />
+                  <Globe className="w-5 h-5 text-[#806018]" />
                   <a
-                    href="https://www.yosoynosotros.org"
+                    href="https://humanismoevolutivo.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gold hover:underline"
+                    className="text-[#806018] hover:underline"
                   >
-                    www.yosoynosotros.org
+                    humanismoevolutivo.com
                   </a>
                 </div>
               </div>

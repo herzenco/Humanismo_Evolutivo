@@ -1,5 +1,6 @@
 'use server'
 
+import { registerPortalAccount } from '@/lib/registration'
 import { headers } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -141,24 +142,8 @@ export async function signUpAction(
     const origin = await getSiteOrigin()
 
     const supabase = await createClient()
-    const { data, error } = await supabase.auth.signUp({
-      email: parsed.data.email,
-      password: parsed.data.password,
-      options: {
-        emailRedirectTo: origin,
-        data: {
-          first_name: parsed.data.firstName,
-          last_name: parsed.data.lastName,
-          full_name: `${parsed.data.firstName} ${parsed.data.lastName}`,
-        },
-      },
-    })
-
-    if (error) {
-      return { status: 'error', message: authErrorMessage(error), values }
-    }
-
-    hasSession = Boolean(data.session)
+    const result = await registerPortalAccount(credentials => supabase.auth.signUp(credentials), parsed.data, origin, next)
+    hasSession = result.hasSession
   } catch (error) {
     return { status: 'error', message: authErrorMessage(error), values }
   }
