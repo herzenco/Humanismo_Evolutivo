@@ -15,7 +15,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </p>
 <Link href="/autor" prefetch={false} className="he-a9755f1ca he-row">
 <span className="he-aeab756f8 he-sized">
-<img src="/design/d0c13d41b6fee9d4b2f4174db365259c.jpg" alt="" loading="lazy" className="he-4e92ac29e he-sized" />
+<img width="1200" height="850" src="/design/d0c13d41b6fee9d4b2f4174db365259c.webp" alt="" loading="lazy" className="he-4e92ac29e he-sized" />
 </span>
 <span className="he-ef1f3a5df">
 <span className="he-c44b4741e">
@@ -50,7 +50,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </div>
 <figure className="he-a912b057f he-sized">
 <div className="he-a2379a7fe he-sized">
-<img src="/design/1fedac1d5d691fec5255c7e238fc090e.jpg" alt="Pintura: el hombre de Vitruvio sobre un mar al atardecer, dentro de un reloj de números romanos" loading="lazy" className="he-4add0332b" />
+<img width="1024" height="1024" src="/design/1fedac1d5d691fec5255c7e238fc090e.webp" alt="Pintura: el hombre de Vitruvio sobre un mar al atardecer, dentro de un reloj de números romanos" loading="lazy" className="he-4add0332b" />
 </div>
 <figcaption className="he-d8b9f29dd">
 {"YO SOY NOSOTROS"}

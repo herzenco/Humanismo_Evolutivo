@@ -92,38 +92,7 @@ const Contacto = () => {
                       ))}
                     </div>
 
-                    <div className="mt-16">
-                      <h3 className="font-heading text-2xl font-light mb-8">
-                        {t('contacto.social.title')} <span className="text-gold">{t('contacto.social.highlight')}</span>
-                      </h3>
 
-                      <div className="flex space-x-4">
-                        {[
-                          { name: 'Facebook', icon: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z' },
-                          { name: 'Twitter', icon: 'M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z' },
-                          { name: 'Instagram', icon: 'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01 M8 2h8a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z' },
-                          { name: 'YouTube', icon: 'M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z m-13.29 8.58V9.75l5.94 3.12-5.94 3.13z' }
-                        ].map((social, index) => (
-                          <a
-                            key={index}
-                            href="#"
-                            className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-gold hover:text-navy-dark transition-all duration-300 transform hover:scale-110"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              (window as any).dataLayer?.push({
-                                event: 'social_media_click',
-                                social_network: social.name.toLowerCase(),
-                                location: 'contact_page'
-                              });
-                            }}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d={social.icon}></path>
-                            </svg>
-                          </a>
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 </motion.div>
               </motion.div>

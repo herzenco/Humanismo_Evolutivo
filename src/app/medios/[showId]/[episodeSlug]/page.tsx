@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { podcastSeries } from '@/data/media';
 import { getPodcastEpisodeContent } from '@/data/podcastEpisodeContent';
 
-const siteUrl = 'https://yosoynosotros.org';
+const siteUrl = 'https://humanismoevolutivo.com';
 
 const seriesTitles: Record<string, string> = {
   'yo-soy-nosotros': 'Yo Soy Nosotros',
@@ -86,14 +86,6 @@ export async function generateMetadata({
     description: metaDescription,
     alternates: {
       canonical: url,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
     },
     openGraph: {
       type: 'article',

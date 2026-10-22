@@ -87,8 +87,10 @@ export function safeAuthRedirect(value: unknown, fallback = '/portal') {
 }
 
 export function authErrorMessage(error: unknown) {
-  const message =
-    error instanceof Error ? error.message.toLowerCase() : String(error).toLowerCase()
+  const detail = error && typeof error === 'object' ? error as {message?:unknown;code?:unknown} : null
+  const message = String(detail?.message ?? error).toLowerCase()
+  const code = detail?.code
+  if (code === 'user_already_exists' || code === 'email_exists' || message.includes('already registered')) return 'Este correo ya está registrado. Inicia sesión.'
 
   if (message.includes('invalid login credentials')) {
     return 'El correo o la contraseña no coinciden.'

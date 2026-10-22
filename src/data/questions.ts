@@ -69,3 +69,8 @@ export function questionBySlug(slug: string, source: readonly Question[] = quest
 }
 
 export const questionsCanonicalOrigin = 'https://humanismoevolutivo.com';
+
+export function questionKeywords(question: Question): string[] {
+ const topics = [question.title.replace(/[¿?¡!]/g, ''), ...question.title.replace(/[¿?¡!]/g, '').split(/[:;,]/).map(topic => topic.trim())].filter(Boolean);
+ return [...new Set([...topics, 'Humanismo Evolutivo', `Pregunta ${question.number}`, 'Marcos Constandse'])];
+}

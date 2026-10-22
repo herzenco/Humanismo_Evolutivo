@@ -398,7 +398,7 @@ const translations = {
     // Book details
     'book.yosoynosotros.title': 'Yo Soy Nosotros',
     'book.yosoynosotros.subtitle': 'Una visión transpersonal del mundo',
-    'book.yosoynosotros.excerpt': 'En Yo Soy Nosotros, Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano. Esta obra ganó el premio Nacional de Ensayo Filosófico.',
+    'book.yosoynosotros.excerpt': 'En Yo Soy Nosotros, Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano. Esta obra ganó el Premio Nacional de Ensayo Filosófico.',
     'book.yosoynosotros.desc1': 'En Yo Soy Nosotros, Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano.',
     'book.yosoynosotros.desc2': 'Este libro propone una reflexión profunda sobre nuestro papel en el universo, el sentido de la vida y la necesidad urgente de trascender el individualismo para abrazar una consciencia colectiva.',
     'book.yosoynosotros.desc3': 'A través de un enfoque transpersonal, el autor plantea que el ser humano no es un ente aislado, sino una expresión del Todo que sólo puede realizarse plenamente en comunión con los demás y con la naturaleza.',
@@ -990,17 +990,8 @@ const translations = {
 };
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = React.useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('language');
-      return (saved as Language) || 'es';
-    }
-    return 'es';
-  });
-
-  React.useEffect(() => {
-    localStorage.setItem('language', language);
-  }, [language]);
+  const language: Language = 'es';
+  const setLanguage = (_lang: Language) => {};
 
   const t = (key: string): string => {
     return (translations[language] as Record<string, string>)[key] || key;

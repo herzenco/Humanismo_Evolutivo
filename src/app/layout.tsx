@@ -1,3 +1,4 @@
+import { qaGateEnabled } from '@/lib/qa-gate';
 import type { Metadata } from "next";
 import "./fonts.css";
 import "./globals.css";
@@ -6,7 +7,7 @@ import "./design.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yosoynosotros.com"),
+  metadataBase: new URL("https://humanismoevolutivo.com"),
   title: {
     default: "Humanismo Evolutivo - Marcos Constandse Madrazo",
     template: "%s | Humanismo Evolutivo",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     title: "Humanismo Evolutivo - Marcos Constandse Madrazo",
     description:
       "Un viaje de conciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos",
-    url: "https://yosoynosotros.com",
+    url: "https://humanismoevolutivo.com",
   },
   twitter: {
     card: "summary_large_image",
@@ -40,11 +41,11 @@ export const metadata: Metadata = {
       "Un viaje de conciencia para entender quiénes somos, de dónde venimos y hacia dónde vamos",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !qaGateEnabled(),
+    follow: !qaGateEnabled(),
   },
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon-small.png",
   },
 };
 

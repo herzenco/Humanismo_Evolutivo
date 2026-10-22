@@ -5,7 +5,7 @@ import { ResourceAnalytics } from "@/components/resources/ResourceAnalytics";
 import { ResourceCardLink } from "@/components/resources/ResourceCardLink";
 import { formatResourceDate, resourceArticles } from "@/data/resources";
 
-const siteUrl = (process.env.SITE_URL || "https://yosoynosotros.org").replace(/\/$/, "");
+const siteUrl = 'https://humanismoevolutivo.com';
 
 export const metadata: Metadata = {
   title: "Recursos",

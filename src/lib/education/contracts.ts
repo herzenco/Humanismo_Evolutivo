@@ -14,7 +14,7 @@ export const educationRequestSchema = z.discriminatedUnion('action', [
   operation('roster', school.extend(page.shape).strict()),
   operation('activity.list', school.extend({ userId: z.uuid().optional(), ...page.shape }).strict()),
   operation('activity.mine', page.extend({ schoolId: z.uuid().optional() }).strict()),
-  operation('memberships.set', school.extend({ userId: z.uuid(), role: z.enum(['student','teacher']), status: z.enum(['active','suspended','removed']) }).strict()),
+  operation('memberships.set', school.extend({ userId: z.uuid(), role: z.enum(['student','teacher','school']), status: z.enum(['active','suspended','removed']) }).strict()),
   operation('memberships.leave', school.strict()),
   operation('invitations.list', school.extend(page.shape).strict()),
   operation('invitations.mine', page.strict()),
@@ -24,11 +24,11 @@ export const educationRequestSchema = z.discriminatedUnion('action', [
   operation('activity.record', school.extend({ eventId: z.uuid(), classId: z.string().min(1).max(200), contentVersion: z.string().min(1).max(200), kind: z.enum(['opened','completed']), depth: z.number().finite().gt(0.5).max(1).optional() }).strict()),
 ]);
 export type EducationRequest = z.infer<typeof educationRequestSchema>;
-export type SchoolMembership = { schoolId: string; schoolName: string; role: 'student' | 'teacher'; status: 'active' | 'suspended' | 'removed'; schoolStatus: 'active' | 'archived'; isCommunity: boolean };
+export type SchoolMembership = { schoolId: string; schoolName: string; role: 'student' | 'teacher' | 'school'; status: 'active' | 'suspended' | 'removed'; schoolStatus: 'active' | 'archived'; isCommunity: boolean };
 export type EducationContext = { userId: string; isPlatformAdmin: boolean; defaultSchoolId: string; memberships: SchoolMembership[] };
 export const educationContextSchema = z.object({
   userId: z.uuid(), isPlatformAdmin: z.boolean(), defaultSchoolId: z.uuid(),
-  memberships: z.array(z.object({ schoolId: z.uuid(), schoolName: z.string(), role: z.enum(['student','teacher']), status: z.enum(['active','suspended','removed']), schoolStatus: z.enum(['active','archived']), isCommunity: z.boolean() })),
+  memberships: z.array(z.object({ schoolId: z.uuid(), schoolName: z.string(), role: z.enum(['student','teacher','school']), status: z.enum(['active','suspended','removed']), schoolStatus: z.enum(['active','archived']), isCommunity: z.boolean() })),
 });
 export function educationErrorStatus(code: string | undefined) {
   if (code === '42501') return 403;

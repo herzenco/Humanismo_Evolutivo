@@ -220,7 +220,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
         description={book.description}
         keywords={book.keywords}
         coverImage={bookCoverImage || book.coverImage}
-        url={`https://yosoynosotros.com/libros/${book.id}`}
+        url={`https://humanismoevolutivo.com/libros/${book.id}`}
       />
       {/* Book Header */}
       <section className="relative py-20 lg:py-28 bg-navy-dark text-white overflow-hidden" aria-label="Detalles del libro">

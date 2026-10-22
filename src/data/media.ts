@@ -38,7 +38,7 @@ export const podcastSeries: PodcastSeries[] = [
     id: 'yo-soy-nosotros',
     titleKey: 'podcast.series.ysn.title',
     descriptionKey: 'podcast.series.ysn.description',
-    coverImage: '/lovable-uploads/0d55a7a0-122e-48c1-831c-66a04590c495.png',
+    coverImage: '/lovable-uploads/0d55a7a0-122e-48c1-831c-66a04590c495.webp',
     episodes: [
       {
         id: 1,
@@ -586,6 +586,6 @@ export const videos: Video[] = [
     date: "2024-10-28",
     categoryKey: "podcast.category.conference",
     videoUrl: "https://www.youtube.com/watch?v=LRr-CKjfmrE",
-    imageUrl: "/lovable-uploads/bd0dec77-828d-40b0-8bcc-30690a3a1fb3.png"
+    imageUrl: "/lovable-uploads/bd0dec77-828d-40b0-8bcc-30690a3a1fb3.webp"
   }
 ];

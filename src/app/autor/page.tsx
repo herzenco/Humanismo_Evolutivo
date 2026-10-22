@@ -34,8 +34,8 @@ const Autor = () => {
         name="Marcos Constandse Madrazo"
         jobTitle="Filósofo y Autor"
         description="Pensador transpersonal mexicano dedicado a la integración de ciencia, espiritualidad y conciencia humana"
-        image="https://yosoynosotros.com/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.png"
-        url="https://yosoynosotros.com/autor"
+        image="https://humanismoevolutivo.com/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.webp"
+        url="https://humanismoevolutivo.com/autor"
       />
       {language === "es" ? <AuthorEditorial /> : <>
 
@@ -124,7 +124,7 @@ const Autor = () => {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-br from-gold/20 to-primary/20 rounded-2xl blur-xl"></div>
                 <img
-                  src="/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.png"
+                  src="/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.webp"
                   alt="Marcos Constandse Madrazo - Filósofo y autor transpersonal mexicano"
                   className="relative rounded-2xl shadow-2xl w-full h-auto"
                   loading="lazy"
