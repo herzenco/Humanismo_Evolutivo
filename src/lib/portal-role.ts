@@ -10,5 +10,5 @@ export function portalRole(value:string|null, allowed:readonly PortalRole[]):Por
  return allowed.includes(value as PortalRole) ? value as PortalRole : allowed[allowed.length-1] || 'student';
 }
 export function portalRoleSuffix(value:string|null) {
- return value==='teacher'||value==='school'||value==='admin' ? `&role=${value}` : '';
+ return value==='student'||value==='teacher'||value==='school'||value==='admin' ? `&role=${value}` : '';
 }

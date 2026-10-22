@@ -22,7 +22,7 @@ export default function PortalDashboard({ firstName, email, articles, educationC
   const role = portalRole(params.get('role'), allowedRoles);
   const scopedContext = educationContext ? { ...educationContext, isPlatformAdmin: role === 'admin' && educationContext.isPlatformAdmin, memberships: role === 'student' ? educationContext.memberships.filter(m=>m.role==='student') : educationContext.memberships } : null;
   const roleSuffix = portalRoleSuffix(role);
-  const changeRole = (next: PortalRole) => { router.push(`/portal?view=${next === 'student' ? 'courses' : 'school'}${next === 'student' ? '' : `&role=${next}`}`);setMenu(false); };
+  const changeRole = (next: PortalRole) => { router.push(`/portal?view=${next === 'student' ? 'courses' : 'school'}&role=${next}`);setMenu(false); };
   const selectedView = params.get('view');
   const view: View = selectedView === 'library' || selectedView === 'calendar' || (selectedView === 'school' && (educationContext || role !== 'student')) ? selectedView : 'courses';
   const [menu, setMenu] = useState(false);
