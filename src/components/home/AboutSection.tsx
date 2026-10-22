@@ -28,9 +28,9 @@ const AboutSection = () => {
             variants={variants}
           >
             <figure className="relative">
-              <img 
-                src="/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.png" 
-                alt="Marcos Constandse Madrazo, filósofo transpersonal mexicano y autor de Humanismo Evolutivo, retrato profesional" 
+              <img
+                src="/lovable-uploads/2df62819-9976-4c1f-ae70-f597654760d3.webp"
+                alt="Marcos Constandse Madrazo, filósofo transpersonal mexicano y autor de Humanismo Evolutivo, retrato profesional"
                 className="w-full h-auto rounded-lg shadow-xl"
                 loading="lazy"
                 width="600"
@@ -82,9 +82,9 @@ const AboutSection = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="mt-8"
             >
-              <Button 
-                asChild 
-                size="lg" 
+              <Button
+                asChild
+                size="lg"
                 className="bg-navy hover:bg-navy-dark"
                 onClick={() => {
                   (window as any).dataLayer?.push({

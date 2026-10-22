@@ -1,3 +1,4 @@
+import { qaGateEnabled } from '@/lib/qa-gate';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, MessagesSquare } from 'lucide-react';
@@ -13,7 +14,7 @@ export function generateMetadata(): Metadata {
     title: 'Las 51 preguntas',
     description,
     alternates: { canonical: `${questionsCanonicalOrigin}/51preguntas` },
-    robots: { index: hasContent, follow: true },
+    robots: { index: hasContent && !qaGateEnabled(), follow: !qaGateEnabled() },
     openGraph: { type: 'website', title: 'Las 51 preguntas | Humanismo Evolutivo', description, url: `${questionsCanonicalOrigin}/51preguntas` },
   };
 }

@@ -6,22 +6,22 @@ import { educationAccess, isEducationAccessEnabled } from '@/lib/education/serve
 export const dynamic = 'force-dynamic';
 const response = (data: unknown, status = 200) => Response.json(data, { status, headers: { 'Cache-Control': 'private, no-store' } });
 export async function POST(request: Request) {
-  if (!isEducationAccessEnabled) return response({ error: 'Education access is not enabled in this environment.' }, 503);
-  if (request.headers.get('origin') !== new URL(request.url).origin) return response({ error: 'Same-origin request required.' }, 403);
-  if (!request.headers.get('content-type')?.startsWith('application/json')) return response({ error: 'JSON required.' }, 415);
+  if (!isEducationAccessEnabled) return response({ error: 'La gestión escolar no está disponible en este entorno.' }, 503);
+  if (request.headers.get('origin') !== `${new URL(request.url).protocol}//${request.headers.get('host') || new URL(request.url).host}`) return response({ error: 'La solicitud debe proceder de este sitio.' }, 403);
+  if (!request.headers.get('content-type')?.startsWith('application/json')) return response({ error: 'Se requiere una solicitud JSON.' }, 415);
   const client = await createClient();
   const { data: identity, error: authError } = await client.auth.getClaims();
-  if (authError || !isEmailAccountClaims(identity?.claims)) return response({ error: 'Authentication required.' }, 401);
+  if (authError || !isEmailAccountClaims(identity?.claims)) return response({ error: 'Inicia sesión para continuar.' }, 401);
   const text = await request.text();
-  if (new TextEncoder().encode(text).byteLength > 8192) return response({ error: 'Request too large.' }, 413);
+  if (new TextEncoder().encode(text).byteLength > 8192) return response({ error: 'La solicitud es demasiado grande.' }, 413);
   let input: unknown;
-  try { input = JSON.parse(text); } catch { return response({ error: 'Invalid JSON.' }, 400); }
+  try { input = JSON.parse(text); } catch { return response({ error: 'La solicitud no es válida.' }, 400); }
   const parsed = educationRequestSchema.safeParse(input);
-  if (!parsed.success) return response({ error: 'Invalid education operation.' }, 400);
+  if (!parsed.success) return response({ error: 'La operación educativa no es válida.' }, 400);
   const { data, error } = await educationAccess(parsed.data);
   if (error) {
     const status = educationErrorStatus(error.code);
-    return response({ error: status === 403 ? 'You do not have access to this school or operation.' : status === 409 ? 'This membership or invitation conflicts with an existing record.' : status === 400 ? 'The supplied school, account or activity is not available.' : 'Education access is temporarily unavailable.' }, status);
+    return response({ error: status === 403 ? 'No tienes acceso a esta escuela u operación.' : status === 409 ? 'Esta membresía o invitación ya existe.' : status === 400 ? 'La escuela, cuenta o actividad no está disponible.' : 'La gestión escolar no está disponible temporalmente.' }, status);
   }
   return response({ data });
 }

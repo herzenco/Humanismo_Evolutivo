@@ -1,12 +1,12 @@
+import { qaGateEnabled } from '@/lib/qa-gate'
 import type { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: '/',
-      disallow: ['/admin/', '/auth/', '/portal/', '/api/'],
+      ...(qaGateEnabled() ? { disallow: '/' } : { allow: '/', disallow: ['/admin/', '/auth/', '/portal/', '/api/'] }),
     },
-    sitemap: 'https://yosoynosotros.org/sitemap.xml',
+    sitemap: 'https://humanismoevolutivo.com/sitemap.xml',
   }
 }

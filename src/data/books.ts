@@ -1,6 +1,6 @@
 // Local cover assets from the supplied design.
 
-const ecologiaEspiritualidadCover = "/design/daba8e942d8f02d4888334c0e1ea21e4.jpg";
+const ecologiaEspiritualidadCover = "/design/daba8e942d8f02d4888334c0e1ea21e4.webp";
 const dejaloSerCover = "/design/ed689a07290096a7574e1b91b2c72a4e.jpg";
 const loMejorEstaPorVenirCover = "/design/67949123c5d2ce183c6e143227e64975.jpg";
 const elArteEmpresarioCover = "/design/93f963ec6c044b62ae621d38fefc05c7.jpg";
@@ -30,7 +30,7 @@ export const books: Book[] = [
     author: 'Marcos Constandse Madrazo',
     year: '2019',
     pages: '284',
-    excerpt: 'En Yo soy nosotros, Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano. Esta obra ganó el premio Nacional de Ensayo Filosófico.',
+    excerpt: 'En Yo soy nosotros, Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano. Esta obra ganó el Premio Nacional de Ensayo Filosófico.',
     description: [
       'En Yo soy nosotros, Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano.',
       'Este libro propone una reflexión profunda sobre nuestro papel en el universo, el sentido de la vida y la necesidad urgente de trascender el individualismo para abrazar una consciencia colectiva.',

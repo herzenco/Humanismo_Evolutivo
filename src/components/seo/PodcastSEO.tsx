@@ -95,7 +95,7 @@ export const PodcastEpisodeSEO = ({
         "publisher": {
           "@type": "Organization",
           "name": "Fundación Humanismo Evolutivo",
-          "url": "https://yosoynosotros.com"
+          "url": "https://humanismoevolutivo.com"
         }
       },
       "author": {

@@ -7,7 +7,9 @@ test('school membership, tenant isolation and historical reporting in real Postg
  const db = new PGlite();
  await db.exec(await readFile(new URL('../supabase/tests/education-school-fixture.sql',import.meta.url),'utf8'));
  await db.exec(await readFile(new URL('../supabase/migrations/20261020005503_education_qa_school_access.sql',import.meta.url),'utf8'));
- const users = Object.fromEntries(['admin','teacherA','teacherB','student','outsider'].map((name,i)=>[name,`10000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`]));
+ await db.exec(await readFile(new URL('../supabase/migrations/20261022133719_education_qa_school_role.sql',import.meta.url),'utf8'));
+ await db.exec(await readFile(new URL('../supabase/migrations/20261022135419_education_qa_revoke_school_invitations.sql',import.meta.url),'utf8'));
+ const users = Object.fromEntries(['admin','teacherA','teacherB','student','outsider','schoolAdmin'].map((name,i)=>[name,`10000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`]));
  for(const [name,id] of Object.entries(users)) await db.query('insert into auth.users(id,email,email_confirmed_at) values($1,$2,now())',[id,`${name.toLowerCase()}@example.test`]);
  await db.query("insert into public.education_qa_reflection_responses values($1,'Private answer')",[users.student]);
  await db.query("insert into public.education_qa_journal_entries values($1,'Private journal')",[users.student]);
@@ -19,6 +21,8 @@ test('school membership, tenant isolation and historical reporting in real Postg
  await call('memberships.set',{schoolId:a,userId:users.teacherA,role:'teacher',status:'active'});
  await call('memberships.set',{schoolId:b,userId:users.teacherB,role:'teacher',status:'active'});
  await denied('memberships.set',{schoolId:b,userId:users.teacherA,role:'teacher',status:'active'});
+ await call('memberships.set',{schoolId:a,userId:users.schoolAdmin,role:'school',status:'active'});
+ await as('schoolAdmin');assert.equal((await call('context')).memberships.some(m=>m.role==='school'),true);await denied('roster',{schoolId:b});await denied('schools.create',{name:'No',slug:'no'});await denied('memberships.set',{schoolId:a,userId:users.outsider,role:'school',status:'active'});await call('memberships.set',{schoolId:a,userId:users.teacherA,role:'teacher',status:'active'});
  await as('teacherA');await denied('schools.create',{name:'Bad',slug:'bad'});await denied('roster',{schoolId:b});await denied('people.list');
  await denied('memberships.set',{schoolId:a,userId:users.student,role:'teacher',status:'active'});
  const invite=(await call('invitations.create',{schoolId:a,email:'student@example.test'})).invitationId;
@@ -45,8 +49,10 @@ test('school membership, tenant isolation and historical reporting in real Postg
  await db.exec('reset role');await db.query("update education_qa_private.invitations set expires_at=now()-interval '1 day' where id=$1",[expired]);await as('outsider');await denied('invitations.accept',{invitationId:expired});
 
  await as('teacherB');assert.equal((await call('activity.list',{schoolId:b})).length,1);await denied('activity.list',{schoolId:a});
- await as('admin');assert.equal((await db.query('select * from public.education_qa_reflection_responses')).rows.length,0);assert.equal((await db.query('select * from public.education_qa_journal_entries')).rows.length,0);assert.equal((await call('schools.list')).length,3);assert.equal((await call('people.list')).length,5);await call('memberships.set',{schoolId:a,userId:users.teacherA,role:'teacher',status:'removed'});
+ await as('admin');assert.equal((await db.query('select * from public.education_qa_reflection_responses')).rows.length,0);assert.equal((await db.query('select * from public.education_qa_journal_entries')).rows.length,0);assert.equal((await call('schools.list')).length,3);assert.equal((await call('people.list')).length,6);await call('memberships.set',{schoolId:a,userId:users.teacherA,role:'teacher',status:'removed'});
  await as('teacherA');await denied('roster',{schoolId:a});await denied('activity.list',{schoolId:a});await denied('audit.list');
+ await as('schoolAdmin');const schoolInvite=(await call('invitations.create',{schoolId:a,email:'outsider@example.test'})).invitationId;
+ await as('admin');await call('memberships.set',{schoolId:a,userId:users.schoolAdmin,role:'school',status:'suspended'});await as('outsider');await denied('invitations.accept',{invitationId:schoolInvite});await as('schoolAdmin');await denied('roster',{schoolId:a});await denied('memberships.set',{schoolId:a,userId:users.student,role:'teacher',status:'active'});
  await as('admin','aal1');await denied('schools.list');
  await as('outsider','aal2',{user_metadata:{role:'owner',schoolId:a}});assert.equal((await call('context')).isPlatformAdmin,false);await denied('roster',{schoolId:a});
  await assert.rejects(()=>db.query('select * from education_qa_private.activity'));

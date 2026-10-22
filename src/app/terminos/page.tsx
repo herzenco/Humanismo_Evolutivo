@@ -15,14 +15,14 @@ const Terminos = () => {
         >
           {/* Header */}
           <div className="text-center mb-12">
-            <FileText className="w-16 h-16 mx-auto mb-6 text-gold" />
+            <FileText className="w-16 h-16 mx-auto mb-6 text-[#806018]" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Términos y Condiciones de Uso
             </h1>
             <p className="text-xl text-muted-foreground">
               Fundación Humanismo Evolutivo
             </p>
-            <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-gold">
+            <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-[#806018]">
               Transpersonal
             </p>
             <p className="text-sm text-muted-foreground mt-2">
@@ -33,7 +33,7 @@ const Terminos = () => {
           {/* Introduction */}
           <div className="prose prose-lg max-w-none mb-12">
             <p className="text-lg leading-relaxed mb-8">
-              El presente documento establece los Términos y Condiciones de Uso del sitio web www.yosoynosotros.org (en adelante, "el Sitio"), propiedad de Fundación Humanismo Evolutivo (en adelante, "la Fundación").
+              El presente documento establece los Términos y Condiciones de Uso del sitio web humanismoevolutivo.com (en adelante, "el Sitio"), propiedad de Fundación Humanismo Evolutivo (en adelante, "la Fundación").
             </p>
             <p className="text-lg leading-relaxed mb-12">
               Al acceder o utilizar este Sitio, el usuario (en adelante, "el Usuario") acepta plenamente estos términos. Si no está de acuerdo con alguno de ellos, deberá abstenerse de usar el Sitio.
@@ -45,7 +45,7 @@ const Terminos = () => {
             {/* Section 1 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">1.</span>
+                <span className="text-[#806018]">1.</span>
                 Objeto del Sitio
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -61,7 +61,7 @@ const Terminos = () => {
             {/* Section 2 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">2.</span>
+                <span className="text-[#806018]">2.</span>
                 Aceptación de los Términos
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -77,7 +77,7 @@ const Terminos = () => {
             {/* Section 3 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">3.</span>
+                <span className="text-[#806018]">3.</span>
                 Uso permitido
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -99,7 +99,7 @@ const Terminos = () => {
             {/* Section 4 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">4.</span>
+                <span className="text-[#806018]">4.</span>
                 Propiedad intelectual
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -118,7 +118,7 @@ const Terminos = () => {
             {/* Section 5 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">5.</span>
+                <span className="text-[#806018]">5.</span>
                 Enlaces externos
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -137,7 +137,7 @@ const Terminos = () => {
             {/* Section 6 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">6.</span>
+                <span className="text-[#806018]">6.</span>
                 Donaciones y colaboraciones
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -159,7 +159,7 @@ const Terminos = () => {
             {/* Section 7 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">7.</span>
+                <span className="text-[#806018]">7.</span>
                 Responsabilidad
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -178,12 +178,12 @@ const Terminos = () => {
             {/* Section 8 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">8.</span>
+                <span className="text-[#806018]">8.</span>
                 Protección de datos personales
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
                 <p>
-                  El tratamiento de los datos personales recabados a través del Sitio se rige por la Política de Privacidad disponible en www.yosoynosotros.org.
+                  El tratamiento de los datos personales recabados a través del Sitio se rige por la Política de Privacidad disponible en humanismoevolutivo.com.
                 </p>
                 <p>
                   Al utilizar el Sitio, el Usuario acepta expresamente el tratamiento de sus datos conforme a lo establecido en dicha política.
@@ -194,7 +194,7 @@ const Terminos = () => {
             {/* Section 9 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">9.</span>
+                <span className="text-[#806018]">9.</span>
                 Modificaciones
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -213,7 +213,7 @@ const Terminos = () => {
             {/* Section 10 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">10.</span>
+                <span className="text-[#806018]">10.</span>
                 Legislación aplicable y jurisdicción
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -229,7 +229,7 @@ const Terminos = () => {
             {/* Section 11 */}
             <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-gold">11.</span>
+                <span className="text-[#806018]">11.</span>
                 Contacto
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
@@ -238,23 +238,23 @@ const Terminos = () => {
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 bg-accent/20 p-4 rounded-lg">
-                    <Mail className="w-5 h-5 text-gold" />
+                    <Mail className="w-5 h-5 text-[#806018]" />
                     <a
                       href="mailto:hello@yosoynosotros.com"
-                      className="text-gold hover:underline font-semibold"
+                      className="text-[#806018] hover:underline font-semibold"
                     >
                       hello@yosoynosotros.com
                     </a>
                   </div>
                   <div className="flex items-center gap-2 bg-accent/20 p-4 rounded-lg">
-                    <Globe className="w-5 h-5 text-gold" />
+                    <Globe className="w-5 h-5 text-[#806018]" />
                     <a
-                      href="https://www.yosoynosotros.org"
+                      href="https://humanismoevolutivo.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gold hover:underline font-semibold"
+                      className="text-[#806018] hover:underline font-semibold"
                     >
-                      www.yosoynosotros.org
+                      humanismoevolutivo.com
                     </a>
                   </div>
                 </div>
@@ -267,7 +267,7 @@ const Terminos = () => {
             <div className="text-center space-y-4">
               <div>
                 <h3 className="text-2xl font-bold">Fundación Humanismo Evolutivo</h3>
-                <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-gold">
+                <p className="mt-1 text-xs font-medium uppercase tracking-[0.32em] text-[#806018]">
                   Transpersonal
                 </p>
               </div>

@@ -578,3 +578,14 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 
 .home-great-questions-summary { display:grid; justify-items:start; gap:24px; max-width:900px; }
 .home-great-questions-summary p { margin:0; color:#ffffffeb; font-size:20px; line-height:1.65; }
+
+/* QA accessibility review: readable numbers, portal type and generous targets. */
+.skip-to-content{position:fixed;top:12px;left:12px;z-index:1000;transform:translateY(-200%);padding:14px 20px;background:#fff;color:#173f2c;border:3px solid #173f2c;border-radius:8px;font-weight:700;}
+.skip-to-content:focus{transform:translateY(0);}
+.site-footer nav a,.site-footer-bottom a,.newsletter-embed p a{min-height:44px;display:inline-flex;align-items:center;}
+.home-content-number{font-size:30px;width:46px;height:46px;}
+.portal-app{font-size:18px;}
+.portal-app p,.portal-app td,.portal-app input,.portal-app select{font-size:18px;}
+.portal-app .design-eyebrow,.portal-app .design-text-link{color:#2f6b45;}
+.editorial section[id]{scroll-margin-top:110px;}
+@media(prefers-reduced-motion:reduce){html.scroll-smooth{scroll-behavior:auto;}}

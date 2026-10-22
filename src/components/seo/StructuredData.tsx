@@ -42,7 +42,7 @@ export const BookStructuredData = ({
       "publisher": {
         "@type": "Organization",
         "name": "Fundación Humanismo Evolutivo",
-        "url": "https://yosoynosotros.com"
+        "url": "https://humanismoevolutivo.com"
       },
       "url": url,
       "genre": ["Filosofía", "Espiritualidad", "Desarrollo Personal"],
@@ -110,7 +110,7 @@ export const EventStructuredData = ({
       "organizer": {
         "@type": "Organization",
         "name": "Fundación Humanismo Evolutivo",
-        "url": "https://yosoynosotros.com"
+        "url": "https://humanismoevolutivo.com"
       },
       "performer": {
         "@type": "Person",
@@ -163,7 +163,7 @@ export const PersonStructuredData = ({
         "Desarrollo Humano"
       ],
       "sameAs": [
-        "https://yosoynosotros.com/autor"
+        "https://humanismoevolutivo.com/autor"
       ]
     });
     document.head.appendChild(script);

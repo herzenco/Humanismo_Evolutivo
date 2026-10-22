@@ -32,7 +32,7 @@ export default function EventsIntro() { return <div className="editorial"><secti
 </div>
 <figure className="he-a7ecf8bf7 he-sized">
 <div className="he-0fc1c7b9a">
-<img src="/design/9f8c10ae4e5f3253977827d80cd05a7c.jpg" alt="Panel de cinco personas sentadas frente a un librero durante una presentación" loading="lazy" className="he-b912be1a7" />
+<img width="580" height="387" src="/design/9f8c10ae4e5f3253977827d80cd05a7c.jpg" alt="Panel de cinco personas sentadas frente a un librero durante una presentación" loading="lazy" className="he-b912be1a7" />
 </div>
 </figure>
 </section></div>; }
