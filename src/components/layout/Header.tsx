@@ -37,7 +37,7 @@ export default function Header() {
       <div className="site-header-actions">
         <Link className="site-icon-button" href="/buscar" aria-label={language === 'es' ? 'Buscar' : 'Search'}><Search size={19} /></Link>
         <LanguageToggle />
-        <Link href="/portal" className="site-portal-button"><GraduationCap size={19} /><span>{language === 'es' ? 'Portal educativo' : 'Education portal'}</span></Link>
+        <Link href="/portal" aria-label="Portal educativo" className="site-portal-button"><GraduationCap size={19} /><span>{language === 'es' ? 'Portal educativo' : 'Education portal'}</span></Link>
         {isAdmin ? <Link className="site-icon-button" href="/admin" aria-label="Administración"><Shield size={18} /></Link> : null}
         <button ref={toggle} className="site-icon-button site-menu-toggle" type="button" aria-expanded={open} aria-controls="site-mobile-nav" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setOpen(value => !value)}>{open ? <X /> : <Menu />}</button>
       </div>
