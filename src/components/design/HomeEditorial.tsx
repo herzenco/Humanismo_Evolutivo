@@ -29,7 +29,6 @@ export default function HomeEditorial() { return <div className="editorial">
 <Link href="/autor" prefetch={false} className="he-b9cc09976 he-row">
 {"Sobre el autor"}
 </Link>
-<VideoDialog videoSrc={homeVideos.introduction.src} poster={homeVideos.introduction.poster} title="Introducción a Parque Cancún" className="design-button design-button-outline">Ver de nuevo la introducción</VideoDialog>
 </div>
 </div>
 <figure className="he-c6c41e2c2 he-sized">
@@ -122,6 +121,7 @@ export default function HomeEditorial() { return <div className="editorial">
 </path>
 </svg>
 </Link>
+<VideoDialog videoSrc={homeVideos.introduction.src} poster={homeVideos.introduction.poster} title="Introducción a Parque Cancún" className="design-button design-button-outline">Ver de nuevo la introducción</VideoDialog>
 </div>
 </section>
 
