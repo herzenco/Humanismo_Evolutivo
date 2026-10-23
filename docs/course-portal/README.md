@@ -66,3 +66,7 @@ The dashboard shows school-wide totals for active students, their school attenda
 Apply the new migration after the attendance migration. The local fixture includes the RPC and continues to use disposable test accounts. Additional tests cover automatic role detection, request validation, empty/no-match results, scoped counts, student and cross-school access denial, removal/suspension/archival, private-work exclusion, and pagination beyond 25 students.
 
 Teacher dashboard verification: all 50 automated tests, TypeScript, focused ESLint, and the webpack production build passed. Browser checks verified teacher sign-in lands directly at `/portal` on **Mi escuela**, school name visibility, name/email search and the no-results/reset states, course-specific denominators, per-student course cards, the attendance shortcut and updated attendance counts, and a student completing a lesson followed by the teacher seeing the updated completion count without the reflection text. Local preview screenshots are `teacher-dashboard.png` and `teacher-student-progress.png`.
+
+## Infraestructura de roles (22 de octubre de 2026)
+
+La implementación local de los cuatro perfiles, sus nuevas migraciones y la guía de activación están en [ROLES_INFRASTRUCTURE.md](./ROLES_INFRASTRUCTURE.md). Esta entrega no aplica cambios a la base compartida ni publica a producción.

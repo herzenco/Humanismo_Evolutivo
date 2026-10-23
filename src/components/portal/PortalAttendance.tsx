@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import type { EducationContext } from '@/lib/education/contracts';
 import type { AttendanceRequest, AttendanceStudent } from '@/lib/attendance/contracts';
 import { portalClasses } from '@/data/portal';
@@ -12,10 +11,9 @@ async function access<T>(request:AttendanceRequest,signal?:AbortSignal):Promise<
  return result.data;
 }
 export default function PortalAttendance({context}:{context:EducationContext}) {
- const params=useSearchParams();
- const teaching=context.memberships.filter(m=>m.role==='teacher'&&m.status==='active'&&m.schoolStatus==='active');
- const [schools,setSchools]=useState(teaching.map(m=>({id:m.schoolId,name:m.schoolName})));
- const [schoolId,setSchoolId]=useState(teaching.find(m=>m.schoolId===params.get('school'))?.schoolId || teaching[0]?.schoolId || '');
+ const teaching=context.memberships.filter(m=>m.role==='teacher'&&m.status==='active'&&m.schoolStatus==='active'&&m.isCommunity);
+ const schools=context.isPlatformAdmin?[{id:context.defaultSchoolId,name:'Amigos que evolucionan'}]:teaching.map(m=>({id:m.schoolId,name:m.schoolName}));
+ const [schoolId,setSchoolId]=useState(context.isPlatformAdmin?context.defaultSchoolId:teaching[0]?.schoolId || '');
  const [sessionId,setSessionId]=useState(portalClasses[0]?.id || '');
  const [students,setStudents]=useState<AttendanceStudent[]>([]);
  const [offset,setOffset]=useState(0);
@@ -24,12 +22,7 @@ export default function PortalAttendance({context}:{context:EducationContext}) {
  const [busy,setBusy]=useState(false);
  const [error,setError]=useState('');
  const [message,setMessage]=useState('');
- useEffect(()=>{
-  if(!context.isPlatformAdmin) return;
-  const controller=new AbortController();
-  fetch('/api/education/access',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'schools.list',input:{limit:100,offset:0}}),signal:controller.signal}).then(async r=>{const result=await r.json();if(!r.ok)throw new Error(result.error);return result.data;}).then((rows:{id:string;name:string;status:string}[])=>{const active=rows.filter(s=>s.status==='active');setSchools(active);setSchoolId(id=>id || active[0]?.id || '');}).catch(e=>{if(!controller.signal.aborted)setError(e.message);});
-  return ()=>controller.abort();
- },[context.isPlatformAdmin]);
+
  useEffect(()=>{
   if(!schoolId || !sessionId) return;
   const controller=new AbortController();

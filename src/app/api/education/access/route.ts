@@ -1,3 +1,4 @@
+import { deliverSchoolInvitation } from '@/lib/education/mail';
 import { isEmailAccountClaims } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { educationRequestSchema, educationErrorStatus } from '@/lib/education/contracts';
@@ -18,10 +19,18 @@ export async function POST(request: Request) {
   try { input = JSON.parse(text); } catch { return response({ error: 'Invalid JSON.' }, 400); }
   const parsed = educationRequestSchema.safeParse(input);
   if (!parsed.success) return response({ error: 'Invalid education operation.' }, 400);
+  if(parsed.data.action === 'invitations.resend') {
+    const {data,error}=await educationAccess({action:'invitations.prepare',input:parsed.data.input});
+    if(error||!data)return response({error:'No tienes permiso para enviar esta invitación.'},403);
+    return response({data:await deliverSchoolInvitation(parsed.data.input.invitationId)});
+  }
   const { data, error } = await educationAccess(parsed.data);
   if (error) {
     const status = educationErrorStatus(error.code);
     return response({ error: status === 403 ? 'You do not have access to this school or operation.' : status === 409 ? 'This membership or invitation conflicts with an existing record.' : status === 400 ? 'The supplied school, account or activity is not available.' : 'Education access is temporarily unavailable.' }, status);
+  }
+  if ((parsed.data.action==='invitations.create'||parsed.data.action==='schools.create') && data && typeof data==='object' && !Array.isArray(data) && typeof data.invitationId==='string') {
+    return response({data:{...data,...await deliverSchoolInvitation(data.invitationId)}});
   }
   return response({ data });
 }

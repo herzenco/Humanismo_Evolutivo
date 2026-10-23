@@ -10,3 +10,14 @@ test('role query cannot enable previews where server disables them', () => {
   assert.equal(portalRoleSuffix('teacher'), '&role=teacher');
   assert.equal(portalRoleSuffix('admin&view=school'), '');
 });
+
+test('real profile selection uses cumulative account roles and never query-string authority',async()=>{
+ const {availablePortalRoles,selectedPortalRole}=await import('../src/lib/portal-role.ts');
+ const school={schoolId:'10000000-0000-4000-8000-000000000001',schoolName:'ABC',status:'active',schoolStatus:'active',isCommunity:false};
+ const student={userId:school.schoolId,isPlatformAdmin:false,defaultSchoolId:school.schoolId,memberships:[{...school,role:'student'}]};
+ assert.deepEqual(availablePortalRoles(student),['student']);assert.equal(selectedPortalRole(student,'admin'),'student');assert.equal(selectedPortalRole(student,'school_admin'),'student');
+ const admin={...student,memberships:[...student.memberships,{...school,role:'teacher'},{...school,role:'school_admin'}]};
+ assert.deepEqual(availablePortalRoles(admin),['student','teacher','school_admin']);assert.equal(selectedPortalRole(admin,null),'school_admin');assert.equal(selectedPortalRole(admin,'teacher'),'teacher');
+ assert.equal(selectedPortalRole({...admin,isPlatformAdmin:true},null),'admin');
+ assert.equal(selectedPortalRole({...admin,memberships:admin.memberships.map(m=>({...m,status:'removed'}))},'school_admin'),'student');
+});

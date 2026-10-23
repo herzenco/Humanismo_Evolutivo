@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { learningAccess } from '@/lib/learning/server';
 import { createClient } from '@/lib/supabase/server';
 import { isEmailAccountClaims } from '@/lib/auth';
-const input = z.object({ action: z.enum(['save','complete']), course: z.string().max(100), lesson: z.number().int().min(1).max(45), reflection: z.string().max(20000), reviewed: z.boolean() }).strict();
+const input = z.object({ action: z.enum(['save','complete']), course: z.string().max(100), lesson: z.number().int().min(1).max(500), reflection: z.string().max(20000), reviewed: z.boolean() }).strict();
 const reply = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'Cache-Control': 'private, no-store' } });
 export async function POST(request: Request) {
   if (request.headers.get('origin') !== new URL(request.url).origin) return reply({ error: 'Solicitud no permitida.' },403);

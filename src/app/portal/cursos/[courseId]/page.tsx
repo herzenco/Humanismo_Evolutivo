@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { CheckCircle2, LockKeyhole, ArrowRight } from 'lucide-react';
-import { portalCourses } from '@/data/portal';
+import {getLearningCourses} from '@/lib/courses/server';
 import { LearningShell, learningIdentity, LearningUnavailable, notFound } from '@/lib/learning/pages';
 import { learningAccess } from '@/lib/learning/server';
 import { courseHref, lessonHref } from '@/components/portal/CourseCatalog';
@@ -8,7 +8,8 @@ export { metadata } from '../../page';
 export const dynamic='force-dynamic';
 export default async function CoursePage({params}:{params:Promise<{courseId:string}>}) {
  const {courseId}=await params;
- const course=portalCourses.find(c=>c.id===courseId);
+ await learningIdentity(courseHref(courseId));
+ const course=(await getLearningCourses()).find(c=>c.id===courseId);
  if(!course) notFound();
  await learningIdentity(courseHref(courseId));
  const {data,error}=await learningAccess('summary');

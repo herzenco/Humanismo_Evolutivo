@@ -21,6 +21,7 @@ Agreed with the product owner on October 22, 2026.
 
 - Has access to all schools' records and oversees the platform.
 - Creates schools and onboards their initial school administrator.
+- Creates new courses, adds lessons in draft, and publishes complete programs (added in the deck review).
 - Can add students.
 - Can remove students from schools.
 - Is the only role allowed to remove a school administrator or revoke their administrator role, including demotion to teacher.
@@ -136,3 +137,7 @@ Students cannot remove themselves from a school. Ordinary removal must not remov
 The existing preview was built before this interview and must be updated to match these decisions. In particular, school administrator roles, classroom-scoped teacher access, school-admin continuity, email invitation acceptance, Amigos-only attendance, non-retroactive reflection sharing, and the revised membership-removal rules require reconciliation with existing application and database behavior.
 
 This requirements document is the record of the agreed model, not evidence that those follow-up changes or production migrations have been completed.
+
+## Implementation record — October 22, 2026
+
+The repository now contains the local implementation and PostgreSQL tests for these roles. See [role infrastructure](docs/course-portal/ROLES_INFRASTRUCTURE.md) for coverage, conservative reflection rules, email configuration, and activation prerequisites. This is not a statement that migrations have been applied to shared QA or production.

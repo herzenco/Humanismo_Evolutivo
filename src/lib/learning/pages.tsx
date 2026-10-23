@@ -1,4 +1,5 @@
 import 'server-only';
+import {getLearningCourses} from '@/lib/courses/server';
 import Link from 'next/link';
 import { redirect, notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
@@ -17,7 +18,7 @@ export async function learningIdentity(next: string) {
 export async function LearningShell({children}: {children: React.ReactNode}) {
  const claims=await learningIdentity('/portal');
  const name=claims.user_metadata?.first_name;
- return <PortalDashboard firstName={typeof name==='string' ? name : claims.email?.split('@')[0] || 'Estudiante'} email={claims.email} articles={resourceArticles} educationContext={await getEducationContext()} courseWorkspace={children}/>;
+ return <PortalDashboard courses={await getLearningCourses()} firstName={typeof name==='string' ? name : claims.email?.split('@')[0] || 'Estudiante'} email={claims.email} articles={resourceArticles} educationContext={await getEducationContext()} courseWorkspace={children}/>;
 }
 export function LearningUnavailable() {
  return <div className="portal-empty" role="alert"><h2>No pudimos cargar tu progreso</h2><p>Vuelve a intentarlo en unos momentos. Tu avance se conserva y las siguientes clases permanecen bloqueadas.</p><Link className="design-text-link" href="/portal">Volver a mis cursos</Link></div>;

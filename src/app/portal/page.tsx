@@ -1,3 +1,4 @@
+import {getLearningCourses} from '@/lib/courses/server';
 import { learningAccess } from '@/lib/learning/server';
 import { studentAttendance } from '@/lib/attendance/server';
 import { getEducationContext } from "@/lib/education/server";
@@ -54,7 +55,7 @@ export default async function PortalPage() {
   const claims = data.claims;
   const firstName = getFriendlyFirstName(claims);
 
-  const [educationContext, progress, attendance] = await Promise.all([getEducationContext(), learningAccess('summary'), studentAttendance()]);
+  const [educationContext, progress, attendance, courses] = await Promise.all([getEducationContext(), learningAccess('summary'), studentAttendance(), getLearningCourses()]);
 
-  return <PortalDashboard firstName={firstName} email={claims.email} articles={resourceArticles} educationContext={educationContext} studentProgress={progress.error ? null : progress.data as Record<string,number>} attendance={attendance} rolePreviewEnabled={process.env.VERCEL_GIT_COMMIT_REF === 'qa' || (process.env.NODE_ENV === 'development' && process.env.PORTAL_ROLE_PREVIEW === 'true')} />;
+  return <PortalDashboard courses={courses} firstName={firstName} email={claims.email} articles={resourceArticles} educationContext={educationContext} studentProgress={progress.error ? null : progress.data as Record<string,number>} attendance={attendance} rolePreviewEnabled={process.env.VERCEL_GIT_COMMIT_REF === 'qa' || (process.env.NODE_ENV === 'development' && process.env.PORTAL_ROLE_PREVIEW === 'true')} />;
 }

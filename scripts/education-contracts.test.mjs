@@ -18,3 +18,12 @@ test('context supports multiple student schools without turning school roles int
 test('education errors fail closed without returning database messages', () => {
  assert.equal(educationErrorStatus('42501'),403);assert.equal(educationErrorStatus('23505'),409);assert.equal(educationErrorStatus('22P02'),400);assert.equal(educationErrorStatus('unknown'),503);
 });
+
+test('governance contracts require initial admin, accepted roles and explicit classroom operations',()=>{
+ assert.equal(educationRequestSchema.safeParse({action:'schools.create',input:{name:'ABC',slug:'abc'}}).success,false);
+ assert.equal(educationRequestSchema.safeParse({action:'schools.create',input:{name:'ABC',slug:'abc',adminEmail:'admin@example.test'}}).success,true);
+ assert.equal(educationRequestSchema.safeParse({action:'memberships.leave',input:{schoolId}}).success,false);
+ assert.equal(educationRequestSchema.safeParse({action:'schools.settings',input:{schoolId,shareReflections:true}}).success,true);
+ assert.equal(educationRequestSchema.safeParse({action:'schools.settings',input:{schoolId,shareReflections:'true'}}).success,false);
+ assert.equal(educationRequestSchema.safeParse({action:'invitations.create',input:{schoolId,email:'teacher@example.test',role:'school_admin'}}).success,true);
+});
