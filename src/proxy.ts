@@ -3,6 +3,7 @@ import { qaGateEnabled } from '@/lib/qa-gate'
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { isEmailAccountClaims } from '@/lib/auth'
+import { EN_ENABLED, PORTAL_ENABLED, englishRedirectTarget, isPortalEntryPath } from '@/lib/release-flags'
 import { getSupabaseConfig, isSupabaseConfigured } from '@/lib/supabase/config'
 import { SITE_URL } from './lib/site'
 
@@ -86,6 +87,25 @@ export async function proxy(request: NextRequest) {
   }
 
   // Locale rewrites live in next.config so this proxy does not run twice and drop the QA cookie.
+  if (!EN_ENABLED) {
+    const target = englishRedirectTarget(pathname)
+    if (target) {
+      const url = request.nextUrl.clone()
+      url.pathname = target.pathname
+      if (target.fallback) url.search = ''
+      return finish(request, NextResponse.redirect(url, 308))
+    }
+  }
+
+  // Hide portal and auth before the session proxy can send visitors to sign-in.
+  // Route layouts also call notFound() if a request reaches the segment.
+  if (!PORTAL_ENABLED && isPortalEntryPath(pathname)) {
+    return finish(request, new NextResponse(null, {
+      status: 404,
+      headers: { 'x-robots-tag': 'noindex', 'content-type': 'text/plain; charset=utf-8' },
+    }))
+  }
+
   const response = authRoute.test(pathname) ? await authProxy(request) : NextResponse.next({ request })
   return finish(request, response)
 }
