@@ -148,10 +148,10 @@ const Privacidad = () => {
                 <div className="flex items-center gap-2 bg-accent/20 p-4 rounded-lg">
                   <Mail className="w-5 h-5 text-[#806018]" />
                   <a
-                    href="mailto:hello@yosoynosotros.com"
+                    href="mailto:humanismoevolutivo@gmail.com"
                     className="text-[#806018] hover:underline font-semibold"
                   >
-                    hello@yosoynosotros.com
+                    humanismoevolutivo@gmail.com
                   </a>
                 </div>
                 <p>La solicitud deberá incluir:</p>
@@ -174,7 +174,7 @@ const Privacidad = () => {
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
                 <p>
-                  El titular podrá revocar su consentimiento para el tratamiento de sus datos personales o limitar su uso con fines específicos, enviando una solicitud al correo hello@yosoynosotros.com.
+                  El titular podrá revocar su consentimiento para el tratamiento de sus datos personales o limitar su uso con fines específicos, enviando una solicitud al correo humanismoevolutivo@gmail.com.
                 </p>
                 <p>
                   La revocación no tendrá efectos retroactivos sobre el tratamiento previamente realizado con base en el consentimiento otorgado.
@@ -247,10 +247,10 @@ const Privacidad = () => {
                 <div className="flex items-center gap-2">
                   <Mail className="w-5 h-5 text-[#806018]" />
                   <a
-                    href="mailto:hello@yosoynosotros.com"
+                    href="mailto:humanismoevolutivo@gmail.com"
                     className="text-[#806018] hover:underline"
                   >
-                    hello@yosoynosotros.com
+                    humanismoevolutivo@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2">

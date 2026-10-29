@@ -104,7 +104,7 @@ const Terminos = () => {
               </h2>
               <div className="space-y-4 text-base leading-relaxed">
                 <p>
-                  Todo el contenido del Sitio —incluyendo textos, imágenes, fotografías, gráficos, logotipos, videos, audios, documentos, materiales descargables y diseños— es propiedad de Fundación Humanismo Evolutivo o se utiliza con la autorización correspondiente de sus titulares.
+                  Todo el contenido del Sitio  - incluyendo textos, imágenes, fotografías, gráficos, logotipos, videos, audios, documentos, materiales descargables y diseños -  es propiedad de Fundación Humanismo Evolutivo o se utiliza con la autorización correspondiente de sus titulares.
                 </p>
                 <p>
                   Queda estrictamente prohibida su reproducción, distribución, modificación o uso sin autorización previa y por escrito de la Fundación.
@@ -240,10 +240,10 @@ const Terminos = () => {
                   <div className="flex items-center gap-2 bg-accent/20 p-4 rounded-lg">
                     <Mail className="w-5 h-5 text-[#806018]" />
                     <a
-                      href="mailto:hello@yosoynosotros.com"
+                      href="mailto:humanismoevolutivo@gmail.com"
                       className="text-[#806018] hover:underline font-semibold"
                     >
-                      hello@yosoynosotros.com
+                      humanismoevolutivo@gmail.com
                     </a>
                   </div>
                   <div className="flex items-center gap-2 bg-accent/20 p-4 rounded-lg">
