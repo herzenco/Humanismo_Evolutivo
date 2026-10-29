@@ -1,18 +1,22 @@
+'use client';
+
+import { useTx } from '@/components/design/useTx';
 import Link from "next/link";
-export default function ContactIntro() { return <div className="editorial"><section aria-labelledby="contacto-titulo" className="he-2d4745d82 he-row">
+export default function ContactIntro() {
+  const tx = useTx(); return <div className="editorial"><section aria-labelledby="contacto-titulo" className="he-2d4745d82 he-row">
 <div className="he-90f8526f2 he-sized">
 <span className="he-c9ad9fec4 he-row">
-{"Conectemos"}
+{tx("Conectemos")}
 </span>
 <h1 id="contacto-titulo" className="he-274ef8b1e he-h1">
-{"Contacto"}
+{tx("Contacto")}
 </h1>
 <p className="he-926993a92 he-sized">
-{"¿Tienes preguntas o comentarios sobre las obras de Marcos Constandse? Estamos aquí para crear un diálogo significativo contigo."}
+{tx("¿Tienes preguntas o comentarios sobre las obras de Marcos Constandse? Estamos aquí para crear un diálogo significativo contigo.")}
 </p>
 <div className="he-152d372b7 he-row">
 <a href="#formulario" className="he-21e3a953a he-row">
-{"Envíanos un mensaje\n"}
+{tx("Envíanos un mensaje\n")}
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
 
@@ -28,7 +32,7 @@ export default function ContactIntro() { return <div className="editorial"><sect
 
 </path>
 </svg>
-{"\nhumanismoevolutivo@gmail.com"}
+{tx("\nhumanismoevolutivo@gmail.com")}
 </a>
 </div>
 </div>
@@ -46,13 +50,13 @@ export default function ContactIntro() { return <div className="editorial"><sect
 
 </span>
 <span className="he-054fe1430">
-{"CONOCER"}
+{tx("CONOCER")}
 <br />
-{"COMPRENDER"}
+{tx("COMPRENDER")}
 <br />
-{"TRANSFORMAR"}
+{tx("TRANSFORMAR")}
 <br />
-{"EVOLUCIONAR"}
+{tx("EVOLUCIONAR")}
 </span>
 </div>
 </div>

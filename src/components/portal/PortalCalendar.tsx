@@ -2,42 +2,53 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { portalRoleSuffix } from '@/lib/portal-role';
 import { useSearchParams } from 'next/navigation';
-import { CalendarDays, ChevronLeft, ChevronRight, List } from 'lucide-react';
-import { classDateKey, classesForMonth, type PortalClass } from '@/data/portal';
+import { ArrowLeft, ArrowRight, Search } from 'lucide-react';
+import { portalRoleSuffix } from '@/lib/portal-role';
+import type { PortalClass } from '@/data/portal';
+import type { LearningCourse } from '@/lib/courses/contracts';
+import { filterSchedule, groupSchedule, scheduleDate, scheduleTime } from '@/lib/portal-schedule';
+import { courseHref } from './CourseCatalog';
 
-export default function PortalCalendar({ sessions }: { sessions: PortalClass[] }) {
+export default function PortalCalendar({ sessions, catalog = [] }: { sessions: PortalClass[]; catalog?: LearningCourse[] }) {
   const params = useSearchParams();
   const roleSuffix = portalRoleSuffix(params.get('role'));
-  const classLink = (id: string) => `/portal?view=calendar&class=${encodeURIComponent(id)}${roleSuffix}`;
+  const [query, setQuery] = useState('');
+  const [courseId, setCourseId] = useState('');
   const selectedClass = sessions.find(session => session.id === params.get('class'));
-  const [month, setMonth] = useState(() => {
-    const first = [...sessions].sort((a, b) => a.startsAt.localeCompare(b.startsAt))[0];
-    const date = first ? classDateKey(first).split('-').map(Number) : null;
-    return date ? new Date(date[0], date[1] - 1, 1) : new Date(new Date().getFullYear(), new Date().getMonth(), 1);
-  });
-  const [mode, setMode] = useState<'calendar' | 'list'>('calendar');
-  const [selectedDate, setSelectedDate] = useState<string>();
-  const today = new Date();
-  const classes = classesForMonth(sessions, month.getFullYear(), month.getMonth());
-  const activeDate = selectedDate && classes.some(session => classDateKey(session) === selectedDate) ? selectedDate : classes[0] ? classDateKey(classes[0]) : undefined;
-  const offset = (month.getDay() + 6) % 7;
-  const days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
-  const time = (session: PortalClass) => new Intl.DateTimeFormat('es-MX', { timeZone: session.timeZone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(session.startsAt));
-  if (selectedClass) return <article className="portal-reader portal-scheduled-class"><Link href={`/portal?view=calendar${roleSuffix}`} className="design-text-link"><ChevronLeft size={18} />Volver al calendario</Link><span className="design-eyebrow">PROGRAMA ESCOLAR 2027 · CLASE PRESENCIAL</span><h2>{selectedClass.title}</h2><dl className="portal-class-facts"><div><dt>Fecha</dt><dd><time dateTime={selectedClass.startsAt}>{new Intl.DateTimeFormat('es-MX', { timeZone: selectedClass.timeZone, weekday:'long', day:'numeric', month:'long', year:'numeric' }).format(new Date(selectedClass.startsAt))}</time></dd></div><div><dt>Horario</dt><dd>{time(selectedClass)}–{new Intl.DateTimeFormat('es-MX', { timeZone:selectedClass.timeZone,hour:'2-digit',minute:'2-digit',hourCycle:'h23' }).format(new Date(selectedClass.endsAt))}</dd></div><div><dt>Modalidad y ubicación</dt><dd>{selectedClass.location || 'Ubicación por confirmar'}</dd></div><div><dt>Zona horaria</dt><dd>{selectedClass.timeZone || 'Por confirmar'}</dd></div></dl><section className="portal-class-material"><h3>Contenido de la clase</h3><p>El material de esta clase estará disponible cuando se publique el curso.</p></section></article>;
-  return <section className="portal-calendar" aria-label="Calendario de clases">
-    <div className="portal-schedule-note"><strong>Programa escolar 2027</strong><p>Primer periodo: 15 febrero–15 junio · Segundo periodo: 15 agosto–15 diciembre.</p><p>Se muestran las fechas explícitas del programa recibido (15–20 de febrero). El resto del calendario está pendiente de confirmar, al igual que la sede y la zona horaria.</p></div>
-    <div className="portal-calendar-heading"><h2 aria-live="polite">{month.toLocaleDateString('es-MX', { month: 'long', year: 'numeric' })}</h2><div className="portal-calendar-controls"><div className="portal-view-switch" role="group" aria-label="Vista de clases"><button type="button" aria-pressed={mode === 'calendar'} onClick={() => setMode('calendar')}><CalendarDays size={16} />Calendario</button><button type="button" aria-pressed={mode === 'list'} onClick={() => setMode('list')}><List size={16} />Lista</button></div><div className="portal-month-controls"><button type="button" aria-label="Mes anterior" onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))}><ChevronLeft /></button><button type="button" onClick={() => setMonth(new Date(today.getFullYear(), today.getMonth(), 1))}>Hoy</button><button type="button" aria-label="Mes siguiente" onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))}><ChevronRight /></button></div></div></div>
-    {mode === 'calendar' ? <div className="portal-calendar-scroll" tabIndex={0} role="region" aria-label="Calendario mensual con nombres de las clases"><div className="portal-calendar-grid">{['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'].map(day => <div className="portal-weekday" key={day}>{day}</div>)}{Array.from({ length: offset }, (_, i) => <div className="portal-day portal-day-empty" key={`empty-${i}`} />)}{Array.from({ length: days }, (_, i) => {
-      const day = i + 1;
-      const date = `${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-      const isToday = day === today.getDate() && month.getMonth() === today.getMonth() && month.getFullYear() === today.getFullYear();
-      const dayClasses = classes.filter(session => classDateKey(session) === date);
-      return <div className={`portal-day ${isToday ? 'portal-day-today' : ''}`} key={day}><span aria-current={isToday ? 'date' : undefined}>{day}</span>{dayClasses.length ? <><button className="portal-day-count" type="button" aria-pressed={activeDate === date} aria-label={`Ver clases del ${day} de ${month.toLocaleDateString('es-MX', { month:'long' })}`} onClick={()=>setSelectedDate(date)}>Ver el día</button><ol className="portal-calendar-classes">{dayClasses.map(session=><li key={session.id}><Link href={classLink(session.id)}><time dateTime={session.startsAt}>{time(session)}–{new Intl.DateTimeFormat('es-MX',{timeZone:session.timeZone,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(session.endsAt))}</time><strong>{session.title}</strong></Link></li>)}</ol></> : null}</div>;
-    })}</div></div> : null}
-    {mode === 'calendar' && activeDate ? <h3 className="portal-day-detail-heading">Clases del {new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'long' }).format(new Date(`${activeDate}T12:00:00`))}</h3> : null}
-    <ul className="portal-class-list">{classes.filter(session => mode === 'list' || classDateKey(session) === activeDate).map(session => <li key={session.id}><div><time dateTime={session.startsAt}>{new Intl.DateTimeFormat('es-MX', { timeZone: session.timeZone, day: 'numeric', month: 'long' }).format(new Date(session.startsAt))}</time><span>{time(session)}–{new Intl.DateTimeFormat('es-MX', { timeZone: session.timeZone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(session.endsAt))} · {session.timeZone || 'Zona horaria por confirmar'}</span></div><div><h3><Link href={classLink(session.id)}>{session.title}</Link></h3>{session.location ? <p>{session.location}</p> : null}</div></li>)}</ul>
-    {!classes.length ? <p className="portal-calendar-empty" role="status">No hay clases programadas para este mes. Las fechas aparecerán aquí cuando se publique el calendario de cursos.</p> : <p className="portal-calendar-empty">Los horarios corresponden a la fuente original. Consulta la zona horaria en la vista de lista.</p>}
+  const courses = groupSchedule(filterSchedule(sessions));
+  const filtered = filterSchedule(sessions, query, courseId);
+  const groups = groupSchedule(filtered);
+  const classLink = (id: string) => `/portal?view=calendar&class=${encodeURIComponent(id)}${roleSuffix}`;
+
+  if (selectedClass) {
+    const catalogId = selectedClass.courseId === 'filosofia-de-yo-soy-nosotros' ? 'yo-soy-nosotros' : selectedClass.courseId;
+    const course = catalog.find(item => item.id === catalogId);
+    return <article className="portal-reader portal-scheduled-class">
+      <Link href={`/portal?view=calendar${roleSuffix}`} className="design-text-link"><ArrowLeft size={18} />Volver a la lista</Link>
+      <span className="design-eyebrow">PROGRAMA ESCOLAR 2027 · CLASE PRESENCIAL</span>
+      <h2>{selectedClass.title}</h2>
+      <dl className="portal-class-facts">
+        <div><dt>Fecha</dt><dd><time dateTime={selectedClass.startsAt}>{scheduleDate(selectedClass)}</time></dd></div>
+        <div><dt>Horario</dt><dd>{scheduleTime(selectedClass)}–{scheduleTime(selectedClass, true)}</dd></div>
+        <div><dt>Modalidad y ubicación</dt><dd>{selectedClass.location || 'Ubicación por confirmar'}</dd></div>
+        <div><dt>Zona horaria</dt><dd>{selectedClass.timeZone || 'Por confirmar'}</dd></div>
+      </dl>
+      <section className="portal-class-material"><h3>Material del curso</h3>{course ? <Link className="design-text-link" href={courseHref(course.id)}>Ver programa y mi progreso<ArrowRight size={18} /></Link> : <p>El material de este curso estará disponible cuando se publique.</p>}</section>
+    </article>;
+  }
+
+  return <section className="portal-schedule-list" aria-label="Lista de clases programadas">
+    <div className="portal-schedule-filters">
+      <label className="portal-search"><Search size={20} aria-hidden="true" /><span className="sr-only">Buscar clases</span><input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Buscar curso, fecha o ubicación" /></label>
+      <label className="portal-schedule-select">Filtrar por curso<select value={courseId} onChange={event => setCourseId(event.target.value)}><option value="">Todos los cursos</option>{courses.map(course => <option key={course.id} value={course.id}>{course.title}</option>)}</select></label>
+      {query || courseId ? <button className="design-text-link" type="button" onClick={() => { setQuery(''); setCourseId(''); }}>Limpiar filtros</button> : null}
+    </div>
+    <div className="portal-section-heading"><h2>Próximas clases</h2><span role="status">{groups.length} {groups.length === 1 ? 'curso' : 'cursos'} · {filtered.length} {filtered.length === 1 ? 'sesión' : 'sesiones'}</span></div>
+    <p className="portal-schedule-coverage">Fechas incluidas en el programa recibido: 15–20 de febrero de 2027. Sede y zona horaria pendientes de confirmar.</p>
+    {groups.length ? <div className="portal-schedule-groups">{groups.map(group => <section className="portal-schedule-group" key={group.id} aria-labelledby={`schedule-${group.id}`}>
+      <div className="portal-schedule-group-heading"><h3 id={`schedule-${group.id}`}>{group.title}</h3><span>{group.sessions.length} {group.sessions.length === 1 ? 'sesión' : 'sesiones'}</span></div>
+      <ul>{group.sessions.map(session => <li key={session.id}><div><time dateTime={session.startsAt}>{scheduleDate(session)}</time><span>{scheduleTime(session)}–{scheduleTime(session, true)} · {session.timeZone || 'Zona horaria por confirmar'}</span></div><Link href={classLink(session.id)} className="design-text-link" aria-label={`Ver sesión de ${session.title}, ${scheduleDate(session)}`}>Ver sesión<ArrowRight size={17} /></Link></li>)}</ul>
+    </section>)}</div> : <div className="portal-empty"><h3>No encontramos clases</h3><p>Prueba otro nombre o selecciona todos los cursos.</p><button className="design-button" type="button" onClick={() => { setQuery(''); setCourseId(''); }}>Ver todas las clases</button></div>}
   </section>;
 }

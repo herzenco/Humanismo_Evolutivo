@@ -4,7 +4,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Play, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const podcasts = [

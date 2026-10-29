@@ -4,6 +4,16 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { isEmailAccountClaims } from '@/lib/auth'
 import { getSupabaseConfig, isSupabaseConfigured } from '@/lib/supabase/config'
+import { SITE_URL } from './lib/site'
+
+const legacyHosts = new Set([
+  'yosoynosotros.org',
+  'www.yosoynosotros.org',
+  'yosoynosotros.com',
+  'www.yosoynosotros.com',
+  'www.humanismoevolutivo.com',
+])
+const authRoute = /^\/(?:(?:en|es)\/)?(auth|portal|admin)(\/|$)/
 
 function copyAuthState(source: NextResponse, target: NextResponse) {
   source.cookies.getAll().forEach(({ name, value, ...options }) => {
@@ -46,37 +56,38 @@ async function authProxy(request: NextRequest) {
     },
   })
 
-  // Keep this immediately after client creation so token refreshes remain reliable.
   const { data } = await supabase.auth.getClaims()
-  const isProtectedRoute =
-    request.nextUrl.pathname.startsWith('/portal') ||
-    request.nextUrl.pathname.startsWith('/admin')
+  const pathname = request.nextUrl.pathname
+  const isProtectedRoute = /^\/(?:(?:en|es)\/)?(portal|admin)(\/|$)/.test(pathname)
 
   if (!isEmailAccountClaims(data?.claims) && isProtectedRoute) {
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = '/auth'
     redirectUrl.search = ''
-    redirectUrl.searchParams.set(
-      'next',
-      `${request.nextUrl.pathname}${request.nextUrl.search}`,
-    )
-
-    return copyAuthState(
-      supabaseResponse,
-      NextResponse.redirect(redirectUrl),
-    )
+    redirectUrl.searchParams.set('next', `${pathname}${request.nextUrl.search}`)
+    return copyAuthState(supabaseResponse, NextResponse.redirect(redirectUrl))
   }
 
   return supabaseResponse
 }
 
-export async function proxy(request: NextRequest) {
-  const blocked = qaGateResponse(request)
-  if (blocked) return blocked
-  const authRoute = /^\/(auth|portal|admin)(\/|$)/.test(request.nextUrl.pathname)
-  const response = authRoute ? await authProxy(request) : NextResponse.next({ request })
+function finish(request: NextRequest, response: NextResponse) {
   return qaGateEnabled() ? rememberQaAccess(request, privateQaResponse(response)) : response
 }
 
-// No extension/API exclusions: QA pages, RSC, images and downloads all require access.
+export async function proxy(request: NextRequest) {
+  const blocked = qaGateResponse(request)
+  if (blocked) return blocked
+
+  const { pathname, hostname } = request.nextUrl
+  if (legacyHosts.has(hostname)) {
+    const canonical = new URL(pathname + request.nextUrl.search, SITE_URL)
+    return NextResponse.redirect(canonical, 308)
+  }
+
+  // Locale rewrites live in next.config so this proxy does not run twice and drop the QA cookie.
+  const response = authRoute.test(pathname) ? await authProxy(request) : NextResponse.next({ request })
+  return finish(request, response)
+}
+
 export const config = { matcher: ['/:path*'] }

@@ -1,14 +1,22 @@
-export type PortalRole = 'student' | 'teacher' | 'school' | 'admin';
-type RoleContext = {isPlatformAdmin:boolean; memberships:{role:string;status:string;schoolStatus:string}[]};
-export function availablePortalRoles(context?: RoleContext | null): PortalRole[] {
- const roles:PortalRole[]=['student'];
- for(const role of ['teacher','school'] as const) if(context?.memberships.some(m=>m.role===role&&m.status==='active'&&m.schoolStatus==='active')) roles.push(role);
+import type { EducationContext } from './education/contracts';
+export type PortalRole = 'student' | 'teacher' | 'school_admin' | 'admin';
+export const roleLabels: Record<PortalRole,string> = {student:'Estudiante',teacher:'Maestro',school_admin:'Administrador escolar',admin:'Administrador de plataforma'};
+// Preview values never authorize a request. Actual capabilities come from DB context.
+export function portalRole(value: string | null, enabled: boolean): PortalRole {
+ return enabled && (value === 'teacher' || value === 'school_admin' || value === 'admin') ? value : 'student';
+}
+export function portalRoleSuffix(value: string | null) {
+ return value === 'student' || value === 'teacher' || value === 'school_admin' || value === 'admin' ? `&role=${value}` : '';
+}
+export function availablePortalRoles(context?: EducationContext | null): PortalRole[] {
+ const roles: PortalRole[] = ['student'];
+ const active = context?.memberships.filter(m=>m.status==='active'&&m.schoolStatus==='active') || [];
+ if(active.some(m=>m.role==='teacher')) roles.push('teacher');
+ if(active.some(m=>m.role==='school_admin')) roles.push('school_admin');
  if(context?.isPlatformAdmin) roles.push('admin');
  return roles;
 }
-export function portalRole(value:string|null, allowed:readonly PortalRole[]):PortalRole {
- return allowed.includes(value as PortalRole) ? value as PortalRole : allowed[allowed.length-1] || 'student';
-}
-export function portalRoleSuffix(value:string|null) {
- return value==='student'||value==='teacher'||value==='school'||value==='admin' ? `&role=${value}` : '';
+export function selectedPortalRole(context: EducationContext | null | undefined, requested: string | null): PortalRole {
+ const roles=availablePortalRoles(context);
+ return roles.includes(requested as PortalRole) ? requested as PortalRole : roles[roles.length-1];
 }
