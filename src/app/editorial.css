@@ -359,3 +359,11 @@
   #s6 .he-ff96ce4f1 { padding: 20px; gap: 16px; }
   #s6 .he-211d92610 { width: 88px; }
 }
+
+/* Gold labels and links on ivory or sage. Dark sections keep #D4AF5A. */
+:is(.he-65fbe60ac, .he-af688e964, .he-0ee09cc2f, .he-580031031, .he-2ce0874f2, .he-298106cb6, .he-feeeb26a8, .he-76bb15af4, .he-f1875aa15) :is(.he-11a930e85, .he-57a52e76d, .he-9061e6128, .he-1e39182c4, .he-093c31c5d, .he-d76576463, .he-57588e735, .he-080ac00a5, .he-6fc4d7b2c, .he-252de5a21, .he-a66a6c63b, .he-1544816b6, .he-c44b4741e, .he-d8b9f29dd, .he-b958b876a, .he-d3c66a716, .he-749326d49, .he-b94561aa1) {
+  color: #806018;
+}
+:is(.he-65fbe60ac, .he-af688e964, .he-0ee09cc2f, .he-580031031, .he-2ce0874f2, .he-298106cb6, .he-feeeb26a8, .he-76bb15af4, .he-f1875aa15) :is(.he-57588e735, .he-d3c66a716) {
+  border-color: #806018;
+}

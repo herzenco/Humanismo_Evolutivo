@@ -40,7 +40,7 @@ html { scroll-padding-top:104px; }
 .editorial img { height:auto; }
 .editorial figure img { height:100%; }
 .editorial > section:first-child figure img { height:100%; }
-.design-eyebrow { font-family:'Cinzel',serif; color:#D4AF5A; font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; }
+.design-eyebrow { font-family:'Cinzel',serif; color:#806018; font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; }
 .site-footer { background:#173F2C; color:#fff; padding:64px 24px 28px; }
 .site-footer-inner { max-width:1200px; margin:auto; }
 .site-newsletter { border:1px solid #D4AF5A59; background:#1F4B36; padding:36px 40px; border-radius:24px; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:48px; margin-bottom:64px; }
@@ -192,7 +192,7 @@ html { scroll-padding-top:104px; }
 .design-not-found > div { display:flex; align-items:center; flex-direction:column; gap:24px; }
 .design-not-found svg { color:#2F6B45; }
 .design-not-found .design-eyebrow { color:#2F6B45; }
-.design-404 { font-family:'Cormorant Garamond',serif; font-size:150px; line-height:1; color:#D4AF5A; }
+.design-404 { font-family:'Cormorant Garamond',serif; font-size:150px; line-height:1; color:#806018; }
 .design-not-found h1 { font-size:52px; font-weight:600; }
 .design-not-found p:not(.design-404) { max-width:540px; font-size:19px; color:#3E4D43; }
 @media(min-width:1440px) { .design-content-width { padding-inline:0; } }
@@ -702,3 +702,15 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .portal-administration [role="alert"] { color:#9b2e22; }
 .portal-administration [role="status"] { scroll-margin-top:100px; }
 @media(max-width:700px) { .portal-admin-form { grid-template-columns:1fr; padding:1rem; } }
+
+/* #D4AF5A passes on the dark green surfaces and fails on ivory, white and sage. */
+.site-header .design-eyebrow,
+.site-footer .design-eyebrow,
+.site-newsletter .design-eyebrow,
+.design-books-hero .design-eyebrow,
+.design-media-hero .design-eyebrow,
+.questions-hero .design-eyebrow,
+.portal-sidebar .design-eyebrow,
+.he-e149bc314 .design-eyebrow,
+.he-1da7f6aa5 .design-eyebrow,
+.he-74bc7aede .design-eyebrow { color:#D4AF5A; }

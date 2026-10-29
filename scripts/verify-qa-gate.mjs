@@ -25,7 +25,7 @@ async function withServer(overrides, port, verify) {
   }finally{child.kill('SIGKILL');await new Promise(resolve=>{if(child.exitCode!==null)resolve();else child.once('exit',resolve);});}
 }
 await withServer({},3169,async(request,base)=>{
-  for(const path of ['/','/portal','/51preguntas/pregunta_1','/books/Yo_Soy_Nosotros_Resumen.pdf','/favicon.png','/sitemap.xml']) {
+  for(const path of ['/','/portal','/51preguntas/pregunta_1','/books/Yo_Soy_Nosotros_Resumen.pdf','/favicon-small.png','/sitemap.xml']) {
     const response=await request(path);assert.equal(response.status,303,path);assert.ok(response.headers.get('location').includes('/qa-access?next='));
   }
   assert.equal((await request('/api/education/access')).status,401);
@@ -50,7 +50,7 @@ await withServer({},3169,async(request,base)=>{
   const renewed=remembered.headers.get('set-cookie').split(';')[0];
   assert.equal((await request('/',{headers:{Cookie:renewed}})).status,200);
   const html=await home.text();const asset=html.match(/src="([^" ]*\/_next\/static\/[^" ]+)"/)[1];assert.equal((await request(asset,{headers})).status,200);assert.equal((await request(asset)).status,401);
-  assert.equal((await request('/favicon.png',{headers})).status,200);
+  assert.equal((await request('/favicon-small.png',{headers})).status,200);
   const logout=await post({logout:'1'});assert.match(logout.headers.get('set-cookie'),/Max-Age=0/);
   const external=await post({password,next:'//evil.test'});assert.equal(new URL(external.headers.get('location')).origin,base);
 });
