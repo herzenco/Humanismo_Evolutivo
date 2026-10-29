@@ -81,6 +81,10 @@ export async function proxy(request: NextRequest) {
   if (blocked) return blocked
 
   const { pathname, hostname } = request.nextUrl
+  if (request.headers.get('x-he-locale-rewrite') === '1') {
+    const response = authRoute.test(pathname) ? await authProxy(request) : NextResponse.next({ request })
+    return finish(request, response)
+  }
   if (legacyHosts.has(hostname)) {
     const canonical = new URL(pathname + request.nextUrl.search, SITE_URL)
     return NextResponse.redirect(canonical, 308)
@@ -103,7 +107,9 @@ export async function proxy(request: NextRequest) {
 
   const url = request.nextUrl.clone()
   url.pathname = `/es${pathname === '/' ? '' : pathname}`
-  const rewritten = NextResponse.rewrite(url)
+  const headers = new Headers(request.headers)
+  headers.set('x-he-locale-rewrite', '1')
+  const rewritten = NextResponse.rewrite(url, { request: { headers } })
   if (!needsAuth) return finish(request, rewritten)
   const authed = await authProxy(request)
   if (authed.headers.get('location')) return finish(request, authed)
