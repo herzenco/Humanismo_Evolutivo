@@ -176,7 +176,7 @@ export const podcastSeries: PodcastSeries[] = [
     id: 'lo-mejor-esta-por-venir',
     titleKey: 'podcast.series.ylmepv.title',
     descriptionKey: 'podcast.series.ylmepv.description',
-    coverImage: 'https://qlqkdininewormskpnya.supabase.co/storage/v1/object/public/admin-uploads/lo-mejor-esta-por-venir-cover.jpg',
+    coverImage: '/design/podcasts/lo-mejor-esta-por-venir.webp',
     episodes: [
       {
         id: 13,

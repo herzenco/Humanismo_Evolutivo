@@ -169,8 +169,32 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      portal_course_access: {
+        Args: { p_action: string; p_input?: Json };
+        Returns: Json;
+      };
+      portal_teacher_dashboard: {
+        Args: { p_school: string; p_query?: string; p_limit?: number; p_offset?: number };
+        Returns: Json;
+      };
+      portal_attendance_access: {
+        Args: { p_action: string; p_input?: Json };
+        Returns: Json;
+      };
+      portal_learning_access: {
+        Args: { p_action: string; p_course?: string; p_lesson?: number; p_reflection?: string; p_reviewed?: boolean };
+        Returns: Json;
+      };
       education_qa_access: {
         Args: { p_action: string; p_input?: Json }
+        Returns: Json
+      }
+      submit_contact_submission: {
+        Args: { p_name: string; p_email: string; p_phone: string; p_subject: string; p_message: string; p_consent: boolean; p_locale: string }
+        Returns: string
+      }
+      list_contact_submissions: {
+        Args: Record<string, never>
         Returns: Json
       }
 
