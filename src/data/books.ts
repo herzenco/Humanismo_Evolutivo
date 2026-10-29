@@ -24,7 +24,7 @@ const originalBooks = [
     author: 'Marcos Constandse Madrazo',
     year: '2019',
     pages: '284',
-    keywords: ['Transpersonal', 'Filosofía', 'Consciencia', 'Espiritualidad', 'Ecología', 'Premio Nacional'],
+    keywords: ['Transpersonal', 'Filosofía', 'Conciencia', 'Espiritualidad', 'Ecología', 'Premio Nacional'],
     downloadAvailable: true
   },
   {
@@ -33,12 +33,12 @@ const originalBooks = [
     author: 'Marcos Constandse Madrazo',
     year: '2020',
     pages: '312',
-    keywords: ['Ecología', 'Espiritualidad', 'Ética ambiental', 'Consciencia', 'Sostenibilidad'],
+    keywords: ['Ecología', 'Espiritualidad', 'Ética ambiental', 'Conciencia', 'Sostenibilidad'],
     downloadAvailable: true
   },
   {
     id: 'dejalo-ser',
-    title: 'Déjalo ser',
+    title: '¡Déjalo ser!',
     author: 'Marcos Constandse Madrazo',
     year: '2021',
     pages: '298',
@@ -47,11 +47,11 @@ const originalBooks = [
   },
   {
     id: 'lo-mejor-esta-por-venir',
-    title: 'Y lo mejor aún está por venir',
+    title: '¡Y lo mejor aún está por venir!',
     author: 'Marcos Constandse Madrazo',
     year: '2023',
     pages: '218',
-    keywords: ['Autoayuda', 'Filosofía', 'Evolución personal', 'Consciencia', 'Felicidad'],
+    keywords: ['Autoayuda', 'Filosofía', 'Evolución personal', 'Conciencia', 'Felicidad'],
     downloadAvailable: true
   },
   {
