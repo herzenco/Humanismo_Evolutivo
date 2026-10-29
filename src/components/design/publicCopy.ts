@@ -5,6 +5,7 @@ export const publicCopy: Record<string, string> = {
   'Explorar libros\n': 'Explore the books\n',
   'Sobre el autor': 'About the author',
   'Explora, conoce y profundiza a través de estos 8 contenidos:': 'Explore, learn, and go deeper through these 8 pieces:',
+  'Explora, conoce y profundiza a través de estos 7 contenidos:': 'Explore, learn, and go deeper through these 7 pieces:',
   'Conoce a los tres filósofos': 'Meet the three philosophers',
   'Las grandes preguntas': 'The great questions',
   'Un camino a través de los jardines': 'A path through the gardens',
@@ -188,6 +189,7 @@ export const publicCopy: Record<string, string> = {
   'Ver de nuevo la introducción': 'Watch the introduction again',
   'Portada de': 'Cover of',
   'Los 8 contenidos': 'The 8 pieces',
+  'Los 7 contenidos': 'The 7 pieces',
   'Marcos Constandse Madrazo sentado en su oficina, frente a un muro de fotografías de los parques de Xcaret':
     'Marcos Constandse Madrazo seated in his office, in front of a wall of photographs of the Xcaret parks',
   'Marcos Constandse Madrazo, sonriente, en su escritorio': 'Marcos Constandse Madrazo, smiling, at his desk',
