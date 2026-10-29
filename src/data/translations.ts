@@ -104,7 +104,7 @@ export const translations = {
     'autor.timeline.badge': 'Camino',
     'autor.timeline.title': 'Momentos',
     'autor.timeline.highlight': 'Significativos',
-    'autor.quote.legacy': '— Su legado literario',
+    'autor.quote.legacy': ' -  Su legado literario',
     
     // Contacto Page
     'contacto.hero.badge': 'Conectemos',
@@ -191,11 +191,11 @@ export const translations = {
     'podcast.ysn.ep7.title': 'La Filosofía',
     'podcast.ysn.ep7.description': 'Este episodio reflexiona sobre la filosofía como herramienta esencial para el despertar de la consciencia. Se parte de la idea de que la filosofía no es un conocimiento abstracto o lejano, sino una forma de vida que busca comprender el sentido de la existencia.',
     'podcast.ysn.ep8.title': 'Explorando las Tradiciones Espirituales',
-    'podcast.ysn.ep8.description': 'Este episodio hace un recorrido respetuoso y profundo por las principales tradiciones espirituales de la humanidad —hinduismo, budismo, judaísmo, cristianismo, islam, entre otras— mostrando cómo, a pesar de sus diferencias culturales y teológicas, todas comparten una búsqueda común: la unión con lo divino, la superación del ego y el cultivo del amor y la compasión.',
+    'podcast.ysn.ep8.description': 'Este episodio hace un recorrido respetuoso y profundo por las principales tradiciones espirituales de la humanidad  - hinduismo, budismo, judaísmo, cristianismo, islam, entre otras -  mostrando cómo, a pesar de sus diferencias culturales y teológicas, todas comparten una búsqueda común: la unión con lo divino, la superación del ego y el cultivo del amor y la compasión.',
     'podcast.ysn.ep9.title': 'El Desarrollo Transpersonal',
     'podcast.ysn.ep9.description': 'Este episodio explora el concepto de desarrollo transpersonal como la evolución de la consciencia más allá del ego individual. Se expone cómo la psicología transpersonal, al integrar elementos espirituales con el estudio de la mente humana, abre una vía para el autoconocimiento profundo y la conexión con el Todo.',
     'podcast.ysn.ep10.title': 'Reglas, Códigos, y Valores',
-    'podcast.ysn.ep10.description': 'Este episodio aborda la importancia de los valores como guía interior en la vida humana. Se distingue entre reglas —externas e impuestas— y valores —internos y asumidos conscientemente—. El autor subraya que, aunque las reglas pueden mantener el orden, solo los valores pueden generar verdadero sentido, cohesión social y crecimiento espiritual.',
+    'podcast.ysn.ep10.description': 'Este episodio aborda la importancia de los valores como guía interior en la vida humana. Se distingue entre reglas  - externas e impuestas -  y valores  - internos y asumidos conscientemente - . El autor subraya que, aunque las reglas pueden mantener el orden, solo los valores pueden generar verdadero sentido, cohesión social y crecimiento espiritual.',
     'podcast.ysn.ep11.title': 'Reflexiones sobre el Ser y el Universo',
     'podcast.ysn.ep11.description': 'Este episodio funciona como una síntesis y expansión de todo lo abordado en capítulos anteriores. Se reflexiona sobre el lugar del ser humano en el universo, no como un observador externo, sino como parte activa y consciente del proceso evolutivo.',
     'podcast.ysn.ep12.title': 'Evolución y Realización Interior',
@@ -245,13 +245,13 @@ export const translations = {
     'podcast.eadse.ep5.title': 'Capital, trabajando, y calidad de vida',
     'podcast.eadse.ep5.description': 'Este episodio replantea la relación entre capital, trabajo y bienestar desde una mirada más humana y consciente. Inspirado en la obra de Marcos Constandse Madrazo, explora cómo el capital no es un fin en sí mismo, sino una energía potencial que cobra verdadero valor cuando se pone al servicio de la vida, del crecimiento humano y del bien común.',
     'podcast.eadse.ep6.title': 'Capital, trabajador, y calidad de vida',
-    'podcast.eadse.ep6.description': 'Este episodio revela la relación esencial entre tres fuerzas que sostienen a toda empresa: el capital, el trabajador y la calidad de vida. Inspirado en la visión de Marcos Constandse Madrazo, explora cómo el capital —lejos de ser un fin en sí mismo— es una energía potencial que solo cobra verdadero sentido cuando se orienta a crear bienestar, crecimiento humano y evolución social.',
+    'podcast.eadse.ep6.description': 'Este episodio revela la relación esencial entre tres fuerzas que sostienen a toda empresa: el capital, el trabajador y la calidad de vida. Inspirado en la visión de Marcos Constandse Madrazo, explora cómo el capital  - lejos de ser un fin en sí mismo -  es una energía potencial que solo cobra verdadero sentido cuando se orienta a crear bienestar, crecimiento humano y evolución social.',
     'podcast.eadse.ep7.title': 'El marco legal y los nuevos mercados',
     'podcast.eadse.ep7.description': 'Este episodio explora la relación entre la empresa, la ley y el cambio constante del mercado desde una mirada consciente. Inspirado en la obra de Marcos Constandse Madrazo, muestra cómo el marco legal no es una barrera para la libertad empresarial, sino el terreno ético y estructural que permite que la creatividad, la competencia y la dignidad humana convivan sin caer en el abuso o el caos.',
     'podcast.eadse.ep8.title': 'Ego y conciencia en los negocios',
-    'podcast.eadse.ep8.description': 'Este episodio profundiza en una de las tensiones más decisivas de la vida empresarial: la relación entre el ego y la conciencia. Inspirado en la obra de Marcos Constandse Madrazo, revela cómo el ego —esa fuerza que busca control, reconocimiento y certeza— puede impulsar al empresario a crear, pero también puede cegarlo, endurecer su liderazgo y contaminar la cultura de la empresa.',
+    'podcast.eadse.ep8.description': 'Este episodio profundiza en una de las tensiones más decisivas de la vida empresarial: la relación entre el ego y la conciencia. Inspirado en la obra de Marcos Constandse Madrazo, revela cómo el ego  - esa fuerza que busca control, reconocimiento y certeza -  puede impulsar al empresario a crear, pero también puede cegarlo, endurecer su liderazgo y contaminar la cultura de la empresa.',
     'podcast.eadse.ep9.title': 'El bien común y la revolución de la conciencia',
-    'podcast.eadse.ep9.description': 'Este episodio explora una idea poderosa en la obra de Marcos Constandse Madrazo: el bien común no es un concepto político abstracto, sino una práctica cotidiana que nace de la conciencia individual. Aquí descubrimos que cada gesto ético dentro de una empresa —cada decisión justa, cada conversación honesta, cada relación basada en respeto— es una contribución directa al tejido social.',
+    'podcast.eadse.ep9.description': 'Este episodio explora una idea poderosa en la obra de Marcos Constandse Madrazo: el bien común no es un concepto político abstracto, sino una práctica cotidiana que nace de la conciencia individual. Aquí descubrimos que cada gesto ético dentro de una empresa  - cada decisión justa, cada conversación honesta, cada relación basada en respeto -  es una contribución directa al tejido social.',
     'podcast.eadse.ep10.title': 'Democracia y cultura del "no hacer pero si querer"',
     'podcast.eadse.ep10.description': 'Este episodio aborda una de las sombras más extendidas de nuestra vida social y organizacional: la tendencia a exigir sin participar, a querer resultados sin asumir responsabilidad, a desear cambios mientras permanecemos pasivos. Inspirado en la mirada lúcida de Marcos Constandse Madrazo, explora cómo esta actitud deteriora la democracia, empobrece la cultura laboral y limita el crecimiento humano.',
     'podcast.eadse.ep11.title': 'Vocaciones, sentido, y el ente creador',
@@ -281,7 +281,7 @@ export const translations = {
     'podcast.ylmepv.ep10.title': 'Sociedad, Legalidad y Calidad de Vida',
     'podcast.ylmepv.ep10.description': 'En este episodio analizamos cómo una sociedad verdaderamente desarrollada no se mide solo por su crecimiento económico, sino por la calidad de vida, la justicia y la dignidad que ofrece a sus miembros. Constandse subraya que la legalidad, si no está guiada por la ética, se vacía de sentido y puede convertirse en instrumento de opresión. Una sociedad con alma requiere leyes legítimas, instituciones al servicio del bien común y ciudadanos conscientes.',
     'podcast.ylmepv.ep11.title': 'Casos de Estudio: Modelos de Desarrollo',
-    'podcast.ylmepv.ep11.description': 'En este episodio analizamos cómo los distintos modelos de desarrollo impactan la vida humana y la salud del planeta. Constandse muestra que no todo "progreso" genera bienestar: muchos modelos centrados en el crecimiento económico producen desconexión, deterioro ecológico y pérdida cultural. Frente a ello, explora ejemplos reales —comunidades colaborativas, economías locales, proyectos sustentables— que demuestran que otro desarrollo es posible.',
+    'podcast.ylmepv.ep11.description': 'En este episodio analizamos cómo los distintos modelos de desarrollo impactan la vida humana y la salud del planeta. Constandse muestra que no todo "progreso" genera bienestar: muchos modelos centrados en el crecimiento económico producen desconexión, deterioro ecológico y pérdida cultural. Frente a ello, explora ejemplos reales  - comunidades colaborativas, economías locales, proyectos sustentables -  que demuestran que otro desarrollo es posible.',
     'podcast.ylmepv.ep12.title': 'Revolución de la Conciencia y Bien Común',
     'podcast.ylmepv.ep12.description': 'En este episodio exploramos la propuesta de Constandse de una revolución silenciosa que no se libra en las calles, sino en la conciencia. Un cambio que comienza dentro: cuestionando patrones de miedo, ego y fragmentación, y abriéndonos a una forma de vivir basada en la empatía, la unidad y la responsabilidad compartida. El capítulo plantea que el verdadero progreso no depende solo de leyes o sistemas, sino de la transformación ética, emocional y espiritual de cada persona.',
     'podcast.ylmepv.ep13.title': 'El Imperativo Ético',
@@ -289,7 +289,7 @@ export const translations = {
     'podcast.ylmepv.ep14.title': 'Vocación, Espiritualidad y Trascendencia',
     'podcast.ylmepv.ep14.description': 'En este episodio exploramos la visión de Constandse sobre tres dimensiones esenciales de la vida interior: la vocación, entendida como la llamada profunda a expresar lo que somos y servir desde nuestros dones; la espiritualidad, vivida como una actitud cotidiana de presencia, conexión y respeto por lo sagrado de la existencia; y la trascendencia, que no alude a un más allá distante, sino a la capacidad de ir más allá del ego para habitar lo esencial.',
     'podcast.ylmepv.ep15.title': 'Vida Personal y Sabiduría Adquirida',
-    'podcast.ylmepv.ep15.description': 'En este episodio exploramos uno de los capítulos más íntimos de Constandse, donde la reflexión se vuelve autobiografía consciente. El autor revisita su historia —sus inseguridades, aprendizajes, errores y transformaciones— para mostrar que la verdadera sabiduría nace de la experiencia vivida con honestidad. Habla de cómo la autoimagen puede limitar, y de cómo el trabajo interior la transforma; de la vida como maestra, que revela lecciones en cada vínculo y cada dificultad.',
+    'podcast.ylmepv.ep15.description': 'En este episodio exploramos uno de los capítulos más íntimos de Constandse, donde la reflexión se vuelve autobiografía consciente. El autor revisita su historia  - sus inseguridades, aprendizajes, errores y transformaciones -  para mostrar que la verdadera sabiduría nace de la experiencia vivida con honestidad. Habla de cómo la autoimagen puede limitar, y de cómo el trabajo interior la transforma; de la vida como maestra, que revela lecciones en cada vínculo y cada dificultad.',
     
     // Podcast categories
     'podcast.category.spirituality': 'Espiritualidad',
@@ -327,7 +327,7 @@ export const translations = {
     'event.smge.section1.title': 'La Ceremonia',
     'event.smge.section1.content': 'La ceremonia se desarrolló en un ambiente de respeto, fraternidad y solemnidad. Durante el acto, el presidente de la Sociedad destacó la trascendencia de incorporar nuevas voces y perspectivas a una organización con casi dos siglos de historia. Tras la lectura de su ponencia, "Cancún, Ciudad del Conocimiento", se realizó la entrega del diploma y la imposición de la venera, que acreditan oficialmente a Marcos Constandse Madrazo como socio correspondiente número 3980. El evento concluyó con un emotivo brindis entre colegas y amigos, celebrando la continuidad del legado del pensamiento humanista y científico.',
     'event.smge.section2.title': 'Cancún, Ciudad del Conocimiento',
-    'event.smge.section2.content': 'En su discurso de ingreso, Marcos Constandse Madrazo presentó una visión inspiradora sobre el futuro de Cancún: convertirla en una Ciudad del Conocimiento. Propuso impulsar una universidad de clase mundial que integre ciencia, tecnología, cultura, sostenibilidad y hospitalidad, transformando el motor turístico en un centro de innovación y aprendizaje global. Esta idea busca dar el siguiente paso en la evolución del proyecto Cancún —de ciudad planificada a comunidad consciente—, donde el conocimiento, la educación y la colaboración sean los pilares del desarrollo humano y social.',
+    'event.smge.section2.content': 'En su discurso de ingreso, Marcos Constandse Madrazo presentó una visión inspiradora sobre el futuro de Cancún: convertirla en una Ciudad del Conocimiento. Propuso impulsar una universidad de clase mundial que integre ciencia, tecnología, cultura, sostenibilidad y hospitalidad, transformando el motor turístico en un centro de innovación y aprendizaje global. Esta idea busca dar el siguiente paso en la evolución del proyecto Cancún  - de ciudad planificada a comunidad consciente - , donde el conocimiento, la educación y la colaboración sean los pilares del desarrollo humano y social.',
     'event.smge.section3.title': 'Reconocimiento Oficial',
     'event.smge.section3.content': 'La ceremonia concluyó con la entrega del diploma y la imposición de la venera que acredita oficialmente a Marcos Constandse Madrazo como socio de número 3980 del Libro Noveno de la Sociedad Mexicana de Geografía y Estadística.\n\nEl evento cerró con un brindis en honor al nuevo miembro, celebrando su trayectoria y su compromiso con la construcción de una Cancún más consciente, integrada y orientada al conocimiento.',
     
@@ -395,7 +395,7 @@ export const translations = {
     'book.ecologia.excerpt': 'En Ecología y espiritualidad, Marcos Constandse entrelaza ciencia, consciencia y ética para ofrecer una visión profundamente integradora entre el mundo natural y el del ser humano.',
     'book.ecologia.desc1': 'En Ecología y espiritualidad, Marcos Constandse entrelaza ciencia, consciencia y ética para ofrecer una visión profundamente integradora entre el mundo natural y el del ser humano.',
     'book.ecologia.desc2': 'A través de un análisis lúcido de los desafíos ambientales contemporáneos, el autor nos invita a trascender el egoísmo técnico y reconocer que la crisis ecológica es también una crisis espiritual.',
-    'book.ecologia.desc3': 'Con un llamado ético al respeto del otro —y de uno mismo— esta obra propone que solo una transformación interior, basada en la unidad y compasión, puede conducirnos a una acción colectiva que salve nuestro entorno.',
+    'book.ecologia.desc3': 'Con un llamado ético al respeto del otro  - y de uno mismo -  esta obra propone que solo una transformación interior, basada en la unidad y compasión, puede conducirnos a una acción colectiva que salve nuestro entorno.',
     'book.ecologia.desc4': 'Este libro es una guía para quienes entienden que cuidar la Tierra comienza con una revolución en la consciencia.',
     
     'book.dejaloser.title': 'Déjalo ser',
@@ -462,10 +462,10 @@ export const translations = {
     'autor.timeline.milestone3.title': 'Exploración Espiritual',
     'autor.timeline.milestone3.description': 'La dimensión espiritual ha sido una constante en su vida, no como evasión, sino como una forma más profunda de habitar la realidad. A través de diversas tradiciones y prácticas contemplativas, ha cultivado una conciencia expandida que lo conecta con lo trascendente.',
     'autor.timeline.milestone4.title': 'Proyecto Literario',
-    'autor.timeline.milestone4.description': 'La obra escrita de Marcos Constandse es el fruto de décadas de reflexión, experiencia y búsqueda interior. Cada uno de sus libros aborda distintas facetas del ser humano —desde lo cósmico hasta lo cotidiano— y juntos conforman un proyecto literario integral.',
+    'autor.timeline.milestone4.description': 'La obra escrita de Marcos Constandse es el fruto de décadas de reflexión, experiencia y búsqueda interior. Cada uno de sus libros aborda distintas facetas del ser humano  - desde lo cósmico hasta lo cotidiano -  y juntos conforman un proyecto literario integral.',
     
     // Author page - Quote section
-    'autor.quote.text': 'Entre sus obras más reconocidas se encuentran Yo soy nosotros —ganadora del Premio Nacional de Ensayo Filosófico—, Ecología y espiritualidad, Déjalo ser, El arte de ser empresario y Y lo mejor aún está por venir. En cada una de ellas se entrelazan la reflexión personal, el análisis riguroso y una profunda fe en la capacidad del ser humano para evolucionar hacia estados más plenos de conciencia.',
+    'autor.quote.text': 'Entre sus obras más reconocidas se encuentran Yo soy nosotros  - ganadora del Premio Nacional de Ensayo Filosófico - , Ecología y espiritualidad, Déjalo ser, El arte de ser empresario y Y lo mejor aún está por venir. En cada una de ellas se entrelazan la reflexión personal, el análisis riguroso y una profunda fe en la capacidad del ser humano para evolucionar hacia estados más plenos de conciencia.',
     
     // Vision page
     'vision.title': 'Mi visión del mundo',
@@ -576,7 +576,7 @@ export const translations = {
     'autor.timeline.badge': 'Journey',
     'autor.timeline.title': 'Significant',
     'autor.timeline.highlight': 'Moments',
-    'autor.quote.legacy': '— His literary legacy',
+    'autor.quote.legacy': ' -  His literary legacy',
     
     // Contacto Page
     'contacto.hero.badge': "Let's Connect",
@@ -721,11 +721,11 @@ export const translations = {
     'podcast.ep7.title': 'Philosophy',
     'podcast.ep7.description': 'This episode reflects on philosophy as an essential tool for the awakening of consciousness. It starts from the idea that philosophy is not abstract or distant knowledge, but a way of life that seeks to understand the meaning of existence.',
     'podcast.ep8.title': 'Exploring Spiritual Traditions',
-    'podcast.ep8.description': 'This episode takes a respectful and profound journey through the main spiritual traditions of humanity —Hinduism, Buddhism, Judaism, Christianity, Islam, among others— showing how, despite their cultural and theological differences, they all share a common quest: union with the divine, overcoming the ego and cultivating love and compassion.',
+    'podcast.ep8.description': 'This episode takes a respectful and profound journey through the main spiritual traditions of humanity  - Hinduism, Buddhism, Judaism, Christianity, Islam, among others -  showing how, despite their cultural and theological differences, they all share a common quest: union with the divine, overcoming the ego and cultivating love and compassion.',
     'podcast.ep9.title': 'Transpersonal Development',
     'podcast.ep9.description': 'This episode explores the concept of transpersonal development as the evolution of consciousness beyond the individual ego. It exposes how transpersonal psychology, by integrating spiritual elements with the study of the human mind, opens a way for deep self-knowledge and connection with the Whole.',
     'podcast.ep10.title': 'Rules, Codes, and Values',
-    'podcast.ep10.description': 'This episode addresses the importance of values as an internal guide in human life. It distinguishes between rules —external and imposed— and values —internal and consciously assumed—. The author emphasizes that, although rules can maintain order, only values can generate true meaning, social cohesion and spiritual growth.',
+    'podcast.ep10.description': 'This episode addresses the importance of values as an internal guide in human life. It distinguishes between rules  - external and imposed -  and values  - internal and consciously assumed - . The author emphasizes that, although rules can maintain order, only values can generate true meaning, social cohesion and spiritual growth.',
     'podcast.ep11.title': 'Reflections on Being and the Universe',
     'podcast.ep11.description': 'This episode functions as a synthesis and expansion of everything addressed in previous chapters. It reflects on the place of the human being in the universe, not as an external observer, but as an active and conscious part of the evolutionary process.',
     'podcast.ep12.title': 'Evolution and Inner Realization',
@@ -775,13 +775,13 @@ export const translations = {
     'podcast.eadse.ep5.title': 'Capital, work, and quality of life',
     'podcast.eadse.ep5.description': 'This episode rethinks the relationship between capital, work and well-being from a more human and conscious perspective. Inspired by the work of Marcos Constandse Madrazo, it explores how capital is not an end in itself, but potential energy that acquires true value when it is put at the service of life, human growth and the common good.',
     'podcast.eadse.ep6.title': 'Capital, worker, and quality of life',
-    'podcast.eadse.ep6.description': 'This episode reveals the essential relationship between three forces that sustain every company: capital, the worker and quality of life. Inspired by the vision of Marcos Constandse Madrazo, it explores how capital—far from being an end in itself—is potential energy that only acquires true meaning when oriented to create well-being, human growth and social evolution.',
+    'podcast.eadse.ep6.description': 'This episode reveals the essential relationship between three forces that sustain every company: capital, the worker and quality of life. Inspired by the vision of Marcos Constandse Madrazo, it explores how capital - far from being an end in itself - is potential energy that only acquires true meaning when oriented to create well-being, human growth and social evolution.',
     'podcast.eadse.ep7.title': 'The legal framework and new markets',
     'podcast.eadse.ep7.description': 'This episode explores the relationship between business, law and the constant change of the market from a conscious perspective. Inspired by the work of Marcos Constandse Madrazo, it shows how the legal framework is not a barrier to business freedom, but the ethical and structural terrain that allows creativity, competition and human dignity to coexist without falling into abuse or chaos.',
     'podcast.eadse.ep8.title': 'Ego and consciousness in business',
-    'podcast.eadse.ep8.description': 'This episode delves into one of the most decisive tensions in business life: the relationship between ego and consciousness. Inspired by the work of Marcos Constandse Madrazo, it reveals how the ego—that force that seeks control, recognition and certainty—can drive the entrepreneur to create, but can also blind them, harden their leadership and contaminate the company culture.',
+    'podcast.eadse.ep8.description': 'This episode delves into one of the most decisive tensions in business life: the relationship between ego and consciousness. Inspired by the work of Marcos Constandse Madrazo, it reveals how the ego - that force that seeks control, recognition and certainty - can drive the entrepreneur to create, but can also blind them, harden their leadership and contaminate the company culture.',
     'podcast.eadse.ep9.title': 'The common good and the revolution of consciousness',
-    'podcast.eadse.ep9.description': 'This episode explores a powerful idea in the work of Marcos Constandse Madrazo: the common good is not an abstract political concept, but a daily practice that is born from individual consciousness. Here we discover that every ethical gesture within a company—every fair decision, every honest conversation, every relationship based on respect—is a direct contribution to the social fabric.',
+    'podcast.eadse.ep9.description': 'This episode explores a powerful idea in the work of Marcos Constandse Madrazo: the common good is not an abstract political concept, but a daily practice that is born from individual consciousness. Here we discover that every ethical gesture within a company - every fair decision, every honest conversation, every relationship based on respect - is a direct contribution to the social fabric.',
     'podcast.eadse.ep10.title': 'Democracy and the culture of "not doing but wanting"',
     'podcast.eadse.ep10.description': 'This episode addresses one of the most widespread shadows of our social and organizational life: the tendency to demand without participating, to want results without taking responsibility, to desire changes while remaining passive. Inspired by the lucid vision of Marcos Constandse Madrazo, it explores how this attitude deteriorates democracy, impoverishes work culture and limits human growth.',
     'podcast.eadse.ep11.title': 'Vocations, meaning, and the creative being',
@@ -827,7 +827,7 @@ export const translations = {
     'event.smge.section1.title': 'The Ceremony',
     'event.smge.section1.content': 'The ceremony took place in an atmosphere of respect, fraternity, and solemnity. During the ceremony, the president of the Society highlighted the significance of incorporating new voices and perspectives into an organization with almost two centuries of history. Following the reading of his paper, "Cancún, City of Knowledge," the diploma was presented and the badge was imposed, officially accrediting Marcos Constandse Madrazo as corresponding member number 3980. The event concluded with an emotional toast among colleagues and friends, celebrating the continuity of the legacy of humanistic and scientific thought.',
     'event.smge.section2.title': 'Cancún, City of Knowledge',
-    'event.smge.section2.content': 'In his admission speech, Marcos Constandse Madrazo presented an inspiring vision for the future of Cancún: transforming it into a City of Knowledge. He proposed promoting a world-class university that integrates science, technology, culture, sustainability, and hospitality, transforming the tourism engine into a center of global innovation and learning. This idea seeks to take the next step in the evolution of the Cancún project—from a planned city to a conscious community—where knowledge, education, and collaboration are the pillars of human and social development.',
+    'event.smge.section2.content': 'In his admission speech, Marcos Constandse Madrazo presented an inspiring vision for the future of Cancún: transforming it into a City of Knowledge. He proposed promoting a world-class university that integrates science, technology, culture, sustainability, and hospitality, transforming the tourism engine into a center of global innovation and learning. This idea seeks to take the next step in the evolution of the Cancún project - from a planned city to a conscious community - where knowledge, education, and collaboration are the pillars of human and social development.',
     'event.smge.section3.title': 'Official Recognition',
     'event.smge.section3.content': 'The ceremony concluded with the delivery of the diploma and the imposition of the badge that officially accredits Marcos Constandse Madrazo as member number 3980 of the Ninth Book of the Mexican Society of Geography and Statistics.\n\nThe event closed with a toast in honor of the new member, celebrating his trajectory and his commitment to building a more conscious, integrated, and knowledge-oriented Cancún.',
     
@@ -895,7 +895,7 @@ export const translations = {
     'book.ecologia.excerpt': 'In Ecology and Spirituality, Marcos Constandse interweaves science, consciousness and ethics to offer a deeply integrative vision between the natural world and that of the human being.',
     'book.ecologia.desc1': 'In Ecology and Spirituality, Marcos Constandse interweaves science, consciousness and ethics to offer a deeply integrative vision between the natural world and that of the human being.',
     'book.ecologia.desc2': 'Through a lucid analysis of contemporary environmental challenges, the author invites us to transcend technical egoism and recognize that the ecological crisis is also a spiritual crisis.',
-    'book.ecologia.desc3': 'With an ethical call to respect for the other —and for oneself— this work proposes that only an inner transformation, based on unity and compassion, can lead us to collective action that saves our environment.',
+    'book.ecologia.desc3': 'With an ethical call to respect for the other  - and for oneself -  this work proposes that only an inner transformation, based on unity and compassion, can lead us to collective action that saves our environment.',
     'book.ecologia.desc4': 'This book is a guide for those who understand that caring for the earth begins with a revolution in consciousness.',
     
     'book.dejaloser.title': 'Let It Be',
@@ -962,10 +962,10 @@ export const translations = {
     'autor.timeline.milestone3.title': 'Spiritual Exploration',
     'autor.timeline.milestone3.description': 'The spiritual dimension has been a constant in his life, not as an escape, but as a deeper way of inhabiting reality. Through various traditions and contemplative practices, he has cultivated an expanded consciousness that connects him with the transcendent.',
     'autor.timeline.milestone4.title': 'Literary Project',
-    'autor.timeline.milestone4.description': 'The written work of Marcos Constandse is the fruit of decades of reflection, experience and inner search. Each of his books addresses different facets of the human being —from the cosmic to the everyday— and together they form an integral literary project.',
+    'autor.timeline.milestone4.description': 'The written work of Marcos Constandse is the fruit of decades of reflection, experience and inner search. Each of his books addresses different facets of the human being  - from the cosmic to the everyday -  and together they form an integral literary project.',
     
     // Author page - Quote section
-    'autor.quote.text': 'Among his most recognized works are Yo soy nosotros —winner of the National Prize for Philosophical Essay—, Ecology and Spirituality, Let It Be, The Art of Being an Entrepreneur and The Best Is Yet To Come. In each of them, personal reflection, rigorous analysis and a deep faith in the capacity of the human being to evolve towards fuller states of consciousness are intertwined.',
+    'autor.quote.text': 'Among his most recognized works are Yo soy nosotros  - winner of the National Prize for Philosophical Essay - , Ecology and Spirituality, Let It Be, The Art of Being an Entrepreneur and The Best Is Yet To Come. In each of them, personal reflection, rigorous analysis and a deep faith in the capacity of the human being to evolve towards fuller states of consciousness are intertwined.',
     
     // Vision page
     'vision.title': 'My Vision of the World',

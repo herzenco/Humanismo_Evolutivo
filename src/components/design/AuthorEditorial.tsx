@@ -385,7 +385,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 {"Proyecto literario"}
 </h3>
 <p className="he-9645b261d">
-{"La obra escrita de Marcos Constandse es el fruto de décadas de reflexión, experiencia y búsqueda interior. Cada uno de sus libros aborda distintas facetas del ser humano —desde lo cósmico hasta lo cotidiano— y juntos conforman un proyecto literario integral."}
+{"La obra escrita de Marcos Constandse es el fruto de décadas de reflexión, experiencia y búsqueda interior. Cada uno de sus libros aborda distintas facetas del ser humano  - desde lo cósmico hasta lo cotidiano -  y juntos conforman un proyecto literario integral."}
 </p>
 </div>
 </li>
@@ -405,7 +405,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 <span className="he-0d67726f4">
 {"Yo soy nosotros"}
 </span>
-{" —ganadora del Premio Nacional de Ensayo Filosófico—, "}
+{"  - ganadora del Premio Nacional de Ensayo Filosófico - , "}
 <span className="he-0d67726f4">
 {"Ecología y espiritualidad"}
 </span>
@@ -427,7 +427,7 @@ export default function AuthorEditorial() { return <div className="editorial">
 
 </span>
 <figcaption className="he-d76576463">
-{"— SU LEGADO LITERARIO"}
+{" -  SU LEGADO LITERARIO"}
 </figcaption>
 </figure>
 <ul aria-label="Obras mencionadas" className="he-2a9e1e9bf he-grid he-sized">
