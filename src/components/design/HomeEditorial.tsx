@@ -9,12 +9,24 @@ import Image from 'next/image';
 import VideoDialog from './VideoDialog';
 import { homeVideos } from '@/config/home-videos';
 import Link from '@/components/LocalizedLink';
+import { PORTAL_ENABLED } from '@/lib/release-flags';
 import { PhilosophersVideo, TutorialVideoButton } from "./HomepageVideos";
 
 // Ported from the supplied Inicio.html; navigation uses application routes.
 export default function HomeEditorial() {
   const tx = useTx();
   const { language, t } = useLanguage();
+  const showPortal = PORTAL_ENABLED;
+  const hub = [
+    ['s1', tx('Conoce a los tres filósofos')],
+    ['s2', tx('Las grandes preguntas')],
+    ['s3', tx('Un camino a través de los jardines')],
+    ['s4', tx('Documental completo')],
+    ['s5', tx('Las 51 preguntas')],
+    ['s6', tx('Profundiza en los libros')],
+    ['s7', tx('Más contenido en nuestras plataformas')],
+    ...(showPortal ? [['s8', tx('Únete al Club de Amigos que Evolucionan')]] : []),
+  ];
   return <div className="editorial">
 <section aria-labelledby="hero-title" className="he-e149bc314 he-row">
 <div className="he-42a6ea32f he-sized">
@@ -53,21 +65,12 @@ export default function HomeEditorial() {
 <section aria-labelledby="hub-title" className="he-65fbe60ac he-row">
 <div className="he-37f350293 he-sized">
 <h2 id="hub-title" className="he-5865219a8 he-h2">
-{tx("Explora, conoce y profundiza a través de estos 8 contenidos:")}
+{showPortal ? tx("Explora, conoce y profundiza a través de estos 8 contenidos:") : tx("Explora, conoce y profundiza a través de estos 7 contenidos:")}
 </h2>
 <TutorialVideoButton />
 </div>
-<ol aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
-{[
-  ['s1', tx('Conoce a los tres filósofos')],
-  ['s2', tx('Las grandes preguntas')],
-  ['s3', tx('Un camino a través de los jardines')],
-  ['s4', tx('Documental completo')],
-  ['s5', tx('Las 51 preguntas')],
-  ['s6', tx('Profundiza en los libros')],
-  ['s7', tx('Más contenido en nuestras plataformas')],
-  ['s8', tx('Únete al Club de Amigos que Evolucionan')],
-].map(([id, label], index) => <li key={id}><a href={`#${id}`} className="home-content-button"><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></a></li>)}
+<ol aria-label={showPortal ? tx("Los 8 contenidos") : tx("Los 7 contenidos")} className="home-content-buttons">
+{hub.map(([id, label], index) => <li key={id}><a href={`#${id}`} className="home-content-button"><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></a></li>)}
 </ol>
 </section>
 <section id="sobre-el-autor" aria-labelledby="about-title" className="he-af688e964 he-row">
@@ -543,7 +546,7 @@ export default function HomeEditorial() {
 </Link>
 </div>
 </section>
-<section id="s8" className="he-580031031 he-row">
+{showPortal ? <section id="s8" className="he-580031031 he-row">
 <div className="he-3dd055e70 he-sized">
 <div className="he-3619f855d he-row">
 <span className="he-702f28551 he-row he-sized">
@@ -632,7 +635,7 @@ export default function HomeEditorial() {
 </li>
 </ul>
 </div>
-</section>
+</section> : null}
 <section id="libros" aria-labelledby="books-title" className="he-74bc7aede">
 <div className="he-70dacc86f he-row">
 <div className="he-780634c87 he-sized">
@@ -1034,7 +1037,7 @@ export default function HomeEditorial() {
 </article>
 </div>
 </section>
-<section id="portal" aria-labelledby="portal-title" className="he-f1875aa15">
+{showPortal ? <section id="portal" aria-labelledby="portal-title" className="he-f1875aa15">
 <div className="he-9d8773e24 he-row">
 <div className="he-cddefe03b he-sized">
 <span className="he-9a8091bf0 he-row">
@@ -1109,5 +1112,5 @@ export default function HomeEditorial() {
 </div>
 </div>
 </div>
-</section>
+</section> : null}
 </div>; }

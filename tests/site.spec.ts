@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { books } from '../src/data/books';
 import { getBookDownload } from '../src/lib/book-downloads';
 import { indexablePaths } from '../src/lib/indexable-paths';
+import { EN_ENABLED, PORTAL_ENABLED } from '../src/lib/release-flags';
 import { SITE_URL, absoluteUrl, localizedPath } from '../src/lib/site';
 const fixture = 'http://127.0.0.1:54329';
 
@@ -17,7 +18,8 @@ test('every book has an existing valid PDF for both languages', () => {
 
 test('every indexable URL serves unique metadata, correct canonicals and language alternates', async ({ request }) => {
   const canonicals = new Set<string>();
-  for (const language of ['es', 'en'] as const) for (const path of indexablePaths()) {
+  const languages = EN_ENABLED ? ['es', 'en'] as const : ['es'] as const;
+  for (const language of languages) for (const path of indexablePaths()) {
     const response = await request.get(localizedPath(path, language));
     expect(response.status(), `${language}:${path}`).toBe(200);
     const html = await response.text();
@@ -26,7 +28,8 @@ test('every indexable URL serves unique metadata, correct canonicals and languag
     expect(canonical, `${language}:${path}`).toBe(absoluteUrl(path, language));
     expect(canonicals.has(canonical!)).toBe(false); canonicals.add(canonical!);
     expect(html).toContain('hrefLang="es"');
-    expect(html).toContain('hrefLang="en"');
+    if (EN_ENABLED) expect(html).toContain('hrefLang="en"');
+    else expect(html).not.toContain('hrefLang="en"');
     expect(html).toMatch(/<meta name="description" content="[^"]{20,}"/);
     expect(html).toMatch(/<meta property="og:image" content="https?:/);
     const ogUrl = html.match(/<meta property="og:url" content="([^"]+)"/)?.[1];
@@ -34,17 +37,40 @@ test('every indexable URL serves unique metadata, correct canonicals and languag
     for (const json of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)) expect(() => JSON.parse(json[1])).not.toThrow();
   }
   const sitemap = await (await request.get('/sitemap.xml')).text();
-  expect((sitemap.match(/<loc>/g) || []).length).toBe(canonicals.size);
+  if (EN_ENABLED) expect((sitemap.match(/<loc>/g) || []).length).toBe(canonicals.size);
+  else {
+    expect(sitemap).not.toMatch(/humanismoevolutivo\.com\/en(?:\/|<|")/);
+    expect(sitemap).not.toContain('/portal');
+    expect(sitemap).not.toContain('/auth');
+    for (const canonical of canonicals) expect(sitemap).toContain(`<loc>${canonical}</loc>`);
+  }
   expect(sitemap).not.toContain('yosoynosotros.');
   expect(await (await request.get('/robots.txt')).text()).toContain(`Sitemap: ${SITE_URL}/sitemap.xml`);
 });
 
 test('missing resources return HTTP 404 and utility pages are not indexable', async ({ request }) => {
-  for (const path of ['/libros/missing', '/eventos/missing', '/medios/show/missing', '/medios/missing/missing', '/video/1junk', '/en/libros/missing', '/missing']) {
+  const missing = ['/libros/missing', '/eventos/missing', '/medios/show/missing', '/medios/missing/missing', '/video/1junk', '/missing'];
+  if (EN_ENABLED) missing.push('/en/libros/missing');
+  for (const path of missing) {
     expect((await request.get(path)).status(), path).toBe(404);
   }
-  for (const path of ['/auth', '/buscar?q=test', '/en/auth', '/en/buscar?q=test']) {
+  if (!EN_ENABLED) {
+    const home = await request.get('/en', { maxRedirects: 0 });
+    expect(home.status()).toBe(308);
+    expect(new URL(home.headers().location, 'http://127.0.0.1').pathname).toBe('/');
+    const book = await request.get('/en/libros/x', { maxRedirects: 0 });
+    expect(book.status()).toBe(308);
+    expect(new URL(book.headers().location, 'http://127.0.0.1').pathname).toBe('/libros/x');
+  }
+  const utility = EN_ENABLED ? ['/auth', '/buscar?q=test', '/en/auth', '/en/buscar?q=test'] : ['/buscar?q=test'];
+  for (const path of utility) {
     expect(await (await request.get(path)).text()).toMatch(/name="robots" content="noindex/);
+  }
+  if (!PORTAL_ENABLED) {
+    for (const path of ['/portal', '/portal/cursos/x', '/auth', '/auth/callback']) {
+      const response = await request.get(path, { maxRedirects: 0 });
+      expect([301, 302, 303, 307, 308, 404], path).toContain(response.status());
+    }
   }
   const admin = await request.get('/admin', { maxRedirects: 0 });
   expect(admin.status()).toBe(308); expect(new URL(admin.headers().location).origin).toBe('https://admin.humanismoevolutivo.com');
@@ -57,6 +83,12 @@ test('old language preferences do not break hydration and language navigation pr
   await page.addInitScript(() => localStorage.setItem('language', 'en'));
   await page.goto('/libros?source=test#library');
   await expect(page.locator('html')).toHaveAttribute('lang','es');
+  if (!EN_ENABLED) {
+    await expect(page.locator('.site-language-toggle')).toHaveCount(0);
+    await expect(page.locator('a[href="/portal"], a[href^="/auth"]')).toHaveCount(0);
+    expect(errors).toEqual([]);
+    return;
+  }
   await page.getByRole('button', { name: 'Toggle language' }).first().click();
   await page.getByRole('menuitem', { name: 'English' }).click();
   await expect(page).toHaveURL(/\/en\/libros\?source=test#library/);

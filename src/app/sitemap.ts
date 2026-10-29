@@ -4,12 +4,13 @@ import { events } from '@/data/events'
 import { podcastSeries } from '@/data/media'
 import { resourceArticles } from '@/data/resources'
 import { publishedQuestions, questionPath } from '@/data/questions'
+import { hreflangLanguages } from '@/lib/release-flags'
 import { absoluteUrl } from '@/lib/site'
 
 function localized(path: string, extra: Omit<MetadataRoute.Sitemap[number], 'url'> = {}): MetadataRoute.Sitemap[number] {
   return {
     url: absoluteUrl(path),
-    alternates: { languages: { es: absoluteUrl(path), en: absoluteUrl(path, 'en'), 'x-default': absoluteUrl(path) } },
+    alternates: { languages: hreflangLanguages(absoluteUrl(path), absoluteUrl(path, 'en')) },
     ...extra,
   }
 }
