@@ -201,7 +201,7 @@ export default function HomeEditorial() { return <div className="editorial">
 <article aria-labelledby="question-evolution">
 <img width="1200" height="800" src="/design/04392e0cfc55badb8bb441819c60883b.webp" alt="¿Hacia dónde podemos evolucionar? Conocer · Comprender · Transformar · Evolucionar." loading="lazy" className="he-3667c6366" />
 <h3 id="question-evolution">¿Hacia dónde podemos evolucionar?</h3>
-<p>Hacia el espíritu. En el Humanismo Evolutivo, el espíritu no es un fantasma ni un dogma: es lo que nos hace “como yo”, es decir, la conciencia, la libertad y el reconocimiento del otro como igual. Evolucionar es elevar nuestro nivel de conciencia hasta vivir lo que Lolo llama “yo soy nosotros”.</p>
+<p>Hacia el espíritu. En el Humanismo Evolutivo, el espíritu no es un fantasma ni un dogma: es lo que nos hace “como yo”, es decir, la conciencia, la libertad y el reconocimiento del otro como igual. Evolucionar es elevar nuestro nivel de conciencia hasta vivir lo que Marcos Constandse llama “yo soy nosotros”.</p>
 </article>
 </div>
 </section>
