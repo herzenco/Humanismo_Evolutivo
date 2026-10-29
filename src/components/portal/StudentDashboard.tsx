@@ -5,7 +5,7 @@ import type { AttendanceSummary } from '@/lib/attendance/contracts';
 import { studentOverview } from '@/lib/learning/overview';
 import { courseHref, lessonHref } from './CourseCatalog';
 export default function StudentDashboard({ progress, attendance, courses }: { courses?:LearningCourse[]; progress: Record<string,number> | null; attendance: AttendanceSummary | null }) {
- const overview = studentOverview(progress,attendance,courses);
+ const overview = studentOverview(progress,attendance,courses ?? []);
  const metrics = [
   { label:'Asistencias presenciales', value:attendance?.presentSessions, detail:'Registradas por tu maestro', icon:CalendarCheck2 },
   { label:'Cursos con asistencia', value:attendance?.presentCourses, detail:'Con al menos una asistencia presencial', icon:Users },

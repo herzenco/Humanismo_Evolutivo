@@ -5,7 +5,7 @@ import {readFile} from 'node:fs/promises';
 import {PGlite} from '@electric-sql/pglite';
 const db=new PGlite();
 await db.exec(await readFile(new URL('../supabase/tests/education-school-fixture.sql',import.meta.url),'utf8'));
-for(const file of ['20261020005503_education_qa_school_access.sql','20261021165012_portal_course_progress.sql','20261021212020_teacher_attendance_dashboard.sql','20261021231408_teacher_dashboard_progress.sql','20261022211034_portal_roles_infrastructure.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+for(const file of ['20261020005503_education_qa_school_access.sql','20261021165012_portal_course_progress.sql','20261021212020_teacher_attendance_dashboard.sql','20261021231408_teacher_dashboard_progress.sql','20261022211034_portal_roles_infrastructure.sql','20261029180000_course_catalog_admin.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
 const schoolId='20000000-0000-4000-8000-000000000001';
 await db.query("insert into education_qa_private.schools(id,name,slug) values($1,'Escuela de prueba local','escuela-local')",[schoolId]);
 const people=['student','teacher','schooladmin','platformadmin','otherstudent'].map((name,i)=>({id:`10000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`,aud:'authenticated',role:'authenticated',email:`${name}@example.test`,user_metadata:{first_name:['Estudiante','Maestro local','Administradora escolar','Administradora de plataforma','Otro estudiante'][i]},app_metadata:{},email_confirmed_at:new Date().toISOString(),created_at:new Date().toISOString()}));

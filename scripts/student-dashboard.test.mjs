@@ -1,16 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { studentOverview } from '../src/lib/learning/overview.ts';
 import { filterSchedule, groupSchedule, scheduleDate, scheduleTime } from '../src/lib/portal-schedule.ts';
 import { portalClasses } from '../src/data/portal.ts';
+const catalog = JSON.parse(await readFile(new URL('../src/generated/course-catalog.json', import.meta.url), 'utf8'));
 test('dashboard keeps teacher attendance separate from completed online lessons',()=>{
  const attendance={presentSessions:3,presentCourses:1,courses:[{courseId:'filosofia-de-yo-soy-nosotros',title:'Yo soy nosotros',present:3,absent:1}]};
- const result=studentOverview({'yo-soy-nosotros':2,'el-arte-de-ser-empresario':11},attendance);
+ const result=studentOverview({'yo-soy-nosotros':2,'el-arte-de-ser-empresario':11},attendance,catalog);
  assert.equal(result.completedLessons,13);assert.equal(result.onlineCourses,2);assert.equal(result.finishedCourses,1);
  assert.equal(result.courses[0].attended,3);assert.equal(result.courses[0].percent,4);
  assert.equal(result.courses[3].percent,100);assert.equal(result.courses[3].attended,0);
- const unavailable=studentOverview(null,null);assert.equal(unavailable.completedLessons,null);assert.equal(unavailable.courses[0].attended,null);
- const empty=studentOverview({}, {presentSessions:0,presentCourses:0,courses:[]});assert.equal(empty.completedLessons,0);assert.equal(empty.onlineCourses,0);
+ const unavailable=studentOverview(null,null,catalog);assert.equal(unavailable.completedLessons,null);assert.equal(unavailable.courses[0].attended,null);
+ const empty=studentOverview({}, {presentSessions:0,presentCourses:0,courses:[]},catalog);assert.equal(empty.completedLessons,0);assert.equal(empty.onlineCourses,0);
 });
 test('schedule search is accent-insensitive, intersects course filters and groups repeated titles',()=>{
  const all=filterSchedule(portalClasses);

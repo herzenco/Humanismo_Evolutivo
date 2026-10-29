@@ -5,11 +5,12 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, Search } from 'lucide-react';
 import { portalRoleSuffix } from '@/lib/portal-role';
-import { portalCourses, type PortalClass } from '@/data/portal';
+import type { PortalClass } from '@/data/portal';
+import type { LearningCourse } from '@/lib/courses/contracts';
 import { filterSchedule, groupSchedule, scheduleDate, scheduleTime } from '@/lib/portal-schedule';
 import { courseHref } from './CourseCatalog';
 
-export default function PortalCalendar({ sessions }: { sessions: PortalClass[] }) {
+export default function PortalCalendar({ sessions, catalog = [] }: { sessions: PortalClass[]; catalog?: LearningCourse[] }) {
   const params = useSearchParams();
   const roleSuffix = portalRoleSuffix(params.get('role'));
   const [query, setQuery] = useState('');
@@ -22,7 +23,7 @@ export default function PortalCalendar({ sessions }: { sessions: PortalClass[] }
 
   if (selectedClass) {
     const catalogId = selectedClass.courseId === 'filosofia-de-yo-soy-nosotros' ? 'yo-soy-nosotros' : selectedClass.courseId;
-    const course = portalCourses.find(item => item.id === catalogId);
+    const course = catalog.find(item => item.id === catalogId);
     return <article className="portal-reader portal-scheduled-class">
       <Link href={`/portal?view=calendar${roleSuffix}`} className="design-text-link"><ArrowLeft size={18} />Volver a la lista</Link>
       <span className="design-eyebrow">PROGRAMA ESCOLAR 2027 · CLASE PRESENCIAL</span>

@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { classDateKey, classesForMonth, portalCourses, portalClasses, portalScheduleCourses } from '../src/data/portal.ts';
+import { readFile } from 'node:fs/promises';
+import { classDateKey, classesForMonth, portalClasses, portalScheduleCourses } from '../src/data/portal.ts';
+const portalCourses = JSON.parse(await readFile(new URL('../src/generated/course-catalog.json', import.meta.url), 'utf8'));
 
 const session = (id, startsAt, timeZone = 'America/Cancun') => ({ id, courseId: 'test-course', title: 'Class', startsAt, endsAt: startsAt, timeZone });
 

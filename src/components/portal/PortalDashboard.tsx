@@ -9,7 +9,7 @@ import PortalAttendance from './PortalAttendance';
 import type {AttendanceSummary} from '@/lib/attendance/contracts';
 import CourseCatalog from './CourseCatalog';
 import PortalCalendar from './PortalCalendar';
-import {portalClasses,portalCourses} from '@/data/portal';
+import {portalClasses} from '@/data/portal';
 import type {EducationContext} from '@/lib/education/contracts';
 import type {LearningCourse} from '@/lib/courses/contracts';
 import PortalSchools from './PortalSchools';
@@ -20,7 +20,7 @@ import {ArrowLeft,CalendarCheck2,LayoutDashboard,CalendarDays,GraduationCap,Leaf
 const PortalLibrary=dynamic(()=>import('./PortalLibrary'),{loading:()=> <p role="status">Cargando biblioteca…</p>});
 type View='dashboard'|'attendance'|'courses'|'library'|'calendar'|'school';
 type Props={firstName:string;email?:string;articles:ResourceArticle[];educationContext?:EducationContext|null;rolePreviewEnabled?:boolean;courseWorkspace?:React.ReactNode;studentProgress?:Record<string,number>|null;attendance?:AttendanceSummary|null;courses?:LearningCourse[]};
-export default function PortalDashboard({firstName,email,articles,educationContext,courseWorkspace,studentProgress=null,attendance=null,courses=portalCourses}:Props){
+export default function PortalDashboard({firstName,email,articles,educationContext,courseWorkspace,studentProgress=null,attendance=null,courses=[]}:Props){
  const params=useSearchParams(),router=useRouter();const [menu,setMenu]=useState(false);
  const roles=availablePortalRoles(educationContext),role=selectedPortalRole(educationContext,params.get('role')||(courseWorkspace?'student':null));
  const teachingSchool=activeTeachingSchool(educationContext);
@@ -42,6 +42,6 @@ export default function PortalDashboard({firstName,email,articles,educationConte
  {view==='courses'?courseWorkspace||<CourseCatalog courses={courses}/>:null}
  {view==='library'?<PortalLibrary key={params.get('category')||'all'} articles={articles}/>:null}
  {view==='school'&&educationContext?<PortalSchools context={educationContext}/>:null}
- {view==='calendar'?<PortalCalendar sessions={portalClasses}/>:null}
+ {view==='calendar'?<PortalCalendar sessions={portalClasses} catalog={courses}/>:null}
  </main><footer className="portal-bottom">Humanismo Evolutivo · Portal educativo<span>Un camino de conciencia compartida</span></footer></div></div>;
 }

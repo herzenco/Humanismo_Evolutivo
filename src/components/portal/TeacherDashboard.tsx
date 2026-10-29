@@ -4,9 +4,8 @@ import {useEffect,useState} from 'react';
 import Link from 'next/link';
 import {ArrowRight,BookOpenCheck,CalendarCheck2,GraduationCap,School,Search,Users} from 'lucide-react';
 import type {LearningCourse} from '@/lib/courses/contracts';
-import {portalCourses} from '@/data/portal';
 import type {TeacherOverview} from '@/lib/teaching/contracts';
-export default function TeacherDashboard({schoolId,schoolName,attendanceEnabled=false,courses=portalCourses,showSchoolHeader=true}:{schoolId:string;schoolName:string;attendanceEnabled?:boolean;courses?:LearningCourse[];showSchoolHeader?:boolean}) {
+export default function TeacherDashboard({schoolId,schoolName,attendanceEnabled=false,courses=[],showSchoolHeader=true}:{schoolId:string;schoolName:string;attendanceEnabled?:boolean;courses?:LearningCourse[];showSchoolHeader?:boolean}) {
  const [query,setQuery]=useState('');
  const [search,setSearch]=useState('');
  const [courseId,setCourseId]=useState('');

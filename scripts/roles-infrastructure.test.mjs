@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {PGlite} from '@electric-sql/pglite';
-const migrations=['20261020005503_education_qa_school_access.sql','20261021165012_portal_course_progress.sql','20261021212020_teacher_attendance_dashboard.sql','20261021231408_teacher_dashboard_progress.sql','20261022211034_portal_roles_infrastructure.sql'];
+const migrations=['20261020005503_education_qa_school_access.sql','20261021165012_portal_course_progress.sql','20261021212020_teacher_attendance_dashboard.sql','20261021231408_teacher_dashboard_progress.sql','20261022211034_portal_roles_infrastructure.sql','20261029180000_course_catalog_admin.sql'];
 test('all four profiles enforce invitation acceptance, classroom scope, admin continuity, community attendance, private reflections and course creation',async()=>{
  const db=new PGlite();
  try{
@@ -48,11 +48,15 @@ test('all four profiles enforce invitation acceptance, classroom scope, admin co
  await as('teacher');await access('memberships.set',{schoolId:sid,userId:ids.student,role:'student',status:'removed'});assert.equal((await rpc('portal_teacher_dashboard',sid,'',25,0)).studentCount,0);
  await as('student');context=await access('context');assert.ok(context.memberships.some(m=>m.schoolId===community&&m.status==='active'));assert.equal((await rpc('portal_learning_access','summary',null,null,'',false))['yo-soy-nosotros'],2);
  await as('teacher');await assert.rejects(()=>courses('create',{courseId:'new-course',title:'Nuevo'}));
- await as('platform');await courses('create',{courseId:'new-course',title:'Nuevo curso',description:'Programa nuevo',minutes:60});assert.equal((await courses('manage')).length,1);
- await as('student');assert.deepEqual(await courses('list'),[]);await assert.rejects(()=>courses('lesson.read',{courseId:'new-course',lesson:1}));await as('platform');
+ await as('platform');await courses('create',{courseId:'new-course',title:'Nuevo curso',description:'Programa nuevo',minutes:60});assert.equal((await courses('manage')).filter(c=>c.status!=='archived').length,5);
+ await as('student');assert.deepEqual((await courses('list')).map(c=>c.id).sort(),['ecologia-y-espiritualidad','el-arte-de-ser-empresario','humanismo-evolutivo-transpersonal','yo-soy-nosotros']);await assert.rejects(()=>courses('lesson.read',{courseId:'new-course',lesson:1}));await as('platform');
  await assert.rejects(()=>courses('publish',{courseId:'new-course'}));
  await courses('lesson.save',{courseId:'new-course',lesson:1,title:'Primera lección',sections:[{title:'Objetivos',text:'Un contenido nuevo'}]});await courses('publish',{courseId:'new-course'});
- await as('student');assert.equal((await courses('list'))[0].title,'Nuevo curso');assert.equal((await courses('lesson.read',{courseId:'new-course',lesson:1})).sections[0].text,'Un contenido nuevo');
+ await as('student');assert.equal((await courses('list')).find(c=>c.id==='new-course').title,'Nuevo curso');assert.equal((await courses('lesson.read',{courseId:'new-course',lesson:1})).sections[0].text,'Un contenido nuevo');
+ await as('platform');await courses('update',{courseId:'new-course',title:'Curso editado',description:'Programa nuevo',minutes:45});await courses('unpublish',{courseId:'new-course'});
+ await as('student');assert.equal((await courses('list')).some(c=>c.id==='new-course'),false);
+ await as('platform');await courses('publish',{courseId:'new-course'});await courses('archive',{courseId:'new-course'});
+ await as('student');assert.equal((await courses('list')).some(c=>c.id==='new-course'),false);await assert.rejects(()=>courses('update',{courseId:'new-course',title:'No',description:'No',minutes:60}));
  await assert.rejects(()=>courses('manage'));await assert.rejects(()=>db.query('select * from education_qa_private.memberships'));await assert.rejects(()=>db.query("select education_qa_private.access_legacy('people.list','{}')"));
  await as('outsider',{user_metadata:{role:'school_admin'}});await assert.rejects(()=>access('roster',{schoolId:sid}));
  await as('platform',{aal:'aal1'});await assert.rejects(()=>courses('create',{courseId:'forbidden',title:'No'}));
