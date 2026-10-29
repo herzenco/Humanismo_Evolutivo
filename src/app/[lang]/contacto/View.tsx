@@ -3,8 +3,8 @@
 import ContactIntro from "@/components/design/ContactIntro";
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
-import Script from 'next/script';
 import PageWrapper from "@/components/layout/PageWrapper";
+import ContactForm from '@/components/contact/ContactForm';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Contacto = () => {
@@ -96,38 +96,7 @@ const Contacto = () => {
                 <motion.div variants={itemVariants} className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-white to-cream-light rounded-3xl shadow-2xl"></div>
                   <div className="relative p-10">
-                    <h2 className="font-heading text-3xl font-light text-navy-dark mb-8">
-                      {t('contacto.form.title')} <span className="font-medium" style={{ color: '#806018' }}>{t('contacto.form.highlight')}</span>
-                    </h2>
-
-                    <div className="overflow-hidden rounded-xl">
-                      <iframe
-                        src="https://api.leadconnectorhq.com/widget/form/2NIYmdIxCPc9ncN9SI7Z"
-                        style={{
-                          width: '100%',
-                          height: '550px',
-                          border: 'none',
-                          borderRadius: '4px',
-                          overflow: 'hidden'
-                        }}
-                        id="inline-2NIYmdIxCPc9ncN9SI7Z"
-                        data-layout="{'id':'INLINE'}"
-                        data-trigger-type="alwaysShow"
-                        data-trigger-value=""
-                        data-activation-type="alwaysActivated"
-                        data-activation-value=""
-                        data-deactivation-type="neverDeactivate"
-                        data-deactivation-value=""
-                        data-form-name="Contact Us - Yo Soy Nosotros"
-                        data-height="550"
-                        data-layout-iframe-id="inline-2NIYmdIxCPc9ncN9SI7Z"
-                        data-form-id="2NIYmdIxCPc9ncN9SI7Z"
-                        title="Formulario de contacto"
-                        aria-label="Formulario de contacto"
-                        scrolling="no"
-                      ></iframe>
-                      <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
-                    </div>
+                    <ContactForm />
                   </div>
                 </motion.div>
               </motion.div>

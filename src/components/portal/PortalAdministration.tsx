@@ -1,11 +1,11 @@
 'use client';
 import type {LearningCourse} from '@/lib/courses/contracts';
-import {portalCourses} from '@/data/portal';
 import {useEffect,useState} from 'react';
 import {useRouter} from 'next/navigation';
 import type {EducationContext,EducationRequest} from '@/lib/education/contracts';
 import {educationRequest} from '@/lib/education/client';
 import PlatformCourses from './PlatformCourses';
+import ContactInbox from './ContactInbox';
 import TeacherDashboard from './TeacherDashboard';
 type School={id:string;name:string;status:string};
 type Detail=School&{isCommunity:boolean;onboarding:boolean;sharingSince:string|null};
@@ -14,7 +14,7 @@ type Classroom={id:string;name:string;archived_at:string|null;teachers:string[]}
 type Invitation={id:string;email:string;role:string;status:string;delivery_status:string;expires_at:string};
 type Outcome={schoolId?:string;deliveryMessage?:string};
 const roleNames:Record<string,string>={student:'Estudiante',teacher:'Maestro',school_admin:'Administrador escolar'};
-export default function PortalAdministration({context,platform=false,teacher=false,courses=portalCourses}:{context:EducationContext;platform?:boolean;teacher?:boolean;courses?:LearningCourse[]}){
+export default function PortalAdministration({context,platform=false,teacher=false,courses=[]}:{context:EducationContext;platform?:boolean;teacher?:boolean;courses?:LearningCourse[]}){
  const router=useRouter();
  const memberships=context.memberships.filter(m=>m.status==='active'&&m.schoolStatus==='active'&&(teacher?m.role==='teacher':m.role==='school_admin'));
  const [schools,setSchools]=useState<School[]>(memberships.map(m=>({id:m.schoolId,name:m.schoolName,status:'active'})));
@@ -22,7 +22,7 @@ export default function PortalAdministration({context,platform=false,teacher=fal
  const [detail,setDetail]=useState<Detail|null>(null),[roster,setRoster]=useState<Person[]>([]),[classrooms,setClassrooms]=useState<Classroom[]>([]),[invitations,setInvitations]=useState<Invitation[]>([]);
  const [revision,setRevision]=useState(0),[offset,setOffset]=useState(0),[schoolOffset,setSchoolOffset]=useState(0),[moreSchools,setMoreSchools]=useState(false),[inviteOffset,setInviteOffset]=useState(0),[classOffset,setClassOffset]=useState(0);
  const [busy,setBusy]=useState(false),[loading,setLoading]=useState(true),[error,setError]=useState(''),[message,setMessage]=useState('');
- const [tab,setTab]=useState<'schools'|'courses'>('schools');
+ const [tab,setTab]=useState<'schools'|'courses'|'messages'>('schools');
  const canAdmin=platform||memberships.some(m=>m.schoolId===schoolId&&m.role==='school_admin');
  useEffect(()=>{
   if(!platform)return;
@@ -42,7 +42,7 @@ export default function PortalAdministration({context,platform=false,teacher=fal
  const activeClassrooms=classrooms.filter(c=>!c.archived_at);
  return <div className="portal-administration">
  {message?<p role="status" className="portal-data-notice">{message}</p>:null}{error?<p role="alert" className="portal-data-notice">{error}</p>:null}
- {platform?<><div className="portal-admin-tabs" role="group" aria-label="Administración de plataforma"><button className="design-button" aria-pressed={tab==='schools'} onClick={()=>setTab('schools')}>Escuelas y personas</button><button className="design-button" aria-pressed={tab==='courses'} onClick={()=>setTab('courses')}>Crear y gestionar cursos</button></div>{tab==='courses'?<PlatformCourses/>:null}</>:null}
+ {platform?<><div className="portal-admin-tabs" role="group" aria-label="Administración de plataforma"><button className="design-button" aria-pressed={tab==='schools'} onClick={()=>setTab('schools')}>Escuelas y personas</button><button className="design-button" aria-pressed={tab==='courses'} onClick={()=>setTab('courses')}>Crear y gestionar cursos</button><button className="design-button" aria-pressed={tab==='messages'} onClick={()=>setTab('messages')}>Mensajes</button></div>{tab==='courses'?<PlatformCourses/>:null}{tab==='messages'?<ContactInbox/>:null}</>:null}
  {tab==='schools'?<>
  {platform?<form className="portal-admin-form" onSubmit={async e=>{e.preventDefault();const form=e.currentTarget,d=new FormData(form);if(await run({action:'schools.create',input:{name:String(d.get('name')),slug:String(d.get('slug')),adminEmail:String(d.get('email'))}}))form.reset();}}><h2>Crear escuela e invitar a su administrador</h2><p>La escuela queda en incorporación hasta que su primer administrador acepte por correo.</p><label>Nombre de la escuela<input name="name" required maxLength={160}/></label><label>Identificador<input name="slug" required maxLength={100} pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="nombre-de-la-escuela"/></label><label>Correo del primer administrador<input name="email" type="email" required maxLength={254}/></label><button className="design-button" disabled={busy}>Crear escuela y enviar invitación</button></form>:null}
  <label className="portal-admin-select">{teacher?'Mi escuela':'Gestionar escuela'}<select value={schoolId} onChange={e=>{setSchoolId(e.target.value);setOffset(0);setInviteOffset(0);setClassOffset(0);setMessage('');}}><option value="">Selecciona una escuela</option>{schools.map(s=><option key={s.id} value={s.id}>{s.name}{s.status==='archived'?' (archivada)':''}</option>)}</select></label>

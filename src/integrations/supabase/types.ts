@@ -189,6 +189,14 @@ export type Database = {
         Args: { p_action: string; p_input?: Json }
         Returns: Json
       }
+      submit_contact_submission: {
+        Args: { p_name: string; p_email: string; p_phone: string; p_subject: string; p_message: string; p_consent: boolean; p_locale: string }
+        Returns: string
+      }
+      list_contact_submissions: {
+        Args: Record<string, never>
+        Returns: Json
+      }
 
       has_role: {
         Args: {
