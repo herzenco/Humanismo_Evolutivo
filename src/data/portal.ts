@@ -1,11 +1,12 @@
+import courseCatalog from '../generated/course-catalog.json' with { type: 'json' };
 import suppliedSchedule from '../generated/portal-schedule.json' with { type: 'json' };
 
 /** Publish supplied courses and scheduled classes here. Do not use public events as classes. */
-export type PortalLesson = { id: string; title: string; text: string; videoUrl?: string };
+export type PortalLesson = { id: string; title: string; text?: string; videoUrl?: string };
 export type PortalCourse = { id: string; title: string; description: string; lessons: PortalLesson[] };
 export type PortalClass = { id: string; courseId: string; title: string; startsAt: string; endsAt: string; timeZone?: string; location?: string };
 
-export const portalCourses: PortalCourse[] = [];
+export const portalCourses = courseCatalog;
 // Only the 23 explicitly dated sessions in the supplied PortalCalendario.html.
 // The source gives no timezone and no complete recurrence/holiday rules.
 export const portalClasses: PortalClass[] = suppliedSchedule;

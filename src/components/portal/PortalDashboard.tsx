@@ -1,57 +1,47 @@
 'use client';
-
-import { useState } from 'react';
+import {useState} from 'react';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {useRouter,useSearchParams} from 'next/navigation';
 import dynamic from 'next/dynamic';
+import {activeTeachingSchool} from '@/lib/teaching/role';
+import StudentDashboard from './StudentDashboard';
+import PortalAttendance from './PortalAttendance';
+import type {AttendanceSummary} from '@/lib/attendance/contracts';
+import CourseCatalog from './CourseCatalog';
 import PortalCalendar from './PortalCalendar';
-import { portalCourses, portalClasses } from '@/data/portal';
-import type { EducationContext } from '@/lib/education/contracts';
+import {portalClasses,portalCourses} from '@/data/portal';
+import type {EducationContext} from '@/lib/education/contracts';
+import type {LearningCourse} from '@/lib/courses/contracts';
 import PortalSchools from './PortalSchools';
-import { availablePortalRoles, portalRole, portalRoleSuffix, type PortalRole } from '@/lib/portal-role';
-import type { ResourceArticle } from '@/data/resources';
-import { ArrowLeft, ArrowRight, CalendarDays, GraduationCap, Leaf, Library, LogOut, Menu, X } from 'lucide-react';
-
-const PortalLibrary = dynamic(() => import('./PortalLibrary'), { loading: () => <p role="status">Cargando biblioteca…</p> });
-
-type View = 'courses' | 'library' | 'calendar' | 'school';
-export default function PortalDashboard({ firstName, email, articles, educationContext }: { firstName: string; email?: string; articles: ResourceArticle[]; educationContext?: EducationContext | null }) {
-  const params = useSearchParams();
-  const router = useRouter();
-  const allowedRoles = availablePortalRoles(educationContext);
-  const role = portalRole(params.get('role'), allowedRoles);
-  const scopedContext = educationContext ? { ...educationContext, isPlatformAdmin: role === 'admin' && educationContext.isPlatformAdmin, memberships: role === 'student' ? educationContext.memberships.filter(m=>m.role==='student') : educationContext.memberships } : null;
-  const roleSuffix = portalRoleSuffix(role);
-  const changeRole = (next: PortalRole) => { router.push(`/portal?view=${next === 'student' ? 'courses' : 'school'}&role=${next}`);setMenu(false); };
-  const selectedView = params.get('view');
-  const view: View = selectedView === 'library' || selectedView === 'calendar' || (selectedView === 'school' && (educationContext || role !== 'student')) ? selectedView : 'courses';
-  const [menu, setMenu] = useState(false);
-  const title = view === 'courses' ? 'Mis cursos' : view === 'library' ? 'Biblioteca' : view === 'school' ? role === 'admin' ? 'Administración educativa' : role === 'school' ? 'Administración de mi escuela' : role === 'teacher' ? 'Mi escuela y estudiantes' : 'Mis escuelas' : 'Calendario';
-  const course = portalCourses.find(item => item.id === params.get('course'));
-  const lesson = course?.lessons.find(item => item.id === params.get('lesson'));
-  const navigate = (next: View) => { router.push(`/portal?view=${next}${roleSuffix}`); setMenu(false); };
-  return <div className="portal-app">
-    <aside className={`portal-sidebar ${menu ? 'portal-sidebar-open' : ''}`}>
-      <Link href="/" className="site-brand"><Leaf /><span><span className="site-brand-name">Humanismo Evolutivo</span><span className="site-brand-caption">Transpersonal</span></span></Link>
-      <span className="portal-sidebar-label">PORTAL EDUCATIVO</span>
-      <nav aria-label="Portal educativo">{([{ id: 'courses', label: 'Mis cursos', icon: GraduationCap }, { id: 'library', label: 'Biblioteca', icon: Library }, { id: 'calendar', label: 'Calendario', icon: CalendarDays }] as const).map(item => <button key={item.id} type="button" aria-current={view === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}><item.icon size={20} />{item.label}</button>)}{educationContext || role !== 'student' ? <button type="button" aria-current={view === 'school' ? 'page' : undefined} onClick={() => navigate('school')}><GraduationCap size={20} />{role === 'admin' ? 'Escuelas y personas' : role === 'teacher' ? 'Estudiantes' : 'Mis escuelas'}</button> : null}</nav>
-      <div className="portal-sidebar-bottom"><Link href="/"><ArrowLeft size={18} />Volver al sitio</Link><form action="/auth/signout" method="post"><button type="submit"><LogOut size={18} />Cerrar sesión</button></form><p>Aprender es una forma de evolucionar.</p></div>
-    </aside>
-    <div className="portal-workspace"><header className="portal-topbar"><div><button type="button" className="portal-mobile-toggle" aria-expanded={menu} aria-label={menu ? 'Cerrar menú del portal' : 'Abrir menú del portal'} onClick={() => setMenu(value => !value)}>{menu ? <X /> : <Menu />}</button><span>Portal educativo <span aria-hidden="true">/</span> <strong>{title}</strong></span></div><div><span className="portal-avatar" aria-hidden="true">{firstName.charAt(0).toUpperCase()}</span><span className="portal-user">{firstName}<small>{email}</small></span></div></header>
-      <main className={`portal-main ${view === 'calendar' ? 'portal-main-calendar' : ''}`} id="contenido-principal">
-        {allowedRoles.length > 1 ? <div className="portal-role-navigation"><div role="group" aria-label="Funciones de mi cuenta">{allowedRoles.map(id=><button key={id} type="button" aria-pressed={role===id} onClick={()=>changeRole(id)}>{{student:'Estudiante',teacher:'Maestro',school:'Escuela',admin:'Administrador'}[id]}</button>)}</div><p>Solo se muestran las funciones autorizadas de tu cuenta.</p></div> : null}
-        <div className="portal-welcome"><span className="design-eyebrow">TU ESPACIO PARA EVOLUCIONAR</span><h1>{title}</h1><p>{view === 'courses' ? 'Explora todos los cursos disponibles y elige tu próximo paso de aprendizaje.' : view === 'library' ? 'Explora las lecturas, reflexiones y conversaciones de Humanismo Evolutivo.' : view === 'school' ? 'Tu comunidad, tus escuelas y el aprendizaje compartido.' : 'Consulta todas las clases programadas en vista de calendario o lista.'}</p></div>
-        {view === 'courses' ? <section aria-labelledby="courses-title">
-          <div className="portal-section-heading"><h2 id="courses-title">{course ? course.title : 'Todos los cursos'}</h2><span>{portalCourses.length} cursos disponibles</span></div>
-          {course ? <div className="portal-reader"><Link href={`/portal?view=courses${roleSuffix}`} className="design-text-link"><ArrowLeft size={17} />Todos los cursos</Link><p>{course.description}</p>{lesson ? <article><h3>{lesson.title}</h3><p>{lesson.text}</p>{lesson.videoUrl ? <video controls preload="none" src={lesson.videoUrl} aria-label={lesson.title} /> : null}<Link href={`/portal?view=courses&course=${encodeURIComponent(course.id)}${roleSuffix}`} className="design-text-link">Volver a las clases</Link></article> : <ol className="portal-lesson-list">{course.lessons.map((item, index) => <li key={item.id}><Link href={`/portal?view=courses&course=${encodeURIComponent(course.id)}&lesson=${encodeURIComponent(item.id)}${roleSuffix}`}><span>{index + 1}</span>{item.title}<ArrowRight size={18} /></Link></li>)}</ol>}</div>
-            : params.get('course') ? <div className="portal-empty"><h3>Curso no disponible</h3><Link href={`/portal?view=courses${roleSuffix}`}>Ver cursos disponibles</Link></div>
-            : portalCourses.length ? <div className="portal-content-grid">{portalCourses.map(item => <article className="portal-content-card" key={item.id}><div><GraduationCap size={32} /><h3>{item.title}</h3><p>{item.description}</p><span>{item.lessons.length} clases</span><Link href={`/portal?view=courses&course=${encodeURIComponent(item.id)}${roleSuffix}`} className="design-text-link">Explorar curso<ArrowRight size={18} /></Link></div></article>)}</div>
-            : <div className="portal-empty"><GraduationCap size={48} strokeWidth={1.2} /><h3>Próximamente, nuevos cursos</h3><p>Aquí encontrarás todas las clases disponibles cuando se publique el catálogo. Mientras tanto, puedes explorar las lecturas y conversaciones de nuestra biblioteca.</p><button type="button" className="design-button" onClick={() => navigate('library')}>Explorar la biblioteca<ArrowRight size={18} /></button></div>}
-        </section> : null}
-        {view === 'library' ? <PortalLibrary key={params.get('category') || 'all'} articles={articles} /> : null}
-        {view === 'school' && scopedContext ? <PortalSchools key={JSON.stringify(scopedContext)} context={scopedContext} /> : null}
-        {view === 'calendar' ? <PortalCalendar sessions={portalClasses} /> : null}
-      </main><footer className="portal-bottom">Humanismo Evolutivo · Portal educativo<span>Un camino de conciencia compartida</span></footer>
-    </div>
-  </div>;
+import PortalAdministration from './PortalAdministration';
+import {availablePortalRoles,selectedPortalRole,portalRoleSuffix,roleLabels,type PortalRole} from '@/lib/portal-role';
+import type {ResourceArticle} from '@/data/resources';
+import {ArrowLeft,CalendarCheck2,LayoutDashboard,CalendarDays,GraduationCap,Leaf,Library,LogOut,Menu,X} from 'lucide-react';
+const PortalLibrary=dynamic(()=>import('./PortalLibrary'),{loading:()=> <p role="status">Cargando biblioteca…</p>});
+type View='dashboard'|'attendance'|'courses'|'library'|'calendar'|'school';
+type Props={firstName:string;email?:string;articles:ResourceArticle[];educationContext?:EducationContext|null;rolePreviewEnabled?:boolean;courseWorkspace?:React.ReactNode;studentProgress?:Record<string,number>|null;attendance?:AttendanceSummary|null;courses?:LearningCourse[]};
+export default function PortalDashboard({firstName,email,articles,educationContext,courseWorkspace,studentProgress=null,attendance=null,courses=portalCourses}:Props){
+ const params=useSearchParams(),router=useRouter();const [menu,setMenu]=useState(false);
+ const roles=availablePortalRoles(educationContext),role=selectedPortalRole(educationContext,params.get('role')||(courseWorkspace?'student':null));
+ const teachingSchool=activeTeachingSchool(educationContext);
+ const schoolAdmin=educationContext?.memberships.find(m=>m.role==='school_admin'&&m.status==='active'&&m.schoolStatus==='active');
+ const roleSuffix=portalRoleSuffix(role),isTeacher=role==='teacher',isAdmin=role==='admin'||role==='school_admin';
+ const canManageAttendance=Boolean(role!=='student'&&(educationContext?.isPlatformAdmin||educationContext?.memberships.some(m=>m.role==='teacher'&&m.isCommunity&&m.status==='active'&&m.schoolStatus==='active')));
+ const selected=params.get('view');
+ const view:View=selected==='courses'||selected==='library'||selected==='calendar'||selected==='school'||(selected==='attendance'&&canManageAttendance)?selected:courseWorkspace?'courses':'dashboard';
+ const home=role==='admin'?'Administración de plataforma':role==='school_admin'?'Mi escuela':isTeacher?'Mis aulas':'Mi aprendizaje';
+ const title=view==='dashboard'?home:view==='attendance'?'Asistencia presencial':view==='courses'?'Mis cursos':view==='library'?'Biblioteca':view==='school'?'Mis escuelas e invitaciones':'Calendario';
+ const navigate=(next:View)=>{router.push(`/portal?view=${next}${roleSuffix}`);setMenu(false);};
+ const changeRole=(next:PortalRole)=>{router.push(`/portal?view=dashboard&role=${next}`);setMenu(false);};
+ return <div className="portal-app"><aside className={`portal-sidebar ${menu?'portal-sidebar-open':''}`}><Link href="/" className="site-brand"><Leaf/><span><span className="site-brand-name">Humanismo Evolutivo</span><span className="site-brand-caption">Transpersonal</span></span></Link><span className="portal-sidebar-label">{roleLabels[role]}</span>{role==='school_admin'&&schoolAdmin||isTeacher&&teachingSchool?<p className="portal-teacher-school-label">{role==='school_admin'?schoolAdmin?.schoolName:teachingSchool?.schoolName}</p>:null}<nav aria-label="Portal educativo">{([{id:'dashboard',label:home,icon:LayoutDashboard},{id:'courses',label:'Mis cursos',icon:GraduationCap},{id:'library',label:'Biblioteca',icon:Library},{id:'calendar',label:'Calendario',icon:CalendarDays},{id:'school',label:'Mis escuelas e invitaciones',icon:GraduationCap}] as const).map(item=><button key={item.id} type="button" aria-current={view===item.id?'page':undefined} onClick={()=>navigate(item.id)}><item.icon size={20}/>{item.label}</button>)}{canManageAttendance?<button type="button" aria-current={view==='attendance'?'page':undefined} onClick={()=>navigate('attendance')}><CalendarCheck2 size={20}/>Pasar lista en Amigos</button>:null}</nav><div className="portal-sidebar-bottom"><Link href="/"><ArrowLeft size={18}/>Volver al sitio</Link><form action="/auth/signout" method="post"><button type="submit"><LogOut size={18}/>Cerrar sesión</button></form><p>Aprender es una forma de evolucionar.</p></div></aside>
+ <div className="portal-workspace"><header className="portal-topbar"><div><button type="button" className="portal-mobile-toggle" aria-expanded={menu} aria-label={menu?'Cerrar menú del portal':'Abrir menú del portal'} onClick={()=>setMenu(v=>!v)}>{menu?<X/>:<Menu/>}</button><span>Portal educativo / <strong>{title}</strong></span></div><div><span className="portal-avatar" aria-hidden="true">{firstName.charAt(0).toUpperCase()}</span><span className="portal-user">{firstName}<small>{email}</small></span></div></header><main className={`portal-main ${view==='calendar'?'portal-main-calendar':''}`} id="contenido-principal">
+ {roles.length>1?<div className="portal-role-navigation"><div role="group" aria-label="Mis perfiles">{roles.map(r=><button key={r} aria-pressed={role===r} onClick={()=>changeRole(r)}>{roleLabels[r]}</button>)}</div><p>Accesos disponibles para tu cuenta. Cada operación verifica tus permisos.</p></div>:null}
+ <div className="portal-welcome"><span className="design-eyebrow">TU ESPACIO PARA EVOLUCIONAR</span><h1>{title}</h1><p>{view==='dashboard'?isAdmin?'Gestiona tu comunidad y acompaña el aprendizaje.':isTeacher?'Consulta a los estudiantes de tus aulas y su avance.':'Tu asistencia presencial y tu avance en línea, en un solo lugar.':view==='courses'?'Explora los programas y continúa tu recorrido.':view==='attendance'?'La asistencia presencial en Amigos la registra el maestro.':view==='school'?'Acepta tus invitaciones y consulta tus membresías.':view==='library'?'Lecturas y recursos para profundizar.':'Busca tus clases programadas y filtra por curso.'}</p></div>
+ {view==='dashboard'?(isAdmin&&educationContext?<PortalAdministration key={role} context={educationContext} courses={courses} platform={role==='admin'}/>:isTeacher&&teachingSchool&&educationContext?<PortalAdministration context={educationContext} courses={courses} teacher/>:<StudentDashboard progress={studentProgress} attendance={attendance} courses={courses}/>):null}
+ {view==='attendance'&&canManageAttendance&&educationContext?<PortalAttendance context={educationContext}/>:null}
+ {view==='courses'?courseWorkspace||<CourseCatalog courses={courses}/>:null}
+ {view==='library'?<PortalLibrary key={params.get('category')||'all'} articles={articles}/>:null}
+ {view==='school'&&educationContext?<PortalSchools context={educationContext}/>:null}
+ {view==='calendar'?<PortalCalendar sessions={portalClasses}/>:null}
+ </main><footer className="portal-bottom">Humanismo Evolutivo · Portal educativo<span>Un camino de conciencia compartida</span></footer></div></div>;
 }
