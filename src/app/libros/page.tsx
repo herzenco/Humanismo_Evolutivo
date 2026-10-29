@@ -20,11 +20,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
 import { z } from 'zod';
-import { useBookImages } from '@/hooks/useBookImages';
+import UpcomingBooks from '@/components/design/UpcomingBooks';
 
 const Libros = () => {
   const { t, language } = useLanguage();
-  const { data: bookImages } = useBookImages();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -60,25 +59,8 @@ const Libros = () => {
       const book = books.find(b => b.id === selectedBook);
       if (!book) return;
 
-      let pdfFileName = '';
-      let bookName = '';
-
-      if (book.id === 'yo-soy-nosotros') {
-        pdfFileName = language === 'es' ? 'Yo_Soy_Nosotros_Resumen.pdf' : 'I_Am_US_Summary.pdf';
-        bookName = language === 'es' ? 'Yo Soy Nosotros' : 'I Am US';
-      } else if (book.id === 'dejalo-ser') {
-        pdfFileName = language === 'es' ? 'DejaloSer_Resumen.pdf' : 'Let_It_Be_Summary.pdf';
-        bookName = language === 'es' ? 'Déjalo Ser' : 'Let It Be';
-      } else if (book.id === 'ecologia-y-espiritualidad') {
-        pdfFileName = language === 'es' ? 'Ecologia_y_Espiritualidad.pdf' : 'Ecology_and_Spirituality.pdf';
-        bookName = language === 'es' ? 'Ecología y Espiritualidad' : 'Ecology and Spirituality';
-      } else if (book.id === 'lo-mejor-esta-por-venir') {
-        pdfFileName = 'Lo_mejor_esta_por_venir.pdf';
-        bookName = book.title;
-      } else if (book.id === 'el-arte-de-ser-empresario') {
-        pdfFileName = language === 'es' ? 'El_arte_de_ser_empresario_Resumen.pdf' : 'The_art_of_being_an_entrepreneur_Summary.pdf';
-        bookName = language === 'es' ? 'El Arte de Ser Empresario' : 'The Art of Being an Entrepreneur';
-      }
+      const pdfFileName = book.pdfUrl;
+      const bookName = book.title;
 
       // Validate form data with Zod schema
       const validatedData = bookDownloadSchema.parse({
@@ -106,7 +88,7 @@ const Libros = () => {
 
       setTimeout(async () => {
         try {
-          const res = await fetch(`/books/${pdfFileName}`);
+          const res = await fetch(pdfFileName);
           if (!res.ok) throw new Error('HTTP ' + res.status);
           const blob = await res.blob();
           const url = URL.createObjectURL(blob);
@@ -156,11 +138,13 @@ const Libros = () => {
         <div className="design-content-width">
           <div className="design-section-heading"><span className="design-eyebrow">{language === 'es' ? 'LAS OBRAS' : 'THE BOOKS'}</span><h2>{language === 'es' ? 'Un camino a través de la lectura' : 'A journey through reading'}</h2></div>
           {books.map((book, index) => <article className="design-book-row" key={book.id}>
-            <Link href={`/libros/${book.id}`} className="design-book-cover" aria-label={book.title}><img src={bookImages?.[book.id] || book.coverImage} alt={book.title} loading="lazy" /></Link>
-            <div className="design-book-body"><span className="design-eyebrow">{String(index + 1).padStart(2, '0')} · {book.keywords[0]}</span><h2><Link href={`/libros/${book.id}`}>{book.title}</Link></h2><p className="design-book-subtitle">{book.subtitle}</p><p>{book.excerpt}</p><div className="design-tags">{book.keywords.slice(0, 3).map(keyword => <span key={keyword}>{keyword}</span>)}</div><div className="design-actions"><Link href={`/libros/${book.id}`} className="design-button">{language === 'es' ? 'Explorar el libro' : 'Explore the book'} <BookOpen size={18} /></Link>{book.downloadAvailable ? <button type="button" className="design-button design-button-outline" onClick={() => handleDownload(book.id)}><Download size={18} />{language === 'es' ? 'Descargar resumen' : 'Download summary'}</button> : null}</div></div>
+            <Link href={`/libros/${book.id}`} className="design-book-cover" aria-label={book.title}><img src={book.coverImage} alt={book.title} loading="lazy" /></Link>
+            <div className="design-book-body"><span className="design-eyebrow">{String(index + 1).padStart(2, '0')} · {book.keywords[0]}</span><h2><Link href={`/libros/${book.id}`}>{book.title}</Link></h2><p className="design-book-subtitle">{book.subtitle}</p><p>{book.excerpt}</p><div className="design-tags">{book.keywords.slice(0, 3).map(keyword => <span key={keyword}>{keyword}</span>)}</div><div className="design-actions"><Link href={`/libros/${book.id}`} className="design-button">{language === 'es' ? 'Explorar el libro' : 'Explore the book'} <BookOpen size={18} /></Link>{book.downloadAvailable ? <button type="button" className="design-button design-button-outline" onClick={() => handleDownload(book.id)}><Download size={18} />{language === 'es' ? 'Descargar libro (PDF)' : 'Download book (PDF)'}</button> : null}</div></div>
           </article>)}
         </div>
       </section>
+
+      <UpcomingBooks />
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md" aria-describedby="download-description">
