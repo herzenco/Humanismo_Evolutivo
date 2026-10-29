@@ -1,3 +1,8 @@
 {
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "git": {
+    "deploymentEnabled": {
+      "feature/pato-vault-2026-10-29-website": false
+    }
+  }
 }
