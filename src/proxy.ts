@@ -13,7 +13,6 @@ const legacyHosts = new Set([
   'www.yosoynosotros.com',
   'www.humanismoevolutivo.com',
 ])
-const unlocalized = /^\/(portal|resources|51preguntas|qa-access)(\/|$)/
 const authRoute = /^\/(?:(?:en|es)\/)?(auth|portal|admin)(\/|$)/
 
 function copyAuthState(source: NextResponse, target: NextResponse) {
@@ -81,39 +80,14 @@ export async function proxy(request: NextRequest) {
   if (blocked) return blocked
 
   const { pathname, hostname } = request.nextUrl
-  if (request.headers.get('x-he-locale-rewrite') === '1') {
-    const response = authRoute.test(pathname) ? await authProxy(request) : NextResponse.next({ request })
-    return finish(request, response)
-  }
   if (legacyHosts.has(hostname)) {
     const canonical = new URL(pathname + request.nextUrl.search, SITE_URL)
     return NextResponse.redirect(canonical, 308)
   }
 
-  if (pathname === '/es' || pathname.startsWith('/es/')) {
-    const url = request.nextUrl.clone()
-    url.pathname = pathname.slice(3) || '/'
-    return finish(request, NextResponse.redirect(url, 308))
-  }
-
-  const isFile = /\.[^/]+$/.test(pathname)
-  const skipLocale = isFile || pathname.startsWith('/api') || pathname.startsWith('/_next') || unlocalized.test(pathname) || pathname === '/en' || pathname.startsWith('/en/')
-  const needsAuth = authRoute.test(pathname)
-
-  if (skipLocale) {
-    const response = needsAuth ? await authProxy(request) : NextResponse.next({ request })
-    return finish(request, response)
-  }
-
-  const url = request.nextUrl.clone()
-  url.pathname = `/es${pathname === '/' ? '' : pathname}`
-  const headers = new Headers(request.headers)
-  headers.set('x-he-locale-rewrite', '1')
-  const rewritten = NextResponse.rewrite(url, { request: { headers } })
-  if (!needsAuth) return finish(request, rewritten)
-  const authed = await authProxy(request)
-  if (authed.headers.get('location')) return finish(request, authed)
-  return finish(request, copyAuthState(authed, rewritten))
+  // Locale rewrites live in next.config so this proxy does not run twice and drop the QA cookie.
+  const response = authRoute.test(pathname) ? await authProxy(request) : NextResponse.next({ request })
+  return finish(request, response)
 }
 
 export const config = { matcher: ['/:path*'] }
