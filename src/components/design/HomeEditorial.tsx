@@ -1,3 +1,5 @@
+import { books } from '@/data/books';
+import UpcomingBooks from './UpcomingBooks';
 import Image from 'next/image';
 import VideoDialog from './VideoDialog';
 import { homeVideos } from '@/config/home-videos';
@@ -439,90 +441,19 @@ export default function HomeEditorial() { return <div className="editorial">
 </h2>
 </div>
 <p className="he-42c9249ac">
-{"El humanismo evolutivo es una corriente de pensamiento filosófico que el Ing. Marcos Constandse Madrazo desarrolló, a través de la escritura de cinco de sus libros:"}
+{"10 títulos · 5 obras disponibles y 5 próximamente. Explora el pensamiento del Ing. Marcos Constandse Madrazo a través de sus libros."}
 </p>
 </div>
 <div className="he-a9bef34c5 he-grid">
-<div className="he-ff96ce4f1 he-row">
-<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt="Portada de Yo soy nosotros" loading="lazy" className="he-211d92610 he-sized" />
-<div className="he-355eeddb9">
-<span className="he-59f40951f">
-{"I"}
-</span>
-<h3 className="he-269aa0047 he-h3">
-{"Yo soy nosotros"}
-</h3>
-<p className="he-d30482db2">
-{"Se expone con un enfoque filosófico y basado en "}
-<strong>
-{"“La evolución del universo”"}
-</strong>
-{", la teoría filosófica."}
-</p>
+{books.map((book, index) => <article key={book.id} className="he-ff96ce4f1 he-row">
+<Link href={`/libros/${book.id}`}><img width="600" height="900" src={book.coverImage} alt={`Portada de ${book.title}`} loading="lazy" className="he-211d92610 he-sized" /></Link>
+<div className="he-355eeddb9"><span className="he-59f40951f">{String(index + 1).padStart(2, '0')}</span>
+<h3 className="he-269aa0047 he-h3"><Link href={`/libros/${book.id}`}>{book.title}</Link></h3>
+<p className="he-d30482db2">{book.excerpt}</p>
+<Link href={`/libros/${book.id}`} className="underline">Explorar el libro</Link>
+</div></article>)}
 </div>
-</div>
-<div className="he-ff96ce4f1 he-row">
-<img width="531" height="900" src="/design/daba8e942d8f02d4888334c0e1ea21e4.webp" alt="Portada de Ecología y espiritualidad" loading="lazy" className="he-211d92610 he-sized" />
-<div className="he-355eeddb9">
-<span className="he-59f40951f">
-{"II"}
-</span>
-<h3 className="he-269aa0047 he-h3">
-{"Ecología y espiritualidad"}
-</h3>
-<p className="he-d30482db2">
-{"Plantea una visión de sostenibilidad ecológica del planeta y su biósfera."}
-</p>
-</div>
-</div>
-<div className="he-ff96ce4f1 he-row">
-<img width="564" height="900" src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt="Portada de ¡Déjalo ser!" loading="lazy" className="he-211d92610 he-sized" />
-<div className="he-355eeddb9">
-<span className="he-59f40951f">
-{"III"}
-</span>
-<h3 className="he-269aa0047 he-h3">
-{"¡Déjalo ser!"}
-</h3>
-<p className="he-d30482db2">
-{"Novela sobre Cancún, basado en la realidad evolutiva de un personaje nativo maya de un pueblo perdido en la selva, que evoluciona hasta formar una familia moderna en 3 generaciones. Un ejemplo de la vida real que demuestra que "}
-<strong>
-{"“evolucionar es ser”"}
-</strong>
-{"."}
-</p>
-</div>
-</div>
-<div className="he-ff96ce4f1 he-row">
-<img width="564" height="900" src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt="Portada de ¡Y lo mejor aún está por venir!" loading="lazy" className="he-211d92610 he-sized" />
-<div className="he-355eeddb9">
-<span className="he-59f40951f">
-{"IV"}
-</span>
-<h3 className="he-269aa0047 he-h3">
-{"¡Y lo mejor aún está por venir!"}
-</h3>
-<p className="he-d30482db2">
-{"Una disertación que explica, que si fundamentamos nuestras acciones en los ejemplos que nos da el universo en la evolución, la humanidad podrá tener un futuro luminoso."}
-</p>
-</div>
-</div>
-<div className="he-ff96ce4f1 he-row">
-<img width="542" height="900" src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt="Portada de El arte de ser empresario" loading="lazy" className="he-211d92610 he-sized" />
-<div className="he-355eeddb9">
-<span className="he-59f40951f">
-{"V"}
-</span>
-<h3 className="he-269aa0047 he-h3">
-{"El arte de ser empresario"}
-</h3>
-<p className="he-d30482db2">
-{"Un ensayo que trata de reivindicar el oficio empresarial o demostrar cómo la labor empresarial es paralela a la corriente de “humanismo evolutivo” y genera bienestar a la humanidad."}
-</p>
-</div>
-</div>
-
-</div>
+<UpcomingBooks />
 <div className="he-70d97b874 he-row">
 <p className="he-112d2d8ab">
 {"Consulta los resúmenes y elige por dónde comenzar."}
