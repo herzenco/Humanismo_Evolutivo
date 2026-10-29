@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { GraduationCap, Leaf, Menu, Search, Shield, X } from 'lucide-react';
+import Link from '@/components/LocalizedLink';
 import { LanguageToggle } from '@/components/ui/language-toggle';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAdmin } from '@/hooks/useAdmin';
