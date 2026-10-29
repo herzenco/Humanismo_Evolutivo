@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import View from './View';
 import { localizeBook } from '@/lib/localized-books';
+import { restoreSpanishBookTitles } from '@/lib/book-english';
 import { books } from '@/data/books';
 import { pageMetadata } from '@/lib/seo';
 import { isLanguage } from '@/lib/site';
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   const data = await getPublicSiteData();
   const dictionary = contentDictionary(lang, data.content);
   const localized = localizeBook(item, key => dictionary[key] ?? key);
-  const title = localized.title; const description = localized.excerpt;
+  const title = item.title;
+  const description = lang === 'en' ? restoreSpanishBookTitles(localized.excerpt) : item.excerpt;
   const image = data.images.find(image => image.category === 'book-cover' && image.key === item.id)?.url || item.coverImage;
   return pageMetadata({ title, description: description.slice(0, 160), image, path: `/libros/${bookId}`, language: lang });
 }

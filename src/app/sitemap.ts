@@ -3,7 +3,7 @@ import { books } from '@/data/books'
 import { events } from '@/data/events'
 import { podcastSeries } from '@/data/media'
 import { resourceArticles } from '@/data/resources'
-import { publishedQuestions, questionPath, questionsCanonicalOrigin } from '@/data/questions'
+import { publishedQuestions, questionPath } from '@/data/questions'
 import { absoluteUrl } from '@/lib/site'
 
 function localized(path: string, extra: Omit<MetadataRoute.Sitemap[number], 'url'> = {}): MetadataRoute.Sitemap[number] {
@@ -66,9 +66,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const published = publishedQuestions()
   const questionPages: MetadataRoute.Sitemap = published.length ? [
-    { url: `${questionsCanonicalOrigin}/51preguntas`, changeFrequency: 'weekly', priority: 0.8 },
-    ...published.map(question => ({
-      url: `${questionsCanonicalOrigin}${questionPath(question.number)}`,
+    localized('/51preguntas', { changeFrequency: 'weekly', priority: 0.8 }),
+    ...published.map(question => localized(questionPath(question.number), {
       ...(question.updatedAt || question.publishedAt ? { lastModified: new Date((question.updatedAt || question.publishedAt)!) } : {}),
       changeFrequency: 'monthly' as const,
       priority: 0.7,

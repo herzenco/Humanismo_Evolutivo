@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
     return [...admin, ...spanish];
   },
   async rewrites() {
-    const pages = ['autor', 'libros', 'medios', 'eventos', 'contacto', 'vision', 'privacidad', 'terminos', 'buscar', 'chatbot', 'auth', 'admin', 'video'];
+    const pages = ['autor', 'libros', 'medios', 'eventos', 'contacto', 'vision', 'privacidad', 'terminos', 'buscar', 'chatbot', 'auth', 'admin', 'video', '51preguntas'];
     return {
       beforeFiles: [
         { source: '/', destination: '/es' },

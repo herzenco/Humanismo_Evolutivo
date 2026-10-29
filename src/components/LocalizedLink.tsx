@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import type { ComponentProps } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { localizedPath } from '@/lib/site';
-const sharedRoute = /^\/(portal|resources|51preguntas|qa-access)(\/|$)/;
+const sharedRoute = /^\/(portal|resources|qa-access)(\/|$)/;
 export default function LocalizedLink({ href, ...props }: ComponentProps<typeof NextLink>) {
   const { language } = useLanguage();
   const localize = (path: string) => sharedRoute.test(path.split(/[?#]/)[0]) ? path : localizedPath(path, language);

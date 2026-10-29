@@ -21,9 +21,11 @@ import { toast } from "sonner";
 import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
 import { z } from 'zod';
 import UpcomingBooks from '@/components/design/UpcomingBooks';
+import { bookForLanguage } from '@/lib/book-english';
 
 const Libros = () => {
   const { t, language } = useLanguage();
+  const displayBooks = books.map(book => bookForLanguage(book, language, t));
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -137,7 +139,7 @@ const Libros = () => {
       <section id="obras" className="design-book-list">
         <div className="design-content-width">
           <div className="design-section-heading"><span className="design-eyebrow">{language === 'es' ? 'LAS OBRAS' : 'THE BOOKS'}</span><h2>{language === 'es' ? 'Un camino a través de la lectura' : 'A journey through reading'}</h2></div>
-          {books.map((book, index) => <article className="design-book-row" key={book.id}>
+          {displayBooks.map((book, index) => <article className="design-book-row" key={book.id}>
             <Link href={`/libros/${book.id}`} className="design-book-cover" aria-label={book.title}><img src={book.coverImage} alt={book.title} loading="lazy" /></Link>
             <div className="design-book-body"><span className="design-eyebrow">{String(index + 1).padStart(2, '0')} · {book.keywords[0]}</span><h2><Link href={`/libros/${book.id}`}>{book.title}</Link></h2><p className="design-book-subtitle">{book.subtitle}</p><p>{book.excerpt}</p><div className="design-tags">{book.keywords.slice(0, 3).map(keyword => <span key={keyword}>{keyword}</span>)}</div><div className="design-actions"><Link href={`/libros/${book.id}`} className="design-button">{language === 'es' ? 'Explorar el libro' : 'Explore the book'} <BookOpen size={18} /></Link>{book.downloadAvailable ? <button type="button" className="design-button design-button-outline" onClick={() => handleDownload(book.id)}><Download size={18} />{language === 'es' ? 'Descargar libro (PDF)' : 'Download book (PDF)'}</button> : null}</div></div>
           </article>)}

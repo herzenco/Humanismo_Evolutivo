@@ -18,6 +18,7 @@ import {
   DialogTitle
 } from '@/components/ui/dialog';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { bookForLanguage } from '@/lib/book-english';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
@@ -33,23 +34,26 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
+  const en = language === 'en';
+  const label = (es: string, english: string) => en ? english : es;
 
-  const book = books.find(b => b.id === bookId);
+  const source = books.find(b => b.id === bookId);
+  const book = source ? bookForLanguage(source, language, t) : undefined;
   const bookCoverImage = book?.coverImage;
 
   if (!book) {
     return (
       <PageWrapper>
         <div className="container mx-auto px-6 py-20 text-center">
-          <h1 className="text-2xl font-bold mb-4">Libro no encontrado</h1>
-          <p className="mb-6">Lo sentimos, el libro que buscas no está disponible.</p>
+          <h1 className="text-2xl font-bold mb-4">{label('Libro no encontrado', 'Book not found')}</h1>
+          <p className="mb-6">{label('Lo sentimos, el libro que buscas no está disponible.', 'Sorry, the book you are looking for is not available.')}</p>
           <Link
             href="/libros"
             className="inline-flex items-center text-gold hover:underline"
           >
             <ArrowLeft size={16} className="mr-2" />
-            Volver a la biblioteca
+            {label('Volver a la biblioteca', 'Back to the library')}
           </Link>
         </div>
       </PageWrapper>
@@ -182,7 +186,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
         url={`https://humanismoevolutivo.com/libros/${book.id}`}
       />
       {/* Book Header */}
-      <section className="relative py-20 lg:py-28 bg-navy-dark text-white overflow-hidden" aria-label="Detalles del libro">
+      <section className="relative py-20 lg:py-28 bg-navy-dark text-white overflow-hidden" aria-label={label('Detalles del libro', 'Book details')}>
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-[20%] left-[15%] w-64 h-64 bg-gold/20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-[10%] right-[10%] w-80 h-80 bg-primary/30 rounded-full blur-3xl"></div>
@@ -193,7 +197,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
             className="inline-flex items-center text-white/70 hover:text-white mb-8"
           >
             <ArrowLeft size={16} className="mr-2" />
-            Volver a la biblioteca
+            {label('Volver a la biblioteca', 'Back to the library')}
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -223,7 +227,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
 
                 <div className="mb-8">
                   <div>
-                    <p className="text-white/70 text-sm">Autor</p>
+                    <p className="text-white/70 text-sm">{label('Autor', 'Author')}</p>
                     <p className="font-medium">{book.author}</p>
                   </div>
                 </div>
@@ -234,7 +238,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   size="lg"
                 >
                   <Download size={18} className="mr-2" />
-                  Descargar Libro
+                  {label('Descargar Libro', 'Download book')}
                 </Button>
               </motion.div>
             </div>
@@ -248,7 +252,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                 <div className="book-3d">
                   <img
                     src={`${bookCoverImage || book.coverImage}?t=${Date.now()}`}
-                    alt={`Portada del libro ${book.title} - ${book.subtitle}`}
+                    alt={en ? `Cover of ${book.title}` : `Portada del libro ${book.title} - ${book.subtitle}`}
                     className="rounded-md shadow-2xl max-w-xs"
                     loading="eager"
                   />
@@ -270,7 +274,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
               transition={{ duration: 0.5 }}
             >
               <h2 className="font-heading text-3xl font-semibold text-navy-dark mb-6">
-                Sobre el libro
+                {label('Sobre el libro', 'About the book')}
               </h2>
 
               <div className="prose prose-lg max-w-none text-navy-light">
@@ -295,23 +299,24 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                 </div>
                 <div>
                   <h3 className="font-heading text-xl font-semibold text-navy-dark mb-3">
-                    ¿Te gustaría leer este libro?
+                    {label('¿Te gustaría leer este libro?', 'Would you like to read this book?')}
                   </h3>
                   <p className="text-navy-light mb-4">
-                    Descarga gratuitamente "{book.title}" y comienza tu viaje hacia una
-                    comprensión más profunda del ser humano y su lugar en el universo.
+                    {en
+                      ? `Download "${book.title}" for free and begin a journey toward a deeper understanding of the human being and our place in the universe.`
+                      : `Descarga gratuitamente "${book.title}" y comienza tu viaje hacia una comprensión más profunda del ser humano y su lugar en el universo.`}
                   </p>
                   <Button
                     onClick={handleDownload}
                     className="bg-navy hover:bg-navy-dark"
                   >
-                    Descargar Ahora
+                    {label('Descargar Ahora', 'Download now')}
                   </Button>
                 </div>
               </div>
             </motion.div>
 
-            {([{ title: 'Prólogo', paragraphs: book.prologue }, { title: 'Resumen', paragraphs: book.summary }]).map(section => (
+            {([{ title: label('Prólogo', 'Prologue'), paragraphs: book.prologue }, { title: label('Resumen', 'Summary'), paragraphs: book.summary }]).map(section => (
               <section key={section.title} className="mt-16">
                 <h2 className="font-heading text-3xl font-semibold text-navy-dark mb-8">{section.title}</h2>
                 <div className="prose prose-lg max-w-none text-navy-light space-y-6">
@@ -334,11 +339,12 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
             className="mb-12 text-center"
           >
             <h2 className="font-heading text-3xl font-semibold text-navy-dark mb-4">
-              También te puede interesar
+              {label('También te puede interesar', 'You may also like')}
             </h2>
             <p className="text-navy-light max-w-2xl mx-auto">
-              Explora otras obras de Marcos Constandse que complementan
-              las ideas y reflexiones de este libro.
+              {en
+                ? 'Explore other books by Marcos Constandse that complement the ideas and reflections in this book.'
+                : 'Explora otras obras de Marcos Constandse que complementan las ideas y reflexiones de este libro.'}
             </p>
           </motion.div>
 
@@ -367,10 +373,10 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                     {relatedBook.title}
                   </h3>
                   <p className="text-primary/70 italic mb-3 text-sm">
-                    {relatedBook.subtitle}
+                    {bookForLanguage(relatedBook, language, t).subtitle}
                   </p>
                   <p className="text-navy-light text-sm line-clamp-2">
-                    {relatedBook.excerpt}
+                    {bookForLanguage(relatedBook, language, t).excerpt}
                   </p>
                 </div>
               </Link>
@@ -384,7 +390,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-heading">
-              {isSubmitted ? '¡Gracias!' : `Descargar ${book.title}`}
+              {isSubmitted ? label('¡Gracias!', 'Thank you!') : `${label('Descargar', 'Download')} ${book.title}`}
             </DialogTitle>
             <DialogDescription className="text-center">
               {isSubmitted ? (
@@ -420,27 +426,27 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <label htmlFor="name" className="text-sm font-medium">
-                    Nombre completo
+                    {label('Nombre completo', 'Full name')}
                   </label>
                   <Input
                     id="name"
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Tu nombre"
+                    placeholder={label('Tu nombre', 'Your name')}
                     required
                   />
                 </div>
                 <div className="grid gap-2">
                   <label htmlFor="email" className="text-sm font-medium">
-                    Correo electrónico
+                    {label('Correo electrónico', 'Email')}
                   </label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="correo@ejemplo.com"
+                    placeholder={label('correo@ejemplo.com', 'email@example.com')}
                     required
                   />
                 </div>
