@@ -24,8 +24,8 @@ export function TutorialVideoButton() {
 
 export function PhilosophersVideo() {
   const tx = useTx();
-  return (<VideoDialog aria-label={tx("Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal")} videoSrc={homeVideos.introduction.src} poster={homeVideos.introduction.poster} title={tx("Introducción al Humanismo Evolutivo")} className="he-60b095486 home-philosophers-video home-philosophers-video-ready">
-<img className="introduction-video-thumbnail" src={homeVideos.introduction.poster} alt="" width="1280" height="720" loading="lazy" />
+  return (<VideoDialog aria-label={tx("Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal")} videoSrc={homeVideos.philosophers.src} poster={homeVideos.philosophers.poster} title={tx("Introducción al Humanismo Evolutivo")} className="he-60b095486 home-philosophers-video home-philosophers-video-ready">
+<img className="introduction-video-thumbnail" src={homeVideos.philosophers.poster} alt="" width="1280" height="720" loading="lazy" />
 <div className="he-204b18f8e he-row">
 <span className="he-7cde224f7">
 {tx("PRESENTACIÓN INTRODUCTORIA")}
