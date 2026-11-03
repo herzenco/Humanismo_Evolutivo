@@ -5,7 +5,7 @@ body { font-variant-numeric:lining-nums; }
 img { max-width:100%; }
 button,a,input,select,textarea { -webkit-tap-highlight-color:transparent; }
 :focus-visible { outline:3px solid #D4AF5A; outline-offset:4px; }
-html { scroll-padding-top:104px; }
+html { scroll-padding-top:144px; }
 .site-header { position:sticky; top:0; z-index:50; width:100%; background:#173F2C; color:#fff; border-bottom:1px solid #ffffff24; }
 .site-header-inner { max-width:1440px; min-height:88px; margin:auto; padding:16px max(24px,calc((100% - 1200px)/2)); display:flex; align-items:center; justify-content:space-between; gap:24px; }
 .site-brand { display:inline-flex; align-items:center; gap:12px; flex-shrink:0; text-decoration:none; color:inherit; }
@@ -714,3 +714,9 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .he-e149bc314 .design-eyebrow,
 .he-1da7f6aa5 .design-eyebrow,
 .he-74bc7aede .design-eyebrow { color:#D4AF5A; }
+
+/* Official supplied logo: preserve the complete artwork and its proportions. */
+.site-brand-logo { display:block; width:auto; height:96px; object-fit:contain; background:#fff; border-radius:3px; }
+.site-footer .site-brand-logo { height:180px; }
+.portal-sidebar .site-brand-logo { height:140px; }
+@media(max-width:640px) { html { scroll-padding-top:128px; } .site-brand-logo { height:80px; } }

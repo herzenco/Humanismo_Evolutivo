@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { GraduationCap, Leaf, Menu, Search, Shield, X } from 'lucide-react';
+import { GraduationCap, Menu, Search, Shield, X } from 'lucide-react';
 import Link from '@/components/LocalizedLink';
 import { LanguageToggle } from '@/components/ui/language-toggle';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -29,8 +29,7 @@ export default function Header() {
   return <header className="site-header">
     <div className="site-header-inner">
       <Link href="/" className="site-brand" onClick={() => setOpen(false)} aria-label="Humanismo Evolutivo · Inicio">
-        <Leaf aria-hidden="true" />
-        <span><span className="site-brand-name">Humanismo Evolutivo</span><span className="site-brand-caption">Transpersonal</span></span>
+        <img src="/brand/humanismo-evolutivo.webp" alt="Humanismo Evolutivo Transpersonal" width="375" height="640" className="site-brand-logo" />
       </Link>
       <nav aria-label={language === 'es' ? 'Principal' : 'Main navigation'} className="site-desktop-nav">
         {links.map(([label, href]) => <Link key={href} href={href} aria-current={pathname === href ? 'page' : undefined}>{label}</Link>)}
