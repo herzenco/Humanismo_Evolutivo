@@ -1,5 +1,7 @@
 'use client';
 
+import type { ReactNode } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useTx } from '@/components/design/useTx';
 import { homeVideos } from '@/config/home-videos';
 import { PlayCircle } from 'lucide-react';
@@ -22,32 +24,10 @@ export function TutorialVideoButton() {
   </div>;
 }
 
-export function PhilosophersVideo() {
+export function PhilosophersVideo({ children, className = 'design-button home-philosophers-action', 'aria-label': ariaLabel }: { children?: ReactNode; className?: string; 'aria-label'?: string }) {
   const tx = useTx();
-  return (<VideoDialog aria-label={tx("Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal")} videoSrc={homeVideos.philosophers.src} poster={homeVideos.philosophers.poster} title={tx("Introducción al Humanismo Evolutivo")} className="he-60b095486 home-philosophers-video home-philosophers-video-ready">
-<img className="introduction-video-thumbnail" src={homeVideos.philosophers.poster} alt="" width="1280" height="720" loading="lazy" />
-<div className="he-204b18f8e he-row">
-<span className="he-7cde224f7">
-{tx("PRESENTACIÓN INTRODUCTORIA")}
-</span>
-<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<rect x="3" y="6" width="13" height="12" rx="2">
-
-</rect>
-<path d="M16 10l5-3v10l-5-3z">
-
-</path>
-</svg>
-</div>
-<div className="he-0669f902d he-row he-sized">
-<svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true">
-<path d="M8 5v14l11-7z" fill="currentColor">
-
-</path>
-</svg>
-</div>
-<span className="he-305e26cca he-sized">
-{tx("Introducción a la filosofía del Humanismo Evolutivo Transpersonal")}
-</span>
-</VideoDialog>);
+  const { language } = useLanguage();
+  return <VideoDialog aria-label={ariaLabel ?? tx("Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal")} videoSrc={homeVideos.philosophers.src} poster={homeVideos.philosophers.poster} title={tx("Introducción al Humanismo Evolutivo")} className={className}>
+    {children ?? <><PlayCircle size={20} aria-hidden="true" /><span>{language === 'es' ? 'Ver el video de los tres filósofos' : 'Watch the three philosophers video'}</span></>}
+  </VideoDialog>;
 }

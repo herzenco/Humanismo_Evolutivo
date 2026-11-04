@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   const localized = localizeBook(item, key => dictionary[key] ?? key);
   const title = item.title;
   const description = lang === 'en' ? restoreSpanishBookTitles(localized.excerpt) : item.excerpt;
-  const image = data.images.find(image => image.category === 'book-cover' && image.key === item.id)?.url || item.coverImage;
+  const image = item.coverImage;
   return pageMetadata({ title, description: description.slice(0, 160), image, path: `/libros/${bookId}`, language: lang });
 }
 export default async function Page({ params }: { params: Promise<Params> }) {

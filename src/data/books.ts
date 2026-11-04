@@ -67,6 +67,9 @@ const originalBooks = [
 
 export const books: Book[] = originalBooks.map(book => ({ ...book, ...officialContent[book.id as keyof typeof officialContent] }));
 
+// All book artwork uses the approved catalog covers.
+export const bookCovers: Record<string, string> = Object.fromEntries(books.map(book => [book.id, book.coverImage]));
+
 // Pending manuscripts remain private until their editorial materials are approved.
 export const upcomingBooks = [
   { id: 'biografia-mcm', title: 'Biografía MCM' },

@@ -756,3 +756,6 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .site-header .site-icon-button:hover,.site-header .site-language-button:hover { color:#173F2C; background:#173f2c09; }
 .site-header .site-mobile-nav { background:#FAF7EF; border-top-color:#173f2c1a; }
 .site-header .site-mobile-nav a:hover,.site-header .site-mobile-nav a[aria-current=page] { background:#173f2c09; color:#173F2C; }
+
+.editorial button.home-content-button { width:100%; text-align:left; font:inherit; cursor:pointer; }
+.editorial #s1 > .home-philosophers-action { flex:0 0 auto; max-width:100%; }

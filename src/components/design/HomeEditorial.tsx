@@ -3,8 +3,7 @@
 import { useTx } from '@/components/design/useTx';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { bookForLanguage } from '@/lib/book-english';
-import { books } from '@/data/books';
-import UpcomingBooks from './UpcomingBooks';
+import { books, bookCovers } from '@/data/books';
 import Image from 'next/image';
 import VideoDialog from './VideoDialog';
 import { homeVideos } from '@/config/home-videos';
@@ -70,7 +69,10 @@ export default function HomeEditorial() {
 <TutorialVideoButton />
 </div>
 <ol aria-label={showPortal ? tx("Los 8 contenidos") : tx("Los 7 contenidos")} className="home-content-buttons">
-{hub.map(([id, label], index) => <li key={id}><a href={`#${id}`} className="home-content-button"><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></a></li>)}
+{hub.map(([id, label], index) => {
+  const content = <><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></>;
+  return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button" aria-label={label}>{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
+})}
 </ol>
 </section>
 <section id="sobre-el-autor" aria-labelledby="about-title" className="he-af688e964 he-row">
@@ -134,7 +136,6 @@ export default function HomeEditorial() {
 </path>
 </svg>
 </Link>
-<VideoDialog videoSrc={homeVideos.introduction.src} poster={homeVideos.introduction.poster} title={tx("Introducción a Parque Cancún")} className="design-button design-button-outline">{tx("Ver de nuevo la introducción")}</VideoDialog>
 </div>
 </section>
 
@@ -452,7 +453,7 @@ export default function HomeEditorial() {
 </h2>
 </div>
 <p className="he-42c9249ac">
-{tx("10 títulos · 5 obras disponibles y 5 próximamente. Explora el pensamiento del Ing. Marcos Constandse Madrazo a través de sus libros.")}
+{tx("Explora el pensamiento del Ing. Marcos Constandse Madrazo a través de sus cinco libros disponibles.")}
 </p>
 </div>
 <div className="he-a9bef34c5 he-grid">
@@ -467,20 +468,6 @@ export default function HomeEditorial() {
 <Link href={`/libros/${book.id}`} className="underline">{tx("Explorar el libro")}</Link>
 </div></article>;
 })}
-</div>
-<UpcomingBooks />
-<div className="he-70d97b874 he-row">
-<p className="he-112d2d8ab">
-{tx("Consulta los resúmenes y elige por dónde comenzar.")}
-</p>
-<Link href="/libros" prefetch={false} className="he-1d05055b6 he-row">
-{tx("Ver los resúmenes\n")}
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M5 12h14M13 6l6 6-6 6">
-
-</path>
-</svg>
-</Link>
 </div>
 </section>
 <section id="s7" className="he-0ee09cc2f he-row">
@@ -661,7 +648,7 @@ export default function HomeEditorial() {
 <div className="he-3dc4886ab he-grid">
 <article className="he-e480d9a91">
 <div className="he-c6882064a he-row">
-<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt={tx("Portada de Yo soy nosotros")} loading="lazy" className="he-bf7ebf40a he-sized" />
+<img width="900" height="1325" src={bookCovers['yo-soy-nosotros']} alt={tx("Portada de Yo soy nosotros")} loading="lazy" className="he-bf7ebf40a he-sized" />
 </div>
 <span className="he-080ac00a5">
 {tx("I")}
@@ -690,7 +677,7 @@ export default function HomeEditorial() {
 </article>
 <article className="he-bdf5742e3">
 <div className="he-77a465934 he-row">
-<img width="531" height="900" src="/design/daba8e942d8f02d4888334c0e1ea21e4.webp" alt={tx("Portada de Ecología y espiritualidad")} loading="lazy" className="he-2daacf39a he-sized" />
+<img width="682" height="1000" src={bookCovers['ecologia-y-espiritualidad']} alt={tx("Portada de Ecología y espiritualidad")} loading="lazy" className="he-2daacf39a he-sized" />
 <div className="he-9808a2141">
 <span className="he-a66a6c63b">
 {tx("II")}
@@ -721,7 +708,7 @@ export default function HomeEditorial() {
 </article>
 <article className="he-bdf5742e3">
 <div className="he-77a465934 he-row">
-<img width="564" height="900" src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt={tx("Portada de ¡Déjalo ser!")} loading="lazy" className="he-2daacf39a he-sized" />
+<img width="683" height="811" src={bookCovers['dejalo-ser']} alt={tx("Portada de ¡Déjalo ser!")} loading="lazy" className="he-2daacf39a he-sized" />
 <div className="he-9808a2141">
 <span className="he-a66a6c63b">
 {tx("III")}
@@ -751,7 +738,7 @@ export default function HomeEditorial() {
 </article>
 <article className="he-bdf5742e3">
 <div className="he-77a465934 he-row">
-<img width="564" height="900" src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt={tx("Portada de ¡Y lo mejor aún está por venir!")} loading="lazy" className="he-2daacf39a he-sized" />
+<img width="900" height="1152" src={bookCovers['lo-mejor-esta-por-venir']} alt={tx("Portada de ¡Y lo mejor aún está por venir!")} loading="lazy" className="he-2daacf39a he-sized" />
 <div className="he-9808a2141">
 <span className="he-a66a6c63b">
 {tx("IV")}
@@ -778,7 +765,7 @@ export default function HomeEditorial() {
 </article>
 <article className="he-bdf5742e3">
 <div className="he-77a465934 he-row">
-<img width="542" height="900" src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt={tx("Portada de El arte de ser empresario")} loading="lazy" className="he-2daacf39a he-sized" />
+<img width="900" height="1078" src={bookCovers['el-arte-de-ser-empresario']} alt={tx("Portada de El arte de ser empresario")} loading="lazy" className="he-2daacf39a he-sized" />
 <div className="he-9808a2141">
 <span className="he-a66a6c63b">
 {tx("V")}
@@ -954,7 +941,7 @@ export default function HomeEditorial() {
 <div className="he-2e74e6109 he-grid">
 <article className="he-7f09162ce">
 <div className="he-65419438f he-row">
-<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt={tx("Portada de Yo soy nosotros")} loading="lazy" className="he-3e3b1c439 he-sized" />
+<img width="900" height="1325" src={bookCovers['yo-soy-nosotros']} alt={tx("Portada de Yo soy nosotros")} loading="lazy" className="he-3e3b1c439 he-sized" />
 <div className="he-9808a2141">
 <h3 className="he-269aa0047 he-h3">
 {tx("Yo soy nosotros")}
@@ -982,7 +969,7 @@ export default function HomeEditorial() {
 </article>
 <article className="he-7f09162ce">
 <div className="he-65419438f he-row">
-<img width="531" height="900" src="/design/daba8e942d8f02d4888334c0e1ea21e4.webp" alt={tx("Portada de Ecología y espiritualidad")} loading="lazy" className="he-3e3b1c439 he-sized" />
+<img width="682" height="1000" src={bookCovers['ecologia-y-espiritualidad']} alt={tx("Portada de Ecología y espiritualidad")} loading="lazy" className="he-3e3b1c439 he-sized" />
 <div className="he-9808a2141">
 <h3 className="he-269aa0047 he-h3">
 {tx("Ecología y espiritualidad")}
@@ -1010,7 +997,7 @@ export default function HomeEditorial() {
 </article>
 <article className="he-7f09162ce">
 <div className="he-65419438f he-row">
-<img width="564" height="900" src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt={tx("Portada de ¡Déjalo ser!")} loading="lazy" className="he-3e3b1c439 he-sized" />
+<img width="683" height="811" src={bookCovers['dejalo-ser']} alt={tx("Portada de ¡Déjalo ser!")} loading="lazy" className="he-3e3b1c439 he-sized" />
 <div className="he-9808a2141">
 <h3 className="he-269aa0047 he-h3">
 {tx("¡Déjalo ser!")}
