@@ -20,7 +20,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
 import { z } from 'zod';
-import UpcomingBooks from '@/components/design/UpcomingBooks';
 import { bookForLanguage } from '@/lib/book-english';
 
 const Libros = () => {
@@ -146,7 +145,6 @@ const Libros = () => {
         </div>
       </section>
 
-      <UpcomingBooks />
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md" aria-describedby="download-description">
