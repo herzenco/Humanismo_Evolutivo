@@ -720,3 +720,39 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .site-footer .site-brand-logo { height:180px; }
 .portal-sidebar .site-brand-logo { height:140px; }
 @media(max-width:640px) { html { scroll-padding-top:128px; } .site-brand-logo { height:80px; } }
+
+/* Keep the official artwork compact and give navigation a clear reading order. */
+.site-header-inner { min-height:104px; padding-block:12px; justify-content:flex-start; }
+.site-header .site-brand-logo { height:80px; background:transparent; border-radius:0; }
+.site-brand-logo { background:transparent; border-radius:0; }
+.site-header .site-brand-name { font-size:24px; }
+.site-desktop-nav { margin-left:auto; gap:22px; }
+.site-header-actions { margin-left:auto; }
+.site-portal-button { background:#D4AF5A; color:#173F2C; border-color:#D4AF5A; }
+.site-portal-button:hover { background:#e5c47a; color:#173F2C; }
+@media(min-width:1101px) { .site-portal-button span { display:inline; } }
+@media(max-width:1100px) {
+ .site-desktop-nav { display:none; }
+ .site-menu-toggle { display:inline-flex; }
+ .site-mobile-nav { display:flex; flex-direction:column; gap:4px; padding:16px 24px 24px; background:#173F2C; border-top:1px solid #ffffff24; max-height:calc(100dvh - 104px); overflow:auto; }
+ .site-mobile-nav a { min-height:44px; padding:10px 14px; display:flex; align-items:center; gap:10px; }
+}
+@media(max-width:639px) {
+ .site-header-inner { min-height:88px; padding:12px 16px; gap:10px; }
+ .site-header .site-brand-logo { height:64px; }
+ .site-header .site-brand-name { font-size:17px; }
+ .site-header .site-brand-caption { font-size:7px; letter-spacing:.2em; }
+ .site-header-actions > .site-portal-button { display:inline-flex; min-width:44px; padding:10px; }
+ .site-header-actions > .site-portal-button span { display:none; }
+ .site-mobile-nav { max-height:calc(100dvh - 88px); }
+}
+
+/* A quiet light navigation surface gives the official logo more contrast. */
+.site-header { background:rgba(250,247,239,.97); color:#173F2C; border-bottom:1px solid #173f2c1a; backdrop-filter:blur(12px); }
+.site-header .site-brand-caption { color:#78632f; }
+.site-desktop-nav a { color:#173f2ce6; }
+.site-desktop-nav a:hover,.site-desktop-nav a[aria-current=page] { color:#78632f; }
+.site-header .site-icon-button,.site-header .site-language-button { color:#173F2C; border-color:#173f2c30; }
+.site-header .site-icon-button:hover,.site-header .site-language-button:hover { color:#173F2C; background:#173f2c09; }
+.site-header .site-mobile-nav { background:#FAF7EF; border-top-color:#173f2c1a; }
+.site-header .site-mobile-nav a:hover,.site-header .site-mobile-nav a[aria-current=page] { background:#173f2c09; color:#173F2C; }
