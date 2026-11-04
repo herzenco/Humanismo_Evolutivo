@@ -15,10 +15,15 @@ const nextConfig: NextConfig = {
       { source: '/es', destination: '/', permanent: true },
       { source: '/es/:path*', destination: '/:path*', permanent: true },
     ];
-    return [...admin, ...spanish];
+    const education = ['/portal/:path*', '/auth/:path*', '/es/portal/:path*', '/en/portal/:path*', '/es/auth/:path*', '/en/auth/:path*'].map(source => ({
+      source,
+      destination: `https://educacion.humanismoevolutivo.com/${source.includes('portal') ? 'portal' : 'auth'}/:path*`,
+      permanent: false,
+    }));
+    return [...education, ...admin, ...spanish];
   },
   async rewrites() {
-    const pages = ['autor', 'libros', 'medios', 'eventos', 'contacto', 'vision', 'privacidad', 'terminos', 'buscar', 'chatbot', 'auth', 'admin', 'video', '51preguntas'];
+    const pages = ['autor', 'libros', 'medios', 'eventos', 'contacto', 'vision', 'privacidad', 'terminos', 'buscar', 'chatbot', 'admin', 'video', '51preguntas'];
     return {
       beforeFiles: [
         { source: '/', destination: '/es' },
