@@ -251,7 +251,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
               >
                 <div className="book-3d">
                   <img
-                    src={`${bookCoverImage || book.coverImage}?t=${Date.now()}`}
+                    src={bookCoverImage || book.coverImage}
                     alt={en ? `Cover of ${book.title}` : `Portada del libro ${book.title} - ${book.subtitle}`}
                     className="rounded-md shadow-2xl max-w-xs"
                     loading="eager"
@@ -363,7 +363,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
               >
                 <div className="h-48 overflow-hidden">
                   <img
-                    src={relatedBook.image}
+                    src={relatedBook.coverImage}
                     alt={relatedBook.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />

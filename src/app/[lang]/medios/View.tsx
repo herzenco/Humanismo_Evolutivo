@@ -3,11 +3,12 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from '@/components/LocalizedLink';
-import { ArrowRight, Headphones, Play, Radio, Video as VideoIcon } from 'lucide-react';
+import { ArrowRight, Headphones, Radio, Video as VideoIcon } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { podcastSeries, videos } from '@/data/media';
+import VideoLibrary from '@/components/design/VideoLibrary';
+import { podcastSeries } from '@/data/media';
 import { books } from '@/data/books';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -53,7 +54,7 @@ export default function MediaPage() {
           const fallback = series.coverImage || bookCover || series.coverImage;
           const cover = storedCover && !storedCover.includes('null-podcast-cover') ? storedCover : fallback;
           return <article className="design-media-card" key={series.id}><Link href={`/medios/show/${series.id}`} className="design-media-cover" aria-label={t(series.titleKey)}><Image width={280} height={280} sizes="(max-width: 640px) 120px, 140px" src={cover} alt={t(series.titleKey)} loading="lazy" /><span><Headphones size={16} />{series.episodes.length} {es ? 'episodios' : 'episodes'}</span></Link><div><span className="design-eyebrow"><Radio size={15} />{es ? 'SERIE DE PODCAST' : 'PODCAST SERIES'}</span><h3><Link href={`/medios/show/${series.id}`}>{t(series.titleKey)}</Link></h3><p>{t(series.descriptionKey)}</p><Link href={`/medios/show/${series.id}`} className="design-text-link">{es ? 'Explorar episodios' : 'Explore episodes'}<ArrowRight size={18} /></Link></div></article>;
-        })}</div> : <div className="design-media-grid">{videos.map(video => <article className="design-media-card" key={video.id}><Link href={`/video/${video.id}`} className="design-media-cover" aria-label={t(video.titleKey)}><Image width={280} height={280} sizes="(max-width: 640px) 120px, 140px" src={video.imageUrl} alt={t(video.titleKey)} loading="lazy" /><span><Play size={16} />{video.duration}</span></Link><div><span className="design-eyebrow">{t(video.categoryKey)}</span><h3><Link href={`/video/${video.id}`}>{t(video.titleKey)}</Link></h3><p>{t(video.descriptionKey)}</p><Link href={`/video/${video.id}`} className="design-text-link">{es ? 'Ver video' : 'Watch video'}<ArrowRight size={18} /></Link></div></article>)}</div>}
+        })}</div> : <VideoLibrary />}
       </div>
     </section>
   </PageWrapper>;

@@ -226,7 +226,7 @@ const Search = () => {
                         <div className="flex flex-col sm:flex-row h-full">
                           <div className="sm:w-1/3 h-48 sm:h-auto relative">
                             <img
-                              src={book.image}
+                              src={book.coverImage}
                               alt={book.title}
                               className="w-full h-full object-cover"
                             />

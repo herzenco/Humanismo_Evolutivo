@@ -1,5 +1,6 @@
 'use client';
 
+import { bookCovers } from '@/data/books';
 import { useTx } from '@/components/design/useTx';
 import { homeVideos } from '@/config/home-videos';
 import VideoDialog from './VideoDialog';
@@ -102,7 +103,7 @@ export default function AuthorEditorial() {
 <aside aria-label={tx("Datos destacados")} className="he-3c083ca55">
 <img width="1200" height="800" src="/design/d9ef2c3feb3964e9f2f4951421e08277.webp" alt={tx("Marcos Constandse Madrazo en su oficina, frente a un muro con fotografías de los parques de Grupo Xcaret")} loading="lazy" className="he-7e6f498cb he-sized" />
 <div className="he-6b1cac51f he-row">
-<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt={tx("Portada de Yo soy nosotros")} loading="lazy" className="he-4487acd3f he-sized" />
+<img width="900" height="1325" src={bookCovers['yo-soy-nosotros']} alt={tx("Portada de Yo soy nosotros")} loading="lazy" className="he-4487acd3f he-sized" />
 <div className="he-355eeddb9">
 <div className="he-394c53f26 he-row">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -438,7 +439,7 @@ export default function AuthorEditorial() {
 <li>
 <Link href="/libros/yo-soy-nosotros" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img width="611" height="900" src="/design/456d7db8a3c876f22040458c07c9eb30.jpg" alt={tx("Portada de Yo soy nosotros")} loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="900" height="1325" src={bookCovers['yo-soy-nosotros']} alt={tx("Portada de Yo soy nosotros")} loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {tx("Yo soy nosotros")}
@@ -448,7 +449,7 @@ export default function AuthorEditorial() {
 <li>
 <Link href="/libros/ecologia-y-espiritualidad" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img width="531" height="900" src="/design/daba8e942d8f02d4888334c0e1ea21e4.webp" alt={tx("Portada de Ecología y espiritualidad")} loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="682" height="1000" src={bookCovers['ecologia-y-espiritualidad']} alt={tx("Portada de Ecología y espiritualidad")} loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {tx("Ecología y espiritualidad")}
@@ -458,7 +459,7 @@ export default function AuthorEditorial() {
 <li>
 <Link href="/libros/dejalo-ser" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img width="564" height="900" src="/design/ed689a07290096a7574e1b91b2c72a4e.jpg" alt={tx("Portada de ¡Déjalo ser!")} loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="683" height="811" src={bookCovers['dejalo-ser']} alt={tx("Portada de ¡Déjalo ser!")} loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {tx("¡Déjalo ser!")}
@@ -468,7 +469,7 @@ export default function AuthorEditorial() {
 <li>
 <Link href="/libros/el-arte-de-ser-empresario" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img width="542" height="900" src="/design/93f963ec6c044b62ae621d38fefc05c7.jpg" alt={tx("Portada de El arte de ser empresario")} loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="900" height="1078" src={bookCovers['el-arte-de-ser-empresario']} alt={tx("Portada de El arte de ser empresario")} loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {tx("El arte de ser empresario")}
@@ -478,7 +479,7 @@ export default function AuthorEditorial() {
 <li>
 <Link href="/libros/lo-mejor-esta-por-venir" prefetch={false} className="he-8b6b0f7e8">
 <span className="he-eb9962611 he-row">
-<img width="564" height="900" src="/design/67949123c5d2ce183c6e143227e64975.jpg" alt={tx("Portada de ¡Y lo mejor aún está por venir!")} loading="lazy" className="he-57b8dc165 he-sized" />
+<img width="900" height="1152" src={bookCovers['lo-mejor-esta-por-venir']} alt={tx("Portada de ¡Y lo mejor aún está por venir!")} loading="lazy" className="he-57b8dc165 he-sized" />
 </span>
 <span className="he-c38b4035f">
 {tx("¡Y lo mejor aún está por venir!")}
