@@ -582,10 +582,10 @@ export const videos: Video[] = [
     id: 1,
     titleKey: "video.smge.title",
     descriptionKey: "video.smge.description",
-    duration: "1:15:30",
-    date: "2024-10-28",
+    duration: "42:53",
+    date: "2025-10-28",
     categoryKey: "podcast.category.conference",
-    videoUrl: "https://www.youtube.com/watch?v=LRr-CKjfmrE",
+    videoUrl: "https://www.youtube.com/watch?v=HLHjY3NnX2k",
     imageUrl: "/lovable-uploads/bd0dec77-828d-40b0-8bcc-30690a3a1fb3.webp"
   }
 ];

@@ -57,7 +57,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </figcaption>
 </figure>
 </section>
-<section className="he-d0cf40f13 he-row">
+<section className="he-d0cf40f13 he-row vision-reading-layout">
 <aside aria-label="Índice del ensayo" className="he-1370fe7e3 he-sized">
 <div className="he-977bcbd7b">
 {"EN ESTE ENSAYO"}
@@ -130,18 +130,8 @@ export default function VisionEditorial() { return <div className="editorial">
 </li>
 </ol>
 </nav>
-<div className="he-438669b78">
-<span className="he-d9d105345">
-{"Progreso de lectura"}
-</span>
-<span role="progressbar" aria-label="Progreso de lectura" aria-valuemin={0} aria-valuemax={100} aria-valuenow={8} className="he-16f87f323">
-<span className="he-05216873c">
-
-</span>
-</span>
-</div>
 </aside>
-<article className="he-e6ef643b1 he-sized">
+<article className="he-e6ef643b1 he-sized vision-essay">
 <section aria-labelledby="la-fuente" className="he-4ac120810">
 <h2 id="la-fuente" className="he-7bcc1a16f he-h2">
 {"La fuente de la que bebí:"}
@@ -260,9 +250,7 @@ export default function VisionEditorial() { return <div className="editorial">
 {"Es una absoluta realidad que todo en el universo evoluciona, todo es un movimiento permanente, pero la razón y el análisis, la fe y la ciencia, demuestran que no es movimiento anárquico y loco, sino que tiene dirección y sentido, a pesar de que use el azar para lograr ese objetivo, y Teilhard de Chardin lo definió correctamente al decir:"}
 </p>
 </section>
-</article>
-</section>
-<section aria-label="Cita de Teilhard de Chardin" className="he-7e3de0936 he-row">
+<section aria-label="Cita de Teilhard de Chardin" className="he-7e3de0936 vision-inline-quote">
 <figure className="he-b2cfcf5a6 he-sized">
 <span aria-hidden="true" className="he-7024f3cf0 he-sized">
 
@@ -275,91 +263,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </figcaption>
 </figure>
 </section>
-<section className="he-d0cf40f13 he-row">
-<aside aria-label="Índice del ensayo" className="he-1370fe7e3 he-sized">
-<div className="he-977bcbd7b">
-{"EN ESTE ENSAYO"}
-</div>
-<nav aria-label="Secciones">
-<ol className="he-56456cf8a">
-<li>
-<a href="#la-fuente" className="he-0565b12eb he-row">
-<span className="he-3c616e763 he-sized">
 
-</span>
-{"La fuente de la que bebí"}
-</a>
-</li>
-<li>
-<a href="#otros-ejemplos" className="he-0565b12eb he-row">
-<span className="he-3c616e763 he-sized">
-
-</span>
-{"Otros ejemplos serían"}
-</a>
-<ol className="he-8fb6bd324">
-<li>
-<a href="#ej-sexo" className="he-6d7d638a2 he-row">
-{"La visión del sexo"}
-</a>
-</li>
-<li>
-<a href="#ej-mujer" className="he-6d7d638a2 he-row">
-{"La visión de la participación social de la mujer"}
-</a>
-</li>
-<li>
-<a href="#ej-comunicacion" className="he-6d7d638a2 he-row">
-{"En la comunicación"}
-</a>
-</li>
-<li>
-<a href="#ej-mercado" className="he-6d7d638a2 he-row">
-{"En el mercado libre"}
-</a>
-</li>
-<li>
-<a href="#ej-familias" className="he-6d7d638a2 he-row">
-{"En las familias del mundo occidental"}
-</a>
-</li>
-<li>
-<a href="#ej-medio-ambiente" className="he-6d7d638a2 he-row">
-{"En el medio ambiente"}
-</a>
-</li>
-</ol>
-</li>
-<li>
-<a href="#salud" aria-current="location" className="he-193721511 he-row">
-<span className="he-f81690672 he-sized">
-
-</span>
-{"En relación a la salud"}
-</a>
-</li>
-<li>
-<Link href="/resources" prefetch={false} className="he-0565b12eb he-row">
-<span className="he-3c616e763 he-sized">
-
-</span>
-{"Credo personal"}
-</Link>
-</li>
-</ol>
-</nav>
-<div className="he-438669b78">
-<span className="he-d9d105345">
-{"Progreso de lectura"}
-</span>
-<span role="progressbar" aria-label="Progreso de lectura" aria-valuemin={0} aria-valuemax={100} aria-valuenow={35} className="he-16f87f323">
-<span className="he-54dfcd2d0">
-
-</span>
-</span>
-</div>
-</aside>
-<article className="he-e6ef643b1 he-sized">
 <section id="b2" className="he-4ac120810">
 <p className="he-090e970dd">
 {"La generación que nacimos en el año 1940, somos una generación que nos formamos en el seno de una cultura occidental, impuesta en México durante 300 años de la conquista española y a la cual hemos dado continuidad durante 200 años de independencia, y nuestra cultura original, a pesar de la supervivencia de exponentes de ella, algunos de los cuales no hablan el español, ya prácticamente no existe y se ha vuelto motivo de estudio de especialistas; sin embargo, algunas características personales persisten, pues somos una nación mezcla de nacionalidades."}
@@ -469,16 +373,6 @@ export default function VisionEditorial() { return <div className="editorial">
 </li>
 </ol>
 </section>
-<div className="he-27cd2dba8 he-row">
-<Link href="/resources" prefetch={false} className="he-74c62c99d he-row">
-{"Seguir leyendo"}
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M5 12h14M13 6l6 6-6 6">
-
-</path>
-</svg>
-</Link>
-</div>
 </article>
 </section>
 </div>; }

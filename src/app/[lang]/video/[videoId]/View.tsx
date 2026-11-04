@@ -1,5 +1,7 @@
 "use client";
 
+import { videos } from '@/data/media';
+import { youtubeId } from '@/data/video-library';
 import { use } from 'react';
 import { redirect } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -14,20 +16,7 @@ export default function VideoDetailPage({ params }: { params: Promise<{ videoId:
   const { videoId } = use(params);
   const { t } = useLanguage();
 
-  const allVideos = [
-    {
-      id: 1,
-      titleKey: "video.ep1.title",
-      descriptionKey: "video.ep1.description",
-      fullDescriptionKey: "video.ep1.fullDescription",
-      duration: "42:53",
-      date: "2025-01-01",
-      categoryKey: "podcast.category.philosophy",
-      videoUrl: "https://www.youtube.com/watch?v=HLHjY3NnX2k",
-      embedUrl: "https://www.youtube.com/embed/HLHjY3NnX2k",
-      imageUrl: "https://img.youtube.com/vi/HLHjY3NnX2k/hqdefault.jpg"
-    }
-  ];
+  const allVideos = videos.map(video => ({...video, embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeId(video.videoUrl)}`}));
 
   const video = allVideos.find(v => v.id === parseInt(videoId || ''));
 
@@ -135,7 +124,7 @@ export default function VideoDetailPage({ params }: { params: Promise<{ videoId:
               </h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-navy-light leading-relaxed">
-                  {t(video.fullDescriptionKey || video.descriptionKey)}
+                  {t(video.descriptionKey)}
                 </p>
               </div>
             </motion.div>
