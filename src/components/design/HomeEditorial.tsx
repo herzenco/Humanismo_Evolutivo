@@ -8,14 +8,12 @@ import Image from 'next/image';
 import VideoDialog from './VideoDialog';
 import { homeVideos } from '@/config/home-videos';
 import Link from '@/components/LocalizedLink';
-import { PORTAL_ENABLED } from '@/lib/release-flags';
 import { PhilosophersVideo, TutorialVideoButton } from "./HomepageVideos";
 
 // Ported from the supplied Inicio.html; navigation uses application routes.
 export default function HomeEditorial() {
   const tx = useTx();
   const { language, t } = useLanguage();
-  const showPortal = PORTAL_ENABLED;
   const hub = [
     ['s1', tx('Conoce a los tres filósofos')],
     ['s2', tx('Las grandes preguntas')],
@@ -24,7 +22,7 @@ export default function HomeEditorial() {
     ['s5', tx('Las 51 preguntas')],
     ['s6', tx('Profundiza en los libros')],
     ['s7', tx('Más contenido en nuestras plataformas')],
-    ...(showPortal ? [['s8', tx('Únete al Club de Amigos que Evolucionan')]] : []),
+    ['s8', tx('Únete al Club de Amigos que Evolucionan')],
   ];
   return <div className="editorial">
 <section aria-labelledby="hero-title" className="he-e149bc314 he-row">
@@ -64,11 +62,11 @@ export default function HomeEditorial() {
 <section aria-labelledby="hub-title" className="he-65fbe60ac he-row">
 <div className="he-37f350293 he-sized">
 <h2 id="hub-title" className="he-5865219a8 he-h2">
-{showPortal ? tx("Explora, conoce y profundiza a través de estos 8 contenidos:") : tx("Explora, conoce y profundiza a través de estos 7 contenidos:")}
+{tx("Explora, conoce y profundiza a través de estos 8 contenidos:")}
 </h2>
 <TutorialVideoButton />
 </div>
-<ol aria-label={showPortal ? tx("Los 8 contenidos") : tx("Los 7 contenidos")} className="home-content-buttons">
+<ol aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
 {hub.map(([id, label], index) => {
   const content = <><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></>;
   return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button" aria-label={label}>{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
@@ -533,7 +531,7 @@ export default function HomeEditorial() {
 </Link>
 </div>
 </section>
-{showPortal ? <section id="s8" className="he-580031031 he-row">
+<section id="s8" className="he-580031031 he-row">
 <div className="he-3dd055e70 he-sized">
 <div className="he-3619f855d he-row">
 <span className="he-702f28551 he-row he-sized">
@@ -554,7 +552,7 @@ export default function HomeEditorial() {
 {tx(": un espacio en línea para estudiar los cursos de Humanismo Evolutivo Transpersonal a tu ritmo. Las lecturas están organizadas por partes y clases, y tu avance se guarda en tu cuenta para que retomes donde te quedaste.")}
 </p>
 <div className="he-e8e21757e he-row">
-<Link href="/auth?mode=signup" prefetch={false} className="he-e002036e7 he-row">
+<Link href="https://educacion.humanismoevolutivo.com/auth?mode=signup" prefetch={false} className="he-e002036e7 he-row">
 {tx("Únete al club\n")}
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -562,7 +560,7 @@ export default function HomeEditorial() {
 </path>
 </svg>
 </Link>
-<Link href="/auth" prefetch={false} className="he-a42476497 he-row">
+<Link href="https://educacion.humanismoevolutivo.com/portal" prefetch={false} className="he-a42476497 he-row">
 {tx("Ya soy miembro · Entrar al portal")}
 </Link>
 </div>
@@ -622,7 +620,7 @@ export default function HomeEditorial() {
 </li>
 </ul>
 </div>
-</section> : null}
+</section>
 <section id="libros" aria-labelledby="books-title" className="he-74bc7aede">
 <div className="he-70dacc86f he-row">
 <div className="he-780634c87 he-sized">
@@ -1024,7 +1022,7 @@ export default function HomeEditorial() {
 </article>
 </div>
 </section>
-{showPortal ? <section id="portal" aria-labelledby="portal-title" className="he-f1875aa15">
+<section id="portal" aria-labelledby="portal-title" className="he-f1875aa15">
 <div className="he-9d8773e24 he-row">
 <div className="he-cddefe03b he-sized">
 <span className="he-9a8091bf0 he-row">
@@ -1047,7 +1045,7 @@ export default function HomeEditorial() {
 <p className="he-6b5165f1c">
 {tx("Crea tu cuenta gratuita para estudiar los cursos de Humanismo Evolutivo Transpersonal.")}
 </p>
-<Link href="/auth" prefetch={false} className="he-c01a194ae he-row">
+<Link href="https://educacion.humanismoevolutivo.com/portal" prefetch={false} className="he-c01a194ae he-row">
 {tx("Entrar al portal\n")}
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -1099,5 +1097,5 @@ export default function HomeEditorial() {
 </div>
 </div>
 </div>
-</section> : null}
+</section>
 </div>; }
