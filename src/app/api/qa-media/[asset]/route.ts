@@ -9,8 +9,10 @@ export const maxDuration = 300;
 type Context = { params: Promise<{ asset: string }> };
 
 async function serve(request: NextRequest, context: Context, head = false) {
-  if (!qaGateEnabled()) return new NextResponse(null,{status:404});
-  try {
+  const gated = qaGateEnabled();
+  // Public production serves only the exact approved asset allowlist below.
+  if (!gated && process.env.VERCEL_ENV !== 'production') return new NextResponse(null,{status:404});
+  if (gated) try {
     if (!validQaSession(request.cookies.get(QA_COOKIE)?.value,new URL(qaRequestOrigin(request)).host,qaGateConfig())) {
       return privateQaResponse(new NextResponse(null,{status:401}));
     }
