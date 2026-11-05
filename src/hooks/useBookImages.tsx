@@ -1,11 +1,12 @@
 "use client";
 
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 
 export const useBookImages = () => {
   return useQuery({
     queryKey: ['book-images'],
+    enabled: isSupabaseConfigured,
     queryFn: async () => {
       const { data, error } = await supabase
         .from('site_images')
@@ -22,8 +23,8 @@ export const useBookImages = () => {
       
       return imageMap;
     },
-    staleTime: 0, // Sin cache para ver cambios inmediatamente
-    refetchOnMount: true,
+    staleTime: 60_000,
+    refetchOnMount: false,
     refetchOnWindowFocus: true,
   });
 };

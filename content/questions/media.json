@@ -1,0 +1,422 @@
+{
+  "1/dialogue": {
+    "bytes": 10132110,
+    "durationSeconds": 76.2,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_1/dialogue.jpg",
+    "sourceFile": "Pregunta 1/PREGUNTAS HUMANISMO EVOLUTIVO 1 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_1/dialogue.mp4"
+  },
+  "1/horizontal": {
+    "bytes": 13576395,
+    "durationSeconds": 77.01,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_1/horizontal.jpg",
+    "sourceFile": "Pregunta 1/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 1 .mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_1/horizontal.mp4"
+  },
+  "1/narration": {
+    "bytes": 13122042,
+    "durationSeconds": 70.83,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_1/narration.jpg",
+    "sourceFile": "Pregunta 1/PREGUNTAS HUMANISMO EVOLUTIVO 1 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_1/narration.mp4"
+  },
+  "10/dialogue": {
+    "bytes": 10630668,
+    "durationSeconds": 72.96,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_10/dialogue.jpg",
+    "sourceFile": "Pregunta 10/PREGUNTAS HUMANISMO EVOLUTIVO 10 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_10/dialogue.mp4"
+  },
+  "10/horizontal": {
+    "bytes": 12492597,
+    "durationSeconds": 73.79,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_10/horizontal.jpg",
+    "sourceFile": "Pregunta 10/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 10.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_10/horizontal.mp4"
+  },
+  "10/narration": {
+    "bytes": 9877828,
+    "durationSeconds": 74.05,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_10/narration.jpg",
+    "sourceFile": "Pregunta 10/PREGUNTAS HUMANISMO EVOLUTIVO 10 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_10/narration.mp4"
+  },
+  "11/dialogue": {
+    "bytes": 11563020,
+    "durationSeconds": 66.84,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_11/dialogue.jpg",
+    "sourceFile": "Pregunta 11/PREGUNTAS HUMANISMO EVOLUTIVO 11 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_11/dialogue.mp4"
+  },
+  "11/narration": {
+    "bytes": 11970098,
+    "durationSeconds": 74.96,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_11/narration.jpg",
+    "sourceFile": "Pregunta 11/PREGUNTAS HUMANISMO EVOLUTIVO 11 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_11/narration.mp4"
+  },
+  "12/dialogue": {
+    "bytes": 14493324,
+    "durationSeconds": 83.84,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_12/dialogue.jpg",
+    "sourceFile": "Pregunta 12/PREGUNTAS HUMANISMO EVOLUTIVO 12 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_12/dialogue.mp4"
+  },
+  "12/narration": {
+    "bytes": 16595394,
+    "durationSeconds": 80.47,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_12/narration.jpg",
+    "sourceFile": "Pregunta 12/PREGUNTAS HUMANISMO EVOLUTIVO 12 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_12/narration.mp4"
+  },
+  "13/dialogue": {
+    "bytes": 14810484,
+    "durationSeconds": 79.38,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_13/dialogue.jpg",
+    "sourceFile": "Pregunta 13/PREGUNTAS HUMANISMO EVOLUTIVO 13 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_13/dialogue.mp4"
+  },
+  "13/narration": {
+    "bytes": 18540325,
+    "durationSeconds": 70.55,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_13/narration.jpg",
+    "sourceFile": "Pregunta 13/PREGUNTAS HUMANISMO EVOLUTIVO 13 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_13/narration.mp4"
+  },
+  "14/dialogue": {
+    "bytes": 14043792,
+    "durationSeconds": 78.06,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_14/dialogue.jpg",
+    "sourceFile": "Pregunta 14/PREGUNTAS HUMANISMO EVOLUTIVO 14 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_14/dialogue.mp4"
+  },
+  "14/narration": {
+    "bytes": 18047309,
+    "durationSeconds": 84.35,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_14/narration.jpg",
+    "sourceFile": "Pregunta 14/PREGUNTAS HUMANISMO EVOLUTIVO 14 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_14/narration.mp4"
+  },
+  "15/dialogue": {
+    "bytes": 13736331,
+    "durationSeconds": 78.16,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_15/dialogue.jpg",
+    "sourceFile": "Pregunta 15/PREGUNTAS HUMANISMO EVOLUTIVO 15 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_15/dialogue.mp4"
+  },
+  "15/narration": {
+    "bytes": 15711165,
+    "durationSeconds": 68.07,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_15/narration.jpg",
+    "sourceFile": "Pregunta 15/PREGUNTAS HUMANISMO EVOLUTIVO 15 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_15/narration.mp4"
+  },
+  "16/dialogue": {
+    "bytes": 9893747,
+    "durationSeconds": 78.01,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_16/dialogue.jpg",
+    "sourceFile": "Pregunta 16/PREGUNTAS HUMANISMO EVOLUTIVO 16 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_16/dialogue.mp4"
+  },
+  "16/narration": {
+    "bytes": 9411608,
+    "durationSeconds": 75.01,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_16/narration.jpg",
+    "sourceFile": "Pregunta 16/PREGUNTAS HUMANISMO EVOLUTIVO 16 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_16/narration.mp4"
+  },
+  "17/dialogue": {
+    "bytes": 16092626,
+    "durationSeconds": 69.37,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_17/dialogue.jpg",
+    "sourceFile": "Pregunta 17/PREGUNTAS HUMANISMO EVOLUTIVO 17 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_17/dialogue.mp4"
+  },
+  "17/narration": {
+    "bytes": 18729838,
+    "durationSeconds": 76.76,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_17/narration.jpg",
+    "sourceFile": "Pregunta 17/PREGUNTAS HUMANISMO EVOLUTIVO 17 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_17/narration.mp4"
+  },
+  "18/dialogue": {
+    "bytes": 14802196,
+    "durationSeconds": 72.62,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_18/dialogue.jpg",
+    "sourceFile": "Pregunta 18/PREGUNTAS HUMANISMO EVOLUTIVO 18 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_18/dialogue.mp4"
+  },
+  "18/narration": {
+    "bytes": 19020061,
+    "durationSeconds": 77.05,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_18/narration.jpg",
+    "sourceFile": "Pregunta 18/PREGUNTAS HUMANISMO EVOLUTIVO 18 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_18/narration.mp4"
+  },
+  "19/dialogue": {
+    "bytes": 18612741,
+    "durationSeconds": 75.92,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_19/dialogue.jpg",
+    "sourceFile": "Pregunta 19/PREGUNTAS HUMANISMO EVOLUTIVO 19 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_19/dialogue.mp4"
+  },
+  "19/narration": {
+    "bytes": 22623332,
+    "durationSeconds": 77.2,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_19/narration.jpg",
+    "sourceFile": "Pregunta 19/PREGUNTAS HUMANISMO EVOLUTIVO 19 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_19/narration.mp4"
+  },
+  "2/dialogue": {
+    "bytes": 10190080,
+    "durationSeconds": 74.67,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_2/dialogue.jpg",
+    "sourceFile": "Pregunta 2/PREGUNTAS HUMANISMO EVOLUTIVO 2 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_2/dialogue.mp4"
+  },
+  "2/horizontal": {
+    "bytes": 10576998,
+    "durationSeconds": 75.45,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_2/horizontal.jpg",
+    "sourceFile": "Pregunta 2/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 2.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_2/horizontal.mp4"
+  },
+  "2/narration": {
+    "bytes": 15710883,
+    "durationSeconds": 81.96,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_2/narration.jpg",
+    "sourceFile": "Pregunta 2/PREGUNTAS HUMANISMO EVOLUTIVO 2 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_2/narration.mp4"
+  },
+  "20/dialogue": {
+    "bytes": 12710026,
+    "durationSeconds": 75.8,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_20/dialogue.jpg",
+    "sourceFile": "Pregunta 20/PREGUNTAS HUMANISMO EVOLUTIVO 20 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_20/dialogue.mp4"
+  },
+  "20/narration": {
+    "bytes": 16361174,
+    "durationSeconds": 82.52,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_20/narration.jpg",
+    "sourceFile": "Pregunta 20/PREGUNTAS HUMANISMO EVOLUTIVO 20 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_20/narration.mp4"
+  },
+  "21/dialogue": {
+    "bytes": 10930978,
+    "durationSeconds": 68.59,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_21/dialogue.jpg",
+    "sourceFile": "Pregunta 21/PREGUNTAS HUMANISMO EVOLUTIVO 21 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_21/dialogue.mp4"
+  },
+  "21/narration": {
+    "bytes": 13753768,
+    "durationSeconds": 76.97,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_21/narration.jpg",
+    "sourceFile": "Pregunta 21/PREGUNTAS HUMANISMO EVOLUTIVO 21 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_21/narration.mp4"
+  },
+  "22/dialogue": {
+    "bytes": 9314810,
+    "durationSeconds": 70.04,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_22/dialogue.jpg",
+    "sourceFile": "Pregunta 22/PREGUNTAS HUMANISMO EVOLUTIVO 22 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_22/dialogue.mp4"
+  },
+  "22/narration": {
+    "bytes": 12788592,
+    "durationSeconds": 77.76,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_22/narration.jpg",
+    "sourceFile": "Pregunta 22/PREGUNTAS HUMANISMO EVOLUTIVO 22 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_22/narration.mp4"
+  },
+  "23/dialogue": {
+    "bytes": 10733530,
+    "durationSeconds": 71.21,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_23/dialogue.jpg",
+    "sourceFile": "Pregunta 23/PREGUNTAS HUMANISMO EVOLUTIVO 23 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_23/dialogue.mp4"
+  },
+  "23/narration": {
+    "bytes": 14999604,
+    "durationSeconds": 76.63,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_23/narration.jpg",
+    "sourceFile": "Pregunta 23/PREGUNTAS HUMANISMO EVOLUTIVO 23 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_23/narration.mp4"
+  },
+  "24/dialogue": {
+    "bytes": 13476598,
+    "durationSeconds": 71.55,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_24/dialogue.jpg",
+    "sourceFile": "Pregunta 24/PREGUNTAS HUMANISMO EVOLUTIVO 24 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_24/dialogue.mp4"
+  },
+  "24/narration": {
+    "bytes": 16292503,
+    "durationSeconds": 75.54,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_24/narration.jpg",
+    "sourceFile": "Pregunta 24/PREGUNTAS HUMANISMO EVOLUTIVO 24 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_24/narration.mp4"
+  },
+  "25/dialogue": {
+    "bytes": 13243214,
+    "durationSeconds": 73.09,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_25/dialogue.jpg",
+    "sourceFile": "Pregunta 25/PREGUNTAS HUMANISMO EVOLUTIVO 25 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_25/dialogue.mp4"
+  },
+  "25/narration": {
+    "bytes": 18329547,
+    "durationSeconds": 79.42,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_25/narration.jpg",
+    "sourceFile": "Pregunta 25/PREGUNTAS HUMANISMO EVOLUTIVO 25 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_25/narration.mp4"
+  },
+  "3/dialogue": {
+    "bytes": 15372031,
+    "durationSeconds": 92.05,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_3/dialogue.jpg",
+    "sourceFile": "Pregunta 3/PREGUNTAS HUMANISMO EVOLUTIVO 3 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_3/dialogue.mp4"
+  },
+  "3/horizontal": {
+    "bytes": 19033644,
+    "durationSeconds": 92.86,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_3/horizontal.jpg",
+    "sourceFile": "Pregunta 3/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 3.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_3/horizontal.mp4"
+  },
+  "3/narration": {
+    "bytes": 13950963,
+    "durationSeconds": 77.46,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_3/narration.jpg",
+    "sourceFile": "Pregunta 3/PREGUNTAS HUMANISMO EVOLUTIVO 3 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_3/narration.mp4"
+  },
+  "4/dialogue": {
+    "bytes": 13283192,
+    "durationSeconds": 75.26,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_4/dialogue.jpg",
+    "sourceFile": "Pregunta 4/PREGUNTAS HUMANISMO EVOLUTIVO 4 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_4/dialogue.mp4"
+  },
+  "4/horizontal": {
+    "bytes": 14489757,
+    "durationSeconds": 76.05,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_4/horizontal.jpg",
+    "sourceFile": "Pregunta 4/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 4.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_4/horizontal.mp4"
+  },
+  "4/narration": {
+    "bytes": 15015538,
+    "durationSeconds": 77.42,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_4/narration.jpg",
+    "sourceFile": "Pregunta 4/PREGUNTAS HUMANISMO EVOLUTIVO 4 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_4/narration.mp4"
+  },
+  "5/dialogue": {
+    "bytes": 8715168,
+    "durationSeconds": 72.21,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_5/dialogue.jpg",
+    "sourceFile": "Pregunta 5/PREGUNTAS HUMANISMO EVOLUTIVO 5 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_5/dialogue.mp4"
+  },
+  "5/horizontal": {
+    "bytes": 11376515,
+    "durationSeconds": 73.0,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_5/horizontal.jpg",
+    "sourceFile": "Pregunta 5/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 5 .mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_5/horizontal.mp4"
+  },
+  "5/narration": {
+    "bytes": 9374131,
+    "durationSeconds": 80.85,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_5/narration.jpg",
+    "sourceFile": "Pregunta 5/PREGUNTAS HUMANISMO EVOLUTIVO 5 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_5/narration.mp4"
+  },
+  "6/dialogue": {
+    "bytes": 11591279,
+    "durationSeconds": 69.5,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_6/dialogue.jpg",
+    "sourceFile": "Pregunta 6/PREGUNTAS HUMANISMO EVOLUTIVO 6 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_6/dialogue.mp4"
+  },
+  "6/horizontal": {
+    "bytes": 11227207,
+    "durationSeconds": 70.29,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_6/horizontal.jpg",
+    "sourceFile": "Pregunta 6/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 6.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_6/horizontal.mp4"
+  },
+  "6/narration": {
+    "bytes": 24628536,
+    "durationSeconds": 80.77,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_6/narration.jpg",
+    "sourceFile": "Pregunta 6/PREGUNTAS HUMANISMO EVOLUTIVO 6 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_6/narration.mp4"
+  },
+  "7/dialogue": {
+    "bytes": 11340463,
+    "durationSeconds": 77.5,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_7/dialogue.jpg",
+    "sourceFile": "Pregunta 7/PREGUNTAS HUMANISMO EVOLUTIVO 7 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_7/dialogue.mp4"
+  },
+  "7/horizontal": {
+    "bytes": 12779539,
+    "durationSeconds": 78.29,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_7/horizontal.jpg",
+    "sourceFile": "Pregunta 7/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 7.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_7/horizontal.mp4"
+  },
+  "7/narration": {
+    "bytes": 11846118,
+    "durationSeconds": 77.42,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_7/narration.jpg",
+    "sourceFile": "Pregunta 7/PREGUNTAS HUMANISMO EVOLUTIVO 7 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_7/narration.mp4"
+  },
+  "8/dialogue": {
+    "bytes": 12102429,
+    "durationSeconds": 68.5,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_8/dialogue.jpg",
+    "sourceFile": "Pregunta 8/PREGUNTAS HUMANISMO EVOLUTIVO 8 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_8/dialogue.mp4"
+  },
+  "8/horizontal": {
+    "bytes": 13508328,
+    "durationSeconds": 69.29,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_8/horizontal.jpg",
+    "sourceFile": "Pregunta 8/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 8.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_8/horizontal.mp4"
+  },
+  "8/narration": {
+    "bytes": 16994330,
+    "durationSeconds": 78.46,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_8/narration.jpg",
+    "sourceFile": "Pregunta 8/PREGUNTAS HUMANISMO EVOLUTIVO 8 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_8/narration.mp4"
+  },
+  "9/dialogue": {
+    "bytes": 12772784,
+    "durationSeconds": 71.51,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_9/dialogue.jpg",
+    "sourceFile": "Pregunta 9/PREGUNTAS HUMANISMO EVOLUTIVO 9 P.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_9/dialogue.mp4"
+  },
+  "9/horizontal": {
+    "bytes": 15499505,
+    "durationSeconds": 72.34,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_9/horizontal.jpg",
+    "sourceFile": "Pregunta 9/PREGUNTAS HUMANISMO EVOLUTIVO HORIZONTAL 9.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_9/horizontal.mp4"
+  },
+  "9/narration": {
+    "bytes": 13022160,
+    "durationSeconds": 73.96,
+    "poster": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_9/narration.jpg",
+    "sourceFile": "Pregunta 9/PREGUNTAS HUMANISMO EVOLUTIVO 9 N.mov",
+    "src": "https://pfrf6xsq6gjrnxek.public.blob.vercel-storage.com/51preguntas/pregunta_9/narration.mp4"
+  }
+}

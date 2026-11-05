@@ -54,7 +54,6 @@ const ChatInterface = () => {
     (window as any).dataLayer?.push({
       event: 'chatbot_message_sent',
       message_length: inputValue.length,
-      message_preview: inputValue.substring(0, 50)
     });
     
     // Add user message

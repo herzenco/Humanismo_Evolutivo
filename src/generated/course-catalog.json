@@ -1,0 +1,618 @@
+[
+  {
+    "id": "yo-soy-nosotros",
+    "title": "Introducción a la filosofía de Yo Soy Nosotros",
+    "description": "Una visión transpersonal del mundo: de la pregunta por el ser al desarrollo de la consciencia.",
+    "minutes": 60,
+    "lessons": [
+      {
+        "id": "1",
+        "title": "¿Por dónde comenzar? Los prólogos y la pregunta del libro"
+      },
+      {
+        "id": "2",
+        "title": "La Introducción (I): la crisis de la visión del mundo y el método del ensayo"
+      },
+      {
+        "id": "3",
+        "title": "La Introducción (II): la unidad místico-espiritual y los cinco niveles"
+      },
+      {
+        "id": "4",
+        "title": "El universo: del big bang al polvo de estrellas"
+      },
+      {
+        "id": "5",
+        "title": "La Tierra (I): materia-energía y E=mc²"
+      },
+      {
+        "id": "6",
+        "title": "La Tierra (II): física cuántica, ciencia y religión"
+      },
+      {
+        "id": "7",
+        "title": "La vida (I): Amón Ra y el Chandogya Upanishad"
+      },
+      {
+        "id": "8",
+        "title": "La vida (II): Oriente, Occidente y el inicio de la vida"
+      },
+      {
+        "id": "9",
+        "title": "La vida (III): genética, ADN y la necesidad de la muerte"
+      },
+      {
+        "id": "10",
+        "title": "La evolución (I): Heráclito, Darwin, Teilhard y el ser humano como fin"
+      },
+      {
+        "id": "11",
+        "title": "La evolución (II): el ser humano en el presente y en el futuro"
+      },
+      {
+        "id": "12",
+        "title": "El tiempo y el espacio: tiempo científico y tiempo evolutivo"
+      },
+      {
+        "id": "13",
+        "title": "La ecología (I): la economía como proceso energético"
+      },
+      {
+        "id": "14",
+        "title": "La ecología (II): la complejidad del mundo y el amor como fuerza del equilibrio"
+      },
+      {
+        "id": "15",
+        "title": "La filosofía (I): la expulsión del Paraíso y las dos formas de pensamiento"
+      },
+      {
+        "id": "16",
+        "title": "La filosofía (II): la modernidad, el consumo y «muchos son los llamados»"
+      },
+      {
+        "id": "17",
+        "title": "Grecia (I): de los Siete Sabios a Heráclito y Parménides"
+      },
+      {
+        "id": "18",
+        "title": "Grecia (II): Sócrates y Platón"
+      },
+      {
+        "id": "19",
+        "title": "Grecia (III): Aristóteles, sofistas, estoicos y epicúreos"
+      },
+      {
+        "id": "20",
+        "title": "El cristianismo y sus disidencias: patrística, escolástica, gnosis"
+      },
+      {
+        "id": "21",
+        "title": "El neoplatonismo y el Renacimiento"
+      },
+      {
+        "id": "22",
+        "title": "La filosofía moderna: racionalismo, empirismo e idealismo inglés"
+      },
+      {
+        "id": "23",
+        "title": "Kant y la Ilustración"
+      },
+      {
+        "id": "24",
+        "title": "El idealismo alemán: Fichte, Schopenhauer, Schelling y Hegel"
+      },
+      {
+        "id": "25",
+        "title": "Evolucionismo y vitalismo"
+      },
+      {
+        "id": "26",
+        "title": "Socialismo, pragmatismo, fenomenología, existencialismo y el sistema integrador"
+      },
+      {
+        "id": "27",
+        "title": "La psicología (I): cinco corrientes y los tres niveles de la mente"
+      },
+      {
+        "id": "28",
+        "title": "La psicología (II): impulso, acción y estados de consciencia"
+      },
+      {
+        "id": "29",
+        "title": "Las tradiciones espirituales (I): la sociología de la religión y la red de sentidos"
+      },
+      {
+        "id": "30",
+        "title": "Las tradiciones espirituales (II): Rama y Krishna"
+      },
+      {
+        "id": "31",
+        "title": "Las tradiciones espirituales (III): taoísmo y judaísmo"
+      },
+      {
+        "id": "32",
+        "title": "Las tradiciones espirituales (IV): budismo y cristianismo"
+      },
+      {
+        "id": "33",
+        "title": "Las tradiciones espirituales (V): el Dreamtime y la tradición mexica"
+      },
+      {
+        "id": "34",
+        "title": "Las tradiciones espirituales (VI): Don Juan, Core Energetics y el Cuarto Camino"
+      },
+      {
+        "id": "35",
+        "title": "El desarrollo transpersonal (I): qué es y qué no es"
+      },
+      {
+        "id": "36",
+        "title": "El desarrollo transpersonal (II): los siete niveles de consciencia"
+      },
+      {
+        "id": "37",
+        "title": "Conclusiones: el Vedanta, darse cuenta y «por sus actos los conocerás»"
+      },
+      {
+        "id": "38",
+        "title": "Reglas, códigos y valores (I): el imperativo ético"
+      },
+      {
+        "id": "39",
+        "title": "Reglas, códigos y valores (II): axiología, valores energéticos y demográficos"
+      },
+      {
+        "id": "40",
+        "title": "Reglas, códigos y valores (III): valores ecológicos y económicos"
+      },
+      {
+        "id": "41",
+        "title": "El ser humano integral (I): los tres órdenes de Bohm y el yo no localizado"
+      },
+      {
+        "id": "42",
+        "title": "El ser humano integral (II): salud, somatización y la única enfermedad"
+      },
+      {
+        "id": "43",
+        "title": "Evolucionar es ser (I): el ser, el pecado de origen y el punto de referencia"
+      },
+      {
+        "id": "44",
+        "title": "Evolucionar es ser (II): conócete a ti mismo y los métodos"
+      },
+      {
+        "id": "45",
+        "title": "Evolucionar es ser (III): la consciencia universal, el epílogo y ¿por dónde comenzar?"
+      }
+    ]
+  },
+  {
+    "id": "ecologia-y-espiritualidad",
+    "title": "Introducción a Ecología y Espiritualidad",
+    "description": "Explora la relación entre la conciencia, la naturaleza y nuestra responsabilidad con la vida.",
+    "minutes": 60,
+    "lessons": [
+      {
+        "id": "1",
+        "title": "Prólogo e Introducción: dos ecologías y la conciencia de la experiencia"
+      },
+      {
+        "id": "2",
+        "title": "Definiciones: la biosfera y el que se da cuenta"
+      },
+      {
+        "id": "3",
+        "title": "Esclarecimientos: interdependencia, la paradoja del temor y lo natural como medio"
+      },
+      {
+        "id": "4",
+        "title": "Los obstáculos: siete paradigmas mecanicistas y la nueva visión"
+      },
+      {
+        "id": "5",
+        "title": "El imperativo ético: cuatro frases y una deducción ecológica"
+      },
+      {
+        "id": "6",
+        "title": "Niveles de conciencia: sobrevivencia, justicia y la pregunta por la factura"
+      },
+      {
+        "id": "7",
+        "title": "Ecologistas: tres generaciones y la sonrisa junto al canto"
+      },
+      {
+        "id": "8",
+        "title": "Evolución: en el principio era el infierno"
+      },
+      {
+        "id": "9",
+        "title": "Desarrollo económico y sustentable (I): todos somos culpables"
+      },
+      {
+        "id": "10",
+        "title": "Desarrollo económico y sustentable (II): generaciones, Xel-Há y los ocho paradigmas"
+      },
+      {
+        "id": "11",
+        "title": "Espiritual-espiritualidad: manifestación, presencia y la analogía del pintor"
+      },
+      {
+        "id": "12",
+        "title": "Religión: compasión, re-ligarse y la ecología como conciencia del otro"
+      },
+      {
+        "id": "13",
+        "title": "Transnacionales: llegaron para quedarse y el 90% compartido"
+      },
+      {
+        "id": "14",
+        "title": "Globalización: cinco frentes que llegaron para quedarse"
+      },
+      {
+        "id": "15",
+        "title": "Libertad: fin del desarrollo y cinco libertades instrumentales"
+      },
+      {
+        "id": "16",
+        "title": "Democracia: la forma de la conciencia colectiva"
+      },
+      {
+        "id": "17",
+        "title": "Economía (I): la energía como factor común y la alimentación"
+      },
+      {
+        "id": "18",
+        "title": "Economía (II): combustibles, hidrógeno y la conducta del «úsese y tírese»"
+      },
+      {
+        "id": "19",
+        "title": "El big bang: polvo de estrellas y la definición filosófica de la materia"
+      },
+      {
+        "id": "20",
+        "title": "Evolución: la escala del cinco y la experiencia consciente de nuestra esencia"
+      },
+      {
+        "id": "21",
+        "title": "Historia: tres revoluciones y el campo que se quedó sin nadie"
+      },
+      {
+        "id": "22",
+        "title": "Cultura: la aldea global y el ciudadano del mundo"
+      },
+      {
+        "id": "23",
+        "title": "Materialismo, positivismo, escepticismo: la contradicción que se refuta sola"
+      },
+      {
+        "id": "24",
+        "title": "Presente y futuro: seis tecnologías y la evolución como método del Espíritu"
+      },
+      {
+        "id": "25",
+        "title": "El ciclo del agua: nueve pasos que sostienen la vida"
+      },
+      {
+        "id": "26",
+        "title": "El ciclo de la vida: la fotosíntesis, el ADN y el centauro anunciado"
+      },
+      {
+        "id": "27",
+        "title": "Las grandes revoluciones (I): fuego, instrumentos, agricultura y escritura"
+      },
+      {
+        "id": "28",
+        "title": "Las grandes revoluciones (II): de los imperios al dilema final"
+      },
+      {
+        "id": "29",
+        "title": "El nuevo milenio: la lección de Chico Méndez"
+      },
+      {
+        "id": "30",
+        "title": "La Tierra: el planeta que fabricó su aire"
+      },
+      {
+        "id": "31",
+        "title": "El fin del periodo colonial: la geografía cerrada y las señales ignoradas"
+      },
+      {
+        "id": "32",
+        "title": "Primero, tercero y quinto mundos: el retrato de la desigualdad"
+      },
+      {
+        "id": "33",
+        "title": "La ecología en mundos desiguales: solidaridad u holocausto"
+      },
+      {
+        "id": "34",
+        "title": "El neolítico junto al cosmonauta: la información que rompe barreras"
+      },
+      {
+        "id": "35",
+        "title": "Disparidad necesaria: legislar según la historia y la realidad"
+      },
+      {
+        "id": "36",
+        "title": "El ser humano y la energía: quién absorbe el costo"
+      },
+      {
+        "id": "37",
+        "title": "El desarrollo sustentable integral: análisis y síntesis"
+      },
+      {
+        "id": "38",
+        "title": "Errores ecologistas: los siete del capítulo"
+      },
+      {
+        "id": "39",
+        "title": "Errores del desarrollo: cheques contra la cuenta de la biosfera"
+      },
+      {
+        "id": "40",
+        "title": "Errores sociales: la basura, el coche, la casa sellada y el manatí"
+      },
+      {
+        "id": "41",
+        "title": "El centauro: la visión integral del ser humano"
+      },
+      {
+        "id": "42",
+        "title": "Los hijos de la Tierra: el dreamtime y la formulación final del imperativo"
+      },
+      {
+        "id": "43",
+        "title": "La revolución de las conciencias: darse cuenta y actuar en consecuencia"
+      },
+      {
+        "id": "44",
+        "title": "Soluciones: globales, locales y regionales"
+      },
+      {
+        "id": "45",
+        "title": "Conclusiones y síntesis: el problema ecológico es un problema del espíritu"
+      }
+    ]
+  },
+  {
+    "id": "humanismo-evolutivo-transpersonal",
+    "title": "Introducción al Humanismo Evolutivo Transpersonal",
+    "description": "Un recorrido por la evolución, el imperativo ético y el trabajo consciente al servicio del bien común.",
+    "minutes": 60,
+    "lessons": [
+      {
+        "id": "1",
+        "title": "El prólogo del autor: la pregunta que no dejó de inquietarlo"
+      },
+      {
+        "id": "2",
+        "title": "La presentación: Julian Huxley y el deslinde de lo transpersonal"
+      },
+      {
+        "id": "3",
+        "title": "Las cuatro definiciones: Big Bang, evolución, energía y trabajo"
+      },
+      {
+        "id": "4",
+        "title": "Los diez puntos: el origen común y la igualdad potencial"
+      },
+      {
+        "id": "5",
+        "title": "Humanismo y religiones: alejarse del instinto, integrar por la fe"
+      },
+      {
+        "id": "6",
+        "title": "El imperativo ético y la confusión que el autor quiere deshacer"
+      },
+      {
+        "id": "7",
+        "title": "Yo soy nosotros y Evolucionar es ser"
+      },
+      {
+        "id": "8",
+        "title": "El empresario como organizador energético y el ego en su doble forma"
+      },
+      {
+        "id": "9",
+        "title": "Libre mercado, capitalismo, comunismo y socialdemocracia"
+      },
+      {
+        "id": "10",
+        "title": "Los fundamentos: de los griegos a la física cuántica"
+      },
+      {
+        "id": "11",
+        "title": "El método: los dos niveles y el concepto de Dios"
+      },
+      {
+        "id": "12",
+        "title": "Cuerpo y espíritu: lo que la ciencia explica y lo que queda por comprender"
+      },
+      {
+        "id": "13",
+        "title": "La casa en siete pasos: nada existe sin información"
+      },
+      {
+        "id": "14",
+        "title": "El Jardín de la Evolución: la realidad y el Big Bang"
+      },
+      {
+        "id": "15",
+        "title": "Átomos, tabla periódica y moléculas: el paréntesis que decide todo"
+      },
+      {
+        "id": "16",
+        "title": "Los ciclos y la vida vegetal: la evolución que ensaya y recuerda"
+      },
+      {
+        "id": "17",
+        "title": "La vida animal y la humanidad: fin y no medio, dignidad infinita"
+      },
+      {
+        "id": "18",
+        "title": "Los siete niveles del desarrollo transpersonal"
+      },
+      {
+        "id": "19",
+        "title": "La evolución de la civilización: el último segundo del año"
+      },
+      {
+        "id": "20",
+        "title": "La energía y la energía nuclear: el trabajo como herramienta del universo"
+      },
+      {
+        "id": "21",
+        "title": "La exploración del universo y la evolución tecnológica"
+      },
+      {
+        "id": "22",
+        "title": "El análisis del Jardín: somos energía organizada con información"
+      },
+      {
+        "id": "23",
+        "title": "Las nueve cualidades: a imagen y semejanza"
+      },
+      {
+        "id": "24",
+        "title": "Algoritmos mentales, conciencia y consciencia"
+      },
+      {
+        "id": "25",
+        "title": "El amor: la fuerza de atracción que dirige la evolución"
+      },
+      {
+        "id": "26",
+        "title": "El ego en la historia: del fuego a las clases sociales"
+      },
+      {
+        "id": "27",
+        "title": "El Jardín de la Meditación (I): hinduismo, budismo y confucionismo"
+      },
+      {
+        "id": "28",
+        "title": "El Jardín de la Meditación (II): las tres monoteístas y los siete puntos"
+      },
+      {
+        "id": "29",
+        "title": "Todo es vibración: resonancia, Pitágoras y Tesla"
+      },
+      {
+        "id": "30",
+        "title": "Qué hacen las vibraciones al átomo y a la materia"
+      },
+      {
+        "id": "31",
+        "title": "Vibraciones sonoras y no sonoras"
+      },
+      {
+        "id": "32",
+        "title": "Las vibraciones en los seres vivos: plantas, animales y personas"
+      },
+      {
+        "id": "33",
+        "title": "Pienso, luego existo: los tres modos de indagación"
+      },
+      {
+        "id": "34",
+        "title": "Wilber y Maslow: las épocas y los métodos de indagación"
+      },
+      {
+        "id": "35",
+        "title": "La unidad místico-espiritual: los seis hechos"
+      },
+      {
+        "id": "36",
+        "title": "El mapa de Hawkins (I): de la vergüenza al orgullo"
+      },
+      {
+        "id": "37",
+        "title": "El mapa de Hawkins (II): del coraje a la iluminación"
+      },
+      {
+        "id": "38",
+        "title": "Los planos de consciencia, la advertencia y el ego"
+      },
+      {
+        "id": "39",
+        "title": "El espíritu: alma, valores y el nacimiento en el parto"
+      },
+      {
+        "id": "40",
+        "title": "El imperativo ético, la energía y la inteligencia artificial"
+      },
+      {
+        "id": "41",
+        "title": "El azar y el tablero de Galton"
+      },
+      {
+        "id": "42",
+        "title": "Dirección y sentido: las cualidades, el conflicto y los cuatro acuerdos"
+      },
+      {
+        "id": "43",
+        "title": "El trabajo como camino: el punto neurálgico"
+      },
+      {
+        "id": "44",
+        "title": "La socialdemocracia humanista y el Tercer Mundo"
+      },
+      {
+        "id": "45",
+        "title": "Síntesis: los cinco libros y la respuesta a la pregunta inicial"
+      }
+    ]
+  },
+  {
+    "id": "el-arte-de-ser-empresario",
+    "title": "El arte de ser empresario",
+    "description": "El trabajo, la ética y la empresa como caminos de autorrealización y transformación social.",
+    "minutes": 120,
+    "lessons": [
+      {
+        "id": "1",
+        "title": "El impulso evolutivo y la razón de ser empresario"
+      },
+      {
+        "id": "2",
+        "title": "La lucha de los opuestos y el empresario como organizador energético"
+      },
+      {
+        "id": "3",
+        "title": "Capital, trabajo y valor: la medida energética de la empresa"
+      },
+      {
+        "id": "4",
+        "title": "Mercado, riesgo y el laboratorio cubano"
+      },
+      {
+        "id": "5",
+        "title": "Conciencia, bien común y medio ambiente"
+      },
+      {
+        "id": "6",
+        "title": "Cómo progresan los pueblos: cinco ejemplos y los datos duros"
+      },
+      {
+        "id": "7",
+        "title": "Idealismo, ego y vocación: el código ético del buen empresario"
+      },
+      {
+        "id": "8",
+        "title": "El imperativo ético y las condiciones del libre mercado"
+      },
+      {
+        "id": "9",
+        "title": "El perfil del empresario: conocimiento, liderazgo y finanzas sanas"
+      },
+      {
+        "id": "10",
+        "title": "Virtudes del empresario, riesgo y la dignidad de todo trabajo"
+      },
+      {
+        "id": "11",
+        "title": "ADN, espíritu y la prueba de una vida"
+      }
+    ]
+  }
+]

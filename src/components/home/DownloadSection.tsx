@@ -13,15 +13,16 @@ import {
   DialogHeader,
   DialogTitle 
 } from '@/components/ui/dialog';
-import { books } from '@/data/books';
-import Link from 'next/link';
+import { useBooks } from '@/hooks/useBooks';
+import Link from '@/components/LocalizedLink';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
-import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
+import { downloadBook } from '@/lib/download-book';
 import { z } from 'zod';
 
 const DownloadSection = () => {
+  const books = useBooks();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -63,128 +64,21 @@ const DownloadSection = () => {
       book_title: bookData?.title
     });
     setSelectedBook(bookId);
+    setIsSubmitted(false);
+    setFormData({ name: '', email: '' });
     setIsDialogOpen(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting || !selectedBook) return;
     setIsSubmitting(true);
-    
-    const bookData = books.find(book => book.id === selectedBook);
-    
-    // Determine the PDF file name and book name based on language and book ID
-    let pdfFileName = '';
-    let bookName = '';
-    
-    if (selectedBook === 'yo-soy-nosotros') {
-      pdfFileName = language === 'es' 
-        ? '/books/Yo_Soy_Nosotros_Resumen.pdf' 
-        : '/books/I_Am_US_Summary.pdf';
-      bookName = language === 'es' 
-        ? 'Yo soy nosotros + Resumen' 
-        : 'I Am US + Summary';
-    } else if (selectedBook === 'ecologia-y-espiritualidad') {
-      pdfFileName = language === 'es'
-        ? '/books/Ecologia_y_Espiritualidad.pdf'
-        : '/books/Ecology_and_Spirituality.pdf';
-      bookName = language === 'es'
-        ? 'Ecología y Espiritualidad'
-        : 'Ecology and Spirituality';
-    } else if (selectedBook === 'el-arte-de-ser-empresario') {
-      pdfFileName = language === 'es'
-        ? '/books/El_arte_de_ser_empresario_Resumen.pdf'
-        : '/books/The_art_of_being_an_entrepreneur_Summary.pdf';
-      bookName = language === 'es'
-        ? 'El arte de ser empresario + Resumen'
-        : 'The art of being an entrepreneur + Summary';
-    } else if (selectedBook === 'dejalo-ser') {
-      pdfFileName = language === 'es'
-        ? '/books/DejaloSer_Resumen.pdf'
-        : '/books/Let_It_Be_Summary.pdf';
-      bookName = language === 'es'
-        ? 'DejaloSer + Resumen'
-        : 'Let It Be + Summary';
-    }
-    
     try {
-      // Validate form data with Zod schema
-      const validatedData = bookDownloadSchema.parse({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        book_downloaded: bookName.trim()
-      }) as { name: string; email: string; book_downloaded: string };
-      
-      // Save validated data to database
-      const { error } = await supabase
-        .from('book_downloads')
-        .insert(validatedData);
-      
-      if (error) throw error;
-      
-      // Track with GTM using sanitized data
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: 'download_book_submit',
-        book_id: selectedBook,
-        book_title: sanitizeForAnalytics(bookData?.title || ''),
-        user_email: sanitizeForAnalytics(validatedData.email)
-      });
-      
-      // Show success state
+      const download = await downloadBook({ bookId: selectedBook, language, ...formData });
+      window.dataLayer?.push({ event: 'download_book_submit', book_id: selectedBook, book_title: download.title });
       setIsSubmitted(true);
-      
-      // Download the PDF after a short delay to ensure UI updates
-      setTimeout(async () => {
-        try {
-          const res = await fetch(pdfFileName);
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = bookName + '.pdf';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        } catch (downloadError) {
-          console.error('Download error:', downloadError);
-          toast({
-            title: language === 'es' ? 'Error de descarga' : 'Download error',
-            description: language === 'es' 
-              ? 'No se pudo iniciar la descarga. Por favor intenta nuevamente.' 
-              : 'Could not start download. Please try again.',
-            variant: 'destructive'
-          });
-        }
-      }, 300);
-      
-      // Reset form after a delay
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setIsDialogOpen(false);
-        setFormData({ name: '', email: '' });
-      }, 3000);
     } catch (error) {
-      console.error('Error submitting form:', error);
-      
-      // Handle Zod validation errors specifically
-      if (error instanceof z.ZodError) {
-        const firstError = error.issues[0];
-        toast({
-          title: language === 'es' ? 'Error de validación' : 'Validation error',
-          description: firstError.message,
-          variant: 'destructive'
-        });
-      } else {
-        toast({
-          title: language === 'es' ? 'Error' : 'Error',
-          description: language === 'es' 
-            ? 'Hubo un problema al procesar tu solicitud. Por favor intenta nuevamente.' 
-            : 'There was a problem processing your request. Please try again.',
-          variant: 'destructive'
-        });
-      }
+      toast({ title: language === 'es' ? 'No se pudo descargar' : 'Download failed', description: error instanceof z.ZodError ? error.issues[0].message : (language === 'es' ? 'Intenta nuevamente. Tu descarga no se ha completado.' : 'Please try again. Your download has not completed.'), variant: 'destructive' });
     } finally {
       setIsSubmitting(false);
     }
@@ -253,7 +147,8 @@ const DownloadSection = () => {
             <DialogTitle className="text-center text-2xl font-heading">
               {isSubmitted ? t('download.dialog.thanks') : t('download.dialog.title')}
             </DialogTitle>
-            <DialogDescription className="text-center">
+            <DialogDescription asChild><div className="text-center">
+              {language === 'en' && selectedBook === 'lo-mejor-esta-por-venir' && <span className="block mb-2">This book is currently available as a Spanish PDF.</span>}
               {isSubmitted ? (
                 <div className="flex flex-col items-center py-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
@@ -271,7 +166,7 @@ const DownloadSection = () => {
                   {t('download.dialog.complete')} {selectedBookData?.title}.
                 </p>
               )}
-            </DialogDescription>
+            </div></DialogDescription>
           </DialogHeader>
 
           {!isSubmitted && (

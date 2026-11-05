@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## OCC-managed Recursos
+
+The `/resources/` section is generated from the complete published collection in the Operations Command Center during each deployment build. Publishing events are accepted at `POST /api/publish` and trigger a private Vercel Deploy Hook; article bodies are never included in webhook events or fetched by browsers.
+
+Configuration, contracts, operational behavior, and preview verification are documented in [`docs/occ-resource-publishing.md`](docs/occ-resource-publishing.md).
+
+For a local presentation without OCC credentials, set `OCC_RESOURCES_LOCAL_DEMO=true` in the ignored `.env.local` file and run `npm run dev`. This activates the trusted filler articles in `src/data/resources.demo.ts` only while `NODE_ENV=development`; production builds never select them.
+
 ## Getting Started
 
 First, run the development server:

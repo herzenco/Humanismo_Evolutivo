@@ -38,7 +38,7 @@ export const podcastSeries: PodcastSeries[] = [
     id: 'yo-soy-nosotros',
     titleKey: 'podcast.series.ysn.title',
     descriptionKey: 'podcast.series.ysn.description',
-    coverImage: '/lovable-uploads/0d55a7a0-122e-48c1-831c-66a04590c495.png',
+    coverImage: '/lovable-uploads/0d55a7a0-122e-48c1-831c-66a04590c495.webp',
     episodes: [
       {
         id: 1,
@@ -176,7 +176,7 @@ export const podcastSeries: PodcastSeries[] = [
     id: 'lo-mejor-esta-por-venir',
     titleKey: 'podcast.series.ylmepv.title',
     descriptionKey: 'podcast.series.ylmepv.description',
-    coverImage: 'https://qlqkdininewormskpnya.supabase.co/storage/v1/object/public/admin-uploads/lo-mejor-esta-por-venir-cover.jpg',
+    coverImage: '/design/podcasts/lo-mejor-esta-por-venir.webp',
     episodes: [
       {
         id: 13,
@@ -582,10 +582,10 @@ export const videos: Video[] = [
     id: 1,
     titleKey: "video.smge.title",
     descriptionKey: "video.smge.description",
-    duration: "1:15:30",
-    date: "2024-10-28",
+    duration: "42:53",
+    date: "2025-10-28",
     categoryKey: "podcast.category.conference",
-    videoUrl: "https://www.youtube.com/watch?v=LRr-CKjfmrE",
-    imageUrl: "/lovable-uploads/bd0dec77-828d-40b0-8bcc-30690a3a1fb3.png"
+    videoUrl: "https://www.youtube.com/watch?v=HLHjY3NnX2k",
+    imageUrl: "/lovable-uploads/bd0dec77-828d-40b0-8bcc-30690a3a1fb3.webp"
   }
 ];

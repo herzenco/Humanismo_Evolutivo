@@ -1,41 +1,21 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Globe } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from '@/contexts/LanguageContext';
+import type { Language } from '@/lib/site';
 
 export function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="w-9 px-0">
-          <Globe className="h-[1.2rem] w-[1.2rem]" />
-          <span className="sr-only">Toggle language</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-background border border-border z-50">
-        <DropdownMenuItem
-          onClick={() => setLanguage('es')}
-          className={language === 'es' ? 'bg-accent text-accent-foreground' : ''}
-        >
-          🇪🇸 Español
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setLanguage('en')}
-          className={language === 'en' ? 'bg-accent text-accent-foreground' : ''}
-        >
-          🇺🇸 English
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
+  const options: { id: Language; label: string }[] = [
+    { id: 'es', label: 'ES' },
+    { id: 'en', label: 'EN' },
+  ];
+  return <div className="site-language-toggle" role="group" aria-label={language === 'es' ? 'Idioma' : 'Language'}>
+    {options.map(option => <button
+      key={option.id}
+      type="button"
+      className="site-language-button"
+      aria-pressed={language === option.id}
+      onClick={() => setLanguage(option.id)}
+    >{option.label}</button>)}
+  </div>;
 }

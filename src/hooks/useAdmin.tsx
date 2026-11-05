@@ -1,64 +1,41 @@
 "use client";
-
 import { useState, useEffect } from 'react';
+import type { User } from '@supabase/supabase-js';
 import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
-
-export const useAdmin = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<any>(null);
-
+export function useAdmin() {
+  const [state, setState] = useState<{ isAdmin: boolean; loading: boolean; user: User | null }>({
+    isAdmin: false, loading: isSupabaseConfigured, user: null,
+  });
   useEffect(() => {
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
+    if (!isSupabaseConfigured) return;
+    let active = true;
+    let revision = 0;
+    let timer: ReturnType<typeof setTimeout>;
+    async function check() {
+      const current = ++revision;
+      try {
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (authError) throw authError;
+        let isAdmin = false;
+        if (user) {
+          const { data, error } = await supabase.from('user_roles').select('role')
+            .eq('user_id', user.id).eq('role', 'admin').maybeSingle();
+          if (error) throw error;
+          isAdmin = Boolean(data);
+        }
+        if (active && current === revision) setState({ isAdmin, loading: false, user });
+      } catch {
+        if (active && current === revision) setState({ isAdmin: false, loading: false, user: null });
+      }
     }
-
-    checkAdminStatus();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
-      checkAdminStatus();
+    void check();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      ++revision;
+      if (!session) setState({ isAdmin: false, loading: false, user: null });
+      clearTimeout(timer);
+      timer = setTimeout(() => { void check(); }, 0);
     });
-
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => { active = false; ++revision; clearTimeout(timer); subscription.unsubscribe(); };
   }, []);
-
-  const checkAdminStatus = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      if (!user) {
-        setIsAdmin(false);
-        setUser(null);
-        setLoading(false);
-        return;
-      }
-
-      setUser(user);
-
-      // Check if user has admin role
-      const { data, error } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', user.id)
-        .eq('role', 'admin')
-        .maybeSingle();
-
-      if (error) {
-        console.error('Error checking admin status:', error);
-        setIsAdmin(false);
-      } else {
-        setIsAdmin(!!data);
-      }
-    } catch (error) {
-      console.error('Error in checkAdminStatus:', error);
-      setIsAdmin(false);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return { isAdmin, loading, user };
-};
+  return state;
+}

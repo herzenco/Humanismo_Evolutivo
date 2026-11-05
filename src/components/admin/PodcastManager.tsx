@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { Upload, Music, Pencil, Trash2 } from 'lucide-react';
+import { refreshPublicContent } from '@/lib/refresh-content';
 import { books } from '@/data/books';
 
 export const PodcastManager = () => {
@@ -43,13 +44,8 @@ export const PodcastManager = () => {
       // Upload file if provided
       if (uploadFile) {
         const fileExt = uploadFile.name.split('.').pop();
-        const fileName = `${formData.book_id}-podcast-cover.${fileExt}`;
-        
-        // Delete existing file if exists
-        await supabase.storage
-          .from('admin-uploads')
-          .remove([fileName]);
-        
+        const fileName = `${formData.book_id}-${crypto.randomUUID()}.${fileExt}`;
+
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('admin-uploads')
           .upload(fileName, uploadFile);
@@ -91,7 +87,8 @@ export const PodcastManager = () => {
         if (error) throw error;
       }
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      await refreshPublicContent();
       queryClient.invalidateQueries({ queryKey: ['podcast-series'] });
       setIsDialogOpen(false);
       setEditingSeries(null);
@@ -119,7 +116,8 @@ export const PodcastManager = () => {
 
       if (error) throw error;
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      await refreshPublicContent();
       queryClient.invalidateQueries({ queryKey: ['podcast-series'] });
       toast({
         title: 'Éxito',

@@ -4,12 +4,13 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import { ArrowRight } from 'lucide-react';
-import { books } from '@/data/books';
+import { useBooks } from '@/hooks/useBooks';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const FeaturedBooksCarousel = () => {
+  const books = useBooks();
   const ref = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
   const isInView = useInView(ref, {
@@ -69,7 +70,7 @@ const FeaturedBooksCarousel = () => {
               <div className="relative p-4 lg:p-6 h-full flex flex-col">
                 <div className="mb-4 flex justify-center">
                   <img 
-                    src={book.image}
+                    src={book.coverImage}
                     alt={book.title}
                     className="h-32 lg:h-40 w-auto object-contain rounded-xl shadow-lg transition-transform duration-700 group-hover:scale-105"
                   />

@@ -10,10 +10,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
+import { contentKeys } from '@/lib/content';
+import { refreshPublicContent } from '@/lib/refresh-content';
+import { useRouter } from 'next/navigation';
 import { Plus, Pencil, Trash2, FileText } from 'lucide-react';
 
 export const ContentEditor = () => {
   const { toast } = useToast();
+  const router = useRouter();
   const queryClient = useQueryClient();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingContent, setEditingContent] = useState<any>(null);
@@ -33,6 +37,9 @@ export const ContentEditor = () => {
 
   const saveMutation = useMutation({
     mutationFn: async (formData: any) => {
+      const key = editingContent?.key || formData.key;
+      if (!contentKeys.includes(key)) throw new Error('Selecciona una clave de texto del sitio.');
+      if (!['es', 'en'].includes(formData.language)) throw new Error('El idioma debe ser es o en.');
       const { data, error: userError } = await supabase.auth.getUser();
       if (userError || !data.user) throw new Error('No user found');
 
@@ -66,7 +73,10 @@ export const ContentEditor = () => {
         if (error) throw error;
       }
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      const refreshed = await refreshPublicContent();
+      if (!refreshed) toast({ title: 'Contenido guardado', description: 'La publicación puede tardar hasta un minuto.' });
+      router.refresh();
       queryClient.invalidateQueries({ queryKey: ['site-content'] });
       setIsDialogOpen(false);
       setEditingContent(null);
@@ -93,7 +103,10 @@ export const ContentEditor = () => {
 
       if (error) throw error;
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      const refreshed = await refreshPublicContent();
+      if (!refreshed) toast({ title: 'Contenido guardado', description: 'La publicación puede tardar hasta un minuto.' });
+      router.refresh();
       queryClient.invalidateQueries({ queryKey: ['site-content'] });
       toast({
         title: 'Éxito',
@@ -143,20 +156,16 @@ export const ContentEditor = () => {
             <DialogHeader>
               <DialogTitle>{editingContent ? 'Editar Contenido' : 'Nuevo Contenido'}</DialogTitle>
               <DialogDescription>
-                Completa los datos del contenido editable
+                Selecciona la clave del texto que deseas cambiar. El contenido se publica en el idioma elegido.
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <Label htmlFor="key">Clave única</Label>
-                <Input
-                  id="key"
-                  name="key"
-                  defaultValue={editingContent?.key}
-                  required={!editingContent}
-                  disabled={!!editingContent}
-                  placeholder="hero-title"
-                />
+                <select id="key" name="key" className="w-full rounded-md border p-2" defaultValue={editingContent?.key || ''} required disabled={!!editingContent}>
+                  <option value="" disabled>Selecciona el texto del sitio</option>
+                  {contentKeys.map(key => <option key={key} value={key}>{key}</option>)}
+                </select>
               </div>
               <div>
                 <Label htmlFor="title">Título</Label>

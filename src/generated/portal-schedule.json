@@ -1,0 +1,186 @@
+[
+  {
+    "id": "2027-02-15-identidad-y-civismo",
+    "courseId": "identidad-y-civismo",
+    "title": "Identidad y Civismo",
+    "startsAt": "2027-02-15T11:00:00",
+    "endsAt": "2027-02-15T13:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-15-ecologia-y-espiritualidad",
+    "courseId": "ecologia-y-espiritualidad",
+    "title": "Ecología y Espiritualidad",
+    "startsAt": "2027-02-15T16:00:00",
+    "endsAt": "2027-02-15T17:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-15-historia-evolutiva-del-arte",
+    "courseId": "historia-evolutiva-del-arte",
+    "title": "Historia Evolutiva del Arte",
+    "startsAt": "2027-02-15T17:00:00",
+    "endsAt": "2027-02-15T18:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-15-humanismo-evolutivo-transpersonal",
+    "courseId": "humanismo-evolutivo-transpersonal",
+    "title": "Humanismo Evolutivo Transpersonal",
+    "startsAt": "2027-02-15T18:00:00",
+    "endsAt": "2027-02-15T19:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-16-identidad-y-civismo",
+    "courseId": "identidad-y-civismo",
+    "title": "Identidad y Civismo",
+    "startsAt": "2027-02-16T11:00:00",
+    "endsAt": "2027-02-16T13:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-16-introduccion-a-la-filosofia",
+    "courseId": "introduccion-a-la-filosofia",
+    "title": "Introducción a la Filosofía",
+    "startsAt": "2027-02-16T16:00:00",
+    "endsAt": "2027-02-16T17:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-16-filosofia-de-yo-soy-nosotros",
+    "courseId": "filosofia-de-yo-soy-nosotros",
+    "title": "Filosofía de “Yo Soy Nosotros”",
+    "startsAt": "2027-02-16T17:00:00",
+    "endsAt": "2027-02-16T18:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-16-introduccion-a-la-antropologia",
+    "courseId": "introduccion-a-la-antropologia",
+    "title": "Introducción a la Antropología",
+    "startsAt": "2027-02-16T18:00:00",
+    "endsAt": "2027-02-16T19:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-17-identidad-y-civismo",
+    "courseId": "identidad-y-civismo",
+    "title": "Identidad y Civismo",
+    "startsAt": "2027-02-17T11:00:00",
+    "endsAt": "2027-02-17T13:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-17-ecologia-y-espiritualidad",
+    "courseId": "ecologia-y-espiritualidad",
+    "title": "Ecología y Espiritualidad",
+    "startsAt": "2027-02-17T16:00:00",
+    "endsAt": "2027-02-17T17:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-17-historia-evolutiva-del-arte",
+    "courseId": "historia-evolutiva-del-arte",
+    "title": "Historia Evolutiva del Arte",
+    "startsAt": "2027-02-17T17:00:00",
+    "endsAt": "2027-02-17T18:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-17-humanismo-evolutivo-transpersonal",
+    "courseId": "humanismo-evolutivo-transpersonal",
+    "title": "Humanismo Evolutivo Transpersonal",
+    "startsAt": "2027-02-17T18:00:00",
+    "endsAt": "2027-02-17T19:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-18-identidad-y-civismo",
+    "courseId": "identidad-y-civismo",
+    "title": "Identidad y Civismo",
+    "startsAt": "2027-02-18T11:00:00",
+    "endsAt": "2027-02-18T13:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-18-introduccion-a-la-filosofia",
+    "courseId": "introduccion-a-la-filosofia",
+    "title": "Introducción a la Filosofía",
+    "startsAt": "2027-02-18T16:00:00",
+    "endsAt": "2027-02-18T17:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-18-filosofia-de-yo-soy-nosotros",
+    "courseId": "filosofia-de-yo-soy-nosotros",
+    "title": "Filosofía de “Yo Soy Nosotros”",
+    "startsAt": "2027-02-18T17:00:00",
+    "endsAt": "2027-02-18T18:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-18-introduccion-a-la-antropologia",
+    "courseId": "introduccion-a-la-antropologia",
+    "title": "Introducción a la Antropología",
+    "startsAt": "2027-02-18T18:00:00",
+    "endsAt": "2027-02-18T19:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-19-identidad-y-civismo",
+    "courseId": "identidad-y-civismo",
+    "title": "Identidad y Civismo",
+    "startsAt": "2027-02-19T11:00:00",
+    "endsAt": "2027-02-19T13:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-19-ecologia-y-espiritualidad",
+    "courseId": "ecologia-y-espiritualidad",
+    "title": "Ecología y Espiritualidad",
+    "startsAt": "2027-02-19T16:00:00",
+    "endsAt": "2027-02-19T17:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-19-historia-evolutiva-del-arte",
+    "courseId": "historia-evolutiva-del-arte",
+    "title": "Historia Evolutiva del Arte",
+    "startsAt": "2027-02-19T17:00:00",
+    "endsAt": "2027-02-19T18:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-19-humanismo-evolutivo-transpersonal",
+    "courseId": "humanismo-evolutivo-transpersonal",
+    "title": "Humanismo Evolutivo Transpersonal",
+    "startsAt": "2027-02-19T18:00:00",
+    "endsAt": "2027-02-19T19:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-20-filosofia-para-ninos",
+    "courseId": "filosofia-para-ninos",
+    "title": "Filosofía para Niños",
+    "startsAt": "2027-02-20T10:00:00",
+    "endsAt": "2027-02-20T11:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-20-el-arte-de-ser-empresario",
+    "courseId": "el-arte-de-ser-empresario",
+    "title": "El Arte de Ser Empresario",
+    "startsAt": "2027-02-20T11:00:00",
+    "endsAt": "2027-02-20T13:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  },
+  {
+    "id": "2027-02-20-historia-de-las-religiones-lectura-para-ninos",
+    "courseId": "historia-de-las-religiones-lectura-para-ninos",
+    "title": "Historia de las Religiones / Lectura para Niños",
+    "startsAt": "2027-02-20T11:00:00",
+    "endsAt": "2027-02-20T12:00:00",
+    "location": "Presencial · ubicación por confirmar"
+  }
+]

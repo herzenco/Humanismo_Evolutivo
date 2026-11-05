@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import { useLanguage } from '@/contexts/LanguageContext';
 const HeroSection = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
