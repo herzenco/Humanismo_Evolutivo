@@ -1,12 +1,12 @@
 import 'server-only';
 import { cache } from 'react';
+import { getSupabaseConfig, isSupabaseConfigured } from '@/lib/supabase/config';
 import type { ContentRecord } from '@/lib/content';
 import type { Database } from '@/integrations/supabase/types';
 type Tables = Database['public']['Tables'];
 async function publicRows<T>(table: string, select: string): Promise<T[]> {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return [];
+  if (!isSupabaseConfigured) return [];
+  const { url, publishableKey: key } = getSupabaseConfig();
   try {
     const response = await fetch(`${url}/rest/v1/${table}?select=${select}&order=updated_at.asc.nullsfirst`, {
       headers: { apikey: key, Authorization: `Bearer ${key}` },
