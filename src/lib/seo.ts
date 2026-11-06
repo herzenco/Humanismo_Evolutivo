@@ -7,9 +7,11 @@ export function pageMetadata({ title, description, path, language, image = SOCIA
   title: string; description: string; path: string; language: Language; image?: string; index?: boolean;
 }): Metadata {
   const url = absoluteUrl(path, language);
-  const fullTitle = `${title} | ${SITE_NAME}`;
+  // Avoid repeating the brand or inflating a descriptive title with a suffix.
+  const brandedTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  const fullTitle = brandedTitle.length <= 65 ? brandedTitle : title;
   return {
-    title, description,
+    title: { absolute: fullTitle }, description,
     alternates: { canonical: url, languages: hreflangLanguages(absoluteUrl(path), absoluteUrl(path, 'en')) },
     robots: { index: index && !qaGateEnabled(), follow: !qaGateEnabled() },
     openGraph: { type: 'website', title: fullTitle, description, url, siteName: SITE_NAME,

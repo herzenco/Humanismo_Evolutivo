@@ -15,7 +15,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </p>
 <Link href="/autor" prefetch={false} className="he-a9755f1ca he-row">
 <span className="he-aeab756f8 he-sized">
-<img width="1200" height="850" src="/design/d0c13d41b6fee9d4b2f4174db365259c.webp" alt="" loading="lazy" className="he-4e92ac29e he-sized" />
+<img width="1200" height="850" src="/design/d0c13d41b6fee9d4b2f4174db365259c.webp" alt="Marcos Constandse Madrazo" loading="lazy" className="he-4e92ac29e he-sized" />
 </span>
 <span className="he-ef1f3a5df">
 <span className="he-c44b4741e">

@@ -27,7 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const question = questionBySlug(questionSlug);
   if (!question) return { title: lang === 'en' ? 'Question not found' : 'Pregunta no encontrada', robots: { index: false, follow: false } };
   const title = titleFor(lang, question.number, question.title);
-  const metadata = pageMetadata({ title, description: question.description, path: questionPath(question.number), language: lang });
+  const seoTitle = question.number === 51 ? (lang === 'es' ? 'Conclusión: ciencia, religión y autorrealización' : 'Conclusion: science, religion and self-realization') : title;
+  const metadata = pageMetadata({ title: seoTitle, description: question.description, path: questionPath(question.number), language: lang });
   return {
     ...metadata,
     keywords: questionKeywords(question),

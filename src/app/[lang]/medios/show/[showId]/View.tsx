@@ -200,6 +200,7 @@ export default function ShowDetailPage({ params }: { params: Promise<{ showId: s
             viewport={{ once: true }}
             className="max-w-6xl mx-auto"
           >
+            <h2 className="font-heading text-3xl text-navy-dark mb-8">{language === 'es' ? 'Episodios de la serie' : 'Series episodes'}</h2>
             <div className="space-y-6">
               {show.episodes.map((episode) => {
                 const suppliedContent = localizedEpisodeContent(episode, language, t);

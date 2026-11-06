@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   const data = await getPublicSiteData();
   const dictionary = contentDictionary(lang, data.content);
   const localized = localizeBook(item, key => dictionary[key] ?? key);
-  const title = item.title;
+  const title = `${lang === 'es' ? 'Libro' : 'Book'}: ${item.title}`;
   const description = lang === 'en' ? restoreSpanishBookTitles(localized.excerpt) : item.excerpt;
   const image = item.coverImage;
   return pageMetadata({ title, description: description.slice(0, 160), image, path: `/libros/${bookId}`, language: lang });
