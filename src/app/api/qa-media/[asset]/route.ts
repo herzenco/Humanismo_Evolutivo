@@ -1,5 +1,6 @@
 import { get } from '@vercel/blob';
 import { NextRequest, NextResponse } from 'next/server';
+import { homeMediaCacheHeaders } from '@/lib/home-media-cache';
 import { qaMediaAssets } from '@/config/home-videos';
 import { QA_COOKIE, qaGateEnabled, qaGateConfig, validQaSession } from '@/lib/qa-gate';
 import { privateQaResponse, qaRequestOrigin } from '@/lib/qa-gate-response';
@@ -36,7 +37,9 @@ async function serve(request: NextRequest, context: Context, head = false) {
       const value = result.headers.get(name);if(value)headers.set(name,value);
     }
     if (head) await result.stream.cancel();
-    return privateQaResponse(new NextResponse(head ? null : result.stream, {status:headers.has('content-range') ? 206 : 200,headers}));
+    const response = new NextResponse(head ? null : result.stream, {status:headers.has('content-range') ? 206 : 200,headers});
+    for (const [name, value] of Object.entries(homeMediaCacheHeaders(gated))) response.headers.set(name,value);
+    return response;
   } catch (error) {
     if (!request.signal.aborted) console.error('qa_media_read_failed', {kind:error instanceof Error ? error.name : 'Unknown'});
     return privateQaResponse(new NextResponse(null,{status:502}));

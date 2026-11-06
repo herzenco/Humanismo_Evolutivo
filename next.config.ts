@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
       destination: `https://educacion.humanismoevolutivo.com/${source.includes('portal') ? 'portal' : 'auth'}/:path*`,
       permanent: false,
     }));
-    return [...education, ...admin, ...spanish];
+    return [{ source: '/preguntas', destination: '/51preguntas', permanent: true }, { source: '/es/preguntas', destination: '/51preguntas', permanent: true }, { source: '/en/preguntas', destination: '/en/51preguntas', permanent: true }, ...education, ...admin, ...spanish];
   },
   async rewrites() {
     const pages = ['autor', 'libros', 'medios', 'eventos', 'contacto', 'vision', 'privacidad', 'terminos', 'buscar', 'chatbot', 'admin', 'video', '51preguntas'];

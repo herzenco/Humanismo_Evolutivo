@@ -34,7 +34,7 @@ export const podcastEpisodeContentBySpotifyId: Record<string, PodcastEpisodeCont
   "5UqH5bAZ9Z6povbYwbCznn": {
     "spotifyId": "5UqH5bAZ9Z6povbYwbCznn",
     "seriesId": "yo-soy-nosotros",
-    "title": "El Desarrollo Transpersona",
+    "title": "El Desarrollo Transpersonal",
     "description": "Este episodio explora el concepto de desarrollo transpersonal como la evolución de la consciencia más allá del ego individual. Se expone cómo la psicología transpersonal, al integrar elementos espirituales con el estudio de la mente humana, abre una vía para el autoconocimiento profundo y la conexión con el Todo. No se trata de negar la personalidad, sino de trascender sus límites para descubrir dimensiones más amplias del ser.\n\nSe enfatiza que el camino transpersonal implica desapego, integración de la sombra, y expansión hacia estados de unidad, amor universal y servicio. Es un viaje interior que requiere práctica, entrega y claridad, y que transforma la manera en que nos relacionamos con nosotros mismos, con los demás y con el mundo. Esta etapa del desarrollo humano es presentada como una necesidad urgente en un planeta que clama por consciencia, compasión y propósito colectivo.",
     "embedUrl": "https://open.spotify.com/embed/episode/5UqH5bAZ9Z6povbYwbCznn?utm_source=generator"
   },

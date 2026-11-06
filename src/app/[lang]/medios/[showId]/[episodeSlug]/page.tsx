@@ -79,7 +79,7 @@ export async function generateMetadata({
   if (!episodePage || !isLanguage(resolvedParams.lang)) notFound();
   const { parentSeries, episode, title, description, episodeNumber } = episodePage;
   const seriesTitle = dictionary[parentSeries.titleKey] ?? parentSeries.id;
-  const metadata = pageMetadata({ title: `${title} | ${seriesTitle}`, description: truncateDescription(description),
+  const metadata = pageMetadata({ title: `${title} | ${seriesTitle}`.length <= 65 ? `${title} | ${seriesTitle}` : title, description: truncateDescription(description),
     path: `/medios/${parentSeries.id}/${episode.slug}`, language: resolvedParams.lang, image: parentSeries.coverImage });
   return { ...metadata, openGraph: { ...metadata.openGraph, type: 'article', publishedTime: episode.date },
     other: { 'podcast:episode': String(episodeNumber) } };

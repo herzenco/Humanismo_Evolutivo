@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   const { lang, showId } = await params;
   const item = podcastSeries.find(item => item.id === showId);
   if (!item || !isLanguage(lang)) notFound();
-  const dictionary = contentDictionary(lang, (await getPublicSiteData()).content); const title = dictionary[item.titleKey]; const description = dictionary[item.descriptionKey]; const image = item.coverImage;
+  const dictionary = contentDictionary(lang, (await getPublicSiteData()).content); const title = `Podcast: ${dictionary[item.titleKey]}`; const description = dictionary[item.descriptionKey]; const image = item.coverImage;
   return pageMetadata({ title, description: description.slice(0, 160), image, path: `/medios/show/${showId}`, language: lang });
 }
 export default async function Page({ params }: { params: Promise<Params> }) {
