@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import { qaGateEnabled } from '@/lib/qa-gate';
 import type { Metadata } from 'next';
 import './fonts.css';
@@ -68,6 +69,7 @@ export default async function RootLayout({
           <HtmlLang />
           {children}
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
