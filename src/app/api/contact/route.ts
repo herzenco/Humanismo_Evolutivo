@@ -1,5 +1,6 @@
 import { contactSchema, verifyTurnstile } from '@/lib/contact';
 import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 
 const reply = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'Cache-Control': 'private, no-store' } });
@@ -37,7 +38,8 @@ export async function POST(request: Request) {
   if (!parsed.success) return reply({ error: parsed.error.issues[0]?.message || 'Revisa los campos del formulario.' }, 400);
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || null;
   if (!await verifyTurnstile(parsed.data.turnstileToken, ip)) return reply({ error: 'No pudimos verificar que eres una persona. Intenta de nuevo.' }, 400);
-  const client = await createClient();
+  const client = createServiceClient();
+  if (!client) return reply({ error: 'El formulario no está disponible en este momento.' }, 503);
   const { data, error } = await client.rpc('submit_contact_submission', {
     p_name: parsed.data.name,
     p_email: parsed.data.email,

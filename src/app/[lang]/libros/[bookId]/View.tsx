@@ -19,10 +19,8 @@ import {
 } from '@/components/ui/dialog';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { bookForLanguage } from '@/lib/book-english';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
-import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
-import { z } from 'zod';
+import { downloadBook } from '@/lib/download-book';
 import { BookStructuredData } from '@/components/seo/StructuredData';
 
 export default function BookDetailPage({ params }: { params: Promise<{ bookId: string }> }) {
@@ -74,101 +72,29 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
     e.preventDefault();
     setIsSubmitting(true);
 
-    const pdfFileName = book.pdfUrl;
-    const bookName = book.title;
-
     try {
-      // Validate form data with Zod schema
-      const validatedData = bookDownloadSchema.parse({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        book_downloaded: bookName.trim()
-      }) as { name: string; email: string; book_downloaded: string };
-
-      // Save validated data to database
-      const { error } = await supabase
-        .from('book_downloads')
-        .insert(validatedData);
-
-      if (error) throw error;
-
-      // Track analytics using sanitized data
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
+      const download = await downloadBook({ bookId: book.id, language, ...formData });
+      window.dataLayer?.push({
         event: 'book_download_form_submit',
-        book_id: book?.id,
-        book_title: sanitizeForAnalytics(book?.title || ''),
-        user_name: sanitizeForAnalytics(validatedData.name),
-        user_email: sanitizeForAnalytics(validatedData.email)
+        book_id: book.id,
+        book_title: download.title,
       });
-
-      // Show success message first
       setIsSubmitted(true);
-
-      // Trigger download after a short delay to ensure UI updates
-      setTimeout(async () => {
-        try {
-          // Check if PDF is available for this book
-          if (!pdfFileName) {
-            toast({
-              title: language === 'es' ? 'PDF no disponible' : 'PDF not available',
-              description: language === 'es'
-                ? 'El PDF de este libro aún no está disponible. Te notificaremos cuando esté listo.'
-                : 'The PDF for this book is not yet available. We will notify you when it is ready.',
-            });
-            return;
-          }
-
-          const res = await fetch(pdfFileName);
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = bookName + '.pdf';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        } catch (downloadError) {
-          console.error('Download error:', downloadError);
-          toast({
-            title: language === 'es' ? 'Error de descarga' : 'Download error',
-            description: language === 'es'
-              ? 'No se pudo iniciar la descarga. Por favor intenta nuevamente.'
-              : 'Could not start download. Please try again.',
-            variant: 'destructive',
-          });
-        }
-      }, 300);
-
-      // Reset and close after showing success
       setTimeout(() => {
         setIsSubmitted(false);
         setIsDialogOpen(false);
         setFormData({ name: '', email: '' });
       }, 3000);
 
-    } catch (err) {
-      console.error('Error submitting book download form:', err);
-
-      // Handle Zod validation errors specifically
-      if (err instanceof z.ZodError) {
-        const firstError = err.issues[0];
-        toast({
-          title: language === 'es' ? 'Error de validación' : 'Validation error',
-          description: firstError.message,
-          variant: 'destructive',
-        });
-      } else {
-        toast({
-          title: language === 'es' ? 'Error' : 'Error',
-          description: language === 'es'
-            ? 'Hubo un problema al procesar tu solicitud. Por favor intenta nuevamente.'
-            : 'There was a problem processing your request. Please try again.',
-          variant: 'destructive',
-        });
-      }
+    } catch (error) {
+      console.error('Error submitting book download form:', error);
+      toast({
+        title: language === 'es' ? 'No se pudo descargar' : 'Download failed',
+        description: language === 'es'
+          ? 'Intenta nuevamente. Tu descarga no se ha completado.'
+          : 'Please try again. Your download has not completed.',
+        variant: 'destructive',
+      });
     } finally {
       setIsSubmitting(false);
     }

@@ -5,6 +5,13 @@ export default defineConfig({
   webServer: [
     { command: 'node scripts/mock-supabase.mjs', url: 'http://127.0.0.1:54329/test/state', reuseExistingServer: false },
     { command: 'npm run build && npm run start -- --port 3100', url: 'http://127.0.0.1:3100', timeout: 180_000, reuseExistingServer: false,
-      env: { NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54329', NEXT_PUBLIC_SUPABASE_ANON_KEY: 'test-anon-key', NEXT_TELEMETRY_DISABLED: '1' } },
+      env: {
+        NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54329',
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: 'test-anon-key',
+        NEXT_TELEMETRY_DISABLED: '1',
+        OCC_RESOURCES_ALLOW_SNAPSHOT: 'true',
+        SITE_URL: 'https://humanismoevolutivo.com',
+        NEXT_PUBLIC_SITE_URL: 'https://humanismoevolutivo.com',
+      } },
   ],
 });

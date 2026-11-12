@@ -1,7 +1,8 @@
 import 'server-only';
 import { createClient } from '@/lib/supabase/server';
+import { isSupabaseConfigured } from '@/lib/supabase/config';
 export async function getAdminClient() {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) return null;
+  if (!isSupabaseConfigured) return null;
   const client = await createClient();
   const { data: { user }, error } = await client.auth.getUser();
   if (error || !user) return null;

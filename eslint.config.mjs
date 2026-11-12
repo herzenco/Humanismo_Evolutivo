@@ -11,6 +11,12 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-vars": "off",
       "react/no-unescaped-entities": "off",
+      // Existing event-loading effects intentionally reset UI state while a
+      // request is started. Keep the pre-upgrade lint contract until those
+      // flows are migrated to a query/state-machine abstraction.
+      "react-hooks/set-state-in-effect": "off",
+      // Analytics queues are browser-owned mutable integration points.
+      "react-hooks/immutability": "off",
     },
   },
   // Override default ignores of eslint-config-next.

@@ -27,7 +27,7 @@ export function TutorialVideoButton() {
 export function PhilosophersVideo({ children, className = 'design-button home-philosophers-action', 'aria-label': ariaLabel }: { children?: ReactNode; className?: string; 'aria-label'?: string }) {
   const tx = useTx();
   const { language } = useLanguage();
-  return <VideoDialog aria-label={ariaLabel ?? tx("Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal")} videoSrc={homeVideos.philosophers.src} poster={homeVideos.philosophers.poster} title={tx("Introducción al Humanismo Evolutivo")} className={className}>
+  return <VideoDialog {...(ariaLabel ? { 'aria-label': ariaLabel } : {})} videoSrc={homeVideos.philosophers.src} poster={homeVideos.philosophers.poster} title={tx("Introducción al Humanismo Evolutivo")} className={className}>
     {children ?? <><PlayCircle size={20} aria-hidden="true" /><span>{language === 'es' ? 'Ver el video de los tres filósofos' : 'Watch the three philosophers video'}</span></>}
   </VideoDialog>;
 }

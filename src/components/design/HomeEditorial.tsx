@@ -69,7 +69,7 @@ export default function HomeEditorial() {
 <ol aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
 {hub.map(([id, label], index) => {
   const content = <><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></>;
-  return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button" aria-label={label}>{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
+  return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button">{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
 })}
 </ol>
 </section>
@@ -372,7 +372,7 @@ export default function HomeEditorial() {
 {tx("\nVer documental completo")}
 </VideoDialog>
 </div>
-<VideoDialog videoId={homeVideos.documentary.youtubeId} title={tx("Documental completo · Parque Cancún")} aria-label={tx("Reproducir el documental de Parque Cancún")} className="he-abf7b48b8">
+<VideoDialog videoId={homeVideos.documentary.youtubeId} title={tx("Documental completo · Parque Cancún")} className="he-abf7b48b8">
 <Image src={homeVideos.documentary.poster} alt="" fill sizes="(max-width: 900px) 100vw, 50vw" className="he-documentary-poster" />
 <span className="he-documentary-shade" aria-hidden="true" />
 <div className="he-b3f106d02">

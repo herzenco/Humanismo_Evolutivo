@@ -28,8 +28,8 @@ export default function Header() {
   }, [open]);
   return <header className="site-header">
     <div className="site-header-inner">
-      <Link href="/" className="site-brand" onClick={() => setOpen(false)} aria-label="Humanismo Evolutivo · Inicio">
-        <img src="/brand/humanismo-evolutivo-transparent.webp" alt="Humanismo Evolutivo Transpersonal" width="375" height="640" className="site-brand-logo" />
+      <Link href="/" className="site-brand" onClick={() => setOpen(false)}>
+        <img src="/brand/humanismo-evolutivo-transparent.webp" alt="" width="375" height="640" className="site-brand-logo" />
         <span className="site-brand-wordmark"><span className="site-brand-name">Humanismo Evolutivo</span><span className="site-brand-caption">Transpersonal</span></span>
       </Link>
       <nav aria-label={language === 'es' ? 'Principal' : 'Main navigation'} className="site-desktop-nav">

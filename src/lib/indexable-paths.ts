@@ -3,7 +3,7 @@ import { events } from '@/data/events';
 import { podcastSeries } from '@/data/media';
 export function indexablePaths() {
   return [
-    '/', '/autor', '/libros', '/medios', '/eventos', '/contacto', '/vision', '/chatbot', '/privacidad', '/terminos',
+    '/', '/autor', '/libros', '/medios', '/eventos', '/contacto', '/vision', '/chatbot', '/privacidad', '/terminos', '/accesibilidad',
     ...books.map(book => `/libros/${book.id}`),
     ...events.map(event => `/eventos/${event.id}`),
     ...podcastSeries.map(series => `/medios/show/${series.id}`),
