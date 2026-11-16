@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -112,20 +111,6 @@ const Chatbot = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="bg-gradient-to-br from-navy to-navy-dark text-white rounded-2xl p-8 shadow-2xl">
-              <h3 className="font-heading text-2xl font-semibold mb-4">{t('chatbot.notify.title')}</h3>
-              <p className="text-white/80 mb-6">{t('chatbot.notify.description')}</p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Tu correo electrónico"
-                  className="flex-grow px-4 py-3 rounded-lg text-navy placeholder:text-navy/50 border-0 focus:ring-2 focus:ring-gold outline-none"
-                />
-                <Button className="bg-gold hover:bg-gold-light text-navy-dark font-semibold px-6 py-3 rounded-lg whitespace-nowrap">
-                  {t('chatbot.notify.button')}
-                </Button>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>

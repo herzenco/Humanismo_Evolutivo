@@ -369,3 +369,15 @@
 }
 /* The portal card stays dark green inside light sections, so its label keeps the dark-section gold (5.65:1 on #173F2C). */
 .he-84988341f .he-093c31c5d.he-093c31c5d { color: #D4AF5A; }
+
+@media (max-width: 480px) {
+  .he-152d372b7 { flex-wrap: wrap; }
+  .he-6d2a3d2fe {
+    height: auto;
+    min-height: 44px;
+    max-width: 100%;
+    padding: 8px 12px;
+    overflow-wrap: anywhere;
+  }
+  .he-6d2a3d2fe svg { flex-shrink: 0; }
+}
