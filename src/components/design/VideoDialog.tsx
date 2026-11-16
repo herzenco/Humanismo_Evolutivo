@@ -1,5 +1,6 @@
 'use client';
 
+import ExternalPlayer from '@/components/design/ExternalPlayer';
 import { useState, type ReactNode } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
 import { useTx } from '@/components/design/useTx';
@@ -13,7 +14,7 @@ export default function VideoDialog({ videoId, videoSrc, poster, title, classNam
     <DialogContent className="w-[calc(100%-2rem)] max-w-4xl border-gold/40 bg-[#173F2C] p-6 text-white">
       <DialogTitle className="pr-8 font-heading text-3xl">{title}</DialogTitle>
       <DialogDescription className="sr-only">{tx("Video de presentación de Humanismo Evolutivo.")}</DialogDescription>
-      {open && videoSrc ? <video className="aspect-video w-full rounded-xl" src={videoSrc} poster={poster} controls autoPlay playsInline preload="metadata" aria-label={title} /> : open ? <iframe className="aspect-video w-full rounded-xl" src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`} title={title} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> : null}
+      {open && videoSrc ? <video className="aspect-video w-full rounded-xl" src={videoSrc} poster={poster} controls playsInline preload="metadata" aria-label={title} /> : open ? <ExternalPlayer src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`} title={title} provider="YouTube" /> : null}
     </DialogContent>
   </Dialog>;
 }
