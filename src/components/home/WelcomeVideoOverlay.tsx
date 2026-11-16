@@ -20,8 +20,8 @@ export default function WelcomeVideoOverlay() {
   return <Dialog open={open} onOpenChange={setOpen}>
     <DialogContent className="w-[calc(100%-2rem)] max-w-4xl border-border bg-background p-6">
       <DialogTitle className="pr-8 text-center text-2xl font-bold">Bienvenido a Parque Cancún</DialogTitle>
-      <DialogDescription>Una breve introducción al Humanismo Evolutivo. Activa el sonido con los controles del video.</DialogDescription>
-      {open ? <video className="aspect-video w-full rounded-lg" src={homeVideos.introduction.src} poster={homeVideos.introduction.poster} controls autoPlay muted playsInline preload="metadata" aria-label="Introducción a Parque Cancún" /> : null}
+      <DialogDescription>Una breve introducción al Humanismo Evolutivo. Usa los controles para reproducir el video.</DialogDescription>
+      {open ? <video className="aspect-video w-full rounded-lg" src={homeVideos.introduction.src} poster={homeVideos.introduction.poster} controls playsInline preload="metadata" aria-label="Introducción a Parque Cancún" /> : null}
     </DialogContent>
   </Dialog>;
 }

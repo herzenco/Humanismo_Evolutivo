@@ -423,6 +423,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
 
           {!isSubmitted && (
             <form onSubmit={handleSubmit}>
+              <p className="mb-4 text-sm">{label('El formulario solicita tu nombre y correo electrónico. Consulta el', 'This form asks for your name and email. Read the')} <Link href="/privacidad" className="underline">{label('aviso de privacidad', 'privacy notice')}</Link>.</p>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <label htmlFor="name" className="text-sm font-medium">

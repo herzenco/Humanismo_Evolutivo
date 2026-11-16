@@ -373,7 +373,7 @@ export default function HomeEditorial() {
 </VideoDialog>
 </div>
 <VideoDialog videoId={homeVideos.documentary.youtubeId} title={tx("Documental completo · Parque Cancún")} aria-label={tx("Reproducir el documental de Parque Cancún")} className="he-abf7b48b8">
-<Image src={homeVideos.documentary.poster} alt="" fill sizes="(max-width: 900px) 100vw, 50vw" className="he-documentary-poster" />
+<Image src={homeVideos.documentary.poster} alt={tx("Parque Cancún")} fill sizes="(max-width: 900px) 100vw, 50vw" className="he-documentary-poster" />
 <span className="he-documentary-shade" aria-hidden="true" />
 <div className="he-b3f106d02">
 {tx("DOCUMENTAL")}
@@ -664,7 +664,7 @@ export default function HomeEditorial() {
 </em>
 {tx(", Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano. Esta obra ganó el Premio Nacional de Ensayo Filosófico.")}
 </p>
-<Link href="/libros/yo-soy-nosotros" prefetch={false} className="he-22268af18 he-row">
+<Link href="/libros/yo-soy-nosotros" aria-label={`${tx("Leer más\n").trim()}: Yo soy nosotros`} prefetch={false} className="he-22268af18 he-row">
 {tx("Leer más\n")}
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -695,7 +695,7 @@ export default function HomeEditorial() {
 </em>
 {tx(", Marcos Constandse entrelaza ciencia, conciencia y ética para ofrecer una visión profundamente integradora entre el mundo natural y el del ser humano.")}
 </p>
-<Link href="/libros/ecologia-y-espiritualidad" prefetch={false} className="he-252de5a21 he-row">
+<Link href="/libros/ecologia-y-espiritualidad" aria-label={`${tx("Leer más\n").trim()}: Ecología y espiritualidad`} prefetch={false} className="he-252de5a21 he-row">
 {tx("Leer más\n")}
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -725,7 +725,7 @@ export default function HomeEditorial() {
 </em>
 {tx(" es una novela que entrelaza memoria, identidad y tecnología en un relato íntimo y visionario. Marcos Constandse nos conduce a un futuro posible, donde la acumulación de datos personales confronta a sus protagonistas con sus raíces más profundas y sus decisiones más humanas.")}
 </p>
-<Link href="/libros/dejalo-ser" prefetch={false} className="he-252de5a21 he-row">
+<Link href="/libros/dejalo-ser" aria-label={`${tx("Leer más\n").trim()}: ¡Déjalo ser!`} prefetch={false} className="he-252de5a21 he-row">
 {tx("Leer más\n")}
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -752,7 +752,7 @@ export default function HomeEditorial() {
 <p className="he-85fe10d5f">
 {tx("En esta obra íntima y lúcida, Marcos Constandse entrelaza filosofía, experiencia personal y reflexión social para ofrecernos una guía hacia una vida con mayor conciencia, bienestar y sentido.")}
 </p>
-<Link href="/libros/lo-mejor-esta-por-venir" prefetch={false} className="he-252de5a21 he-row">
+<Link href="/libros/lo-mejor-esta-por-venir" aria-label={`${tx("Leer más\n").trim()}: ¡Y lo mejor aún está por venir!`} prefetch={false} className="he-252de5a21 he-row">
 {tx("Leer más\n")}
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -783,7 +783,7 @@ export default function HomeEditorial() {
 </em>
 {tx(" es una invitación a vivir el emprendimiento como un noble servicio del bien común.")}
 </p>
-<Link href="/libros/el-arte-de-ser-empresario" prefetch={false} className="he-252de5a21 he-row">
+<Link href="/libros/el-arte-de-ser-empresario" aria-label={`${tx("Leer más\n").trim()}: El arte de ser empresario`} prefetch={false} className="he-252de5a21 he-row">
 {tx("Leer más\n")}
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">

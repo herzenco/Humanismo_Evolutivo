@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Link from '@/components/LocalizedLink';
 import Script from 'next/script';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -30,7 +31,8 @@ export default function ContactForm() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!token) { setError(en ? 'Confirm that you are a person before sending.' : 'Confirma que eres una persona antes de enviar.'); return; }
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
     setStatus('sending'); setError('');
     const response = await fetch('/api/contact', {
       method: 'POST',
@@ -49,7 +51,7 @@ export default function ContactForm() {
     const result = await response.json().catch(() => ({}));
     if (!response.ok) { setStatus('error'); setError(result.error || (en ? 'We could not send your message.' : 'No pudimos enviar tu mensaje.')); return; }
     setStatus('sent');
-    event.currentTarget.reset();
+    form.reset();
   }
   return <form id="formulario" className="portal-admin-form" onSubmit={onSubmit} aria-label={label.title} noValidate={false}>
     <h2 className="font-heading text-3xl font-light text-navy-dark">{label.title}</h2>
@@ -59,11 +61,12 @@ export default function ContactForm() {
     <label>{label.subject}<input name="subject" aria-label={label.subject} required maxLength={160} /></label>
     <label>{label.message}<textarea name="message" aria-label={label.message} required maxLength={5000} rows={6} /></label>
     <label className="portal-review-confirm"><input name="consent" aria-label={label.consent} type="checkbox" required /><span>{label.consent}</span></label>
+    <p>{en ? 'We use the information in this form to respond to your message.' : 'Usamos los datos de este formulario para responder a tu mensaje.'} <Link className="underline" href="/privacidad">{en ? 'Privacy notice' : 'Aviso de privacidad'}</Link></p>
     {siteKey ? <>
       <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
       <div className="cf-turnstile" data-sitekey={siteKey} data-callback="onTurnstileContact" />
-    </> : <p role="status">{en ? 'The human check is not configured yet.' : 'La verificación humana aún no está configurada.'}</p>}
-    <button className="design-button" type="submit" disabled={status === 'sending'}>{status === 'sending' ? label.sending : label.send}</button>
+    </> : <p role="status">{en ? 'This form is currently unavailable. Please contact us by email.' : 'Por el momento, el formulario no está disponible. Escríbenos por correo electrónico.'}</p>}
+    <button className="design-button" type="submit" disabled={!siteKey || status === 'sending'}>{status === 'sending' ? label.sending : label.send}</button>
     {status === 'sent' ? <p role="status">{label.sent}</p> : null}
     {error ? <p role="alert">{error}</p> : null}
   </form>;

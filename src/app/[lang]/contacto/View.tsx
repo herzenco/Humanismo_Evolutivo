@@ -49,7 +49,7 @@ const Contacto = () => {
               >
                 <motion.div variants={itemVariants} className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-navy-dark to-navy rounded-3xl"></div>
-                  <div className="relative p-10 text-white">
+                  <div className="relative p-6 sm:p-10 text-white">
                     <h2 className="font-heading text-3xl font-light mb-8">
                       {t('contacto.info.title')} <span className="text-gold font-medium">{t('contacto.info.highlight')}</span>
                     </h2>
@@ -64,13 +64,13 @@ const Contacto = () => {
                         }
                       ].map((item, index) => (
                         <div key={index} className="flex items-start group">
-                          <div className="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center mr-6 mt-1 group-hover:bg-gold/30 transition-colors">
+                          <div className="w-14 h-14 shrink-0 rounded-2xl bg-gold/20 flex items-center justify-center mr-3 sm:mr-6 mt-1 group-hover:bg-gold/30 transition-colors">
                             <item.icon className="w-6 h-6 text-gold" />
                           </div>
-                          <div>
+                          <div className="min-w-0">
                             <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
                             {item.href ? (
-                              <a href={item.href} className="text-white/80 hover:text-gold transition-colors text-lg">
+                              <a href={item.href} className="text-white/80 hover:text-gold transition-colors text-lg [overflow-wrap:anywhere]">
                                 {item.content}
                               </a>
                             ) : (
