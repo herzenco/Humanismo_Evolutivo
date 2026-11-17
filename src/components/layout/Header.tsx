@@ -7,7 +7,7 @@ import Link from '@/components/LocalizedLink';
 import { LanguageToggle } from '@/components/ui/language-toggle';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAdmin } from '@/hooks/useAdmin';
-import { EN_ENABLED } from '@/lib/release-flags';
+import { EN_ENABLED, PORTAL_ENABLED } from '@/lib/release-flags';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -28,8 +28,8 @@ export default function Header() {
   }, [open]);
   return <header className="site-header">
     <div className="site-header-inner">
-      <Link href="/" className="site-brand" onClick={() => setOpen(false)} aria-label="Humanismo Evolutivo · Inicio">
-        <img src="/brand/humanismo-evolutivo-transparent.webp" alt="Humanismo Evolutivo Transpersonal" width="375" height="640" className="site-brand-logo" />
+      <Link href="/" className="site-brand" onClick={() => setOpen(false)}>
+        <img src="/brand/humanismo-evolutivo-transparent.webp" alt="" width="375" height="640" className="site-brand-logo" />
         <span className="site-brand-wordmark"><span className="site-brand-name">Humanismo Evolutivo</span><span className="site-brand-caption">Transpersonal</span></span>
       </Link>
       <nav aria-label={language === 'es' ? 'Principal' : 'Main navigation'} className="site-desktop-nav">
@@ -38,7 +38,7 @@ export default function Header() {
       <div className="site-header-actions">
         <Link className="site-icon-button" href="/buscar" aria-label={language === 'es' ? 'Buscar' : 'Search'}><Search size={19} /></Link>
         {EN_ENABLED ? <LanguageToggle /> : null}
-        {<Link href="https://educacion.humanismoevolutivo.com/portal" aria-label="Portal educativo" className="site-portal-button"><GraduationCap size={19} /><span>{language === 'es' ? 'Portal educativo' : 'Education portal'}</span></Link>}
+        {PORTAL_ENABLED && <Link href="https://educacion.humanismoevolutivo.com/portal" aria-label="Portal educativo" className="site-portal-button"><GraduationCap size={19} /><span>{language === 'es' ? 'Portal educativo' : 'Education portal'}</span></Link>}
         {isAdmin ? <Link className="site-icon-button" href="/admin" aria-label="Administración"><Shield size={18} /></Link> : null}
         <button ref={toggle} className="site-icon-button site-menu-toggle" type="button" aria-expanded={open} aria-controls="site-mobile-nav" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setOpen(value => !value)}>{open ? <X /> : <Menu />}</button>
       </div>
@@ -46,7 +46,7 @@ export default function Header() {
     {open ? <nav id="site-mobile-nav" className="site-mobile-nav" aria-label="Menú principal">
       {links.map(([label, href]) => <Link key={href} href={href} aria-current={pathname === href ? 'page' : undefined} onClick={() => setOpen(false)}>{label}</Link>)}
       <Link href="/resources" onClick={() => setOpen(false)}>{language === 'es' ? 'Recursos' : 'Resources'}</Link>
-      {<Link href="https://educacion.humanismoevolutivo.com/portal" onClick={() => setOpen(false)}><GraduationCap size={19} />{language === 'es' ? 'Portal educativo' : 'Education portal'}</Link>}
+      {PORTAL_ENABLED && <Link href="https://educacion.humanismoevolutivo.com/portal" onClick={() => setOpen(false)}><GraduationCap size={19} />{language === 'es' ? 'Portal educativo' : 'Education portal'}</Link>}
     </nav> : null}
   </header>;
 }

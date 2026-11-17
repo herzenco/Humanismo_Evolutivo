@@ -69,13 +69,38 @@ test('missing resources return HTTP 404 and utility pages are not indexable', as
   if (!PORTAL_ENABLED) {
     for (const path of ['/portal', '/portal/cursos/x', '/auth', '/auth/callback']) {
       const response = await request.get(path, { maxRedirects: 0 });
-      expect([301, 302, 303, 307, 308, 404], path).toContain(response.status());
+      expect(response.status(), path).toBe(404);
+      expect(response.headers()['x-robots-tag']).toBe('noindex');
     }
   }
   const admin = await request.get('/admin', { maxRedirects: 0 });
   expect(admin.status()).toBe(308); expect(new URL(admin.headers().location).origin).toBe('https://admin.humanismoevolutivo.com');
   const es = await request.get('/es/libros?source=test', { maxRedirects: 0 });
   expect(es.status()).toBe(308); expect(es.headers().location).toContain('/libros?source=test');
+});
+
+test('public pages keep browser safeguards and hide education links by default', async ({ page, request }) => {
+  for (const path of ['/', '/libros/yo-soy-nosotros', '/contacto']) {
+    const response = await request.get(path);
+    expect(response.ok(), path).toBe(true);
+    const headers = response.headers();
+    expect(headers['content-security-policy']).toContain("frame-ancestors 'none'");
+    expect(headers['x-content-type-options']).toBe('nosniff');
+    expect(headers['referrer-policy']).toBe('strict-origin-when-cross-origin');
+    expect(headers['permissions-policy']).toContain('camera=()');
+  }
+
+  test.skip(PORTAL_ENABLED, 'Education links are intentionally visible when enabled.');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: /saltar/i })).toBeFocused();
+  const menu = page.getByRole('button', { name: 'Abrir menú' });
+  await menu.click();
+  await expect(page.locator('#site-mobile-nav')).toBeVisible();
+  await expect(page.locator('a[href^="https://educacion.humanismoevolutivo.com"]')).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  await expect(menu).toBeFocused();
 });
 
 test('old language preferences do not break hydration and language navigation preserves the page', async ({ page }) => {
@@ -97,23 +122,30 @@ test('old language preferences do not break hydration and language navigation pr
   expect(errors).toEqual([]);
 });
 
-test('library download succeeds for the previously broken book without analytics PII', async ({ page, request }) => {
-  await page.addInitScript(() => { window.dataLayer = []; });
-  await page.goto('/libros');
-  const bookLink = page.locator('a[href="/libros/lo-mejor-esta-por-venir"]').filter({ hasText: /Explor/ }).first();
-  await bookLink.locator('..').getByRole('button').click();
-  const dialog = page.getByRole('dialog');
-  await dialog.locator('input[type="text"]').fill('Test Reader');
-  await dialog.locator('input[type="email"]').fill('reader@example.test');
-  const downloadPromise = page.waitForEvent('download');
-  await dialog.locator('button[type="submit"]').click();
-  const download = await downloadPromise;
-  expect(download.suggestedFilename()).toContain('venir');
-  const state = await (await request.get(`${fixture}/test/state`)).json();
-  expect(state.book_downloads.at(-1).book_downloaded).toContain('venir');
-  const analytics = await page.evaluate(() => JSON.stringify(window.dataLayer));
-  expect(analytics).not.toContain('reader@example.test'); expect(analytics).not.toContain('Test Reader');
-});
+for (const path of ['/libros', '/libros/lo-mejor-esta-por-venir']) {
+  test(`${path} downloads the book and omits personal data from analytics`, async ({ page, request }) => {
+    await page.addInitScript(() => { window.dataLayer = []; });
+    await page.goto(path);
+    if (path === '/libros') {
+      const bookLink = page.locator('a[href="/libros/lo-mejor-esta-por-venir"]').filter({ hasText: /Explor/ }).first();
+      await bookLink.locator('..').getByRole('button').click();
+    } else {
+      await page.getByRole('button', { name: 'Descargar Libro', exact: true }).click();
+    }
+    const dialog = page.getByRole('dialog');
+    await dialog.locator('input[type="text"]').fill('Test Reader');
+    await dialog.locator('input[type="email"]').fill('reader@example.test');
+    const downloadPromise = page.waitForEvent('download');
+    await dialog.locator('button[type="submit"]').click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toContain('venir');
+    const state = await (await request.get(`${fixture}/test/state`)).json();
+    expect(state.book_downloads.at(-1).book_downloaded).toContain('venir');
+    const analytics = await page.evaluate(() => JSON.stringify(window.dataLayer));
+    expect(analytics).not.toContain('reader@example.test');
+    expect(analytics).not.toContain('Test Reader');
+  });
+}
 
 test('failed download registration never reports success or triggers a file', async ({ page, request }) => {
   await request.post(`${fixture}/test/fail-downloads`, { data: { fail: true } });

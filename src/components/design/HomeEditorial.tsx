@@ -1,5 +1,7 @@
 'use client';
 
+import { PORTAL_ENABLED } from '@/lib/release-flags';
+
 import { useTx } from '@/components/design/useTx';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { bookForLanguage } from '@/lib/book-english';
@@ -22,7 +24,7 @@ export default function HomeEditorial() {
     ['s5', tx('Las 51 preguntas')],
     ['s6', tx('Profundiza en los libros')],
     ['s7', tx('Más contenido en nuestras plataformas')],
-    ['s8', tx('Únete al Club de Amigos que Evolucionan')],
+    ...(PORTAL_ENABLED ? [['s8', tx('Únete al Club de Amigos que Evolucionan')]] : []),
   ];
   return <div className="editorial">
 <section aria-labelledby="hero-title" className="he-e149bc314 he-row">
@@ -66,10 +68,10 @@ export default function HomeEditorial() {
 </h2>
 <TutorialVideoButton />
 </div>
-<ol aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
+<ol aria-label={language === 'es' ? 'Contenidos' : 'Contents'} className="home-content-buttons">
 {hub.map(([id, label], index) => {
   const content = <><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></>;
-  return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button" aria-label={label}>{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
+  return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button">{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
 })}
 </ol>
 </section>
@@ -372,7 +374,7 @@ export default function HomeEditorial() {
 {tx("\nVer documental completo")}
 </VideoDialog>
 </div>
-<VideoDialog videoId={homeVideos.documentary.youtubeId} title={tx("Documental completo · Parque Cancún")} aria-label={tx("Reproducir el documental de Parque Cancún")} className="he-abf7b48b8">
+<VideoDialog videoId={homeVideos.documentary.youtubeId} title={tx("Documental completo · Parque Cancún")} className="he-abf7b48b8">
 <Image src={homeVideos.documentary.poster} alt={tx("Parque Cancún")} fill sizes="(max-width: 900px) 100vw, 50vw" className="he-documentary-poster" />
 <span className="he-documentary-shade" aria-hidden="true" />
 <div className="he-b3f106d02">
@@ -531,7 +533,7 @@ export default function HomeEditorial() {
 </Link>
 </div>
 </section>
-<section id="s8" className="he-580031031 he-row">
+{PORTAL_ENABLED && <section id="s8" className="he-580031031 he-row">
 <div className="he-3dd055e70 he-sized">
 <div className="he-3619f855d he-row">
 <span className="he-702f28551 he-row he-sized">
@@ -620,7 +622,7 @@ export default function HomeEditorial() {
 </li>
 </ul>
 </div>
-</section>
+</section>}
 <section id="libros" aria-labelledby="books-title" className="he-74bc7aede">
 <div className="he-70dacc86f he-row">
 <div className="he-780634c87 he-sized">
@@ -1022,7 +1024,7 @@ export default function HomeEditorial() {
 </article>
 </div>
 </section>
-<section id="portal" aria-labelledby="portal-title" className="he-f1875aa15">
+{PORTAL_ENABLED && <section id="portal" aria-labelledby="portal-title" className="he-f1875aa15">
 <div className="he-9d8773e24 he-row">
 <div className="he-cddefe03b he-sized">
 <span className="he-9a8091bf0 he-row">
@@ -1097,5 +1099,5 @@ export default function HomeEditorial() {
 </div>
 </div>
 </div>
-</section>
+</section>}
 </div>; }
