@@ -75,7 +75,9 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
 
     try {
       const download = await downloadBook({ bookId: book.id, language, ...formData });
-      window.dataLayer?.push({
+      // eslint-disable-next-line react-hooks/immutability -- GTM owns this browser-global queue.
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
         event: 'book_download_form_submit',
         book_id: book.id,
         book_title: download.title,

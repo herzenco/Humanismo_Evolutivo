@@ -1,7 +1,5 @@
 'use client';
 
-import { PORTAL_ENABLED } from '@/lib/release-flags';
-
 import { useTx } from '@/components/design/useTx';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { bookForLanguage } from '@/lib/book-english';
@@ -24,7 +22,7 @@ export default function HomeEditorial() {
     ['s5', tx('Las 51 preguntas')],
     ['s6', tx('Profundiza en los libros')],
     ['s7', tx('Más contenido en nuestras plataformas')],
-    ...(PORTAL_ENABLED ? [['s8', tx('Únete al Club de Amigos que Evolucionan')]] : []),
+    ['s8', tx('Únete al Club de Amigos que Evolucionan')],
   ];
   return <div className="editorial">
 <section aria-labelledby="hero-title" className="he-e149bc314 he-row">
@@ -68,7 +66,7 @@ export default function HomeEditorial() {
 </h2>
 <TutorialVideoButton />
 </div>
-<ol aria-label={language === 'es' ? 'Contenidos' : 'Contents'} className="home-content-buttons">
+<ol aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
 {hub.map(([id, label], index) => {
   const content = <><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></>;
   return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button">{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
@@ -533,7 +531,7 @@ export default function HomeEditorial() {
 </Link>
 </div>
 </section>
-{PORTAL_ENABLED && <section id="s8" className="he-580031031 he-row">
+<section id="s8" className="he-580031031 he-row">
 <div className="he-3dd055e70 he-sized">
 <div className="he-3619f855d he-row">
 <span className="he-702f28551 he-row he-sized">
@@ -622,7 +620,7 @@ export default function HomeEditorial() {
 </li>
 </ul>
 </div>
-</section>}
+</section>
 <section id="libros" aria-labelledby="books-title" className="he-74bc7aede">
 <div className="he-70dacc86f he-row">
 <div className="he-780634c87 he-sized">
@@ -1024,7 +1022,7 @@ export default function HomeEditorial() {
 </article>
 </div>
 </section>
-{PORTAL_ENABLED && <section id="portal" aria-labelledby="portal-title" className="he-f1875aa15">
+<section id="portal" aria-labelledby="portal-title" className="he-f1875aa15">
 <div className="he-9d8773e24 he-row">
 <div className="he-cddefe03b he-sized">
 <span className="he-9a8091bf0 he-row">
@@ -1099,5 +1097,5 @@ export default function HomeEditorial() {
 </div>
 </div>
 </div>
-</section>}
+</section>
 </div>; }
