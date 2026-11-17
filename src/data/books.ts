@@ -1,4 +1,4 @@
-import officialContent from './officialBookContent.json';
+import officialContent from './officialBookContent.json' with { type: 'json' };
 export interface Book {
   id: string;
   title: string;

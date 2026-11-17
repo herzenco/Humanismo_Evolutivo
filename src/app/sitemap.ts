@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/vision',
     '/privacidad',
     '/terminos',
+    '/video/1',
   ].map(route => localized(route || '/', {
     lastModified: new Date(),
     changeFrequency: 'monthly',
