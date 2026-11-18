@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useEffect, useMemo } from 'react';
+import { localizedPath } from '@/lib/site';
 import Link from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import { Search as SearchIcon, BookOpen, Headphones, Video } from 'lucide-react';
@@ -40,11 +40,9 @@ const fuzzyMatch = (searchTerm: string, target: string): boolean => {
   return false;
 };
 
-const Search = () => {
+export default function SearchPage({ query }: { query: string }) {
   const books = useBooks();
   const { t, language } = useLanguage();
-  const searchParams = useSearchParams();
-  const query = searchParams.get('q') || '';
   const searchResults = useMemo(() => {
     if (!query.trim()) {
       return { books: [], podcasts: [], videos: [] };
@@ -102,7 +100,7 @@ const Search = () => {
   useEffect(() => {
     if (!query.trim()) return;
     // Track search event
-    (window as any).dataLayer?.push({
+    window.dataLayer?.push({
       event: 'search_performed',
       search_term: query,
       results_count: searchResults.books.length + searchResults.podcasts.length + searchResults.videos.length
@@ -146,20 +144,17 @@ const Search = () => {
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <form action="/buscar" method="get" className="design-search-form" role="search">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight">
+              {query.trim()
+                ? (language === 'es' ? 'Resultados de búsqueda' : 'Search results')
+                : (language === 'es' ? 'Buscar contenido' : 'Search content')}
+            </h1>
+            <form action={localizedPath('/buscar', language)} method="get" className="design-search-form" role="search">
               <label htmlFor="content-search" className="sr-only">{language === 'es' ? 'Buscar contenido' : 'Search content'}</label>
               <input id="content-search" name="q" type="search" defaultValue={query} placeholder={language === 'es' ? '¿Qué te gustaría explorar?' : 'What would you like to explore?'} required />
               <button type="submit" aria-label={language === 'es' ? 'Buscar' : 'Search'}><SearchIcon size={22} /></button>
             </form>
-            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight">
-              {language === 'es' ? 'Resultados de búsqueda' : 'Search Results'}
-            </h1>
             {query && (
               <p className="text-xl md:text-2xl text-white/85 leading-relaxed mb-4">
                 {language === 'es' ? 'Buscando por: ' : 'Searching for: '}
@@ -169,7 +164,7 @@ const Search = () => {
             <p className="text-lg text-white/70">
               {totalResults} {language === 'es' ? 'resultado(s) encontrado(s)' : 'result(s) found'}
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -347,13 +342,5 @@ const Search = () => {
         </div>
       </section>
     </PageWrapper>
-  );
-};
-
-export default function SearchPage() {
-  return (
-    <Suspense fallback={null}>
-      <Search />
-    </Suspense>
   );
 }

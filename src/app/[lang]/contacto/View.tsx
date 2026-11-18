@@ -2,12 +2,12 @@
 
 import ContactIntro from "@/components/design/ContactIntro";
 import { motion } from 'framer-motion';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import PageWrapper from "@/components/layout/PageWrapper";
 import ContactForm from '@/components/contact/ContactForm';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const Contacto = () => {
+const Contacto = ({ phone }: { phone?: string }) => {
   const { t } = useLanguage();
 
   const containerVariants = {
@@ -61,21 +61,23 @@ const Contacto = () => {
                           title: t('contacto.info.email'),
                           content: "humanismoevolutivo@gmail.com",
                           href: "mailto:humanismoevolutivo@gmail.com"
-                        }
-                      ].map((item, index) => (
-                        <div key={index} className="flex items-start group">
+                        },
+                        ...(phone ? [{
+                          icon: Phone,
+                          title: t('contacto.info.phone'),
+                          content: phone,
+                          href: `tel:${phone.replace(/[^+0-9]/g, '')}`,
+                        }] : []),
+                      ].map((item) => (
+                        <div key={item.href} className="flex items-start group">
                           <div className="w-14 h-14 shrink-0 rounded-2xl bg-gold/20 flex items-center justify-center mr-3 sm:mr-6 mt-1 group-hover:bg-gold/30 transition-colors">
                             <item.icon className="w-6 h-6 text-gold" />
                           </div>
                           <div className="min-w-0">
                             <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                            {item.href ? (
-                              <a href={item.href} className="text-white/80 hover:text-gold transition-colors text-lg [overflow-wrap:anywhere]">
-                                {item.content}
-                              </a>
-                            ) : (
-                              <p className="text-white/80 text-lg whitespace-pre-line">{item.content}</p>
-                            )}
+                            <a href={item.href} className="text-white/90 hover:text-gold transition-colors text-lg [overflow-wrap:anywhere]">
+                              {item.content}
+                            </a>
                           </div>
                         </div>
                       ))}

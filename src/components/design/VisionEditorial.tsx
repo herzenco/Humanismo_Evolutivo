@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PersonalCreed from "./PersonalCreed";
 
 // Ported from the supplied Vision.html; navigation uses application routes.
 export default function VisionEditorial() { return <div className="editorial">
@@ -35,7 +36,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </path>
 </svg>
 </a>
-<Link href="/resources" prefetch={false} className="he-b9cc09976 he-row">
+<a href="#credo-personal" className="he-b9cc09976 he-row">
 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M3 5.5c2.5-1 5.5-1 9 1 3.5-2 6.5-2 9-1v13c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1z">
 
@@ -45,7 +46,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </path>
 </svg>
 {"\nIr al Credo personal"}
-</Link>
+</a>
 </div>
 </div>
 <figure className="he-a912b057f he-sized">
@@ -121,12 +122,12 @@ export default function VisionEditorial() { return <div className="editorial">
 </a>
 </li>
 <li>
-<Link href="/resources" prefetch={false} className="he-0565b12eb he-row">
+<a href="#credo-personal" className="he-0565b12eb he-row">
 <span className="he-3c616e763 he-sized">
 
 </span>
 {"Credo personal"}
-</Link>
+</a>
 </li>
 </ol>
 </nav>
@@ -373,6 +374,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </li>
 </ol>
 </section>
+<PersonalCreed title="Credo personal" />
 </article>
 </section>
 </div>; }

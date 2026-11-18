@@ -120,14 +120,9 @@ export const publicCopy: Record<string, string> = {
   'Lecturas y reflexiones': 'Readings and reflections',
   'Conecta con la comunidad': 'Connect with the community',
   'Escríbenos': 'Write to us',
-  'Artículos y boletines': 'Articles and newsletters',
-  'Revista': 'Magazine',
   'Conoce, comparte y forma parte de un mundo más consciente, solidario y humano.':
     'Learn, share, and become part of a more conscious, supportive, and humane world.',
-  'Al unirte al Club obtienes acceso gratuito al ': 'When you join the Club you receive free access to the ',
   'Portal educativo': 'Education portal',
-  ': un espacio en línea para estudiar los cursos de Humanismo Evolutivo Transpersonal a tu ritmo. Las lecturas están organizadas por partes y clases, y tu avance se guarda en tu cuenta para que retomes donde te quedaste.':
-    ': an online space for studying the courses of Transpersonal Evolutionary Humanism at your own pace. Readings are organized by parts and classes, and your progress is saved in your account so you can resume where you left off.',
   'Únete al club\n': 'Join the club\n',
   'Ya soy miembro · Entrar al portal': 'I am already a member · Enter the portal',
   '\nEN EL PORTAL EDUCATIVO': '\nIN THE EDUCATION PORTAL',
@@ -314,7 +309,6 @@ export const publicCopy: Record<string, string> = {
   'Reproducir el video: Introducción a la filosofía del Humanismo Evolutivo Transpersonal':
     'Play the video: Introduction to the philosophy of Transpersonal Evolutionary Humanism',
   'Introducción al Humanismo Evolutivo': 'Introduction to Evolutionary Humanism',
-  'Video tutorial · Próximamente': 'Tutorial video · Coming soon',
   'Video de presentación de Humanismo Evolutivo.': 'Introductory video for Evolutionary Humanism.',
 
   'Próximamente': 'Coming soon',

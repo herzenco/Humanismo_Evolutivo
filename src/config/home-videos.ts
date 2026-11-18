@@ -1,19 +1,34 @@
+function configuredYouTubeId(value?: string) {
+  return value && /^[A-Za-z0-9_-]{11}$/.test(value) ? value : undefined;
+}
+
 // Separate media for the welcome popup, philosophers section, and documentary.
 export const homeVideos = {
   introduction: {
+    youtubeId: configuredYouTubeId(process.env.NEXT_PUBLIC_HE_INTRODUCTION_YOUTUBE_ID),
     id: 'parque-cancun-introduccion-20261021',
     src: '/api/qa-media/introduction',
     poster: '/api/qa-media/introduction-poster',
     durationSeconds: 186.1,
   },
   philosophers: {
+    youtubeId: configuredYouTubeId(process.env.NEXT_PUBLIC_HE_PHILOSOPHERS_YOUTUBE_ID),
     id: 'humanismo-evolutivo-transpersonal-20261102',
     src: '/api/qa-media/philosophers',
     poster: '/api/qa-media/philosophers-poster',
     durationSeconds: 413.75,
   },
+  tutorial: { youtubeId: configuredYouTubeId(process.env.NEXT_PUBLIC_HE_TUTORIAL_YOUTUBE_ID) },
   documentary: { youtubeId: 'FbRIey3dFwA', poster: '/design/documentary-parque-cancun.jpg' },
 } as const;
+
+export function homeVideoPlayback(video: typeof homeVideos.introduction | typeof homeVideos.philosophers) {
+  return video.youtubeId ? { videoId: video.youtubeId } : { videoSrc: video.src, poster: video.poster };
+}
+
+export function youtubeEmbedUrl(videoId: string) {
+  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&cc_load_policy=1`;
+}
 
 // Exact allowlist: clients cannot choose arbitrary blob paths or URLs.
 export const qaMediaAssets: Record<string, { pathname: string; contentType: string }> = {
