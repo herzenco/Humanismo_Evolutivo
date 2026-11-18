@@ -7,7 +7,7 @@ const reply = (body: unknown, status = 200) => Response.json(body, { status, hea
 async function notify(input: { name: string; email: string; phone?: string; subject: string; message: string }) {
   const key = process.env.RESEND_API_KEY;
   const from = process.env.PORTAL_INVITATION_FROM || process.env.CONTACT_FROM_EMAIL;
-  const to = process.env.CONTACT_NOTIFY_EMAIL || 'humanismoevolutivo@gmail.com';
+  const to = 'humanismoevolutivo@gmail.com';
   // TODO: set RESEND_API_KEY and PORTAL_INVITATION_FROM (or CONTACT_FROM_EMAIL) so this notification is delivered.
   if (!key || !from) return false;
   const response = await fetch('https://api.resend.com/emails', {
