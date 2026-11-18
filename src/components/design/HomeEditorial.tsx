@@ -1,5 +1,7 @@
 'use client';
 
+import { EDUCATION_WAITLIST_URL } from '@/lib/site';
+
 import { useTx } from '@/components/design/useTx';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { bookForLanguage } from '@/lib/book-english';
@@ -66,7 +68,7 @@ export default function HomeEditorial() {
 </h2>
 <TutorialVideoButton />
 </div>
-<ol aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
+<ol id="contenidos" aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
 {hub.map(([id, label], index) => {
   const content = <><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></>;
   return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button">{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
@@ -503,32 +505,6 @@ export default function HomeEditorial() {
 </span>
 </Link>
 <Link href="/contacto" prefetch={false} className="he-a27bfcb8c"><span className="he-2ec7ee111">{tx("Conecta con la comunidad")}</span><span className="he-6663c68e7">{tx("Escríbenos")}</span></Link>
-<Link href="/medios" prefetch={false} className="he-a27bfcb8c">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6B45" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M6 3h9l3 3v15H6z">
-
-</path>
-<path d="M9 9h6M9 13h6M9 17h4">
-
-</path>
-</svg>
-<span className="he-2ec7ee111">
-{tx("Artículos y boletines")}
-</span>
-</Link>
-<Link href="/medios" prefetch={false} className="he-a27bfcb8c">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6B45" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M3 5.5c2.5-1 5.5-1 9 1 3.5-2 6.5-2 9-1v13c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1z">
-
-</path>
-<path d="M12 6.5v13">
-
-</path>
-</svg>
-<span className="he-2ec7ee111">
-{tx("Revista")}
-</span>
-</Link>
 </div>
 </section>
 <section id="s8" className="he-580031031 he-row">
@@ -545,14 +521,12 @@ export default function HomeEditorial() {
 {tx("Conoce, comparte y forma parte de un mundo más consciente, solidario y humano.")}
 </p>
 <p className="he-9645b261d">
-{tx("Al unirte al Club obtienes acceso gratuito al ")}
-<strong>
-{tx("Portal educativo")}
-</strong>
-{tx(": un espacio en línea para estudiar los cursos de Humanismo Evolutivo Transpersonal a tu ritmo. Las lecturas están organizadas por partes y clases, y tu avance se guarda en tu cuenta para que retomes donde te quedaste.")}
+{language === 'es'
+  ? 'Inscríbete en la lista de espera para recibir noticias sobre el acceso al Portal educativo.'
+  : 'Join the waitlist to receive updates about access to the Education portal.'}
 </p>
 <div className="he-e8e21757e he-row">
-<Link href="https://educacion.humanismoevolutivo.com/auth?mode=signup" prefetch={false} className="he-e002036e7 he-row">
+<Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-e002036e7 he-row">
 {tx("Únete al club\n")}
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -560,8 +534,8 @@ export default function HomeEditorial() {
 </path>
 </svg>
 </Link>
-<Link href="https://educacion.humanismoevolutivo.com/portal" prefetch={false} className="he-a42476497 he-row">
-{tx("Ya soy miembro · Entrar al portal")}
+<Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-a42476497 he-row">
+Acceso anticipado
 </Link>
 </div>
 </div>
@@ -1045,8 +1019,8 @@ export default function HomeEditorial() {
 <p className="he-6b5165f1c">
 {tx("Crea tu cuenta gratuita para estudiar los cursos de Humanismo Evolutivo Transpersonal.")}
 </p>
-<Link href="https://educacion.humanismoevolutivo.com/portal" prefetch={false} className="he-c01a194ae he-row">
-{tx("Entrar al portal\n")}
+<Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-c01a194ae he-row">
+Acceso anticipado
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
 

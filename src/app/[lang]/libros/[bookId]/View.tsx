@@ -1,5 +1,6 @@
 "use client";
 
+import { useSpanishFieldValidation } from '@/hooks/useSpanishFieldValidation';
 import Link from '@/components/LocalizedLink';
 import { use } from 'react';
 import { motion } from 'framer-motion';
@@ -27,6 +28,7 @@ import { BookStructuredData } from '@/components/seo/StructuredData';
 export default function BookDetailPage({ params }: { params: Promise<{ bookId: string }> }) {
   const { bookId } = use(params);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const fields = useSpanishFieldValidation();
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -69,8 +71,9 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
     setIsDialogOpen(true);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!fields.validate(e.currentTarget, ['name', 'email'])) return;
     setIsSubmitting(true);
 
     try {
@@ -328,7 +331,10 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
       </section>
 
       {/* Download Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <Dialog open={isDialogOpen} onOpenChange={(open) => {
+          if (!open) fields.clear();
+          setIsDialogOpen(open);
+        }}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-heading">
@@ -364,7 +370,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
           </DialogHeader>
 
           {!isSubmitted && (
-            <form onSubmit={handleSubmit}>
+            <form noValidate onSubmit={handleSubmit}>
               <p className="mb-4 text-sm">{label('El formulario solicita tu nombre y correo electrónico. Consulta el', 'This form asks for your name and email. Read the')} <Link href="/privacidad" className="underline">{label('aviso de privacidad', 'privacy notice')}</Link>.</p>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
@@ -373,12 +379,15 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   </label>
                   <Input
                     id="name"
+                    name="name"
+                    {...fields.attributes('name')}
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder={label('Tu nombre', 'Your name')}
                     required
                   />
+                  {fields.feedback('name')}
                 </div>
                 <div className="grid gap-2">
                   <label htmlFor="email" className="text-sm font-medium">
@@ -386,16 +395,19 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   </label>
                   <Input
                     id="email"
+                    name="email"
+                    {...fields.attributes('email')}
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder={label('correo@ejemplo.com', 'email@example.com')}
                     required
                   />
+                  {fields.feedback('email')}
                 </div>
               </div>
               <DialogFooter>
-                <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)} disabled={isSubmitting}>
+                <Button type="button" variant="outline" onClick={() => { fields.clear(); setIsDialogOpen(false); }} disabled={isSubmitting}>
                   {language === 'es' ? 'Cancelar' : 'Cancel'}
                 </Button>
                 <Button type="submit" className="bg-gold hover:bg-gold-dark text-navy-dark" disabled={isSubmitting}>
