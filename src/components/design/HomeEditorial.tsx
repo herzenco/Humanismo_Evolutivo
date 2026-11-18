@@ -1098,4 +1098,5 @@ export default function HomeEditorial() {
 </div>
 </div>
 </section>
+<div className="design-content-width py-8"><a href="#hero-title" className="design-button design-button-outline">{tx("Volver al inicio")} <span aria-hidden="true">↑</span></a></div>
 </div>; }

@@ -167,7 +167,7 @@ export default function VisionEditorial() { return <div className="editorial">
 {"La visión del sexo:"}
 </h3>
 <p className="he-c6d3f2ec9">
-{"En los años 50, era un tabú que no se mencionaba ni en público, ni en privado; “la liberación sexual” toma fuerza en los movimientos sociales de 1968, en todo el mundo, que fue una rebelión en contra del “establishment” en general, que alteró la visión del mundo: que se tenía del sexo, de la moda, de las parejas, del matrimonio, de la sexualidad individual, etc."}
+{"En los años 50, era un tabú que no se mencionaba ni en público, ni en privado; “la liberación sexual” toma fuerza en los movimientos sociales de 1968, en todo el mundo, que fue una rebelión en contra del “establishment” en general, que alteró la visión que se tenía: del mundo, del sexo, de la moda, de las parejas, del matrimonio, de la sexualidad individual, etc."}
 </p>
 </article>
 <article aria-labelledby="ej-mujer" className="he-3a7961f37">
@@ -293,7 +293,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </div>
 <section id="b3" className="he-4ac120810">
 <p className="he-090e970dd">
-{"Nuestra cultura occidental-española-católica, nos formó en nuestra infancia, con las tradiciones fundacionales de la cultura europea de orígenes greco-judeo-cristiano-romanos, que ensenaba que los seres humanos perseguimos los ideales de verdad-justicia-belleza-bondad como directrices de vida."}
+{"Nuestra cultura occidental-española-católica, nos formó en nuestra infancia, con las tradiciones fundacionales de la cultura europea de orígenes greco-judeo-cristiano-romanos, que enseñaba que los seres humanos perseguimos los ideales de verdad-justicia-belleza-bondad como directrices de vida."}
 </p>
 <p className="he-090e970dd">
 {"En lo material soy una combinación milagrosa (como todos nosotros), de carbono, hidrógeno, oxígeno, fósforo, nitrógeno, azufre, azúcar y algo más."}
