@@ -241,7 +241,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ eventId:
                               <h4 className="font-heading text-lg text-navy-dark mb-2 group-hover:text-[#684a10] transition-colors line-clamp-2">
                                 {t(relatedEvent.titleKey)}
                               </h4>
-                              <p className="text-sm text-navy/70 flex items-center gap-2">
+                              <p className="text-sm text-navy flex items-center gap-2">
                                 <Calendar className="w-4 h-4" />
                                 {formatDate(relatedEvent.date)}
                               </p>

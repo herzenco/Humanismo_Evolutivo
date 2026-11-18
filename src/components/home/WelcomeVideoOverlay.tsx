@@ -1,8 +1,9 @@
 "use client";
 
+import ExternalPlayer from '@/components/design/ExternalPlayer';
 import { useState, useEffect, useRef } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { homeVideos } from '@/config/home-videos';
+import { homeVideos, youtubeEmbedUrl } from '@/config/home-videos';
 
 const STORAGE_KEY = `welcomeVideoSeen:${homeVideos.introduction.id}`;
 
@@ -30,7 +31,7 @@ export default function WelcomeVideoOverlay() {
     }} className="w-[calc(100%-2rem)] max-w-4xl border-border bg-background p-6">
       <DialogTitle className="pr-8 text-center text-2xl font-bold">Bienvenido a Parque Cancún</DialogTitle>
       <DialogDescription>Una breve introducción al Humanismo Evolutivo. Usa los controles para reproducir el video.</DialogDescription>
-      {open ? <video className="aspect-video w-full rounded-lg" src={homeVideos.introduction.src} poster={homeVideos.introduction.poster} controls playsInline preload="metadata" aria-label="Introducción a Parque Cancún" /> : null}
+      {open && homeVideos.introduction.youtubeId ? <ExternalPlayer src={youtubeEmbedUrl(homeVideos.introduction.youtubeId)} title="Introducción a Parque Cancún" provider="YouTube" /> : open ? <video className="aspect-video w-full rounded-lg" src={homeVideos.introduction.src} poster={homeVideos.introduction.poster} controls playsInline preload="metadata" aria-label="Introducción a Parque Cancún" /> : null}
     </DialogContent>
   </Dialog>;
 }

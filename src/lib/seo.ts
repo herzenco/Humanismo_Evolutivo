@@ -7,9 +7,14 @@ export function pageMetadata({ title, description, path, language, image = SOCIA
   title: string; description: string; path: string; language: Language; image?: string; index?: boolean;
 }): Metadata {
   const url = absoluteUrl(path, language);
-  // Avoid repeating the brand or inflating a descriptive title with a suffix.
-  const brandedTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
-  const fullTitle = brandedTitle.length <= 65 ? brandedTitle : title;
+  const maxTitleLength = 65;
+  const brand = language === 'es' ? SITE_NAME : 'Evolutionary Humanism';
+  const brandedTitle = title.includes(brand) ? title : `${title} | ${brand}`;
+  const titlePrefix = title.slice(0, maxTitleLength - 1);
+  const shortTitle = title.length > maxTitleLength
+    ? `${titlePrefix.replace(/\s+\S*$/, '').trimEnd() || titlePrefix}…`
+    : title;
+  const fullTitle = brandedTitle.length <= maxTitleLength ? brandedTitle : shortTitle;
   return {
     title: { absolute: fullTitle }, description,
     alternates: { canonical: url, languages: hreflangLanguages(absoluteUrl(path), absoluteUrl(path, 'en')) },

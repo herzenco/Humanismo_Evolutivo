@@ -5,7 +5,7 @@ import { homeVideos } from '../src/config/home-videos';
 import { getBookDownload } from '../src/lib/book-downloads';
 import { indexablePaths } from '../src/lib/indexable-paths';
 import { EN_ENABLED, PORTAL_ENABLED } from '../src/lib/release-flags';
-import { SITE_URL, absoluteUrl, localizedPath } from '../src/lib/site';
+import { EDUCATION_WAITLIST_URL, SITE_URL, absoluteUrl, localizedPath } from '../src/lib/site';
 const fixture = 'http://127.0.0.1:54329';
 
 test('every book has an existing valid PDF for both languages', () => {
@@ -92,27 +92,48 @@ test('public pages keep browser safeguards and link out to education', async ({ 
     expect(headers['permissions-policy']).toContain('camera=()');
   }
 
-  const portal = 'https://educacion.humanismoevolutivo.com/portal';
-  const signup = 'https://educacion.humanismoevolutivo.com/auth?mode=signup';
   await page.goto('/');
   const desktopPortal = page.locator('header').getByRole('link', { name: 'Portal educativo' });
   await expect(desktopPortal).toBeVisible();
-  await expect(desktopPortal).toHaveAttribute('href', portal);
-  await expect(page.locator('footer').getByRole('link', { name: 'Portal educativo' })).toHaveAttribute('href', portal);
-  await expect(page.locator('footer').getByRole('link', { name: 'Únete a la comunidad' })).toHaveAttribute('href', signup);
+  await expect(desktopPortal).toHaveAttribute('href', EDUCATION_WAITLIST_URL);
+  await expect(page.locator('footer').getByRole('link', { name: 'Portal educativo' })).toHaveAttribute('href', EDUCATION_WAITLIST_URL);
+  await expect(page.locator('footer').getByRole('link', { name: 'Únete a la comunidad' })).toHaveAttribute('href', EDUCATION_WAITLIST_URL);
   await expect(page.getByRole('link', { name: /Únete al Club de Amigos que Evolucionan/i })).toHaveAttribute('href', '#s8');
-  await expect(page.locator('#s8').getByRole('link', { name: 'Únete al club' })).toHaveAttribute('href', signup);
-  await expect(page.locator('#s8').getByRole('link', { name: 'Ya soy miembro · Entrar al portal' })).toHaveAttribute('href', portal);
-  await expect(page.locator('#portal').getByRole('link', { name: 'Entrar al portal' })).toHaveAttribute('href', portal);
+  await expect(page.locator('#s8').getByRole('link', { name: 'Únete al club' })).toHaveAttribute('href', EDUCATION_WAITLIST_URL);
+  await expect(page.locator('#s8').getByRole('link', { name: 'Acceso anticipado' })).toHaveAttribute('href', EDUCATION_WAITLIST_URL);
+  await expect(page.locator('#portal').getByRole('link', { name: 'Acceso anticipado' })).toHaveAttribute('href', EDUCATION_WAITLIST_URL);
 
   await page.setViewportSize({ width: 390, height: 844 });
   const menu = page.getByRole('button', { name: 'Abrir menú' });
   await menu.click();
   const mobilePortal = page.locator('#site-mobile-nav').getByRole('link', { name: 'Portal educativo' });
   await expect(mobilePortal).toBeVisible();
-  await expect(mobilePortal).toHaveAttribute('href', portal);
+  await expect(mobilePortal).toHaveAttribute('href', EDUCATION_WAITLIST_URL);
   await page.keyboard.press('Escape');
   await expect(menu).toBeFocused();
+});
+
+test('built public pages have no Education portal, auth or signup links', async ({ request }) => {
+  const sitemap = await (await request.get('/sitemap.xml')).text();
+  const paths = Array.from(sitemap.matchAll(/<loc>([^<]+)<\/loc>/g), ([, url]) => new URL(url).pathname);
+  expect(paths).toContain('/');
+  for (const path of [...new Set([...paths, '/buscar'])]) {
+    const response = await request.get(path);
+    expect(response.ok(), path).toBe(true);
+    const html = await response.text();
+    for (const [, href] of html.matchAll(/<a\b[^>]*?\bhref="([^"]*)"/gi)) {
+      const url = new URL(href.replaceAll('&amp;', '&'), SITE_URL);
+      if (!url.hostname.split('.').some((label) => label === 'educacion' || label.startsWith('educacion-'))) continue;
+      expect(url.pathname, `${path}: ${href}`).not.toMatch(/^\/(portal|auth)(?:\/|$)/i);
+      expect(url.searchParams.getAll('mode'), `${path}: ${href}`).not.toContain('signup');
+    }
+  }
+});
+
+test('contact form without a Turnstile site key is unavailable', async ({ page }) => {
+  await page.goto('/contacto');
+  await expect(page.getByText('El formulario no está disponible en este momento.', { exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Enviar mensaje' })).toBeDisabled();
 });
 
 test('first visit opens the welcome video, and Escape restores focus before the next visit', async ({ page }) => {

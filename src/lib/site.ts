@@ -1,4 +1,5 @@
 export const SITE_URL = 'https://humanismoevolutivo.com';
+export const EDUCATION_WAITLIST_URL = 'https://educacion.humanismoevolutivo.com/';
 export const SITE_NAME = 'Humanismo Evolutivo';
 export type Language = 'es' | 'en';
 export const languages: Language[] = ['es', 'en'];
