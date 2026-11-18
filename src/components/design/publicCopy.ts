@@ -124,7 +124,6 @@ export const publicCopy: Record<string, string> = {
     'Learn, share, and become part of a more conscious, supportive, and humane world.',
   'Portal educativo': 'Education portal',
   'Únete al club\n': 'Join the club\n',
-  'Ya soy miembro · Entrar al portal': 'I am already a member · Enter the portal',
   '\nEN EL PORTAL EDUCATIVO': '\nIN THE EDUCATION PORTAL',
   '4 cursos · 146 clases': '4 courses · 146 classes',
   'Acceso libre': 'Free access',
@@ -176,7 +175,6 @@ export const publicCopy: Record<string, string> = {
   '\nUn espacio para aprender y profundizar': '\nA space for learning and going deeper',
   'Crea tu cuenta gratuita para estudiar los cursos de Humanismo Evolutivo Transpersonal.':
     'Create your free account to study the courses of Transpersonal Evolutionary Humanism.',
-  'Entrar al portal\n': 'Enter the portal\n',
   'Todo en un lugar': 'Everything in one place',
   'Cursos organizados por partes y clases.': 'Courses organized by parts and classes.',
   'Acceso personal': 'Personal access',

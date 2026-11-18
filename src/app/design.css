@@ -792,5 +792,6 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .design-search-form input::placeholder { color:#536357; opacity:1; }
 #contacto .portal-admin-form input,
 #contacto .portal-admin-form textarea { border-color:#758471; }
+#contacto .portal-admin-form input[type="checkbox"] { width:24px; height:24px; padding:0; }
 #contacto [role="alert"] { color:#9b2e22; }
 #credo-personal, #contenidos { scroll-margin-top:1rem; }

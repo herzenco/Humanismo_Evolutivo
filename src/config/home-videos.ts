@@ -27,7 +27,7 @@ export function homeVideoPlayback(video: typeof homeVideos.introduction | typeof
 }
 
 export function youtubeEmbedUrl(videoId: string) {
-  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&cc_load_policy=1`;
+  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&cc_load_policy=1&hl=es&cc_lang_pref=es`;
 }
 
 // Exact allowlist: clients cannot choose arbitrary blob paths or URLs.

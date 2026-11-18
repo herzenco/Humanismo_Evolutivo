@@ -8,4 +8,4 @@ The education app uses the existing Supabase project iwtcdjkawcjsxmwhzlot; accou
 
 DNS: GoDaddy CNAME host `educacion`, target `37812f7e65c72a49.vercel-dns-016.com` (Vercel's project-specific recommendation). Retain all other DNS records.
 
-Legacy Education SQL is archived under `supabase/history` in the Education repo. Its active migration set is under `supabase/migrations` there. The contact and podcast migrations in this repo belong to Marketing. The contact migration describes the existing deployed schema and references the admin helper supplied by the historical Education schema.
+Legacy Education SQL is archived under `supabase/legacy-shared/migrations` in the Education repo. Its active migration set is under `supabase/migrations` there. The contact and podcast migrations in this repo belong to Marketing. The contact migration describes the existing deployed schema and references the admin helper supplied by the historical Education schema.

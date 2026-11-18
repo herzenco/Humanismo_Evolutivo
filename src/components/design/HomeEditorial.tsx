@@ -534,8 +534,8 @@ export default function HomeEditorial() {
 </path>
 </svg>
 </Link>
-<Link href="https://educacion.humanismoevolutivo.com/portal" prefetch={false} className="he-a42476497 he-row">
-{tx("Ya soy miembro · Entrar al portal")}
+<Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-a42476497 he-row">
+Acceso anticipado
 </Link>
 </div>
 </div>
@@ -1019,8 +1019,8 @@ export default function HomeEditorial() {
 <p className="he-6b5165f1c">
 {tx("Crea tu cuenta gratuita para estudiar los cursos de Humanismo Evolutivo Transpersonal.")}
 </p>
-<Link href="https://educacion.humanismoevolutivo.com/portal" prefetch={false} className="he-c01a194ae he-row">
-{tx("Entrar al portal\n")}
+<Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-c01a194ae he-row">
+Acceso anticipado
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
 
