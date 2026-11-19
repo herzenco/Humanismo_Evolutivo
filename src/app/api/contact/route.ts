@@ -1,4 +1,4 @@
-import { contactSchema, verifyTurnstile } from '@/lib/contact';
+import { contactSchema } from '@/lib/contact';
 import { createClient } from '@/lib/supabase/server';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 
@@ -6,9 +6,8 @@ const reply = (body: unknown, status = 200) => Response.json(body, { status, hea
 
 async function notify(input: { name: string; email: string; phone?: string; subject: string; message: string }) {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.PORTAL_INVITATION_FROM || process.env.CONTACT_FROM_EMAIL;
+  const from = process.env.CONTACT_FROM_EMAIL || process.env.PORTAL_INVITATION_FROM;
   const to = 'humanismoevolutivo@gmail.com';
-  // TODO: set RESEND_API_KEY and PORTAL_INVITATION_FROM (or CONTACT_FROM_EMAIL) so this notification is delivered.
   if (!key || !from) return false;
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -39,10 +38,6 @@ export async function POST(request: Request) {
   try { body = JSON.parse(text); } catch { return fail(400, 'Solicitud inválida.', 'Invalid request.'); }
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) return fail(400, 'Revisa los campos del formulario.', 'Check the form fields and try again.');
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || null;
-  if (!await verifyTurnstile(parsed.data.turnstileToken, ip).catch(() => false)) {
-    return fail(400, 'No pudimos verificar que eres una persona. Intenta de nuevo.', 'We could not verify that you are human. Please try again.');
-  }
   const client = await createClient();
   const { data, error } = await client.rpc('submit_contact_submission', {
     p_name: parsed.data.name,

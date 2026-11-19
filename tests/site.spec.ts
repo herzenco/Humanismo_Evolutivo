@@ -130,10 +130,10 @@ test('built public pages have no Education portal, auth or signup links', async 
   }
 });
 
-test('contact form without a Turnstile site key is unavailable', async ({ page }) => {
+test('contact form is enabled without Turnstile', async ({ page }) => {
   await page.goto('/contacto');
-  await expect(page.getByText('El formulario no está disponible en este momento.', { exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Enviar mensaje' })).toBeDisabled();
+  await expect(page.locator('.cf-turnstile, script[src*="turnstile"]')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Enviar mensaje' })).toBeEnabled();
 });
 
 test('first visit opens the welcome video, and Escape restores focus before the next visit', async ({ page }) => {
