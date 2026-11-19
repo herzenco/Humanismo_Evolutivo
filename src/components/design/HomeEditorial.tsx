@@ -1017,7 +1017,7 @@ Acceso anticipado
 {tx("Portal educativo")}
 </h2>
 <p className="he-6b5165f1c">
-{tx("Crea tu cuenta gratuita para estudiar los cursos de Humanismo Evolutivo Transpersonal.")}
+Regístrate gratis en la lista de acceso anticipado
 </p>
 <Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-c01a194ae he-row">
 Acceso anticipado
@@ -1065,7 +1065,7 @@ Acceso anticipado
 {tx("Acceso personal")}
 </h3>
 <p className="he-6b4c8d099">
-{tx("Tu avance guardado en una cuenta segura.")}
+Te avisaremos cuando abra el portal educativo
 </p>
 </div>
 </div>

@@ -20,48 +20,45 @@ const hooks = registerHooks({
 const { POST } = await import('../src/app/api/contact/route.ts');
 hooks.deregister();
 
-function submit() {
+function submit(overrides = {}) {
   return POST(new Request('http://localhost/api/contact', {
     method: 'POST',
     headers: { origin: 'http://localhost', 'content-type': 'application/json', 'accept-language': 'es' },
     body: JSON.stringify({
       name: 'Visitante', email: 'visitor@example.test', subject: 'Consulta',
-      message: 'Mensaje de prueba', consent: true, locale: 'es', turnstileToken: 'synthetic-token',
+      message: 'Mensaje de prueba', consent: true, locale: 'es', ...overrides,
     }),
   }));
 }
 
-test('contact saves only after verification and succeeds without either notification setting', async (t) => {
-  for (const setting of ['TURNSTILE_SECRET_KEY', 'RESEND_API_KEY', 'PORTAL_INVITATION_FROM', 'CONTACT_FROM_EMAIL']) {
+test('contact validates, saves and notifies without Turnstile', async (t) => {
+  for (const setting of ['RESEND_API_KEY', 'PORTAL_INVITATION_FROM', 'CONTACT_FROM_EMAIL']) {
     delete process.env[setting];
   }
   globalThis.recordContactWrite = (...args) => {
     writes.push(args);
     return { data: 'synthetic-id', error: null };
   };
-  const fetchMock = t.mock.method(globalThis, 'fetch', async (url) => {
-    assert.equal(url, 'https://challenges.cloudflare.com/turnstile/v0/siteverify');
-    return Response.json({ success: true });
-  });
+  const fetchMock = t.mock.method(globalThis, 'fetch', async () => Response.json({ id: 'mock' }));
 
-  const rejected = await submit();
+  const rejected = await submit({ consent: false });
   assert.equal(rejected.status, 400);
-  assert.deepEqual(await rejected.json(), { error: 'No pudimos verificar que eres una persona. Intenta de nuevo.' });
   assert.equal(writes.length, 0);
+
+  const withoutNotification = await submit();
+  assert.deepEqual(await withoutNotification.json(), { ok: true });
   assert.equal(fetchMock.mock.callCount(), 0);
 
-  process.env.TURNSTILE_SECRET_KEY = 'synthetic';
-  process.env.CONTACT_FROM_EMAIL = 'sender@example.test';
-  const withoutKey = await submit();
-  assert.equal(withoutKey.status, 200);
-  assert.deepEqual(await withoutKey.json(), { ok: true });
-
-  delete process.env.CONTACT_FROM_EMAIL;
   process.env.RESEND_API_KEY = 'synthetic';
-  const withoutSender = await submit();
-  assert.equal(withoutSender.status, 200);
-  assert.deepEqual(await withoutSender.json(), { ok: true });
+  process.env.CONTACT_FROM_EMAIL = 'sender@example.test';
+  process.env.PORTAL_INVITATION_FROM = 'invitation@example.test';
+  const notified = await submit();
+  assert.deepEqual(await notified.json(), { ok: true });
   assert.deepEqual(writes.map(([rpc]) => rpc), ['submit_contact_submission', 'submit_contact_submission']);
-  assert.equal(fetchMock.mock.callCount(), 2);
-  assert.ok(fetchMock.mock.calls.every(({ arguments: [url] }) => url === 'https://challenges.cloudflare.com/turnstile/v0/siteverify'));
+  assert.equal(fetchMock.mock.callCount(), 1);
+  const [url, options] = fetchMock.mock.calls[0].arguments;
+  assert.equal(url, 'https://api.resend.com/emails');
+  const message = JSON.parse(options.body);
+  assert.equal(message.from, 'sender@example.test');
+  assert.equal(message.reply_to, 'visitor@example.test');
 });
