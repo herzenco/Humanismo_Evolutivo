@@ -1,5 +1,7 @@
 'use client';
 
+import { EDUCATION_WAITLIST_URL } from '@/lib/site';
+
 import { useTx } from '@/components/design/useTx';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { bookForLanguage } from '@/lib/book-english';
@@ -66,10 +68,10 @@ export default function HomeEditorial() {
 </h2>
 <TutorialVideoButton />
 </div>
-<ol aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
+<ol id="contenidos" aria-label={tx("Los 8 contenidos")} className="home-content-buttons">
 {hub.map(([id, label], index) => {
   const content = <><span className="home-content-number">{index + 1}</span><span>{label}</span><span className="home-content-arrow" aria-hidden="true">↗</span></>;
-  return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button" aria-label={label}>{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
+  return <li key={id}>{id === 's1' ? <PhilosophersVideo className="home-content-button">{content}</PhilosophersVideo> : <a href={`#${id}`} className="home-content-button">{content}</a>}</li>;
 })}
 </ol>
 </section>
@@ -372,8 +374,8 @@ export default function HomeEditorial() {
 {tx("\nVer documental completo")}
 </VideoDialog>
 </div>
-<VideoDialog videoId={homeVideos.documentary.youtubeId} title={tx("Documental completo · Parque Cancún")} aria-label={tx("Reproducir el documental de Parque Cancún")} className="he-abf7b48b8">
-<Image src={homeVideos.documentary.poster} alt="" fill sizes="(max-width: 900px) 100vw, 50vw" className="he-documentary-poster" />
+<VideoDialog videoId={homeVideos.documentary.youtubeId} title={tx("Documental completo · Parque Cancún")} className="he-abf7b48b8">
+<Image src={homeVideos.documentary.poster} alt={tx("Parque Cancún")} fill sizes="(max-width: 900px) 100vw, 50vw" className="he-documentary-poster" />
 <span className="he-documentary-shade" aria-hidden="true" />
 <div className="he-b3f106d02">
 {tx("DOCUMENTAL")}
@@ -503,32 +505,6 @@ export default function HomeEditorial() {
 </span>
 </Link>
 <Link href="/contacto" prefetch={false} className="he-a27bfcb8c"><span className="he-2ec7ee111">{tx("Conecta con la comunidad")}</span><span className="he-6663c68e7">{tx("Escríbenos")}</span></Link>
-<Link href="/medios" prefetch={false} className="he-a27bfcb8c">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6B45" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M6 3h9l3 3v15H6z">
-
-</path>
-<path d="M9 9h6M9 13h6M9 17h4">
-
-</path>
-</svg>
-<span className="he-2ec7ee111">
-{tx("Artículos y boletines")}
-</span>
-</Link>
-<Link href="/medios" prefetch={false} className="he-a27bfcb8c">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6B45" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M3 5.5c2.5-1 5.5-1 9 1 3.5-2 6.5-2 9-1v13c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1z">
-
-</path>
-<path d="M12 6.5v13">
-
-</path>
-</svg>
-<span className="he-2ec7ee111">
-{tx("Revista")}
-</span>
-</Link>
 </div>
 </section>
 <section id="s8" className="he-580031031 he-row">
@@ -545,14 +521,12 @@ export default function HomeEditorial() {
 {tx("Conoce, comparte y forma parte de un mundo más consciente, solidario y humano.")}
 </p>
 <p className="he-9645b261d">
-{tx("Al unirte al Club obtienes acceso gratuito al ")}
-<strong>
-{tx("Portal educativo")}
-</strong>
-{tx(": un espacio en línea para estudiar los cursos de Humanismo Evolutivo Transpersonal a tu ritmo. Las lecturas están organizadas por partes y clases, y tu avance se guarda en tu cuenta para que retomes donde te quedaste.")}
+{language === 'es'
+  ? 'Inscríbete en la lista de espera para recibir noticias sobre el acceso al Portal educativo.'
+  : 'Join the waitlist to receive updates about access to the Education portal.'}
 </p>
 <div className="he-e8e21757e he-row">
-<Link href="https://educacion.humanismoevolutivo.com/auth?mode=signup" prefetch={false} className="he-e002036e7 he-row">
+<Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-e002036e7 he-row">
 {tx("Únete al club\n")}
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -560,8 +534,8 @@ export default function HomeEditorial() {
 </path>
 </svg>
 </Link>
-<Link href="https://educacion.humanismoevolutivo.com/portal" prefetch={false} className="he-a42476497 he-row">
-{tx("Ya soy miembro · Entrar al portal")}
+<Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-a42476497 he-row">
+Acceso anticipado
 </Link>
 </div>
 </div>
@@ -664,7 +638,7 @@ export default function HomeEditorial() {
 </em>
 {tx(", Marcos Constandse nos invita a recorrer un mapa del conocimiento que conecta ciencia, filosofía, psicología, espiritualidad y ecología bajo una visión evolutiva e integradora del ser humano. Esta obra ganó el Premio Nacional de Ensayo Filosófico.")}
 </p>
-<Link href="/libros/yo-soy-nosotros" prefetch={false} className="he-22268af18 he-row">
+<Link href="/libros/yo-soy-nosotros" aria-label={`${tx("Leer más\n").trim()}: Yo soy nosotros`} prefetch={false} className="he-22268af18 he-row">
 {tx("Leer más\n")}
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -695,7 +669,7 @@ export default function HomeEditorial() {
 </em>
 {tx(", Marcos Constandse entrelaza ciencia, conciencia y ética para ofrecer una visión profundamente integradora entre el mundo natural y el del ser humano.")}
 </p>
-<Link href="/libros/ecologia-y-espiritualidad" prefetch={false} className="he-252de5a21 he-row">
+<Link href="/libros/ecologia-y-espiritualidad" aria-label={`${tx("Leer más\n").trim()}: Ecología y espiritualidad`} prefetch={false} className="he-252de5a21 he-row">
 {tx("Leer más\n")}
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -725,7 +699,7 @@ export default function HomeEditorial() {
 </em>
 {tx(" es una novela que entrelaza memoria, identidad y tecnología en un relato íntimo y visionario. Marcos Constandse nos conduce a un futuro posible, donde la acumulación de datos personales confronta a sus protagonistas con sus raíces más profundas y sus decisiones más humanas.")}
 </p>
-<Link href="/libros/dejalo-ser" prefetch={false} className="he-252de5a21 he-row">
+<Link href="/libros/dejalo-ser" aria-label={`${tx("Leer más\n").trim()}: ¡Déjalo ser!`} prefetch={false} className="he-252de5a21 he-row">
 {tx("Leer más\n")}
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -752,7 +726,7 @@ export default function HomeEditorial() {
 <p className="he-85fe10d5f">
 {tx("En esta obra íntima y lúcida, Marcos Constandse entrelaza filosofía, experiencia personal y reflexión social para ofrecernos una guía hacia una vida con mayor conciencia, bienestar y sentido.")}
 </p>
-<Link href="/libros/lo-mejor-esta-por-venir" prefetch={false} className="he-252de5a21 he-row">
+<Link href="/libros/lo-mejor-esta-por-venir" aria-label={`${tx("Leer más\n").trim()}: ¡Y lo mejor aún está por venir!`} prefetch={false} className="he-252de5a21 he-row">
 {tx("Leer más\n")}
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -783,7 +757,7 @@ export default function HomeEditorial() {
 </em>
 {tx(" es una invitación a vivir el emprendimiento como un noble servicio del bien común.")}
 </p>
-<Link href="/libros/el-arte-de-ser-empresario" prefetch={false} className="he-252de5a21 he-row">
+<Link href="/libros/el-arte-de-ser-empresario" aria-label={`${tx("Leer más\n").trim()}: El arte de ser empresario`} prefetch={false} className="he-252de5a21 he-row">
 {tx("Leer más\n")}
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -1043,10 +1017,10 @@ export default function HomeEditorial() {
 {tx("Portal educativo")}
 </h2>
 <p className="he-6b5165f1c">
-{tx("Crea tu cuenta gratuita para estudiar los cursos de Humanismo Evolutivo Transpersonal.")}
+Regístrate gratis en la lista de acceso anticipado
 </p>
-<Link href="https://educacion.humanismoevolutivo.com/portal" prefetch={false} className="he-c01a194ae he-row">
-{tx("Entrar al portal\n")}
+<Link href={EDUCATION_WAITLIST_URL} prefetch={false} className="he-c01a194ae he-row">
+Acceso anticipado
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
 
@@ -1091,11 +1065,12 @@ export default function HomeEditorial() {
 {tx("Acceso personal")}
 </h3>
 <p className="he-6b4c8d099">
-{tx("Tu avance guardado en una cuenta segura.")}
+Te avisaremos cuando abra el portal educativo
 </p>
 </div>
 </div>
 </div>
 </div>
 </section>
+<div className="design-content-width py-8"><a href="#hero-title" className="design-button design-button-outline">{tx("Volver al inicio")} <span aria-hidden="true">↑</span></a></div>
 </div>; }

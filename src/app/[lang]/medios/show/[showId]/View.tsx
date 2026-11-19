@@ -180,7 +180,7 @@ export default function ShowDetailPage({ params }: { params: Promise<{ showId: s
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <Badge className="bg-gold/20 text-gold hover:bg-gold/30 border-0 text-base px-4 py-2">
+                  <Badge className="bg-[#173f2c] text-[#f7db90] hover:bg-[#173f2c] border-0 text-base px-4 py-2">
                     {show.episodes.length} episodios
                   </Badge>
                 </div>
@@ -217,12 +217,12 @@ export default function ShowDetailPage({ params }: { params: Promise<{ showId: s
                       <div className="flex items-start gap-6">
                         <div className="flex-1">
                           <div className="flex items-center gap-4 text-sm text-navy-light mb-3">
-                            <Badge variant="secondary" className="bg-gold/10 text-gold border-gold/20">
+                            <Badge variant="secondary" className="bg-gold/10 text-[#684a10] border-gold/20">
                               {t(episode.categoryKey)}
                             </Badge>
                           </div>
 
-                          <h3 className="font-heading text-2xl font-semibold mb-3 text-navy-dark leading-tight group-hover:text-gold transition-colors">
+                          <h3 className="font-heading text-2xl font-semibold mb-3 text-navy-dark leading-tight group-hover:text-[#684a10] transition-colors">
                             {episodeTitle}
                           </h3>
 

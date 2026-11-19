@@ -1,5 +1,7 @@
 "use client";
 
+import { SMGE_YOUTUBE_ID, youtubeEmbedUrl } from '@/config/home-videos';
+import ExternalPlayer from '@/components/design/ExternalPlayer';
 import { use } from 'react';
 import Link from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
@@ -49,7 +51,8 @@ export default function EventDetailPage({ params }: { params: Promise<{ eventId:
       videoId = url.split('embed/')[1]?.split('?')[0] || '';
     }
 
-    return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+    if (videoId === SMGE_YOUTUBE_ID) return youtubeEmbedUrl(videoId);
+    return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`;
   };
 
   return (
@@ -74,14 +77,14 @@ export default function EventDetailPage({ params }: { params: Promise<{ eventId:
           >
             <Link
               href="/eventos"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors group"
+              className="inline-flex items-center gap-2 text-white underline underline-offset-4 mb-8 transition-colors group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               {t('eventos.backToEvents')}
             </Link>
 
             <div className="mb-6">
-              <span className="inline-block px-4 py-2 bg-gold/20 text-gold rounded-full text-sm font-medium tracking-wider uppercase backdrop-blur-sm">
+              <span className="inline-block px-4 py-2 bg-[#173f2c] text-[#f7db90] rounded-full text-sm font-medium tracking-wider uppercase backdrop-blur-sm">
                 {t(event.categoryKey)}
               </span>
             </div>
@@ -118,13 +121,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ eventId:
                 className="mb-16"
               >
                 <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-navy-dark group">
-                  <iframe
-                    className="absolute inset-0 w-full h-full"
-                    src={getYouTubeEmbedUrl(event.videoUrl)}
-                    title={t(event.titleKey)}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                  <ExternalPlayer src={getYouTubeEmbedUrl(event.videoUrl)} title={t(event.titleKey)} provider="YouTube" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/20 to-transparent pointer-events-none"></div>
                 </div>
               </motion.div>
@@ -145,7 +142,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ eventId:
                     {t('eventos.about')}
                   </h2>
                 </div>
-                <p className="text-navy-light text-lg leading-relaxed">
+                <p className="text-[#294535] text-lg leading-relaxed">
                   {t(event.descriptionKey)}
                 </p>
               </div>
@@ -165,7 +162,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ eventId:
                       {t(section.titleKey)}
                     </h3>
                   </div>
-                  <div className="text-navy-light text-lg leading-relaxed whitespace-pre-line">
+                  <div className="text-[#294535] text-lg leading-relaxed whitespace-pre-line">
                     {t(section.contentKey)}
                   </div>
                 </motion.div>
@@ -240,13 +237,13 @@ export default function EventDetailPage({ params }: { params: Promise<{ eventId:
                               />
                             </div>
                             <div className="flex-grow">
-                              <span className="inline-block px-3 py-1 bg-gold/10 text-gold rounded-full text-xs font-medium mb-2">
+                              <span className="inline-block px-3 py-1 bg-gold/10 text-[#684a10] rounded-full text-xs font-medium mb-2">
                                 {t(relatedEvent.categoryKey)}
                               </span>
-                              <h4 className="font-heading text-lg text-navy-dark mb-2 group-hover:text-gold transition-colors line-clamp-2">
+                              <h4 className="font-heading text-lg text-navy-dark mb-2 group-hover:text-[#684a10] transition-colors line-clamp-2">
                                 {t(relatedEvent.titleKey)}
                               </h4>
-                              <p className="text-sm text-navy/70 flex items-center gap-2">
+                              <p className="text-sm text-navy flex items-center gap-2">
                                 <Calendar className="w-4 h-4" />
                                 {formatDate(relatedEvent.date)}
                               </p>

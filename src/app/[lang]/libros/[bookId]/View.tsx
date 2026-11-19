@@ -1,5 +1,6 @@
 "use client";
 
+import { useSpanishFieldValidation } from '@/hooks/useSpanishFieldValidation';
 import Link from '@/components/LocalizedLink';
 import { use } from 'react';
 import { motion } from 'framer-motion';
@@ -19,15 +20,15 @@ import {
 } from '@/components/ui/dialog';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { bookForLanguage } from '@/lib/book-english';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
-import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
+import { downloadBook } from '@/lib/download-book';
 import { z } from 'zod';
 import { BookStructuredData } from '@/components/seo/StructuredData';
 
 export default function BookDetailPage({ params }: { params: Promise<{ bookId: string }> }) {
   const { bookId } = use(params);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const fields = useSpanishFieldValidation();
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -70,77 +71,21 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
     setIsDialogOpen(true);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!fields.validate(e.currentTarget, ['name', 'email'])) return;
     setIsSubmitting(true);
 
-    const pdfFileName = book.pdfUrl;
-    const bookName = book.title;
-
     try {
-      // Validate form data with Zod schema
-      const validatedData = bookDownloadSchema.parse({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        book_downloaded: bookName.trim()
-      }) as { name: string; email: string; book_downloaded: string };
-
-      // Save validated data to database
-      const { error } = await supabase
-        .from('book_downloads')
-        .insert(validatedData);
-
-      if (error) throw error;
-
-      // Track analytics using sanitized data
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
+      const download = await downloadBook({ bookId: book.id, language, ...formData });
+      // eslint-disable-next-line react-hooks/immutability -- GTM owns this browser-global queue.
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
         event: 'book_download_form_submit',
-        book_id: book?.id,
-        book_title: sanitizeForAnalytics(book?.title || ''),
-        user_name: sanitizeForAnalytics(validatedData.name),
-        user_email: sanitizeForAnalytics(validatedData.email)
+        book_id: book.id,
+        book_title: download.title,
       });
-
-      // Show success message first
       setIsSubmitted(true);
-
-      // Trigger download after a short delay to ensure UI updates
-      setTimeout(async () => {
-        try {
-          // Check if PDF is available for this book
-          if (!pdfFileName) {
-            toast({
-              title: language === 'es' ? 'PDF no disponible' : 'PDF not available',
-              description: language === 'es'
-                ? 'El PDF de este libro aún no está disponible. Te notificaremos cuando esté listo.'
-                : 'The PDF for this book is not yet available. We will notify you when it is ready.',
-            });
-            return;
-          }
-
-          const res = await fetch(pdfFileName);
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = bookName + '.pdf';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        } catch (downloadError) {
-          console.error('Download error:', downloadError);
-          toast({
-            title: language === 'es' ? 'Error de descarga' : 'Download error',
-            description: language === 'es'
-              ? 'No se pudo iniciar la descarga. Por favor intenta nuevamente.'
-              : 'Could not start download. Please try again.',
-            variant: 'destructive',
-          });
-        }
-      }, 300);
 
       // Reset and close after showing success
       setTimeout(() => {
@@ -162,7 +107,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
         });
       } else {
         toast({
-          title: language === 'es' ? 'Error' : 'Error',
+          title: language === 'es' ? 'No se pudo descargar' : 'Download failed',
           description: language === 'es'
             ? 'Hubo un problema al procesar tu solicitud. Por favor intenta nuevamente.'
             : 'There was a problem processing your request. Please try again.',
@@ -386,7 +331,10 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
       </section>
 
       {/* Download Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <Dialog open={isDialogOpen} onOpenChange={(open) => {
+          if (!open) fields.clear();
+          setIsDialogOpen(open);
+        }}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-heading">
@@ -422,7 +370,8 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
           </DialogHeader>
 
           {!isSubmitted && (
-            <form onSubmit={handleSubmit}>
+            <form noValidate onSubmit={handleSubmit}>
+              <p className="mb-4 text-sm">{label('El formulario solicita tu nombre y correo electrónico. Consulta el', 'This form asks for your name and email. Read the')} <Link href="/privacidad" className="underline">{label('aviso de privacidad', 'privacy notice')}</Link>.</p>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <label htmlFor="name" className="text-sm font-medium">
@@ -430,12 +379,15 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   </label>
                   <Input
                     id="name"
+                    name="name"
+                    {...fields.attributes('name')}
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder={label('Tu nombre', 'Your name')}
                     required
                   />
+                  {fields.feedback('name')}
                 </div>
                 <div className="grid gap-2">
                   <label htmlFor="email" className="text-sm font-medium">
@@ -443,16 +395,19 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
                   </label>
                   <Input
                     id="email"
+                    name="email"
+                    {...fields.attributes('email')}
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder={label('correo@ejemplo.com', 'email@example.com')}
                     required
                   />
+                  {fields.feedback('email')}
                 </div>
               </div>
               <DialogFooter>
-                <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)} disabled={isSubmitting}>
+                <Button type="button" variant="outline" onClick={() => { fields.clear(); setIsDialogOpen(false); }} disabled={isSubmitting}>
                   {language === 'es' ? 'Cancelar' : 'Cancel'}
                 </Button>
                 <Button type="submit" className="bg-gold hover:bg-gold-dark text-navy-dark" disabled={isSubmitting}>

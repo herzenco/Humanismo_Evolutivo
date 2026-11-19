@@ -1,5 +1,6 @@
 "use client";
 
+import { useSpanishFieldValidation } from '@/hooks/useSpanishFieldValidation';
 import BooksIntro from "@/components/design/BooksIntro";
 import { Download, BookOpen } from 'lucide-react';
 import Link from '@/components/LocalizedLink';
@@ -27,6 +28,7 @@ const Libros = () => {
   const displayBooks = books.map(book => bookForLanguage(book, language, t));
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState<string | null>(null);
+  const fields = useSpanishFieldValidation();
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -52,8 +54,9 @@ const Libros = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!fields.validate(e.currentTarget, ['name', 'email'])) return;
     setIsSubmitting(true);
 
     try {
@@ -146,7 +149,10 @@ const Libros = () => {
       </section>
 
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <Dialog open={isDialogOpen} onOpenChange={(open) => {
+          if (!open) fields.clear();
+          setIsDialogOpen(open);
+        }}>
         <DialogContent className="sm:max-w-md" aria-describedby="download-description">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-heading">
@@ -190,7 +196,7 @@ const Libros = () => {
           </DialogHeader>
 
           {!isSubmitted && (
-            <form onSubmit={handleSubmit}>
+            <form noValidate onSubmit={handleSubmit}>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <label htmlFor="name" className="text-sm font-medium">
@@ -198,12 +204,15 @@ const Libros = () => {
                   </label>
                   <Input
                     id="name"
+                    name="name"
+                    {...fields.attributes('name')}
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder={language === 'es' ? 'Tu nombre' : 'Your name'}
                     required
                   />
+                  {fields.feedback('name')}
                 </div>
                 <div className="grid gap-2">
                   <label htmlFor="email" className="text-sm font-medium">
@@ -211,16 +220,19 @@ const Libros = () => {
                   </label>
                   <Input
                     id="email"
+                    name="email"
+                    {...fields.attributes('email')}
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder={language === 'es' ? 'correo@ejemplo.com' : 'email@example.com'}
                     required
                   />
+                  {fields.feedback('email')}
                 </div>
               </div>
               <DialogFooter>
-                <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)} disabled={isSubmitting}>
+                <Button type="button" variant="outline" onClick={() => { fields.clear(); setIsDialogOpen(false); }} disabled={isSubmitting}>
                   {language === 'es' ? 'Cancelar' : 'Cancel'}
                 </Button>
                 <Button type="submit" className="bg-gold hover:bg-gold-dark text-navy-dark" disabled={isSubmitting}>

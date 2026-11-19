@@ -1,5 +1,7 @@
 "use client";
 
+import { SMGE_YOUTUBE_ID, youtubeEmbedUrl } from '@/config/home-videos';
+import ExternalPlayer from '@/components/design/ExternalPlayer';
 import { videos } from '@/data/media';
 import { youtubeId } from '@/data/video-library';
 import { use } from 'react';
@@ -16,7 +18,11 @@ export default function VideoDetailPage({ params }: { params: Promise<{ videoId:
   const { videoId } = use(params);
   const { t } = useLanguage();
 
-  const allVideos = videos.map(video => ({...video, embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeId(video.videoUrl)}`}));
+  const allVideos = videos.map(video => {
+    const id = youtubeId(video.videoUrl);
+    const embedUrl = id === SMGE_YOUTUBE_ID ? youtubeEmbedUrl(id) : `https://www.youtube-nocookie.com/embed/${id}`;
+    return { ...video, embedUrl };
+  });
 
   const video = allVideos.find(v => v.id === parseInt(videoId || ''));
 
@@ -46,13 +52,13 @@ export default function VideoDetailPage({ params }: { params: Promise<{ videoId:
           >
             <Link
               href="/medios?tab=videos"
-              className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-white underline underline-offset-4 transition-colors mb-8"
             >
               <ArrowLeft size={20} />
               <span>{t('podcast.view')}</span>
             </Link>
 
-            <Badge variant="secondary" className="bg-gold/20 text-gold border-gold/20 mb-6">
+            <Badge variant="secondary" className="bg-[#173f2c] text-[#f7db90] border-gold/20 mb-6">
               {t(video.categoryKey)}
             </Badge>
 
@@ -102,13 +108,7 @@ export default function VideoDetailPage({ params }: { params: Promise<{ videoId:
               className="mb-12"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-navy-dark aspect-video">
-                <iframe
-                  src={video.embedUrl}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={t(video.titleKey)}
-                />
+                <ExternalPlayer src={video.embedUrl} title={t(video.titleKey)} provider="YouTube" />
               </div>
             </motion.div>
 

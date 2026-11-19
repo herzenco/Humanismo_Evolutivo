@@ -1,3 +1,4 @@
+import ExternalPlayer from '@/components/design/ExternalPlayer';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { isLanguage, absoluteUrl, SITE_URL, type Language } from '@/lib/site';
@@ -204,17 +205,7 @@ export default async function PodcastDetailPage({
           <div className="max-w-4xl mx-auto">
             {embedUrl && (
               <div className="mb-12">
-                <iframe
-                  title={`${title} en Spotify`}
-                  style={{ borderRadius: '12px' }}
-                  src={embedUrl}
-                  width="100%"
-                  height="352"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                />
+                <ExternalPlayer src={embedUrl} title={title} provider="Spotify" />
               </div>
             )}
 
