@@ -1,5 +1,6 @@
 "use client";
 
+import { SMGE_YOUTUBE_ID, youtubeEmbedUrl } from '@/config/home-videos';
 import ExternalPlayer from '@/components/design/ExternalPlayer';
 import { videos } from '@/data/media';
 import { youtubeId } from '@/data/video-library';
@@ -17,7 +18,11 @@ export default function VideoDetailPage({ params }: { params: Promise<{ videoId:
   const { videoId } = use(params);
   const { t } = useLanguage();
 
-  const allVideos = videos.map(video => ({...video, embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeId(video.videoUrl)}`}));
+  const allVideos = videos.map(video => {
+    const id = youtubeId(video.videoUrl);
+    const embedUrl = id === SMGE_YOUTUBE_ID ? youtubeEmbedUrl(id) : `https://www.youtube-nocookie.com/embed/${id}`;
+    return { ...video, embedUrl };
+  });
 
   const video = allVideos.find(v => v.id === parseInt(videoId || ''));
 

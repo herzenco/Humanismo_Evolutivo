@@ -1,5 +1,6 @@
 "use client";
 
+import { SMGE_YOUTUBE_ID, youtubeEmbedUrl } from '@/config/home-videos';
 import ExternalPlayer from '@/components/design/ExternalPlayer';
 import { use } from 'react';
 import Link from '@/components/LocalizedLink';
@@ -50,6 +51,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ eventId:
       videoId = url.split('embed/')[1]?.split('?')[0] || '';
     }
 
+    if (videoId === SMGE_YOUTUBE_ID) return youtubeEmbedUrl(videoId);
     return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`;
   };
 
