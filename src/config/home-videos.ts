@@ -26,6 +26,8 @@ export function homeVideoPlayback(video: typeof homeVideos.introduction | typeof
   return video.youtubeId ? { videoId: video.youtubeId } : { videoSrc: video.src, poster: video.poster };
 }
 
+export const SMGE_YOUTUBE_ID = 'HLHjY3NnX2k';
+
 export function youtubeEmbedUrl(videoId: string) {
   return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&cc_load_policy=1&hl=es&cc_lang_pref=es`;
 }
