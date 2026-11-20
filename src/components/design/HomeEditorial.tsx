@@ -21,9 +21,9 @@ export default function HomeEditorial() {
     ['s2', tx('Las grandes preguntas')],
     ['s3', tx('Un camino a través de los jardines')],
     ['s4', tx('Documental completo')],
-    ['s5', tx('Las 51 preguntas')],
+    ['s5', tx('Explorar las 51 grandes preguntas')],
     ['s6', tx('Profundiza en los libros')],
-    ['s7', tx('Más contenido en nuestras plataformas')],
+    ['s7', tx('Descubre más contenido en nuestra plataforma')],
     ['s8', tx('Únete al Club de Amigos que Evolucionan')],
   ];
   return <div className="editorial">
@@ -160,7 +160,7 @@ export default function HomeEditorial() {
 {tx("Nota sobre los personajes")}
 </div>
 <p className="he-d30482db2">
-{tx("Platón, Sócrates y Aristóteles son recursos didácticos. No reproducen literalmente sus palabras ni sus doctrinas históricas.")}
+{tx("Platón, Sócrates y Aristóteles son recursos didácticos. No reproducen literalmente sus palabras ni sus doctrinas filosóficas originales.")}
 </p>
 </aside>
 </div>
@@ -188,8 +188,8 @@ export default function HomeEditorial() {
 <div className="he-5836052f4">
 {tx("Aristóteles")}
 </div>
-<div className="he-4fd9c33ff home-philosopher-integra">
-{tx("Integra")}
+<div className="he-4fd9c33ff">
+{tx("COMPRENDE")}
 </div>
 </div>
 </div>
@@ -213,7 +213,7 @@ export default function HomeEditorial() {
 <article aria-labelledby="question-evolution">
 <img width="1200" height="800" src="/design/04392e0cfc55badb8bb441819c60883b.webp" alt={tx("¿Hacia dónde podemos evolucionar? Conocer · Comprender · Transformar · Evolucionar.")} loading="lazy" className="he-3667c6366" />
 <h3 id="question-evolution">{tx("¿Hacia dónde podemos evolucionar?")}</h3>
-<p>{tx("Hacia el espíritu. En el Humanismo Evolutivo, el espíritu no es un fantasma ni un dogma: es lo que nos hace “como yo”, es decir, la conciencia, la libertad y el reconocimiento del otro como igual. Evolucionar es elevar nuestro nivel de conciencia hasta vivir lo que Marcos Constandse llama “yo soy nosotros”.")}</p>
+<p>{tx("Hacia el espíritu. En el Humanismo Evolutivo Transpersonal, el espíritu no es un fantasma ni un dogma: es lo que nos hace “como yo”, es decir, la conciencia, la libertad y el reconocimiento del otro como igual. Evolucionar es elevar nuestro nivel de conciencia hasta vivir lo que el Ing. Marcos Constandse Madrazo llama “Yo soy nosotros”.")}</p>
 </article>
 </div>
 </section>
@@ -404,7 +404,7 @@ export default function HomeEditorial() {
 {tx("5")}
 </span>
 <h2 className="he-22e182e34 he-h2">
-{tx("Las 51 preguntas")}
+{tx("Explorar las 51 grandes preguntas")}
 </h2>
 </div>
 <p className="he-42c9249ac">
@@ -477,7 +477,7 @@ export default function HomeEditorial() {
 {tx("7")}
 </span>
 <h2 className="he-22e182e34 he-h2">
-{tx("Más contenido en nuestras plataformas")}
+{tx("Descubre más contenido en nuestra plataforma")}
 </h2>
 </div>
 <p className="he-42c9249ac">
