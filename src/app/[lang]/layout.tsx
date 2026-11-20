@@ -1,3 +1,4 @@
+import { newsletterConfig } from '@/lib/newsletter';
 import { notFound } from 'next/navigation';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { getPublicSiteData } from '@/lib/public-content';
@@ -14,5 +15,5 @@ export default async function LangLayout({ children, params }: {
   const { lang } = await params;
   if (!isLanguage(lang)) notFound();
   const { content } = await getPublicSiteData();
-  return <LanguageProvider language={lang} content={content}>{children}</LanguageProvider>;
+  return <LanguageProvider language={lang} content={content} newsletterEnabled={Boolean(newsletterConfig(process.env))}>{children}</LanguageProvider>;
 }

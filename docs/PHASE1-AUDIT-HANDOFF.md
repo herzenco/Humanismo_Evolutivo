@@ -1,6 +1,6 @@
 # Phase 1 audit handoff
 
-This branch is based on `dev` at PR #63. QA already serves PR #64, which promoted #63. Keep #63's click-to-load players, privacy links, contact reflow fixes and external LeadConnector link.
+This branch is based on `dev` at PR #63. QA already serves PR #64, which promoted #63. Keep #63's click-to-load players, privacy links, contact reflow fixes.
 
 ## Supabase callers for the admin migration PR
 
@@ -28,7 +28,7 @@ All four branches are retained as directed.
 
 - Browser headers use the policies compatible with the current pages. The audit's full source CSP and narrower image host list need a verified inventory of OCC image hosts, Blob media and external players. The audit's HSTS subdomain setting also needs review outside the two website projects.
 - The accessibility statement needs approval for its support contact, response-time commitment and limitations. Its route, footer link and sitemap entry were held with the copy. The broader automated accessibility scan belongs to Phase 2.
-- The existing LeadConnector outbound link takes precedence over the audit's iframe. The chatbot stays out of the sitemap. The existing public YouTube video page was added.
+- The footer boletín is a first-party form (Supabase plus Resend). LeadConnector was removed on Nov 20, 2026. The chatbot stays out of the sitemap. The existing public YouTube video page was added.
 - The first-visit home video overlay uses native playback controls and restores focus on close. It and other legacy players still reference Blob-hosted clips, including the author introduction and the philosophers video. Replacing them requires the approved unlisted YouTube links before release. There are no tracked MP4, MOV or WebM files.
 - No merge was performed. The audit changes were selected against current `dev`, so there were no Git merge conflicts. The existing portal flag guards in-site routes and their legacy redirects. The header, footer and homepage continue to link directly to the external education site.
 - The audit pin of `@vercel/blob@2.4.0` removes the dependency chain through `@vercel/oidc` and `@vercel/cli-config` to a nested Zod release affected by [GHSA-mrhx-c7xc-m3w5](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5). The audit of this lockfile reported zero production dependency advisories.

@@ -1,3 +1,4 @@
+import { hasHoneypot } from '@/lib/newsletter';
 import { contactSchema } from '@/lib/contact';
 import { createClient } from '@/lib/supabase/server';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
   if (new TextEncoder().encode(text).byteLength > 20000) return fail(413, 'El mensaje es demasiado largo.', 'Your message is too long.');
   let body: unknown;
   try { body = JSON.parse(text); } catch { return fail(400, 'Solicitud inválida.', 'Invalid request.'); }
+  if (hasHoneypot(body)) return reply({ ok: true });
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) return fail(400, 'Revisa los campos del formulario.', 'Check the form fields and try again.');
   const client = await createClient();
