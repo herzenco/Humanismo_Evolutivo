@@ -35,13 +35,13 @@ export default function NewsletterForm({ es }: { es: boolean }) {
     }
   }
 
-  return <form className="portal-admin-form" aria-labelledby="newsletter-title" noValidate onSubmit={submit}>
-    <label>{es ? 'Correo electrónico' : 'Email'}<input name="email" type="email" required maxLength={254} autoComplete="email" {...fields.attributes('email')} />{fields.feedback('email')}</label>
-    <label>{es ? 'Nombre (opcional)' : 'Name (optional)'}<input name="name" maxLength={120} autoComplete="name" /></label>
+  return <form className="newsletter-form" aria-labelledby="newsletter-title" noValidate onSubmit={submit}>
+    <label className="newsletter-field">{es ? 'Correo electrónico' : 'Email'}<input name="email" type="email" required maxLength={254} autoComplete="email" {...fields.attributes('email')} />{fields.feedback('email')}</label>
+    <label className="newsletter-field">{es ? 'Nombre (opcional)' : 'Name (optional)'}<input name="name" maxLength={120} autoComplete="name" /></label>
     <div className="sr-only" aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" /></div>
-    <label className="portal-review-confirm"><input name="consent" type="checkbox" required {...fields.attributes('consent')} /><span>{es ? 'Acepto recibir el boletín de Humanismo Evolutivo por correo y he leído el ' : 'I agree to receive the Humanismo Evolutivo newsletter by email and have read the '}<Link className="underline" href="/privacidad">{es ? 'Aviso de privacidad' : 'Privacy notice'}</Link>{es ? '. Puedo darme de baja en cualquier momento.' : '. I can unsubscribe at any time.'}</span></label>
+    <label className="newsletter-consent"><input name="consent" type="checkbox" required {...fields.attributes('consent')} /><span>{es ? 'Acepto recibir el boletín de Humanismo Evolutivo por correo y he leído el ' : 'I agree to receive the Humanismo Evolutivo newsletter by email and have read the '}<Link className="underline" href="/privacidad">{es ? 'Aviso de privacidad' : 'Privacy notice'}</Link>{es ? '. Puedo darme de baja en cualquier momento.' : '. I can unsubscribe at any time.'}</span></label>
     {fields.feedback('consent')}
-    <button className="design-button" type="submit" disabled={sending}>{sending ? (es ? 'Enviando…' : 'Sending…') : (es ? 'Suscribirme' : 'Subscribe')}</button>
+    <button className="design-button design-button-gold" type="submit" disabled={sending}>{sending ? (es ? 'Enviando…' : 'Sending…') : (es ? 'Suscribirme' : 'Subscribe')}</button>
     {result === 'success' ? <p role="status">{es ? 'Revisa tu correo y confirma tu suscripción.' : 'Check your inbox to confirm your subscription.'}</p> : null}
     {result && result !== 'success' ? <p role="alert">{result === 'limited' && es ? 'Demasiados intentos. Intenta de nuevo en unos minutos.' : error}</p> : null}
   </form>;
