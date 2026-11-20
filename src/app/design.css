@@ -46,9 +46,19 @@ html { scroll-padding-top:144px; }
 .site-newsletter { border:1px solid #D4AF5A59; background:#1F4B36; padding:36px 40px; border-radius:24px; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:48px; margin-bottom:64px; }
 .site-newsletter h2 { font-size:36px; line-height:1.1; margin:12px 0; font-weight:600; }
 .site-newsletter p { color:#ffffffbf; font-size:16px; line-height:1.6; }
-.newsletter-embed { min-width:0; }
-.newsletter-embed > p { font-size:13px; }
-.newsletter-embed a { color:#D4AF5A; text-decoration:underline; }
+.newsletter-form { min-width:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; align-items:start; }
+.newsletter-field { display:grid; gap:6px; font-weight:600; }
+.newsletter-field input { width:100%; min-height:46px; padding:10px 14px; border:1px solid #ffffff66; border-radius:8px; color:inherit; background:#ffffff0d; font:inherit; font-weight:400; }
+.newsletter-consent,.newsletter-form > p,.newsletter-form > span,.newsletter-form > button { grid-column:1 / -1; }
+.newsletter-consent { display:flex; align-items:flex-start; gap:10px; color:#ffffffe0; font-size:15px; line-height:1.55; }
+.newsletter-consent input { appearance:auto; width:18px; height:18px; flex:none; margin-top:3px; accent-color:var(--design-gold); }
+.newsletter-consent a { color:var(--design-gold); text-underline-offset:3px; }
+.newsletter-form > button { justify-self:start; }
+.newsletter-form > button:hover:not(:disabled) { background:var(--design-paper); border-color:var(--design-paper); color:var(--design-green); }
+.newsletter-form > button:disabled { opacity:.65; cursor:wait; }
+.newsletter-form [aria-invalid="true"] { border-color:#ffc9bd; }
+.newsletter-form > [role="alert"],.newsletter-form span[id] { color:#ffc9bd; }
+@media(max-width:540px) { .newsletter-form { grid-template-columns:minmax(0,1fr); } }
 .site-footer-grid { display:grid; grid-template-columns:1.35fr 1fr 1.2fr 1fr; gap:40px; padding-bottom:48px; }
 .footer-description { font-size:16px; line-height:1.6; color:#ffffffbf; margin:24px 0; max-width:300px; }
 .footer-author { font-family:'Cinzel',serif; font-size:11px; letter-spacing:.12em; color:#D4AF5A; }
@@ -578,7 +588,7 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 /* QA accessibility review: readable numbers, portal type and generous targets. */
 .skip-to-content{position:fixed;top:12px;left:12px;z-index:1000;transform:translateY(-200%);padding:14px 20px;background:#fff;color:#173f2c;border:3px solid #173f2c;border-radius:8px;font-weight:700;}
 .skip-to-content:focus{transform:translateY(0);}
-.site-footer nav a,.site-footer-bottom a,.newsletter-embed p a{min-height:44px;display:inline-flex;align-items:center;}
+.site-footer nav a,.site-footer-bottom a{min-height:44px;display:inline-flex;align-items:center;}
 .home-content-number{font-size:30px;width:46px;height:46px;}
 .portal-app{font-size:18px;}
 .portal-app p,.portal-app td,.portal-app input,.portal-app select{font-size:18px;}
