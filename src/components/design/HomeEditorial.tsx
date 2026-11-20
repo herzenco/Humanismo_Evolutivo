@@ -188,8 +188,8 @@ export default function HomeEditorial() {
 <div className="he-5836052f4">
 {tx("Aristóteles")}
 </div>
-<div className="he-4fd9c33ff">
-{tx("INTEGRA")}
+<div className="he-4fd9c33ff home-philosopher-integra">
+{tx("Integra")}
 </div>
 </div>
 </div>
@@ -206,7 +206,7 @@ export default function HomeEditorial() {
 </div>
 <div className="he-f97962489 he-grid home-great-questions">
 <article aria-labelledby="question-origin">
-<img width="1200" height="781" src="/design/17d4f7daf232ea4fbcaa033a26207ca3.webp" alt={tx("¿De dónde venimos? Preguntar es el inicio del conocimiento. El Jardín de la Evolución.")} loading="lazy" className="he-0ded6cc87" />
+<img width="1555" height="1012" src="/design/jardin-de-la-evolucion.webp" alt={tx("¿De dónde venimos? Preguntar es el inicio del conocimiento. El Jardín de la Evolución.")} loading="lazy" className="he-0ded6cc87" />
 <h3 id="question-origin">{tx("¿De dónde venimos?")}</h3>
 <p>{tx("Venimos del Big Bang, el origen del universo, hace unos 13,800 millones de años. Para el Humanismo Evolutivo, aquellas primeras partículas ya llevaban información, y esa información fue organizando la materia, la vida y la conciencia. Literalmente, “somos polvo de estrellas” que ha aprendido a darse cuenta de sí mismo.")}</p>
 </article>

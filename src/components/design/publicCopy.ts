@@ -41,7 +41,7 @@ export const publicCopy: Record<string, string> = {
   'Platón': 'Plato',
   'REFLEXIONA': 'REFLECTS',
   'Aristóteles': 'Aristotle',
-  'INTEGRA': 'INTEGRATES',
+  'Integra': 'Integrates',
   '¿De dónde venimos?': 'Where do we come from?',
   'Venimos del Big Bang, el origen del universo, hace unos 13,800 millones de años. Para el Humanismo Evolutivo, aquellas primeras partículas ya llevaban información, y esa información fue organizando la materia, la vida y la conciencia. Literalmente, “somos polvo de estrellas” que ha aprendido a darse cuenta de sí mismo.':
     'We come from the Big Bang, the origin of the universe, about 13.8 billion years ago. For Evolutionary Humanism, those first particles already carried information, and that information went on to organize matter, life, and consciousness. Literally, “we are stardust” that has learned to become aware of itself.',
