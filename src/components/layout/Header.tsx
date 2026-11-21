@@ -17,10 +17,11 @@ function ResourcesNavigation({ onNavigate }: { onNavigate?: () => void }) {
   const trigger = useRef<HTMLElement>(null);
   const links = [
     [t('nav.books'), '/libros'],
-    [es ? 'Clases' : 'Classes', EDUCATION_WAITLIST_URL],
-    ['Videos', '/medios?tab=videos'],
-    ['Podcasts', '/medios?tab=podcasts'],
+    [es ? 'Clases' : 'Classes', '/clases'],
+    ['Videos', '/videos'],
+    ['Podcasts', '/podcasts'],
     [es ? 'Revista' : 'Magazine', '/resources'],
+    [es ? 'Preguntas' : 'Questions', '/51preguntas'],
   ];
 
   return <details
@@ -53,9 +54,9 @@ export default function Header() {
   const { isAdmin } = useAdmin();
   const toggle = useRef<HTMLButtonElement>(null);
   const links = [
-    [t('nav.author'), '/autor'], [t('nav.books'), '/libros'],
-    [language === 'es' ? 'Medios' : 'Media', '/medios'], [t('nav.events'), '/eventos'],
-    [t('nav.vision'), '/vision'], [language === 'es' ? 'Contacto' : 'Contact', '/contacto'],
+    [t('nav.author'), '/autor'], [t('nav.events'), '/eventos'],
+    [t('nav.vision'), '/vision'], [language === 'es' ? 'Jardines' : 'Gardens', '/jardines'],
+    [language === 'es' ? 'Contacto' : 'Contact', '/contacto'],
   ];
   useEffect(() => {
     if (!open) return;

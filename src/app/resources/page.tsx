@@ -1,33 +1,22 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ArrowUpRight, LibraryBig } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./magazine.module.css";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { ResourceAnalytics } from "@/components/resources/ResourceAnalytics";
 import { ResourceCardLink } from "@/components/resources/ResourceCardLink";
 import { formatResourceDate, resourceArticles } from "@/data/resources";
 
-const siteUrl = 'https://humanismoevolutivo.com';
+const description = "Artículos y reflexiones sobre filosofía, conciencia, ciencia y espiritualidad en la revista de Humanismo Evolutivo.";
 
-export const metadata: Metadata = {
-  title: "Recursos",
-  description:
-    "Artículos, reflexiones y herramientas para explorar la conciencia, la evolución humana y la filosofía del Humanismo Evolutivo.",
-  alternates: {
-    canonical: `${siteUrl}/resources/`,
-  },
-  openGraph: {
-    type: "website",
-    url: `${siteUrl}/resources/`,
-    title: "Recursos | Humanismo Evolutivo",
-    description:
-      "Artículos, reflexiones y herramientas para explorar la conciencia, la evolución humana y la filosofía del Humanismo Evolutivo.",
-  },
-  twitter: {
-    card: "summary",
-    title: "Recursos | Humanismo Evolutivo",
-    description:
-      "Artículos, reflexiones y herramientas para explorar la conciencia, la evolución humana y la filosofía del Humanismo Evolutivo.",
-  },
-};
+export const metadata = pageMetadata({
+  title: "Revista de Humanismo Evolutivo",
+  description,
+  path: "/resources",
+  language: "es",
+  localized: false,
+});
 
 export default function ResourcesPage() {
   return (
@@ -47,7 +36,7 @@ export default function ResourcesPage() {
               Ideas para una conciencia en evolución
             </p>
             <h1 className="font-heading text-6xl font-light leading-none md:text-8xl">
-              Recursos
+              Revista de Humanismo Evolutivo
             </h1>
             <p className="mx-auto mt-8 max-w-3xl text-xl font-light leading-relaxed text-white/80 md:text-2xl">
               Artículos y reflexiones para profundizar en la relación entre conciencia,
@@ -94,16 +83,28 @@ export default function ResourcesPage() {
               ))}
             </div>
           ) : (
-            <div className="mx-auto max-w-2xl rounded-3xl border border-gold/20 bg-white px-8 py-16 text-center shadow-lg">
-              <LibraryBig className="mx-auto h-12 w-12 text-gold" />
-              <h2 className="mt-6 font-heading text-4xl font-light text-navy-dark">
-                Nuevos recursos en camino
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-navy-light">
-                Estamos preparando artículos y reflexiones para esta sección. Vuelve pronto
-                para descubrirlos.
-              </p>
-            </div>
+            <section className={styles.preview} aria-labelledby="magazine-preview-title">
+              <div className={styles.copy}>
+                <p className={styles.status}>Próximamente</p>
+                <h2 id="magazine-preview-title">Las ideas también <em>evolucionan.</em></h2>
+                <p>Estamos preparando la primera edición de la revista, con artículos y reflexiones sobre filosofía, ciencia y espiritualidad.</p>
+                <Link href="/51preguntas" className="design-button design-button-outline">
+                  Explorar las 51 preguntas<ArrowUpRight size={18} aria-hidden="true" />
+                </Link>
+              </div>
+              <div className={styles.art} aria-hidden="true">
+                <div className={styles.cover}>
+                  <Image
+                    src="/design/ed9c86fd90f33e7d1ba2e1287ad8bcb6.jpg"
+                    alt=""
+                    fill
+                    sizes="(max-width: 767px) 68vw, 320px"
+                    className={styles.coverImage}
+                  />
+                  <span>Humanismo<br />Evolutivo</span>
+                </div>
+              </div>
+            </section>
           )}
         </div>
       </section>
