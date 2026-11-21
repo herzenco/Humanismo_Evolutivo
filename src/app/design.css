@@ -762,6 +762,20 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 .site-header .site-mobile-nav { background:#FAF7EF; border-top-color:#173f2c1a; }
 .site-header .site-mobile-nav a:hover,.site-header .site-mobile-nav a[aria-current=page] { background:#173f2c09; color:#173F2C; }
 
+.site-resources-nav { position:relative; }
+.site-resources-nav summary { display:flex; align-items:center; gap:4px; cursor:pointer; list-style:none; }
+.site-resources-nav summary::-webkit-details-marker { display:none; }
+.site-resources-nav[open] summary svg { transform:rotate(180deg); }
+.site-resources-nav ul { margin:0; padding:4px 0; list-style:none; }
+.site-desktop-nav .site-resources-nav summary { padding-block:8px; color:#173f2ce6; }
+.site-desktop-nav .site-resources-nav summary:hover,
+.site-desktop-nav .site-resources-nav[open] summary { color:#78632f; }
+.site-desktop-nav .site-resources-nav ul { position:absolute; top:100%; right:0; min-width:160px; background:#FAF7EF; border:1px solid #173f2c1a; border-radius:12px; box-shadow:0 8px 20px #173f2c1a; }
+.site-desktop-nav .site-resources-nav a { display:block; padding:8px 16px; }
+.site-mobile-nav .site-resources-nav summary { justify-content:space-between; min-height:44px; padding:10px 14px; border-radius:12px; font-size:18px; }
+.site-mobile-nav .site-resources-nav summary:hover { background:#173f2c09; }
+.site-mobile-nav .site-resources-nav ul { padding-inline-start:14px; }
+
 .editorial button.home-content-button { width:100%; text-align:left; font:inherit; cursor:pointer; }
 .editorial #s1 > .home-philosophers-action { flex:0 0 auto; max-width:100%; }
 
