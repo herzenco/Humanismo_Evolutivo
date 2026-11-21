@@ -13,7 +13,15 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   const video = videos.find(video => String(video.id) === videoId);
   if (!video || !isLanguage(lang)) notFound();
   const dictionary = contentDictionary(lang, (await getPublicSiteData()).content);
-  return pageMetadata({ title: dictionary[video.titleKey], description: dictionary[video.descriptionKey].slice(0, 160), path: `/video/${videoId}`, language: lang, image: video.imageUrl });
+  const title = videoId === '1'
+    ? lang === 'es' ? 'Video: ingreso de Marcos Constandse a la SMGE' : 'Video: Marcos Constandse joins the SMGE'
+    : dictionary[video.titleKey];
+  const description = videoId === '1'
+    ? lang === 'es'
+      ? 'Mira la grabación de la ceremonia de ingreso de Marcos Constandse Madrazo a la Sociedad Mexicana de Geografía y Estadística.'
+      : 'Watch the recording of Marcos Constandse Madrazo’s induction into the Mexican Society of Geography and Statistics.'
+    : dictionary[video.descriptionKey].slice(0, 160);
+  return pageMetadata({ title, description, path: `/video/${videoId}`, language: lang, image: video.imageUrl });
 }
 export default async function Page({ params }: { params: Promise<Params> }) {
   const resolved = await params;

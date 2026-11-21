@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 import { ArrowLeft, CalendarDays, RefreshCw } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { ResourceAnalytics } from "@/components/resources/ResourceAnalytics";
@@ -34,13 +36,24 @@ export async function generateMetadata({
     };
   }
 
+  const path = `/resources/${article.slug}`;
+  const base = pageMetadata({
+    title: article.seoTitle,
+    description: article.seoDescription,
+    path,
+    language: "es",
+    localized: false,
+    image: article.heroImageUrl || undefined,
+  });
+
   return {
+    ...base,
     title: { absolute: article.seoTitle },
     description: article.seoDescription,
-    alternates: { canonical: `https://humanismoevolutivo.com/resources/${article.slug}/` },
     openGraph: {
+      ...base.openGraph,
       type: "article",
-      url: `https://humanismoevolutivo.com/resources/${article.slug}/`,
+      url: absoluteUrl(`/resources/${article.slug}`),
       title: article.seoTitle,
       description: article.seoDescription,
       publishedTime: article.publishedAt,
@@ -73,8 +86,8 @@ export default async function ResourceArticlePage({
     description: article.seoDescription,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
-    mainEntityOfPage: `https://humanismoevolutivo.com/resources/${article.slug}/`,
-    url: `https://humanismoevolutivo.com/resources/${article.slug}/`,
+    mainEntityOfPage: absoluteUrl(`/resources/${article.slug}`),
+    url: absoluteUrl(`/resources/${article.slug}`),
     author: {
       "@type": article.author === "Humanismo Evolutivo" ? "Organization" : "Person",
       name: article.author,

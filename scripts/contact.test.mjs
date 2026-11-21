@@ -6,6 +6,7 @@ const writes = [];
 const stub = (source) => `data:text/javascript,${encodeURIComponent(source)}`;
 const hooks = registerHooks({
   resolve(specifier, context, nextResolve) {
+    if (specifier === '@/lib/newsletter') return nextResolve('../src/lib/newsletter.ts', { ...context, parentURL: import.meta.url });
     if (specifier === '@/lib/contact') return nextResolve('../src/lib/contact.ts', { ...context, parentURL: import.meta.url });
     if (specifier === '@/lib/supabase/config') return { url: stub('export const isSupabaseConfigured = true'), shortCircuit: true };
     if (specifier === '@/lib/supabase/server') {
@@ -40,6 +41,12 @@ test('contact validates, saves and notifies without Turnstile', async (t) => {
     return { data: 'synthetic-id', error: null };
   };
   const fetchMock = t.mock.method(globalThis, 'fetch', async () => Response.json({ id: 'mock' }));
+
+  const bot = await submit({ website: 'bot' });
+  assert.equal(bot.status, 200);
+  assert.deepEqual(await bot.json(), { ok: true });
+  assert.equal(writes.length, 0);
+  assert.equal(fetchMock.mock.callCount(), 0);
 
   const rejected = await submit({ consent: false });
   assert.equal(rejected.status, 400);

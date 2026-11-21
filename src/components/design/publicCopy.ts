@@ -10,9 +10,9 @@ export const publicCopy: Record<string, string> = {
   'Las grandes preguntas': 'The great questions',
   'Un camino a través de los jardines': 'A path through the gardens',
   'Documental completo': 'Full documentary',
-  'Las 51 preguntas': 'The 51 questions',
+  'Explorar las 51 grandes preguntas': 'Explore the 51 great questions',
   'Profundiza en los libros': 'Go deeper with the books',
-  'Más contenido en nuestras plataformas': 'More on our platforms',
+  'Descubre más contenido en nuestra plataforma': 'Discover more content on our platform',
   'Únete al Club de Amigos que Evolucionan': 'Join the Club of Friends Who Evolve',
   'SOBRE EL AUTOR': 'ABOUT THE AUTHOR',
   'Marcos Constandse Madrazo es un pensador incansable, empresario visionario y explorador del alma humana. Desde hace más de tres décadas, ha recorrido un camino único que integra ciencia, filosofía, ecología y espiritualidad para ofrecer una visión del mundo donde todo está profundamente conectado: el universo, la Tierra, la vida, el ser humano y su evolución consciente.':
@@ -34,20 +34,20 @@ export const publicCopy: Record<string, string> = {
     'Socrates, Plato, and Aristotle accompany you as you explore the great questions of life from Transpersonal Evolutionary Humanism.',
   'PREGUNTAR · REFLEXIONAR · COMPRENDER': 'ASK · REFLECT · UNDERSTAND',
   'Nota sobre los personajes': 'A note about the characters',
-  'Platón, Sócrates y Aristóteles son recursos didácticos. No reproducen literalmente sus palabras ni sus doctrinas históricas.':
-    'Plato, Socrates, and Aristotle are teaching figures. They do not reproduce their historical words or doctrines literally.',
+  'Platón, Sócrates y Aristóteles son recursos didácticos. No reproducen literalmente sus palabras ni sus doctrinas filosóficas originales.':
+    'Plato, Socrates, and Aristotle are teaching figures. They do not literally reproduce their words or their original philosophical doctrines.',
   'Sócrates': 'Socrates',
   'PREGUNTA': 'ASKS',
   'Platón': 'Plato',
   'REFLEXIONA': 'REFLECTS',
   'Aristóteles': 'Aristotle',
-  'INTEGRA': 'INTEGRATES',
+  'COMPRENDE': 'UNDERSTANDS',
   '¿De dónde venimos?': 'Where do we come from?',
   'Venimos del Big Bang, el origen del universo, hace unos 13,800 millones de años. Para el Humanismo Evolutivo, aquellas primeras partículas ya llevaban información, y esa información fue organizando la materia, la vida y la conciencia. Literalmente, “somos polvo de estrellas” que ha aprendido a darse cuenta de sí mismo.':
     'We come from the Big Bang, the origin of the universe, about 13.8 billion years ago. For Evolutionary Humanism, those first particles already carried information, and that information went on to organize matter, life, and consciousness. Literally, “we are stardust” that has learned to become aware of itself.',
   '¿Hacia dónde podemos evolucionar?': 'Where can we evolve?',
-  'Hacia el espíritu. En el Humanismo Evolutivo, el espíritu no es un fantasma ni un dogma: es lo que nos hace “como yo”, es decir, la conciencia, la libertad y el reconocimiento del otro como igual. Evolucionar es elevar nuestro nivel de conciencia hasta vivir lo que Marcos Constandse llama “yo soy nosotros”.':
-    'Toward the spirit. In Evolutionary Humanism, spirit is neither a ghost nor a dogma: it is what makes us “like me,” that is, consciousness, freedom, and the recognition of the other as an equal. To evolve is to raise our level of consciousness until we live what Marcos Constandse calls “yo soy nosotros.”',
+  'Hacia el espíritu. En el Humanismo Evolutivo Transpersonal, el espíritu no es un fantasma ni un dogma: es lo que nos hace “como yo”, es decir, la conciencia, la libertad y el reconocimiento del otro como igual. Evolucionar es elevar nuestro nivel de conciencia hasta vivir lo que el Ing. Marcos Constandse Madrazo llama “Yo soy nosotros”.':
+    'Toward the spirit. In Transpersonal Evolutionary Humanism, spirit is neither a ghost nor a dogma: it is what makes us “like me,” that is, consciousness, freedom, and the recognition of the other as an equal. To evolve is to raise our level of consciousness until we live what Ing. Marcos Constandse Madrazo calls “Yo soy nosotros.”',
   'Conoce el camino del Humanismo Evolutivo Transpersonal a través de sus tres Jardines:':
     'Follow the path of Transpersonal Evolutionary Humanism through its three Gardens:',
   'EVOLUCIÓN · MEDITACIÓN · FILOSOFÍA': 'EVOLUTION · MEDITATION · PHILOSOPHY',

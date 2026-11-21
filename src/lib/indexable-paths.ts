@@ -1,9 +1,11 @@
 import { books } from '@/data/books';
 import { events } from '@/data/events';
+import { schoolCourses, schoolCoursePath } from '@/data/school-calendar-2027';
 import { podcastSeries } from '@/data/media';
 export function indexablePaths() {
   return [
-    '/', '/autor', '/libros', '/medios', '/eventos', '/contacto', '/vision', '/privacidad', '/terminos',
+    '/', '/autor', '/libros', '/clases', '/jardines', '/videos', '/podcasts', '/eventos', '/contacto', '/vision', '/privacidad', '/terminos',
+    ...schoolCourses.map(course => schoolCoursePath(course.id)),
     ...books.map(book => `/libros/${book.id}`),
     ...events.map(event => `/eventos/${event.id}`),
     ...podcastSeries.map(series => `/medios/show/${series.id}`),

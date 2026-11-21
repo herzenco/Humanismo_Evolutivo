@@ -39,7 +39,7 @@ const nextConfig: NextConfig = {
     return [{ source: '/preguntas', destination: '/51preguntas', permanent: true }, { source: '/es/preguntas', destination: '/51preguntas', permanent: true }, { source: '/en/preguntas', destination: '/en/51preguntas', permanent: true }, ...education, ...admin, ...spanish];
   },
   async rewrites() {
-    const pages = ['autor', 'libros', 'medios', 'eventos', 'contacto', 'vision', 'privacidad', 'terminos', 'buscar', 'chatbot', 'admin', 'video', '51preguntas'];
+    const pages = ['autor', 'libros', 'clases', 'jardines', 'videos', 'podcasts', 'medios', 'eventos', 'contacto', 'vision', 'privacidad', 'terminos', 'buscar', 'chatbot', 'admin', 'video', '51preguntas'];
     return {
       beforeFiles: [
         { source: '/', destination: '/es' },

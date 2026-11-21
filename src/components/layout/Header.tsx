@@ -2,13 +2,50 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { GraduationCap, Menu, Search, Shield, X } from 'lucide-react';
+import { ChevronDown, GraduationCap, Menu, Search, Shield, X } from 'lucide-react';
 import Link from '@/components/LocalizedLink';
 import { EDUCATION_WAITLIST_URL } from '@/lib/site';
 import { LanguageToggle } from '@/components/ui/language-toggle';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAdmin } from '@/hooks/useAdmin';
 import { EN_ENABLED } from '@/lib/release-flags';
+
+function ResourcesNavigation({ onNavigate }: { onNavigate?: () => void }) {
+  const { t, language } = useLanguage();
+  const es = language === 'es';
+  const disclosure = useRef<HTMLDetailsElement>(null);
+  const trigger = useRef<HTMLElement>(null);
+  const links = [
+    [t('nav.books'), '/libros'],
+    [es ? 'Clases' : 'Classes', '/clases'],
+    ['Videos', '/videos'],
+    ['Podcasts', '/podcasts'],
+    [es ? 'Revista' : 'Magazine', '/resources'],
+    [es ? 'Preguntas' : 'Questions', '/51preguntas'],
+  ];
+
+  return <details
+    ref={disclosure}
+    className="site-resources-nav"
+    onBlur={event => {
+      if (!event.currentTarget.contains(event.relatedTarget)) event.currentTarget.open = false;
+    }}
+    onKeyDown={event => {
+      if (event.key !== 'Escape' || !event.currentTarget.open) return;
+      event.stopPropagation();
+      event.currentTarget.open = false;
+      trigger.current?.focus();
+    }}
+  >
+    <summary ref={trigger}>{es ? 'Recursos' : 'Resources'}<ChevronDown size={16} aria-hidden="true" /></summary>
+    <ul>{links.map(([label, href]) => <li key={href}>
+      <Link href={href} onClick={() => {
+        if (disclosure.current) disclosure.current.open = false;
+        onNavigate?.();
+      }}>{label}</Link>
+    </li>)}</ul>
+  </details>;
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -17,9 +54,9 @@ export default function Header() {
   const { isAdmin } = useAdmin();
   const toggle = useRef<HTMLButtonElement>(null);
   const links = [
-    [t('nav.author'), '/autor'], [t('nav.books'), '/libros'],
-    [language === 'es' ? 'Medios' : 'Media', '/medios'], [t('nav.events'), '/eventos'],
-    [t('nav.vision'), '/vision'], [language === 'es' ? 'Contacto' : 'Contact', '/contacto'],
+    [t('nav.author'), '/autor'], [t('nav.events'), '/eventos'],
+    [t('nav.vision'), '/vision'], [language === 'es' ? 'Jardines' : 'Gardens', '/jardines'],
+    [language === 'es' ? 'Contacto' : 'Contact', '/contacto'],
   ];
   useEffect(() => {
     if (!open) return;
@@ -35,6 +72,7 @@ export default function Header() {
       </Link>
       <nav aria-label={language === 'es' ? 'Principal' : 'Main navigation'} className="site-desktop-nav">
         {links.map(([label, href]) => <Link key={href} href={href} aria-current={pathname === href ? 'page' : undefined}>{label}</Link>)}
+        <ResourcesNavigation />
       </nav>
       <div className="site-header-actions">
         <Link className="site-icon-button" href="/buscar" aria-label={language === 'es' ? 'Buscar' : 'Search'}><Search size={19} /></Link>
@@ -46,7 +84,7 @@ export default function Header() {
     </div>
     {open ? <nav id="site-mobile-nav" className="site-mobile-nav" aria-label="Menú principal">
       {links.map(([label, href]) => <Link key={href} href={href} aria-current={pathname === href ? 'page' : undefined} onClick={() => setOpen(false)}>{label}</Link>)}
-      <Link href="/resources" onClick={() => setOpen(false)}>{language === 'es' ? 'Recursos' : 'Resources'}</Link>
+      <ResourcesNavigation onNavigate={() => setOpen(false)} />
       {<Link href={EDUCATION_WAITLIST_URL} onClick={() => setOpen(false)}><GraduationCap size={19} />{language === 'es' ? 'Portal educativo' : 'Education portal'}</Link>}
     </nav> : null}
   </header>;
