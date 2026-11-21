@@ -7,6 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { bookForLanguage } from '@/lib/book-english';
 import { books, bookCovers } from '@/data/books';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import VideoDialog from './VideoDialog';
 import { homeVideos } from '@/config/home-videos';
 import Link from '@/components/LocalizedLink';
@@ -217,140 +218,34 @@ export default function HomeEditorial() {
 </article>
 </div>
 </section>
-<section id="s3" className="he-2ce0874f2">
-<div className="he-e0ac64c88 he-sized">
-<div className="he-3619f855d he-row">
-<span className="he-702f28551 he-row he-sized">
-{tx("3")}
-</span>
-<h2 className="he-22e182e34 he-h2">
-{tx("Un camino a través de los jardines")}
-</h2>
-</div>
-<p className="he-42c9249ac">
-{tx("Conoce el camino del Humanismo Evolutivo Transpersonal a través de sus tres Jardines:")}
-</p>
-<div className="he-2a485c9e5">
-{tx("EVOLUCIÓN · MEDITACIÓN · FILOSOFÍA")}
-</div>
-</div>
-<article className="he-aba102a70 he-row">
-<div className="he-21067afe7 he-sized">
-<img width="390" height="194" src="/design/ed9c86fd90f33e7d1ba2e1287ad8bcb6.jpg" alt={tx("Mosaicos del Jardín de la Evolución")} loading="lazy" className="he-84253380f he-sized" />
-<div className="he-9782dec4a">
-{tx("JARDÍN DE LA EVOLUCIÓN")}
-</div>
-</div>
-<div className="he-3c28cb097">
-<h3 className="he-891611ef3 he-h3">
-{tx("El Jardín de la Evolución")}
-</h3>
-<ul className="he-7caee8e56">
-<li className="he-33b6c86b7">
-{tx("Los ")}
-<strong>
-{tx("quince mosaicos")}
-</strong>
-{tx(" del jardín de la evolución simbolizan los procesos más importantes, científicamente comprobados, del proceso evolutivo del universo, referido a los tiempos en que se llevaron a cabo.")}
-</li>
-<li className="he-33b6c86b7">
-{tx("El Homo sapiens surgió hace unos 300,000 años. Compartimos un origen evolutivo y una dignidad común; las oportunidades de desarrollar nuestras capacidades dependen también de nuestras condiciones de vida.")}
-</li>
-<li className="he-33b6c86b7">
-{tx("Tenemos el ")}
-<strong>
-{tx("mismo origen")}
-</strong>
-{tx(": en las partículas emitidas por el Big Bang.")}
-</li>
-<li className="he-33b6c86b7">
-{tx("Tenemos la ")}
-<strong>
-{tx("misma ancestra")}
-</strong>
-{tx(", que fue la primera mujer Homo Sapiens Sapiens.")}
-</li>
-<li className="he-33b6c86b7">
-{tx("Son las diferentes condiciones socioeconómicas y ambientales lo que marca nuestras diversas “visiones del mundo” y capacidades. Por lo tanto, el esfuerzo humano se debe canalizar hacia la mejora de las condiciones de inicio y desarrollo de nuestra conciencia y nuestras capacidades, para lograr una mayor igualdad y aplicarlas en nuestro ")}
-<strong>
-{tx("trabajo")}
-</strong>
-{tx(" y participación social.")}
-</li>
-<li className="he-33b6c86b7">
-{tx("Es el ")}
-<strong>
-{tx("trabajo")}
-</strong>
-{tx(" (como en la evolución del universo trabajan las partículas del Big Bang para crear nuestra realidad actual), hecho con la ")}
-<strong>
-{tx("información correcta")}
-</strong>
-{tx(", lo que conecta al ser humano con las fuerzas evolutivas del universo, y si es útil y provechoso para los demás, conecta también con todas las religiones vigentes en el universo humano.")}
-</li>
-</ul>
-</div>
-</article>
-<article className="he-aba102a70 he-row">
-<div className="he-3c28cb097">
-<h3 className="he-891611ef3 he-h3">
-{tx("El Jardín de la Meditación")}
-</h3>
-<ul className="he-7caee8e56">
-<li className="he-33b6c86b7">
-{tx("Explica los ritos, visión y principios de 6 de las ")}
-<strong>
-{tx("religiones más importantes")}
-</strong>
-{tx(" en el mundo.")}
-</li>
-<li className="he-33b6c86b7">
-{tx("Demuestra que TODAS las religiones tienen un objetivo común: el reconocer al otro como igual a mí, y de ahí surge el ")}
-<strong>
-{tx("IMPERATIVO ÉTICO")}
-</strong>
-{tx(" que dice que “todos tenemos dignidad absoluta y debemos respetarnos y amarnos”.")}
-</li>
-<li className="he-33b6c86b7">
-{tx("A partir de ahí es que se llega a la misma conclusión evolutiva: por amor o solidaridad hacia “los otros” (“amaos los unos a los otros”), debemos hacer valer los derechos humanos, como el derecho a la vida, la salud, la vivienda, la educación, la alimentación, el trabajo, la recreación, etc.")}
-</li>
-</ul>
-</div>
-<div className="he-21067afe7 he-sized">
-<img width="370" height="160" src="/design/e4ac4e8708df48eeccff81d2686c6998.jpg" alt={tx("Esculturas del Jardín de la Meditación")} loading="lazy" className="he-e8eda883c he-sized" />
-<div className="he-9782dec4a">
-{tx("JARDÍN DE LA MEDITACIÓN")}
-</div>
-</div>
-</article>
-<article className="he-aba102a70 he-row">
-<div className="he-21067afe7 he-sized">
-<img width="390" height="156" src="/design/26992f25dd3efc30930eb809112915c2.jpg" alt={tx("Edificio del Jardín de la Filosofía")} loading="lazy" className="he-21b002869 he-sized" />
-<div className="he-9782dec4a">
-{tx("JARDÍN DE LA FILOSOFÍA")}
-</div>
-</div>
-<div className="he-3c28cb097">
-<h3 className="he-891611ef3 he-h3">
-{tx("El Jardín de la Filosofía")}
-</h3>
-<p className="he-9645b261d">
-{tx("Este jardín acompaña a quienes deciden ")}
-<strong>
-{tx("profundizar")}
-</strong>
-{tx(" en el ")}
-<strong>
-{tx("conocimiento")}
-</strong>
-{tx(", tanto de la ciencia (antropología) y la filosofía, para cimentar más profundamente su conciencia y con el conocimiento básico abordar la teoría de ")}
-<strong>
-{tx("“Humanismo Evolutivo”")}
-</strong>
-{tx(". Este camino busca ampliar la conciencia y acercarnos a la felicidad, la paz interior y la autorrealización.")}
-</p>
-</div>
-</article>
+<section id="s3" className="he-2ce0874f2" aria-labelledby="home-gardens-title">
+  <div className="home-gardens-intro">
+    <div>
+      <div className="he-3619f855d he-row">
+        <span className="he-702f28551 he-row he-sized" aria-hidden="true">3</span>
+        <h2 id="home-gardens-title" className="he-22e182e34 he-h2">{tx("Un camino a través de los jardines")}</h2>
+      </div>
+      <p className="he-42c9249ac">
+        {language === 'es'
+          ? 'En Parque Cancún, quince mosaicos recorren la evolución del universo y de la vida. Los jardines de la Meditación y la Filosofía invitan a explorar lo que compartimos y a reflexionar sobre cómo vivimos.'
+          : 'At Parque Cancún, fifteen mosaics trace the evolution of the universe and life. The Meditation and Philosophy gardens invite us to explore what we share and reflect on how we live.'}
+      </p>
+    </div>
+    <Link href="/jardines" className="design-button">
+      {language === 'es' ? 'Explorar los jardines' : 'Explore the gardens'}
+      <ArrowRight size={18} aria-hidden="true" />
+    </Link>
+  </div>
+  <figure className="home-gardens-panorama">
+    <Image
+      src="/design/jardin-evolucion-panorama.webp"
+      alt={language === 'es' ? 'Vista panorámica del muro de mosaicos del Jardín de la Evolución' : 'Panoramic view of the Evolution Garden mosaic wall'}
+      width={2400}
+      height={488}
+      sizes="(max-width: 780px) calc(164vw - 79px), (max-width: 900px) calc(100vw - 48px), calc(100vw - 64px)"
+    />
+    <figcaption>{language === 'es' ? 'Jardín de la Evolución · Parque Cancún' : 'Evolution Garden · Parque Cancún'}</figcaption>
+  </figure>
 </section>
 <section id="s4" className="he-580031031 he-row">
 <div className="he-c2365a66f he-sized">
@@ -782,7 +677,7 @@ Acceso anticipado
 <p className="he-2e3eeeb26">
 {tx("Una oportunidad para comprender mejor el pensamiento del autor a través del diálogo con otros pensadores y comunicadores contemporáneos.")}
 </p>
-<Link href="/medios" prefetch={false} className="he-b5744218c he-row">
+<Link href="/podcasts" prefetch={false} className="he-b5744218c he-row">
 {tx("Ver todos los episodios\n")}
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 <path d="M5 12h14M13 6l6 6-6 6">
@@ -1026,6 +921,9 @@ Acceso anticipado
 
 </path>
 </svg>
+</Link>
+<Link href="/clases" className="design-button design-button-white">
+{language === 'es' ? 'Cursos de filosofía y antropología en Cancún' : 'Philosophy and anthropology courses in Cancún'}
 </Link>
 </div>
 <div className="he-3c28cb097">
