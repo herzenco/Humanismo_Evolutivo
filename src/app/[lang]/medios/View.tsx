@@ -13,9 +13,9 @@ import { books } from '@/data/books';
 import { supabase } from '@/integrations/supabase/client';
 
 type MediaTab = 'podcasts' | 'videos';
-export default function MediaPage() {
+export default function MediaPage({ initialTab }: { initialTab: MediaTab }) {
   const { t, language } = useLanguage();
-  const [activeTab, setActiveTab] = useState<MediaTab>('podcasts');
+  const [activeTab, setActiveTab] = useState<MediaTab>(initialTab);
   const es = language === 'es';
   useEffect(() => {
     const update = () => {
