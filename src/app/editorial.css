@@ -381,3 +381,67 @@
   }
   .he-6d2a3d2fe svg { flex-shrink: 0; }
 }
+
+.editorial #s3 {
+  align-items: stretch;
+  gap: 28px;
+}
+
+.home-gardens-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 36px;
+}
+
+.home-gardens-intro p {
+  max-width: 72ch;
+  margin-top: 18px;
+}
+
+.home-gardens-intro .design-button {
+  flex: none;
+}
+
+.home-gardens-panorama {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #dce5d2;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.home-gardens-panorama img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.home-gardens-panorama figcaption {
+  padding: 11px 16px;
+  color: #3e4d43;
+  font-size: 14px;
+}
+
+@media (max-width: 780px) {
+  .home-gardens-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .editorial .home-gardens-intro .he-3619f855d {
+    flex-wrap: nowrap;
+    gap: 14px;
+  }
+
+  .home-gardens-intro .he-702f28551 {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  .home-gardens-panorama img {
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+  }
+}

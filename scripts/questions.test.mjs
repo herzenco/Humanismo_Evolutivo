@@ -14,10 +14,15 @@ test('only complete published answers are available for links and indexing', () 
   assert.throws(() => publishedQuestions([question(1, { sections: [{ paragraphs: ['  '] }] })]), /needs a title, description and answer/);
 });
 
-test('question URLs use the exact requested numbering and reject duplicate aliases', () => {
+test('question URLs use unique descriptive slugs and resolve legacy numbered links', () => {
   const source = [question(1), question(51)];
-  assert.equal(questionPath(1), '/51preguntas/pregunta_1');
-  assert.equal(questionPath(51), '/51preguntas/pregunta_51');
+  assert.equal(questionPath(source[0]), '/51preguntas/pregunta-1-question-1');
+  assert.equal(questionBySlug('pregunta-51-question-51', source)?.number, 51);
+  const published = publishedQuestions();
+  const paths = published.map(questionPath);
+  assert.equal(new Set(paths).size, 51);
+  assert.equal(paths[0], '/51preguntas/pregunta-1-como-se-inicio-el-universo-actual');
+  for (const [index, path] of paths.entries()) assert.equal(questionBySlug(path.split('/').at(-1))?.number, index + 1);
   assert.equal(questionBySlug('pregunta_51', source)?.number, 51);
   for (const slug of ['pregunta_01', 'pregunta_0', 'pregunta_52', 'pregunta_1-extra', '1']) {
     assert.equal(questionBySlug(slug, source), undefined);
@@ -55,6 +60,7 @@ test('published video variants stay paired with their supplied question and miss
     for (const video of videos) {
       assert.ok(video.src.includes(`/51preguntas/pregunta_${item.number}/`));
       assert.ok(video.poster.includes(`/51preguntas/pregunta_${item.number}/`));
+      assert.equal(video.poster, video.src.replace(/\.mp4$/, '.jpg'));
       assert.ok(video.durationSeconds > 0);
     }
     assert.equal(new Set(videos.map(video => video.src)).size, videos.length);

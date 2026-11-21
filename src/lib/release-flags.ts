@@ -13,6 +13,10 @@ export const EN_ENABLED =
 const SPANISH_ROOTS = new Set([
   'autor',
   'libros',
+  'clases',
+  'jardines',
+  'videos',
+  'podcasts',
   'medios',
   'eventos',
   'contacto',

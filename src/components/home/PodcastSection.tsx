@@ -97,7 +97,7 @@ const PodcastSection = () => {
               variants={textVariants}
             >
               <Link 
-                href="/medios" 
+                href="/podcasts"
                 className="inline-flex items-center text-primary font-medium hover:text-gold transition-colors"
                 onClick={() => {
                   (window as any).dataLayer?.push({

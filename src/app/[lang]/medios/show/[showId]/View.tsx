@@ -40,7 +40,7 @@ export default function ShowDetailPage({ params }: { params: Promise<{ showId: s
   const dbShow = dbPodcastSeries?.find(db => db.book_id === showId);
 
   if (!show) {
-    redirect('/medios');
+    redirect('/podcasts');
   }
 
   const coverImage = dbShow?.cover_image_url || show.coverImage;
@@ -86,7 +86,7 @@ export default function ShowDetailPage({ params }: { params: Promise<{ showId: s
             transition={{ duration: 0.8 }}
           >
             <Link
-              href="/medios"
+              href="/podcasts"
               className="inline-flex items-center text-white/80 hover:text-white mb-8 transition-colors"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />

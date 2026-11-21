@@ -32,17 +32,22 @@ export type Question = {
 // Generated from the user-supplied Markdown files; see scripts/import-questions.mjs.
 export const questions: Question[] = importedQuestions as Question[];
 
-export function questionPath(number: number): string {
-  if (!Number.isInteger(number) || number < 1 || number > 51) {
-    throw new Error('Question numbers must be integers from 1 to 51.');
-  }
-  return `/51preguntas/pregunta_${number}`;
+export function questionSlug(question: Pick<Question, 'number' | 'title'>): string {
+  const words = question.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().match(/[a-z0-9]+/g) ?? [];
+  return ['pregunta', question.number, ...words].join('-');
+}
+
+export function questionPath(question: Pick<Question, 'number' | 'title'>): string {
+  return `/51preguntas/${questionSlug(question)}`;
 }
 
 export function publishedQuestions(source: readonly Question[] = questions): Question[] {
   const numbers = new Set<number>();
   for (const question of source) {
-    questionPath(question.number);
+    if (!Number.isInteger(question.number) || question.number < 1 || question.number > 51) {
+      throw new Error('Question numbers must be integers from 1 to 51.');
+    }
     if (numbers.has(question.number)) throw new Error(`Duplicate question ${question.number}.`);
     numbers.add(question.number);
     if (question.status !== 'published') continue;
@@ -63,9 +68,8 @@ export function publishedQuestions(source: readonly Question[] = questions): Que
 }
 
 export function questionBySlug(slug: string, source: readonly Question[] = questions): Question | undefined {
-  if (!/^pregunta_([1-9]|[1-4][0-9]|5[01])$/.test(slug)) return undefined;
-  const number = Number(slug.slice('pregunta_'.length));
-  return publishedQuestions(source).find(question => question.number === number);
+  return publishedQuestions(source).find(question =>
+    slug === questionSlug(question) || slug === `pregunta_${question.number}`);
 }
 
 export const questionsCanonicalOrigin = 'https://humanismoevolutivo.com';
