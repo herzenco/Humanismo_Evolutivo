@@ -1,12 +1,37 @@
 import type { Language } from '@/lib/site';
 
+type CourseObjectives = {
+  general: string;
+  specific: { label?: string; text: string }[];
+};
+
 type Preview = {
   summary: string;
   summaryPending?: true;
+  objectives?: CourseObjectives;
   venue?: string;
   title: string;
   lesson: string;
   exercise: string;
+};
+
+const historiaDeLasReligionesObjectives: Record<Language, CourseObjectives> = {
+  es: {
+    general: "Estudiar de manera objetiva, crítica e imparcial la evolución histórica, los fundamentos y el impacto cultural de las diversas tradiciones religiosas de la humanidad, manteniendo una perspectiva neutral que fomente el análisis académico sin pretender convencer ni dirigir a los participantes hacia ninguna fe o creencia en particular.",
+    specific: [
+      { label: "Examinar el desarrollo histórico:", text: "Analizar el surgimiento, la expansión y las transformaciones de las principales religiones en su contexto sociocultural a lo largo del tiempo." },
+      { label: "Comprender los sistemas de creencias:", text: "Distinguir los textos y los principios éticos de cada tradición desde una perspectiva filosófica." },
+      { text: "Proveer un espacio de estudio basado en el respeto y la objetividad permitiendo a los participantes valorar la diversidad espiritual del mundo." },
+    ],
+  },
+  en: {
+    general: "To study, objectively, critically and impartially, the historical development, foundations and cultural impact of humanity's diverse religious traditions, keeping a neutral perspective that encourages academic analysis without seeking to persuade participants or steer them toward any particular faith or belief.",
+    specific: [
+      { label: "Examine historical development:", text: "Analyze the emergence, expansion and transformation of the major religions in their sociocultural context over time." },
+      { label: "Understand belief systems:", text: "Distinguish the texts and ethical principles of each tradition from a philosophical perspective." },
+      { text: "Provide a space for study grounded in respect and objectivity, allowing participants to appreciate the world's spiritual diversity." },
+    ],
+  },
 };
 
 // The four courses with an online curriculum use their opening lesson as the basis
@@ -123,15 +148,15 @@ export const schoolCoursePreviews: Record<string, Record<Language, Preview>> = {
   },
   'historia-de-las-religiones': {
     es: {
-      summary: "La descripción completa de este curso se publicará próximamente.",
-      summaryPending: true,
+      summary: historiaDeLasReligionesObjectives.es.general,
+      objectives: historiaDeLasReligionesObjectives.es,
       title: 'El significado de un rito',
       lesson: 'Una práctica religiosa adquiere sentido en su contexto. Dos celebraciones pueden compartir un gesto y darle significados diferentes.',
       exercise: 'Elige dos celebraciones en las que se use luz. Describe el gesto compartido y formula una pregunta sobre su significado en cada tradición.',
     },
     en: {
-      summary: "The full description of this course will be published soon.",
-      summaryPending: true,
+      summary: historiaDeLasReligionesObjectives.en.general,
+      objectives: historiaDeLasReligionesObjectives.en,
       title: 'The meaning of a ritual',
       lesson: 'A religious practice takes on meaning in context. Two celebrations may share a gesture while giving it different meanings.',
       exercise: 'Choose two celebrations that use light. Describe the shared gesture and pose a question about its meaning in each tradition.',

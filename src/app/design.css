@@ -62,8 +62,8 @@ html { scroll-padding-top:144px; }
 .site-footer-grid { display:grid; grid-template-columns:1.35fr 1fr 1.2fr 1fr; gap:40px; padding-bottom:48px; }
 .footer-description { font-size:16px; line-height:1.6; color:#ffffffbf; margin:24px 0; max-width:300px; }
 .footer-author { font-family:'Cinzel',serif; font-size:11px; letter-spacing:.12em; color:#D4AF5A; }
-.site-footer-grid nav { display:flex; flex-direction:column; gap:12px; }
-.site-footer-grid h3 { font-size:25px; font-weight:600; margin-bottom:6px; }
+.site-footer-grid nav { display:flex; flex-direction:column; gap:4px; }
+.site-footer-grid h3 { font-size:25px; font-weight:600; margin-bottom:0; }
 .site-footer-grid nav a { color:#ffffffe0; display:flex; align-items:center; gap:8px; font-size:16px; }
 .site-footer a:hover { color:#D4AF5A; }
 .site-footer-bottom { border-top:1px solid #ffffff24; padding-top:24px; display:flex; justify-content:space-between; gap:24px; font-size:13px; color:#ffffffd9; }
@@ -588,7 +588,12 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 /* QA accessibility review: readable numbers, portal type and generous targets. */
 .skip-to-content{position:fixed;top:12px;left:12px;z-index:1000;transform:translateY(-200%);padding:14px 20px;background:#fff;color:#173f2c;border:3px solid #173f2c;border-radius:8px;font-weight:700;}
 .skip-to-content:focus{transform:translateY(0);}
-.site-footer nav a,.site-footer-bottom a{min-height:44px;display:inline-flex;align-items:center;}
+.site-footer nav a,.site-footer-bottom a{display:inline-flex;align-items:center;}
+.site-footer nav a{min-height:32px;}
+.site-footer-bottom a{min-height:44px;}
+@media (pointer: coarse), (max-width: 639px) {
+  .site-footer nav a{min-height:44px;}
+}
 .home-content-number{font-size:30px;width:46px;height:46px;}
 .portal-app{font-size:18px;}
 .portal-app p,.portal-app td,.portal-app input,.portal-app select{font-size:18px;}

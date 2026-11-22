@@ -47,7 +47,10 @@ export default async function CoursePage({ params }: Props) {
   const dateRange = (start: string, end: string) => date.formatRange(
     new Date(`${start}T00:00:00Z`), new Date(`${end}T00:00:00Z`),
   );
-  const days = course.days.map(day => weekday.format(new Date(Date.UTC(2027, 1, 14 + day))));
+  const days = course.days.map(day => {
+    const name = weekday.format(new Date(Date.UTC(2027, 1, 14 + day)));
+    return name.charAt(0).toLocaleUpperCase(locale) + name.slice(1);
+  });
   const listedDays = new Intl.ListFormat(locale, { type: 'conjunction' }).format(days);
   const url = absoluteUrl(path, lang);
 
@@ -68,7 +71,7 @@ export default async function CoursePage({ params }: Props) {
       <section className={styles.courseSchedule} aria-labelledby="course-schedule">
         <h2 id="course-schedule">{en ? '2027 schedule' : 'Horario 2027'}</h2>
         <p className={styles.courseTime}><time dateTime={course.start}>{course.start}</time>–<time dateTime={course.end}>{course.end}</time></p>
-        <p className={styles.courseDays}>{listedDays}</p>
+        <p>{listedDays}</p>
         <p className={styles.coverage}>{en ? 'Cancún time' : 'Hora de Cancún'}</p>
         <ul className={styles.courseDates}>
           {schoolTerms.map(({ start, end }) => <li key={start}>
@@ -90,6 +93,16 @@ export default async function CoursePage({ params }: Props) {
           <p>{preview.exercise}</p>
         </div>
       </section>
+
+      {preview.objectives ? <section className={styles.courseObjectives} aria-labelledby="course-objectives">
+        <h2 id="course-objectives">{en ? 'Course objectives' : 'Objetivos del curso'}</h2>
+        <p>{preview.objectives.general}</p>
+        <ol>
+          {preview.objectives.specific.map(item => <li key={item.text}>
+            {item.label ? <><strong>{item.label}</strong> {item.text}</> : item.text}
+          </li>)}
+        </ol>
+      </section> : null}
     </div>
   </PageWrapper>;
 }
