@@ -56,7 +56,17 @@ test('published video variants stay paired with their supplied question and miss
   let count = 0;
   for (const item of published) {
     const videos = item.videos || [];
-    assert.equal(videos.length, item.number <= 10 ? 3 : item.number <= 25 ? 2 : 0, `Question ${item.number} video inventory differs from the supplied folders.`);
+    if (item.number <= 34) {
+      assert.equal(videos.length, 1, `Question ${item.number} should publish one horizontal dialogue.`);
+      const [video] = videos;
+      assert.equal(video.label, 'Diálogo');
+      assert.equal(video.kind, 'dialogue');
+      assert.equal(video.orientation, 'horizontal');
+      assert.match(video.src, new RegExp(`/51preguntas/pregunta_${item.number}/horizontal\\.mp4$`));
+      assert.equal(videos.some(entry => entry.kind === 'narration' || entry.orientation === 'vertical'), false);
+    } else {
+      assert.equal(videos.length, 0, `Question ${item.number} video inventory should stay empty.`);
+    }
     for (const video of videos) {
       assert.ok(video.src.includes(`/51preguntas/pregunta_${item.number}/`));
       assert.ok(video.poster.includes(`/51preguntas/pregunta_${item.number}/`));
@@ -66,5 +76,5 @@ test('published video variants stay paired with their supplied question and miss
     assert.equal(new Set(videos.map(video => video.src)).size, videos.length);
     count += videos.length;
   }
-  assert.equal(count, 60);
+  assert.equal(count, 34);
 });
