@@ -209,7 +209,7 @@ export default function HomeEditorial() {
 <article aria-labelledby="question-origin">
 <img width="1555" height="1012" src="/design/jardin-de-la-evolucion.webp" alt={tx("¿De dónde venimos? Preguntar es el inicio del conocimiento. El Jardín de la Evolución.")} loading="lazy" className="he-0ded6cc87" />
 <h3 id="question-origin">{tx("¿De dónde venimos?")}</h3>
-<p>{tx("Venimos del Big Bang, el origen del universo, hace unos 13,800 millones de años. Para el Humanismo Evolutivo, aquellas primeras partículas ya llevaban información, y esa información fue organizando la materia, la vida y la conciencia. Literalmente, “somos polvo de estrellas” que ha aprendido a darse cuenta de sí mismo.")}</p>
+<p>{tx("Venimos del Big Bang, el origen del universo, hace unos 13,800 millones de años. Para el Humanismo Evolutivo Transpersonal, aquellas primeras partículas ya llevaban información, y esa información fue organizando la materia, la vida y la conciencia. Literalmente, “somos polvo de estrellas” que ha aprendido a darse cuenta de sí mismo.")}</p>
 </article>
 <article aria-labelledby="question-evolution">
 <img width="1200" height="800" src="/design/04392e0cfc55badb8bb441819c60883b.webp" alt={tx("¿Hacia dónde podemos evolucionar? Conocer · Comprender · Transformar · Evolucionar.")} loading="lazy" className="he-3667c6366" />

@@ -1,12 +1,81 @@
 import type { Language } from '@/lib/site';
 
+type CourseObjectives = {
+  general: string;
+  specific: { label?: string; text: string }[];
+};
+
 type Preview = {
   summary: string;
   summaryPending?: true;
+  objectives?: CourseObjectives;
   venue?: string;
   title: string;
   lesson: string;
   exercise: string;
+};
+
+const historiaEvolutivaDelArteObjectives: Record<Language, CourseObjectives> = {
+  es: {
+    general: "Explorar cómo el ser humano, a través de su aparato perceptual, ha buscado comunicarse, encontrar la belleza y expresar su sentido de vida mediante una diversidad de recursos y herramientas visuales, táctiles, gustativas, auditivas y kinestésicas.",
+    specific: [
+      { label: "Analizar la percepción sensorial:", text: "Examinar el papel del aparato perceptual humano como el canal fundamental para interpretar, experimentar y dar significado al entorno a lo largo de la historia." },
+      { label: "Identificar los lenguajes expresivos:", text: "Estudiar las diferentes herramientas y recursos visuales, táctiles, gustativos, auditivos y kinestésicos empleados por distintas culturas para plasmar su visión del mundo." },
+      { label: "Comprender el arte como búsqueda de sentido:", text: "Profundizar en cómo las creaciones artísticas reflejan la necesidad humana de trascendencia, comunicación profunda y búsqueda de la belleza en la experiencia vital." },
+    ],
+  },
+  en: {
+    general: "To explore how human beings, through their perceptual faculties, have sought to communicate, find beauty and express their sense of life through a wide range of visual, tactile, gustatory, auditory and kinesthetic resources and tools.",
+    specific: [
+      { label: "Analyze sensory perception:", text: "Examine the role of the human perceptual apparatus as the fundamental channel for interpreting, experiencing and giving meaning to the environment throughout history." },
+      { label: "Identify expressive languages:", text: "Study the visual, tactile, gustatory, auditory and kinesthetic tools and resources that different cultures have used to express their view of the world." },
+      { label: "Understand art as a search for meaning:", text: "Explore how artistic creations reflect the human need for transcendence, deep communication and the search for beauty in lived experience." },
+    ],
+  },
+};
+
+const filosofiaParaNinosObjectives: Record<Language, CourseObjectives> = {
+  es: {
+    general: "Despertar la curiosidad, el asombro y el gusto por pensar en niños y niñas mediante experiencias de diálogo, juego y exploración de la naturaleza, que les permitan descubrir nuevas ideas, hacer preguntas sobre el mundo y desarrollar un pensamiento crítico, creativo y cuidadoso con los demás y con su entorno.",
+    specific: [
+      { text: "Estimular el pensamiento crítico mediante preguntas, argumentos y la exploración de diferentes puntos de vista." },
+      { text: "Fomentar el pensamiento creativo a través de la imaginación, la formulación de hipótesis y la búsqueda de nuevas posibilidades." },
+      { text: "Desarrollar el pensamiento cuidadoso, promoviendo la empatía, la escucha, el respeto y la reflexión sobre cómo nuestras decisiones afectan a los demás y a la naturaleza." },
+      { text: "Aprovechar el entorno natural del parque como un espacio de asombro, observación, descubrimiento y reflexión filosófica." },
+      { text: "Fortalecer el diálogo y la construcción colectiva de ideas, aprendiendo a escuchar, expresar opiniones y cuestionar respetuosamente." },
+      { text: "Invitar a niños y niñas a explorar preguntas sobre la vida, la amistad, la justicia, las emociones, la naturaleza y nuestra relación con el mundo." },
+    ],
+  },
+  en: {
+    general: "To awaken curiosity, wonder and a love of thinking in children through experiences of dialogue, play and exploring nature that let them discover new ideas, ask questions about the world and develop critical, creative and caring thinking toward others and their surroundings.",
+    specific: [
+      { text: "Stimulate critical thinking through questions, arguments and exploring different points of view." },
+      { text: "Encourage creative thinking through imagination, forming hypotheses and searching for new possibilities." },
+      { text: "Develop caring thinking by promoting empathy, listening, respect and reflection on how our decisions affect others and nature." },
+      { text: "Use the park's natural setting as a space for wonder, observation, discovery and philosophical reflection." },
+      { text: "Strengthen dialogue and the collective building of ideas, learning to listen, express opinions and question respectfully." },
+      { text: "Invite children to explore questions about life, friendship, justice, emotions, nature and our relationship with the world." },
+    ],
+  },
+};
+
+const historiaDeLasReligionesObjectives: Record<Language, CourseObjectives> = {
+  es: {
+    general: "Estudiar de manera objetiva, crítica e imparcial la evolución histórica, los fundamentos y el impacto cultural de las diversas tradiciones religiosas de la humanidad, manteniendo una perspectiva neutral que fomente el análisis académico sin pretender convencer ni dirigir a los participantes hacia ninguna fe o creencia en particular.",
+    specific: [
+      { label: "Examinar el desarrollo histórico:", text: "Analizar el surgimiento, la expansión y las transformaciones de las principales religiones en su contexto sociocultural a lo largo del tiempo." },
+      { label: "Comprender los sistemas de creencias:", text: "Distinguir los textos y los principios éticos de cada tradición desde una perspectiva filosófica." },
+      { text: "Proveer un espacio de estudio basado en el respeto y la objetividad permitiendo a los participantes valorar la diversidad espiritual del mundo." },
+    ],
+  },
+  en: {
+    general: "To study, objectively, critically and impartially, the historical development, foundations and cultural impact of humanity's diverse religious traditions, keeping a neutral perspective that encourages academic analysis without seeking to persuade participants or steer them toward any particular faith or belief.",
+    specific: [
+      { label: "Examine historical development:", text: "Analyze the emergence, expansion and transformation of the major religions in their sociocultural context over time." },
+      { label: "Understand belief systems:", text: "Distinguish the texts and ethical principles of each tradition from a philosophical perspective." },
+      { text: "Provide a space for study grounded in respect and objectivity, allowing participants to appreciate the world's spiritual diversity." },
+    ],
+  },
 };
 
 // The four courses with an online curriculum use their opening lesson as the basis
@@ -91,15 +160,15 @@ export const schoolCoursePreviews: Record<string, Record<Language, Preview>> = {
   },
   'historia-evolutiva-del-arte': {
     es: {
-      summary: "La descripción completa de este curso se publicará próximamente.",
-      summaryPending: true,
+      summary: historiaEvolutivaDelArteObjectives.es.general,
+      objectives: historiaEvolutivaDelArteObjectives.es,
       title: 'Dos obras, dos maneras de mirar',
       lesson: 'Comparar obras de épocas distintas permite observar cómo cambian los materiales, las formas y las funciones que una sociedad les atribuye.',
       exercise: 'Elige dos retratos de épocas distintas. Describe una diferencia en la composición y plantea qué pregunta sobre su contexto te ayudaría a entenderla.',
     },
     en: {
-      summary: "The full description of this course will be published soon.",
-      summaryPending: true,
+      summary: historiaEvolutivaDelArteObjectives.en.general,
+      objectives: historiaEvolutivaDelArteObjectives.en,
       title: 'Two works, two ways of seeing',
       lesson: 'Comparing works from different periods reveals changes in materials, forms, and the purposes people assign to art.',
       exercise: 'Choose two portraits from different periods. Describe a difference in their composition and pose a question about context that could help explain it.',
@@ -123,15 +192,15 @@ export const schoolCoursePreviews: Record<string, Record<Language, Preview>> = {
   },
   'historia-de-las-religiones': {
     es: {
-      summary: "La descripción completa de este curso se publicará próximamente.",
-      summaryPending: true,
+      summary: historiaDeLasReligionesObjectives.es.general,
+      objectives: historiaDeLasReligionesObjectives.es,
       title: 'El significado de un rito',
       lesson: 'Una práctica religiosa adquiere sentido en su contexto. Dos celebraciones pueden compartir un gesto y darle significados diferentes.',
       exercise: 'Elige dos celebraciones en las que se use luz. Describe el gesto compartido y formula una pregunta sobre su significado en cada tradición.',
     },
     en: {
-      summary: "The full description of this course will be published soon.",
-      summaryPending: true,
+      summary: historiaDeLasReligionesObjectives.en.general,
+      objectives: historiaDeLasReligionesObjectives.en,
       title: 'The meaning of a ritual',
       lesson: 'A religious practice takes on meaning in context. Two celebrations may share a gesture while giving it different meanings.',
       exercise: 'Choose two celebrations that use light. Describe the shared gesture and pose a question about its meaning in each tradition.',
@@ -139,15 +208,15 @@ export const schoolCoursePreviews: Record<string, Record<Language, Preview>> = {
   },
   'filosofia-para-ninos': {
     es: {
-      summary: "La descripción completa de este curso se publicará próximamente.",
-      summaryPending: true,
+      summary: filosofiaParaNinosObjectives.es.general,
+      objectives: filosofiaParaNinosObjectives.es,
       title: '¿Qué significa compartir?',
       lesson: 'Una pregunta común puede abrir un diálogo filosófico. Escuchar un ejemplo distinto ayuda a descubrir ideas que al principio pasamos por alto.',
       exercise: 'Imagina que tres amigos tienen que repartir dos manzanas. Propón una solución y explica por qué te parece justa.',
     },
     en: {
-      summary: "The full description of this course will be published soon.",
-      summaryPending: true,
+      summary: filosofiaParaNinosObjectives.en.general,
+      objectives: filosofiaParaNinosObjectives.en,
       title: 'What does it mean to share?',
       lesson: 'An everyday question can open a philosophical discussion. Hearing a different example can reveal ideas we overlooked at first.',
       exercise: 'Imagine three friends have two apples to share. Suggest a solution and explain why you think it is fair.',
