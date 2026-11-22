@@ -1,60 +1,71 @@
-const park = [
-  [90, 2400, 488, 'Panorámica del muro de mosaicos', 'Panorama of the mosaic wall'],
-  [88, 1800, 900, 'Sendero junto a los mosaicos', 'Path along the mosaics'],
-  [89, 1800, 436, 'Los mosaicos desde el jardín', 'Mosaics viewed from the garden'],
-  [80, 1201, 1800, 'La escala del tiempo', 'The scale of time'],
-  [77, 1292, 1800, 'Formación de la Tierra', 'Formation of Earth'],
-  [78, 1292, 1800, 'Vida vegetal y fotosíntesis', 'Plant life and photosynthesis'],
-  [79, 1201, 1800, 'El origen de la vida animal', 'Origins of animal life'],
-  [81, 1800, 900, 'Evolución del ser humano', 'Human evolution'],
-  [82, 1200, 1800, 'La evolución de la conciencia', 'The evolution of consciousness'],
-  [83, 1800, 1800, 'Cronología de culturas y tecnologías', 'Timeline of cultures and technologies'],
-  [84, 1201, 1800, 'El intercambio de energía', 'The exchange of energy'],
-  [85, 1200, 1800, 'Energía atómica', 'Atomic energy'],
-  [86, 1201, 1800, 'El ser humano y el universo', 'Humankind and the universe'],
-  [87, 1201, 1800, 'Inteligencia y tecnología', 'Intelligence and technology'],
-  [96, 1800, 900, 'Recorrido entre los arcos', 'Path through the arches'],
-  [94, 1800, 780, 'Mural «Yo soy nosotros»', '“Yo soy nosotros” mural'],
-  [99, 1800, 900, 'Escultura espejada junto al globo', 'Mirrored sculpture beside the globe'],
-  [91, 1438, 1800, 'Escultura del hinduismo', 'Hinduism sculpture'],
-  [92, 1502, 1800, 'Figura de Buda bajo el arco', 'Buddha figure beneath the arch'],
-  [93, 1440, 1800, 'Escultura de Confucio', 'Sculpture of Confucius'],
-  [95, 1560, 1800, 'Media luna y estrella del islam', 'Islamic crescent and star'],
-  [97, 1515, 1800, 'Estrella de David', 'Star of David'],
-  [98, 1485, 1800, 'Otra vista de la figura de Buda', 'Another view of the Buddha figure'],
-] as const;
+type GalleryPhoto = {
+  src: string;
+  width: number;
+  height: number;
+  es: string;
+  en: string;
+};
 
-const pavilion = [
-  [1, 'Vista aérea del pabellón', 'Aerial view of the pavilion'],
-  [12, 'Vista cenital del conjunto', 'Overhead view of the site'],
-  [2, 'Exterior al atardecer', 'Exterior at sunset'],
-  [4, 'Terraza y fachadas', 'Terrace and façades'],
-  [6, 'Interior del aula', 'Classroom interior'],
-  [11, 'Fuente con esculturas', 'Fountain with sculptures'],
-  [7, 'Vista al jardín desde el pórtico', 'Garden view from the porch'],
-  [10, 'Corredor cubierto hacia el jardín', 'Covered walkway toward the garden'],
-  [3, 'Fachada lateral', 'Side façade'],
-  [5, 'Acceso junto al sendero', 'Entrance beside the path'],
-  [8, 'Fachada con columnas de madera', 'Façade with wooden columns'],
-  [9, 'Esquina de la terraza', 'Corner of the terrace'],
-] as const;
+const evolucion: GalleryPhoto[] = [
+  { src: '/design/jardin-evolucion-panorama.webp', width: 2400, height: 488, es: 'Panorámica del muro de mosaicos', en: 'Panorama of the mosaic wall' },
+  { src: '/design/jardines/parque-88.webp', width: 1800, height: 900, es: 'Sendero junto a los mosaicos', en: 'Path along the mosaics' },
+  { src: '/design/jardines/evolucion-mosaico-01.webp', width: 1800, height: 1344, es: 'Realidad', en: 'Reality' },
+  { src: '/design/jardines/evolucion-mosaico-02.webp', width: 1200, height: 1800, es: 'El origen del universo', en: 'The origin of the universe' },
+  { src: '/design/jardines/evolucion-mosaico-03.webp', width: 1235, height: 1800, es: 'Creación del átomo', en: 'Creation of the atom' },
+  { src: '/design/jardines/evolucion-mosaico-04.webp', width: 1284, height: 1800, es: 'La tabla periódica', en: 'The periodic table' },
+  { src: '/design/jardines/evolucion-mosaico-05.webp', width: 1292, height: 1800, es: 'Formación de la Tierra', en: 'Formation of Earth' },
+  { src: '/design/jardines/evolucion-mosaico-06.webp', width: 1292, height: 1800, es: 'Creación de la vida vegetal', en: 'Creation of plant life' },
+  { src: '/design/jardines/evolucion-mosaico-07.webp', width: 1201, height: 1800, es: 'La escala del tiempo', en: 'The scale of time' },
+  { src: '/design/jardines/evolucion-mosaico-08.webp', width: 1201, height: 1800, es: 'Creación de la vida animal', en: 'Creation of animal life' },
+  { src: '/design/jardines/evolucion-mosaico-09.webp', width: 1800, height: 900, es: 'Evolución del ser humano', en: 'Human evolution' },
+  { src: '/design/jardines/evolucion-mosaico-10.webp', width: 1200, height: 1800, es: 'Evolución de la conciencia', en: 'The evolution of consciousness' },
+  { src: '/design/jardines/evolucion-mosaico-11.webp', width: 1800, height: 1800, es: 'Cronología de culturas y tecnologías', en: 'Timeline of cultures and technologies' },
+  { src: '/design/jardines/evolucion-mosaico-12.webp', width: 1201, height: 1800, es: 'El intercambio de energía', en: 'The exchange of energy' },
+  { src: '/design/jardines/evolucion-mosaico-13.webp', width: 1200, height: 1800, es: 'Energía atómica', en: 'Atomic energy' },
+  { src: '/design/jardines/evolucion-mosaico-14.webp', width: 1201, height: 1800, es: 'El ser humano y el universo', en: 'Humankind and the universe' },
+  { src: '/design/jardines/evolucion-mosaico-15.webp', width: 1208, height: 1800, es: 'Inteligencia y tecnología', en: 'Intelligence and technology' },
+];
 
-export function getGalleryImages(lang: 'es' | 'en') {
-  const parkImages = park.map(([number, width, height, es, en]) => ({
+const meditacion: GalleryPhoto[] = [
+  { src: '/design/jardines/parque-96.webp', width: 1800, height: 900, es: 'Recorrido entre los arcos', en: 'Path through the arches' },
+  { src: '/design/jardines/parque-94.webp', width: 1800, height: 780, es: 'Mural «Yo soy nosotros»', en: '“Yo soy nosotros” mural' },
+  { src: '/design/jardines/parque-99.webp', width: 1800, height: 900, es: 'Escultura espejada junto al globo', en: 'Mirrored sculpture beside the globe' },
+  { src: '/design/jardines/parque-91.webp', width: 1438, height: 1800, es: 'Escultura del hinduismo', en: 'Hinduism sculpture' },
+  { src: '/design/jardines/parque-92.webp', width: 1502, height: 1800, es: 'Figura de Buda bajo el arco', en: 'Buddha figure beneath the arch' },
+  { src: '/design/jardines/parque-93.webp', width: 1440, height: 1800, es: 'Escultura de Confucio', en: 'Sculpture of Confucius' },
+  { src: '/design/jardines/meditacion-04-cristianismo.webp', width: 1575, height: 1800, es: 'Escultura del cristianismo', en: 'Christianity sculpture' },
+  { src: '/design/jardines/parque-95.webp', width: 1560, height: 1800, es: 'Media luna y estrella del islam', en: 'Islamic crescent and star' },
+  { src: '/design/jardines/meditacion-06-estrella-de-david.webp', width: 1468, height: 1800, es: 'Estrella de David', en: 'Star of David' },
+];
+
+const filosofia: GalleryPhoto[] = [
+  { src: '/design/clases-pabellon.webp', width: 1672, height: 941, es: 'Vista aérea del pabellón', en: 'Aerial view of the pavilion' },
+  { src: '/design/jardines/pabellon-12.webp', width: 1672, height: 941, es: 'Vista cenital del conjunto', en: 'Overhead view of the site' },
+  { src: '/design/jardines/pabellon-02.webp', width: 1672, height: 941, es: 'Exterior al atardecer', en: 'Exterior at sunset' },
+  { src: '/design/jardines/pabellon-04.webp', width: 1672, height: 941, es: 'Terraza y fachadas', en: 'Terrace and façades' },
+  { src: '/design/jardines/pabellon-06.webp', width: 1672, height: 941, es: 'Interior del aula', en: 'Classroom interior' },
+  { src: '/design/jardines/pabellon-11.webp', width: 1672, height: 941, es: 'Fuente con esculturas', en: 'Fountain with sculptures' },
+  { src: '/design/jardines/pabellon-07.webp', width: 1672, height: 941, es: 'Vista al jardín desde el pórtico', en: 'Garden view from the porch' },
+  { src: '/design/jardines/pabellon-10.webp', width: 1672, height: 941, es: 'Corredor cubierto hacia el jardín', en: 'Covered walkway toward the garden' },
+  { src: '/design/jardines/pabellon-03.webp', width: 1672, height: 941, es: 'Fachada lateral', en: 'Side façade' },
+  { src: '/design/jardines/pabellon-05.webp', width: 1672, height: 941, es: 'Acceso junto al sendero', en: 'Entrance beside the path' },
+  { src: '/design/jardines/pabellon-08.webp', width: 1672, height: 941, es: 'Fachada con columnas de madera', en: 'Façade with wooden columns' },
+  { src: '/design/jardines/pabellon-09.webp', width: 1672, height: 941, es: 'Esquina de la terraza', en: 'Corner of the terrace' },
+];
+
+function localize(photos: GalleryPhoto[], lang: 'es' | 'en') {
+  return photos.map(({ src, width, height, es, en }) => ({
+    src,
     width,
     height,
-    src: number === 90 ? '/design/jardin-evolucion-panorama.webp' : `/design/jardines/parque-${number}.webp`,
     caption: lang === 'es' ? es : en,
   }));
+}
 
+export function getGalleryImages(lang: 'es' | 'en') {
   return {
-    evolucion: parkImages.slice(0, 14),
-    meditacion: parkImages.slice(14),
-    filosofia: pavilion.map(([number, es, en]) => ({
-      width: 1672,
-      height: 941,
-      src: number === 1 ? '/design/clases-pabellon.webp' : `/design/jardines/pabellon-${String(number).padStart(2, '0')}.webp`,
-      caption: lang === 'es' ? es : en,
-    })),
+    evolucion: localize(evolucion, lang),
+    meditacion: localize(meditacion, lang),
+    filosofia: localize(filosofia, lang),
   };
 }
