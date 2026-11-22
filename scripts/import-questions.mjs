@@ -26,19 +26,30 @@ for (let number = 1; number <= 51; number++) {
   if (!narration.length || !dialogue.length) throw new Error(`Empty answer ${number}`);
   const summary = plain(narration[0]);
   const description = summary.length <= 160 ? summary : `${summary.slice(0, 157).replace(/\s+\S*$/, '')}…`;
-  const videos = ['horizontal', 'dialogue', 'narration'].flatMap(kind => {
-    const asset = media[`${number}/${kind}`];
-    if (!asset) return [];
-    return [{
-      label: kind === 'horizontal' ? 'Diálogo (horizontal)' : kind === 'dialogue' ? (media[`${number}/horizontal`] ? 'Diálogo (vertical)' : 'Diálogo') : 'Narración',
-      kind: kind === 'narration' ? 'narration' : 'dialogue',
-      orientation: kind === 'horizontal' ? 'horizontal' : 'vertical',
-      src: asset.src,
-      poster: asset.poster,
-      durationSeconds: asset.durationSeconds,
-      uploadedAt: asset.uploadedAt,
-    }];
+  const hosted = (asset, label, kind, orientation) => ({
+    label,
+    kind,
+    orientation,
+    src: asset.src,
+    poster: asset.poster,
+    durationSeconds: asset.durationSeconds,
+    ...(asset.uploadedAt ? { uploadedAt: asset.uploadedAt } : {}),
   });
+  // Questions 1–34 publish one horizontal dialogue. Vertical dialogue and narration
+  // may remain in storage, but they are not part of the player inventory.
+  // Questions 35–51 keep the previous manifest rules.
+  const videos = number <= 34
+    ? (media[`${number}/horizontal`] ? [hosted(media[`${number}/horizontal`], 'Diálogo', 'dialogue', 'horizontal')] : [])
+    : ['horizontal', 'dialogue', 'narration'].flatMap(kind => {
+      const asset = media[`${number}/${kind}`];
+      if (!asset) return [];
+      return [hosted(
+        asset,
+        kind === 'horizontal' ? 'Diálogo (horizontal)' : kind === 'dialogue' ? (media[`${number}/horizontal`] ? 'Diálogo (vertical)' : 'Diálogo') : 'Narración',
+        kind === 'narration' ? 'narration' : 'dialogue',
+        kind === 'horizontal' ? 'horizontal' : 'vertical',
+      )];
+    });
   records.push({ number, title: heading[2].trim(), description, status: 'published', sections: [{ kind: 'narration', heading: 'Versión narrada', paragraphs: narration }, { kind: 'dialogue', heading: 'Diálogo entre Platón, Sócrates y Aristóteles', paragraphs: dialogue }], videos, sourceTitle: '51 Preguntas · Dos Formatos' });
   const destination = `content/questions/pregunta_${number}.md`;
   if (resolve(markdownPath) !== resolve(destination)) await copyFile(markdownPath, destination);
