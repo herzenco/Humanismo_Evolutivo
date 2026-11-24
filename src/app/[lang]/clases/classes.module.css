@@ -154,6 +154,11 @@
   padding-top: 16px;
 }
 
+.planPending,
+.courseCredit {
+  font-weight: 700;
+}
+
 .courseDetailHero {
   padding-block: clamp(48px, 7vw, 88px);
 }

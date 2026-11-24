@@ -47,6 +47,10 @@ export default async function CoursePage({ params }: Props) {
   });
   const listedDays = new Intl.ListFormat(locale, { type: 'conjunction' }).format(days);
   const url = absoluteUrl(path, lang);
+  const teacher = course.instructor
+    ? `${en ? 'Instructor' : 'Docente'}: ${course.instructor}`
+    : (en ? 'Instructor to be confirmed' : 'Docente por confirmar');
+  const planPending = course.classPlanPending ? (en ? 'Class plan pending' : 'Plan de clases pendiente') : null;
 
   return <PageWrapper>
     <JsonLd data={{
@@ -57,7 +61,10 @@ export default async function CoursePage({ params }: Props) {
       <div className="design-content-width">
         <Link href="/clases" className={styles.back}><ArrowLeft size={18} aria-hidden="true" />{en ? 'All courses' : 'Todos los cursos'}</Link>
         <h1>{course.title}</h1>
+        <p>{teacher}</p>
+        {planPending ? <p className={styles.planPending}>{planPending}</p> : null}
         <p>{preview.summary}</p>
+        {preview.credit ? <p className={styles.courseCredit}>{preview.credit}</p> : null}
       </div>
     </section>
 
