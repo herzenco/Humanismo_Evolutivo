@@ -349,3 +349,13 @@
 .home-great-questions h3{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,2.4vw,36px);line-height:1.15;margin:24px 0 16px;color:#fff;}
 .home-great-questions p{font-size:20px;line-height:1.7;margin:0;color:#fff;}
 @media(max-width:767px){.home-great-questions{grid-template-columns:1fr;gap:40px;}}
+
+/* Book cards retain readable columns and covers at narrow widths. */
+#s6 .he-ff96ce4f1 > a { flex-shrink: 0; }
+#s6 .he-355eeddb9 { min-width: 0; }
+@media (max-width: 767px) {
+  #s6 { padding: 48px 20px; }
+  #s6 .he-a9bef34c5 { grid-template-columns: 1fr; }
+  #s6 .he-ff96ce4f1 { padding: 20px; gap: 16px; }
+  #s6 .he-211d92610 { width: 88px; }
+}
