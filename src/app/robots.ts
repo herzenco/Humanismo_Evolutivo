@@ -1,12 +1,6 @@
-import type { MetadataRoute } from 'next'
-
+import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
 export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/admin/', '/auth/', '/api/'],
-    },
-    sitemap: 'https://yosoynosotros.org/sitemap.xml',
-  }
+  // Utility pages use noindex metadata; allow crawling so that directive can be read.
+  return { rules: { userAgent: '*', allow: '/', disallow: ['/api/'] }, sitemap: `${SITE_URL}/sitemap.xml` };
 }

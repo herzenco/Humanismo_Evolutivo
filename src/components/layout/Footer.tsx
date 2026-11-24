@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { useLanguage } from '@/contexts/LanguageContext';
+import Link from "@/components/LocalizedLink";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
+  const { language } = useLanguage();
   const trackFooterLink = (linkType: string, linkName: string, destination: string) => {
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({
@@ -28,11 +30,12 @@ const Footer = () => {
       <div className="container mx-auto">
         {/* Newsletter Signup */}
         <div className="mb-12 p-8 bg-navy-light rounded-lg shadow-lg">
-          <h3 className="text-2xl font-heading font-medium mb-2 text-center">Recibe nuestras novedades</h3>
+          <h3 className="text-2xl font-heading font-medium mb-2 text-center">{language === 'es' ? 'Recibe nuestras novedades' : 'Receive our updates'}</h3>
           <p className="text-white/80 mb-6 text-center">
-            Suscríbete para recibir información sobre nuevos libros, eventos y reflexiones filosóficas.
+            {language === 'es' ? 'Suscríbete para recibir información sobre nuevos libros, eventos y reflexiones filosóficas.' : 'Subscribe for news about books, events and philosophical reflections.'}
           </p>
           <iframe
+            loading="lazy"
             src="https://api.leadconnectorhq.com/widget/form/L88rd23ASEnrMJtyLFfo"
             style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
             id="inline-L88rd23ASEnrMJtyLFfo"
@@ -59,7 +62,7 @@ const Footer = () => {
               Transpersonal
             </p>
             <p className="text-white/70 mb-4">
-              Una visión transpersonal del mundo a través de la filosofía, espiritualidad y ecología.
+              {language === 'es' ? 'Una visión transpersonal del mundo a través de la filosofía, espiritualidad y ecología.' : 'A transpersonal vision of the world through philosophy, spirituality and ecology.'}
             </p>
             <div className="flex space-x-4">
               <a
@@ -99,7 +102,7 @@ const Footer = () => {
 
           {/* Links 1 */}
           <div>
-            <h3 className="font-heading text-lg font-medium mb-4">Enlaces Rápidos</h3>
+            <h3 className="font-heading text-lg font-medium mb-4">{language === 'es' ? 'Enlaces Rápidos' : 'Quick links'}</h3>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -192,14 +195,14 @@ const Footer = () => {
 
         {/* Bottom Footer */}
         <div className="border-t border-white/10 pt-8 mt-8 text-center text-white/50 text-sm">
-          <p>&copy; {new Date().getFullYear()} Fundación Humanismo Evolutivo. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Fundación Humanismo Evolutivo. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</p>
           <div className="mt-2 space-x-4">
             <Link href="/privacidad" className="hover:text-gold transition-colors">
-              Política de Privacidad
+              {language === 'es' ? 'Política de Privacidad' : 'Privacy policy'}
             </Link>
             <span>|</span>
             <Link href="/terminos" className="hover:text-gold transition-colors">
-              Términos y Condiciones
+              {language === 'es' ? 'Términos y Condiciones' : 'Terms and conditions'}
             </Link>
           </div>
         </div>

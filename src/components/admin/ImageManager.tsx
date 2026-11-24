@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { Upload, Pencil, Trash2 } from 'lucide-react';
+import { refreshPublicContent } from '@/lib/refresh-content';
 import { books } from '@/data/books';
 
 interface ImageUsage {
@@ -87,20 +88,8 @@ export const ImageManager = () => {
       // Upload file if provided
       if (uploadFile) {
         const fileExt = uploadFile.name.split('.').pop();
-        let fileName = '';
-        
-        // Si está asociado a un libro, usar el ID del libro como nombre
-        if (formData.bookId && formData.bookId !== 'none') {
-          fileName = `${formData.bookId}-cover.${fileExt}`;
-          
-          // Intentar eliminar archivo existente (si existe)
-          await supabase.storage
-            .from('admin-uploads')
-            .remove([fileName]);
-        } else {
-          fileName = `${Date.now()}.${fileExt}`;
-        }
-        
+        const fileName = `${crypto.randomUUID()}.${fileExt}`;
+
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('admin-uploads')
           .upload(fileName, uploadFile);
@@ -134,7 +123,8 @@ export const ImageManager = () => {
 
       if (error) throw error;
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      await refreshPublicContent();
       queryClient.invalidateQueries({ queryKey: ['site-images'] });
       queryClient.invalidateQueries({ queryKey: ['book-images'] });
       setIsDialogOpen(false);
@@ -164,7 +154,8 @@ export const ImageManager = () => {
 
       if (error) throw error;
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      await refreshPublicContent();
       queryClient.invalidateQueries({ queryKey: ['site-images'] });
       queryClient.invalidateQueries({ queryKey: ['book-images'] });
       toast({

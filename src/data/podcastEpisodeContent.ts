@@ -1,3 +1,6 @@
+import type { PodcastEpisode } from './media';
+import type { Language } from '../lib/site';
+
 export interface PodcastEpisodeContent {
   spotifyId: string;
   seriesId: string;
@@ -366,4 +369,15 @@ export function getSpotifyEpisodeId(audioUrl: string) {
 export function getPodcastEpisodeContent(audioUrl: string) {
   const spotifyId = getSpotifyEpisodeId(audioUrl);
   return spotifyId ? podcastEpisodeContentBySpotifyId[spotifyId] : undefined;
+}
+
+export function localizedEpisodeContent(episode: PodcastEpisode, language: Language, t: (key: string) => string) {
+  const supplied = getPodcastEpisodeContent(episode.audioUrl);
+  const title = t(episode.titleKey);
+  const description = t(episode.descriptionKey);
+  if (language === 'es') return { ...supplied, title: supplied?.title ?? title, description: supplied?.description ?? description };
+  if (episode.slug === 'el-universo') return { ...supplied, title: 'The Universe', description: 'Explore the origins and evolution of the universe, and our place within an interconnected cosmos. Marcos Constandse brings science and spirituality together to reflect on consciousness, existence and the meaning of human life.' };
+  if (episode.slug === 'que-es-ser-empresario') return { ...supplied, title: 'What Does It Mean to Be an Entrepreneur?', description: 'Marcos Constandse explores entrepreneurship as a vocation of service. This episode considers the responsibilities of business leaders, the purpose of enterprise and the relationship between ethical decisions, meaningful work and the common good.' };
+  return { ...supplied, title: title === episode.titleKey ? supplied?.title ?? title : title,
+    description: description === episode.descriptionKey ? supplied?.description ?? description : description };
 }

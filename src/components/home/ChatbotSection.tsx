@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ChatbotSection = () => {
