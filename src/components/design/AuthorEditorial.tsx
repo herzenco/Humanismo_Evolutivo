@@ -2,8 +2,6 @@
 
 import { bookCovers } from '@/data/books';
 import { useTx } from '@/components/design/useTx';
-import { homeVideoPlayback, homeVideos } from '@/config/home-videos';
-import VideoDialog from './VideoDialog';
 import Link from '@/components/LocalizedLink';
 
 // Ported from the supplied Autor.html; navigation uses application routes.
@@ -20,7 +18,6 @@ export default function AuthorEditorial() {
 <p className="he-cdd721b13 he-sized">
 {tx("Marcos Constandse une ciencia, espíritu y experiencia para inspirar una vida con conciencia.")}
 </p>
-<VideoDialog {...homeVideoPlayback(homeVideos.introduction)} title={tx("Introducción a Parque Cancún")} className="design-button design-button-gold">{tx("Ver de nuevo la introducción")}</VideoDialog>
 <div className="he-5be33d5bf he-row">
 <span className="he-5aa2d8a88 he-sized">
 

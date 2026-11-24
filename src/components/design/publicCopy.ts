@@ -179,7 +179,6 @@ export const publicCopy: Record<string, string> = {
   'Cursos organizados por partes y clases.': 'Courses organized by parts and classes.',
   'Acceso personal': 'Personal access',
   'Tu avance guardado en una cuenta segura.': 'Your progress saved in a secure account.',
-  'Ver de nuevo la introducción': 'Watch the introduction again',
   'Portada de': 'Cover of',
   'Los 8 contenidos': 'The 8 pieces',
   'Los 7 contenidos': 'The 7 pieces',
