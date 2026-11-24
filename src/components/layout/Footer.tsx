@@ -7,15 +7,15 @@ import Link from '@/components/LocalizedLink';
 import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function Footer() {
+export default function Footer({ showNewsletter = true }: { showNewsletter?: boolean }) {
   const { language, newsletterEnabled } = useLanguage();
   const es = language === 'es';
   return <footer className="site-footer">
     <div className="site-footer-inner">
-      <section id="boletin" className="site-newsletter" aria-labelledby="newsletter-title">
+      {showNewsletter ? <section id="boletin" className="site-newsletter" aria-labelledby="newsletter-title">
         <div><span className="design-eyebrow">Humanismo Evolutivo</span><h2 id="newsletter-title">{es ? 'Recibe nuestras novedades' : 'Stay connected'}</h2><p>{es ? 'Reflexiones, nuevos contenidos y eventos para seguir evolucionando juntos.' : 'Reflections, new content and events to keep growing together.'}</p></div>
         {newsletterEnabled ? <NewsletterForm es={es} /> : null}
-      </section>
+      </section> : null}
       <div className="site-footer-grid">
         <div><Link href="/" className="site-brand"><img src="/brand/humanismo-evolutivo-transparent.webp" alt="Humanismo Evolutivo Transpersonal" width="375" height="640" className="site-brand-logo" /></Link><p className="footer-description">{es ? 'Una visión transpersonal del mundo que conecta ciencia, espíritu y humanidad.' : 'A transpersonal vision connecting science, spirit and humanity.'}</p><p className="footer-author">Marcos Constandse Madrazo</p></div>
         <nav aria-label="Explorar"><h3>{es ? 'Explora' : 'Explore'}</h3>{[['/',es ? 'Inicio' : 'Home'],['/autor',es ? 'Sobre el autor' : 'About the author'],['/vision',es ? 'Visión' : 'Vision'],['/podcasts','Podcasts'],['/videos','Videos'],['/eventos',es ? 'Eventos' : 'Events'],['/resources',es ? 'Recursos' : 'Resources']].map(([href,label]) => <Link key={href} href={href}>{label}</Link>)}</nav>
