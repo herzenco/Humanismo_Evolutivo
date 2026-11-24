@@ -50,6 +50,7 @@ const preview = z.object({
   summary: text(4000), title: text(200), lesson: text(6000), exercise: text(6000),
   venue: text(200).optional(),
   summaryPending: z.literal(true).optional(),
+  credit: text(300).optional(),
   objectives: z.object({
     general: text(4000),
     specific: z.array(z.object({ label: text(200).optional(), text: text(4000) })).max(25),
@@ -61,6 +62,7 @@ export const coursePayload = z.object({
     .refine(days => new Set(days).size === days.length),
   start: clock, end: clock,
   termSessions: z.tuple([z.number().int().min(0).max(365), z.number().int().min(0).max(365)]),
+  classPlanPending: z.boolean().optional(),
   preview: z.object({ es: preview, en: preview }),
 }).strict().refine(course => course.start < course.end, { path: ["end"] });
 

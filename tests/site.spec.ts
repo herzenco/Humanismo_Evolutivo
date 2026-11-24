@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { books } from '../src/data/books';
+import { schoolCourses, schoolYearSessions } from '../src/data/school-calendar-2027';
+import { schoolCoursePreviews } from '../src/data/school-course-previews';
 import { homeVideos } from '../src/config/home-videos';
 import { getBookDownload } from '../src/lib/book-downloads';
 import { indexablePaths } from '../src/lib/indexable-paths';
@@ -225,6 +227,65 @@ for (const path of ['/libros', '/libros/lo-mejor-esta-por-venir']) {
     expect(analytics).not.toContain('Test Reader');
   });
 }
+
+const courseCredit = 'Curso basado en la obra de Luis B. Gómez y de Marcos Constandse.';
+const catalogBlurbs = [
+  'Una visión transpersonal del mundo: de la pregunta por el ser al desarrollo de la consciencia.',
+  'Explora la relación entre la conciencia, la naturaleza y nuestra responsabilidad con la vida.',
+  'Un recorrido por la evolución, el imperativo ético y el trabajo consciente al servicio del bien común.',
+  'El trabajo, la ética y la empresa como caminos de autorrealización y transformación social.',
+];
+
+test('2027 clases pages show sheet descriptions, teachers, plans and the Saturday overlap', async ({ page, request }) => {
+  test.setTimeout(60_000);
+  const redirect = await request.get('/en/clases', { maxRedirects: 0 });
+  expect(redirect.status()).toBe(308);
+  expect(new URL(redirect.headers().location, 'http://127.0.0.1').pathname).toBe('/clases');
+
+  await page.goto('/clases');
+  const titles = await page.locator('section[aria-labelledby="cursos-title"] h3').allTextContents();
+  expect(titles).toEqual(schoolCourses.map(course => course.title));
+  const listing = await page.content();
+  expect(listing).not.toContain('Aída');
+  expect(listing).not.toContain('45 lecciones');
+  expect(listing).not.toContain('11 lecciones');
+  expect(listing).not.toContain(courseCredit);
+  expect(listing).not.toMatch(/drive\.google|docs\.google/i);
+  for (const blurb of catalogBlurbs) expect(listing).not.toContain(blurb);
+
+  for (const course of schoolCourses) {
+    const card = page.locator(`#curso-${course.id}`);
+    const teacher = course.instructor ? `Docente: ${course.instructor}` : 'Docente por confirmar';
+    await expect(card).toContainText(schoolCoursePreviews[course.id].es.summary);
+    await expect(card).toContainText(`${schoolYearSessions(course.termSessions)} sesiones`);
+    await expect(card).toContainText(teacher);
+    if (course.classPlanPending) await expect(card).toContainText('Plan de clases pendiente');
+    else await expect(card.getByText('Plan de clases pendiente')).toHaveCount(0);
+  }
+
+  const saturday = page.locator('section[aria-labelledby="horario-dia-6"]');
+  for (const title of ['Historia de las Religiones', 'Filosofía para niños']) {
+    const item = saturday.locator('li').filter({ hasText: title });
+    await expect(item).toContainText('10:00');
+    await expect(item).toContainText('11:00');
+  }
+  await expect(saturday.locator('li').filter({ hasText: 'El arte de ser empresario' })).toContainText('11:00');
+
+  for (const course of schoolCourses) {
+    await page.goto(`/clases/${course.id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(course.title);
+    const teacher = course.instructor ? `Docente: ${course.instructor}` : 'Docente por confirmar';
+    await expect(page.getByText(teacher, { exact: true })).toBeVisible();
+    if (course.classPlanPending) await expect(page.getByText('Plan de clases pendiente', { exact: true })).toBeVisible();
+    else await expect(page.getByText('Plan de clases pendiente')).toHaveCount(0);
+    if (schoolCoursePreviews[course.id].es.credit) await expect(page.getByText(courseCredit, { exact: true })).toBeVisible();
+    else await expect(page.getByText(courseCredit)).toHaveCount(0);
+    const html = await page.content();
+    expect(html).not.toContain('Aída');
+    expect(html).not.toMatch(/drive\.google|docs\.google/i);
+    await expect(page.locator('time').first()).toHaveText(course.start);
+  }
+});
 
 test('failed download registration never reports success or triggers a file', async ({ page, request }) => {
   await request.post(`${fixture}/test/fail-downloads`, { data: { fail: true } });
