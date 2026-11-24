@@ -12,7 +12,7 @@ export default function Footer() {
   const es = language === 'es';
   return <footer className="site-footer">
     <div className="site-footer-inner">
-      <section className="site-newsletter" aria-labelledby="newsletter-title">
+      <section id="boletin" className="site-newsletter" aria-labelledby="newsletter-title">
         <div><span className="design-eyebrow">Humanismo Evolutivo</span><h2 id="newsletter-title">{es ? 'Recibe nuestras novedades' : 'Stay connected'}</h2><p>{es ? 'Reflexiones, nuevos contenidos y eventos para seguir evolucionando juntos.' : 'Reflections, new content and events to keep growing together.'}</p></div>
         {newsletterEnabled ? <NewsletterForm es={es} /> : null}
       </section>

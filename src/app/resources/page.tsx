@@ -95,7 +95,7 @@ export default function ResourcesPage() {
               <div className={styles.art} aria-hidden="true">
                 <div className={styles.cover}>
                   <Image
-                    src="/design/ed9c86fd90f33e7d1ba2e1287ad8bcb6.jpg"
+                    src="/design/jardines/parque-88.webp"
                     alt=""
                     fill
                     sizes="(max-width: 767px) 68vw, 320px"
