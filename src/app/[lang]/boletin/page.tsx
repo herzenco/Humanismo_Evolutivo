@@ -3,6 +3,7 @@ import NewsletterForm from '@/components/layout/NewsletterForm';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { formatResourceDate } from '@/data/resources';
 import { getMagazineArticles, qaResourceReaderConfigured } from '@/lib/qa-resources';
+import { getSupabaseConfig } from "@/lib/supabase/config";
 import { newsletterConfig } from '@/lib/newsletter';
 import { pageMetadata } from '@/lib/seo';
 import { isLanguage } from '@/lib/site';
@@ -61,6 +62,10 @@ export default async function NewsletterPage({ params }: PageProps) {
                 <p>{article.author} · <time dateTime={article.publishedAt}>{formatResourceDate(article.publishedAt)}</time></p>
                 <p>{article.excerpt}</p>
               </header>
+              {article.design?.images.length ? <div className="newsletter-issue-photos" data-layout={article.design.layout}>
+                {article.design.images.map((image, index) => <img key={index} loading="lazy"
+                  src={getSupabaseConfig().url + "/storage/v1/object/public/qa-newsletter-images/" + image.path} alt={image.alt} />)}
+              </div> : null}
               <div className="resource-article-body" dangerouslySetInnerHTML={{ __html: article.bodyHtml }} />
             </article>
           ))}

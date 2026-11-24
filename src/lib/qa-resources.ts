@@ -2,7 +2,7 @@ import 'server-only';
 import { cache } from 'react';
 import { z } from 'zod';
 import { getSupabaseConfig, isSupabaseConfigured } from '@/lib/supabase/config';
-import { articlePayload, bookPayload, coursePayload, podcastPayload, questionPayload, resourceRow, type ResourceKind } from './qa-resource-contract';
+import { articlePayload, newsletterDesign, newsletterPayload, bookPayload, coursePayload, podcastPayload, questionPayload, resourceRow, type ResourceKind } from './qa-resource-contract';
 import { resourceArticles, type ResourceArticle } from '@/data/resources';
 
 import { schoolCourses } from '@/data/school-calendar-2027';
@@ -48,13 +48,13 @@ function escapeHtml(value: string) {
 export const getMagazineArticles = cache(async (kind: 'revista' | 'boletin' = 'revista') => {
   const changes = await readQaResources(kind);
   const baseline = kind === 'revista' ? resourceArticles : [];
-  const articles = new Map<string, ResourceArticle>(baseline.map(article => [article.slug, article]));
+  const articles = new Map<string, ResourceArticle & { design?: import('zod').infer<typeof newsletterPayload>['design'] }>(baseline.map(article => [article.slug, article]));
   for (const change of changes) {
     if (change.payload === null) {
       articles.delete(change.slug);
       continue;
     }
-    const { data } = articlePayload.safeParse(change.payload);
+    const { data } = (kind === "boletin" ? newsletterPayload : articlePayload).safeParse(change.payload);
     if (!data) continue;
     articles.set(change.slug, {
       id: change.slug,
@@ -72,6 +72,7 @@ export const getMagazineArticles = cache(async (kind: 'revista' | 'boletin' = 'r
       canonicalUrl: '/resources/' + change.slug,
       author: data.author,
       category: data.category,
+      design: "design" in data ? newsletterDesign.safeParse(data.design).data : undefined,
     });
   }
   return [...articles.values()].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
