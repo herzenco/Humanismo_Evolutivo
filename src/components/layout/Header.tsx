@@ -21,6 +21,7 @@ function ResourcesNavigation({ onNavigate }: { onNavigate?: () => void }) {
     ['Videos', '/videos'],
     ['Podcasts', '/podcasts'],
     [es ? 'Revista' : 'Magazine', '/resources'],
+    [es ? 'Boletín' : 'Newsletter', '/boletin'],
     [es ? 'Preguntas' : 'Questions', '/51preguntas'],
   ];
 

@@ -38,6 +38,15 @@ export const articlePayload = z.object({
   body: text(12000),
 }).strict();
 
+export const newsletterLayouts = { texto: 0, portada: 1, galeria: 2 } as const;
+export const newsletterImagePath = z.string().regex(/^[0-9a-f-]{36}\/[0-9a-f-]{36}\.(jpg|png|webp)$/);
+export const newsletterDesign = z.object({
+  layout: z.enum(["texto", "portada", "galeria"]),
+  images: z.array(z.object({ path: newsletterImagePath, alt: text(200) }).strict()).max(2),
+}).strict().refine(value => value.images.length === newsletterLayouts[value.layout]);
+
+export const newsletterPayload = articlePayload.extend({ design: newsletterDesign.optional() });
+
 export const resourceRow = z.object({
   slug: resourceSlug,
   version: z.number().int().positive(),
@@ -119,6 +128,6 @@ export const podcastPayload = z.object({
 }).strict();
 
 export const payloadSchemas = {
-  videos: videoPayload, revista: articlePayload, boletin: articlePayload,
+  videos: videoPayload, revista: articlePayload, boletin: newsletterPayload,
   clases: coursePayload, preguntas: questionPayload, libros: bookPayload, podcasts: podcastPayload,
 } as const;
