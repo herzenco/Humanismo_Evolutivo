@@ -3,27 +3,21 @@ import { notFound } from 'next/navigation';
 import Link from '@/components/LocalizedLink';
 import PageWrapper from '@/components/layout/PageWrapper';
 import JsonLd from '@/components/seo/JsonLd';
-import { schoolBreak, schoolCoursePath, schoolCourses, schoolTerms } from '@/data/school-calendar-2027';
-import { schoolCoursePreviews } from '@/data/school-course-previews';
+import { schoolBreak, schoolCoursePath, schoolTerms } from '@/data/school-calendar-2027';
+import { getSchoolCourses } from '@/lib/qa-resources';
 import { pageMetadata } from '@/lib/seo';
 import { absoluteUrl, isLanguage } from '@/lib/site';
 import styles from '../classes.module.css';
 
 type Props = { params: Promise<{ lang: string; courseSlug: string }> };
 
-export function generateStaticParams() {
-  return schoolCourses.map(course => ({ courseSlug: course.id }));
-}
-
-export const dynamicParams = false;
-
 async function courseData(params: Props['params']) {
   const { lang, courseSlug } = await params;
   if (!isLanguage(lang)) notFound();
-  const course = schoolCourses.find(item => item.id === courseSlug);
+  const course = (await getSchoolCourses()).find(item => item.id === courseSlug);
   if (!course) notFound();
 
-  const preview = schoolCoursePreviews[course.id]?.[lang];
+  const preview = course.preview?.[lang];
   if (!preview) notFound();
   return { lang, course, preview, path: schoolCoursePath(course.id) };
 }

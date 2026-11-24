@@ -7,12 +7,13 @@ export type { Language } from '@/lib/site';
 interface LanguageContextType {
   language: Language;
   newsletterEnabled: boolean;
+  newsletterArchiveEnabled: boolean;
   setLanguage: (language: Language) => void;
   t: (key: string) => string;
 }
 const LanguageContext = React.createContext<LanguageContextType | undefined>(undefined);
-export function LanguageProvider({ children, language, content = [], newsletterEnabled = false }: {
-  children: React.ReactNode; language: Language; content?: ContentRecord[]; newsletterEnabled?: boolean;
+export function LanguageProvider({ children, language, content = [], newsletterEnabled = false, newsletterArchiveEnabled = false }: {
+  children: React.ReactNode; language: Language; content?: ContentRecord[]; newsletterEnabled?: boolean; newsletterArchiveEnabled?: boolean;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -21,7 +22,7 @@ export function LanguageProvider({ children, language, content = [], newsletterE
     if (nextLanguage === language) return;
     router.push(localizedPath(pathname, nextLanguage) + window.location.search + window.location.hash);
   };
-  return <LanguageContext.Provider value={{ language, newsletterEnabled, setLanguage, t: key => dictionary[key] ?? key }}>
+  return <LanguageContext.Provider value={{ language, newsletterEnabled, newsletterArchiveEnabled, setLanguage, t: key => dictionary[key] ?? key }}>
     {children}
   </LanguageContext.Provider>;
 }

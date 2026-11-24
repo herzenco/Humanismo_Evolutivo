@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import NewsletterForm from '@/components/layout/NewsletterForm';
 import PageWrapper from '@/components/layout/PageWrapper';
+import { formatResourceDate } from '@/data/resources';
+import { getMagazineArticles, qaResourceReaderConfigured } from '@/lib/qa-resources';
 import { newsletterConfig } from '@/lib/newsletter';
 import { pageMetadata } from '@/lib/seo';
 import { isLanguage } from '@/lib/site';
@@ -9,11 +11,15 @@ const copy = {
   es: {
     title: 'Boletín de Humanismo Evolutivo',
     description: 'Reflexiones, nuevos contenidos y eventos para seguir evolucionando juntos.',
+    archive: 'Ediciones del boletín',
+    empty: 'Aún no hay ediciones publicadas.',
     unavailable: 'Las suscripciones no están disponibles por el momento.',
   },
   en: {
     title: 'Evolutionary Humanism Newsletter',
     description: 'Reflections, new content and events to keep growing together.',
+    archive: 'Newsletter issues',
+    empty: 'There are no published issues yet.',
     unavailable: 'Subscriptions are currently unavailable.',
   },
 };
@@ -30,7 +36,9 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function NewsletterPage({ params }: PageProps) {
   const { lang } = await params;
   if (!isLanguage(lang)) notFound();
-  const { title, description, unavailable } = copy[lang];
+  const { title, description, archive, empty, unavailable } = copy[lang];
+  const archiveEnabled = qaResourceReaderConfigured();
+  const articles = archiveEnabled ? await getMagazineArticles('boletin') : [];
 
   return (
     <PageWrapper showFooterNewsletter={false}>
@@ -43,6 +51,21 @@ export default async function NewsletterPage({ params }: PageProps) {
           {newsletterConfig(process.env) ? <NewsletterForm es={lang === 'es'} /> : <p>{unavailable}</p>}
         </section>
       </div>
+      {archiveEnabled ? (
+        <section className="design-content-width design-media-list" aria-labelledby="newsletter-issues">
+          <h2 id="newsletter-issues">{archive}</h2>
+          {articles.length === 0 ? <p>{empty}</p> : articles.map(article => (
+            <article key={article.id} id={article.slug}>
+              <header>
+                <h3>{article.title}</h3>
+                <p>{article.author} · <time dateTime={article.publishedAt}>{formatResourceDate(article.publishedAt)}</time></p>
+                <p>{article.excerpt}</p>
+              </header>
+              <div className="resource-article-body" dangerouslySetInnerHTML={{ __html: article.bodyHtml }} />
+            </article>
+          ))}
+        </section>
+      ) : null}
     </PageWrapper>
   );
 }

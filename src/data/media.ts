@@ -7,6 +7,7 @@ export interface PodcastEpisode {
   date: string;
   categoryKey: string;
   audioUrl: string;
+  managed?: boolean;
 }
 
 export interface PodcastSeries {
@@ -15,6 +16,7 @@ export interface PodcastSeries {
   descriptionKey: string;
   coverImage: string;
   episodes: PodcastEpisode[];
+  managed?: boolean;
 }
 
 export interface Podcast extends PodcastEpisode {

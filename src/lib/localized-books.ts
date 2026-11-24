@@ -5,6 +5,7 @@ const prefixes: Record<string, string> = {
   'lo-mejor-esta-por-venir': 'lomejor', 'el-arte-de-ser-empresario': 'elarte',
 };
 export function localizeBook(book: Book, t: (key: string) => string): Book {
+  if (book.managed) return book;
   const prefix = `book.${prefixes[book.id]}`;
   const translated = (suffix: string, fallback: string) => {
     const key = `${prefix}.${suffix}`;

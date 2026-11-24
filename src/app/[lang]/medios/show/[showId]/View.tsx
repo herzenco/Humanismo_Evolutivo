@@ -1,7 +1,5 @@
 "use client";
 
-import { use } from 'react';
-import { redirect } from 'next/navigation';
 import { useLocalizedRouter as useRouter } from '@/hooks/useLocalizedRouter';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Play, Calendar, Clock, ExternalLink } from 'lucide-react';
@@ -10,13 +8,12 @@ import PageWrapper from "@/components/layout/PageWrapper";
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { podcastSeries } from '@/data/media';
+import type { PodcastSeries } from '@/data/media';
 import { useQuery } from '@tanstack/react-query';
 import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 import { localizedEpisodeContent } from '@/data/podcastEpisodeContent';
 
-export default function ShowDetailPage({ params }: { params: Promise<{ showId: string }> }) {
-  const { showId } = use(params);
+export default function ShowDetailPage({ show }: { show: PodcastSeries }) {
   const { t, language } = useLanguage();
   const router = useRouter();
 
@@ -35,15 +32,8 @@ export default function ShowDetailPage({ params }: { params: Promise<{ showId: s
     },
   });
 
-  // Find the show
-  const show = podcastSeries.find(s => s.id === showId);
-  const dbShow = dbPodcastSeries?.find(db => db.book_id === showId);
-
-  if (!show) {
-    redirect('/podcasts');
-  }
-
-  const coverImage = dbShow?.cover_image_url || show.coverImage;
+  const dbShow = dbPodcastSeries?.find(db => db.book_id === show.id);
+  const coverImage = (!show.managed && dbShow?.cover_image_url) || show.coverImage;
 
   const containerVariants = {
     hidden: { opacity: 0 },

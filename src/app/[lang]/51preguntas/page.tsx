@@ -6,7 +6,7 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import QuestionText from '@/components/questions/QuestionText';
 import QuestionStructuredData from '@/components/questions/QuestionStructuredData';
 import { publishedQuestions, questionPath } from '@/data/questions';
-import { questionTitlesEn } from '@/data/questionTitlesEn';
+import { getQuestions } from '@/lib/qa-resources';
 import { pageMetadata } from '@/lib/seo';
 import { absoluteUrl, isLanguage, type Language } from '@/lib/site';
 
@@ -18,7 +18,7 @@ const descriptions: Record<Language, string> = {
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   if (!isLanguage(lang)) notFound();
-  const hasContent = publishedQuestions().length > 0;
+  const hasContent = publishedQuestions(await getQuestions()).length > 0;
   return pageMetadata({
     title: lang === 'en' ? 'The 51 questions' : 'Las 51 preguntas',
     description: descriptions[lang],
@@ -32,8 +32,10 @@ export default async function QuestionsPage({ params }: { params: Promise<{ lang
   const { lang } = await params;
   if (!isLanguage(lang)) notFound();
   const en = lang === 'en';
-  const published = publishedQuestions();
-  const titleFor = (number: number, title: string) => en ? questionTitlesEn[number] ?? title : title;
+  const source = await getQuestions();
+  const published = publishedQuestions(source);
+  const translations = new Map(source.map(question => [question.number, question.titleEn]));
+  const titleFor = (number: number, title: string) => en ? translations.get(number) ?? title : title;
   return <PageWrapper>
     {published.length > 0 ? <QuestionStructuredData data={{ '@context': 'https://schema.org', '@type': 'ItemList', name: en ? 'The 51 questions' : 'Las 51 preguntas', numberOfItems: published.length, itemListElement: published.map((question, index) => ({ '@type': 'ListItem', position: index + 1, name: titleFor(question.number, question.title), url: absoluteUrl(questionPath(question), lang) })) }} /> : null}
     <section className="questions-hero"><div className="design-content-width"><Link href="/#s5" className="questions-back">{en ? 'Home / The 51 questions' : 'Inicio / Las 51 preguntas'}</Link><span className="design-eyebrow">{en ? 'ASK · REFLECT · UNDERSTAND' : 'PREGUNTAR · REFLEXIONAR · COMPRENDER'}</span><h1>{en ? <>The <em>51 questions</em></> : <>Las <em>51 preguntas</em></>}</h1><p>{descriptions[lang]}</p><p>{en ? 'These questions are part of ' : 'Estas preguntas se integran en '}<em>Introducción al Pensamiento Filosófico del Humanismo Evolutivo Transpersonal</em>{en ? ', which is in editorial preparation.' : ', en preparación editorial.'}</p></div></section>

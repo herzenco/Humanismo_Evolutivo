@@ -15,6 +15,8 @@ export interface Book {
   prologue: string[];
   summary: string[];
   pdfUrl: string;
+  pdfUrlEn?: string;
+  managed?: boolean;
 }
 
 const originalBooks = [

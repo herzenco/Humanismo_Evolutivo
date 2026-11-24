@@ -2,19 +2,15 @@ import { notFound } from 'next/navigation';
 import View from './View';
 import { localizeBook } from '@/lib/localized-books';
 import { restoreSpanishBookTitles } from '@/lib/book-english';
-import { books } from '@/data/books';
+import { getBooks } from '@/lib/qa-resources';
 import { pageMetadata } from '@/lib/seo';
 import { isLanguage } from '@/lib/site';
 import { contentDictionary } from '@/lib/content';
 import { getPublicSiteData } from '@/lib/public-content';
 type Params = { lang: string; bookId: string };
-export const dynamicParams = false;
-export function generateStaticParams() {
-  return ['es', 'en'].flatMap(lang => books.map(item => ({ lang, bookId: item.id })));
-}
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
   const { lang, bookId } = await params;
-  const item = books.find(item => item.id === bookId);
+  const item = (await getBooks()).find(item => item.id === bookId);
   if (!item || !isLanguage(lang)) notFound();
   const data = await getPublicSiteData();
   const dictionary = contentDictionary(lang, data.content);
@@ -26,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
 }
 export default async function Page({ params }: { params: Promise<Params> }) {
   const resolved = await params;
+  const books = await getBooks();
   if (!isLanguage(resolved.lang) || !books.some(item => item.id === resolved.bookId)) notFound();
-  return <View params={Promise.resolve(resolved)} />;
+  return <View bookId={resolved.bookId} books={books} />;
 }

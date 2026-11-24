@@ -7,14 +7,14 @@ import QuestionStructuredData from '@/components/questions/QuestionStructuredDat
 import QuestionVideoPlayer from '@/components/questions/QuestionVideoPlayer';
 import QuestionText from '@/components/questions/QuestionText';
 import { questionKeywords, publishedQuestions, questionBySlug, questionPath, questionSlug as canonicalSlug } from '@/data/questions';
-import { questionTitlesEn } from '@/data/questionTitlesEn';
+import { getQuestions } from '@/lib/qa-resources';
 import { pageMetadata } from '@/lib/seo';
 import { absoluteUrl, isLanguage, localizedPath, type Language } from '@/lib/site';
 
 type Props = { params: Promise<{ lang: string; questionSlug: string }> };
 
-function titleFor(language: Language, number: number, title: string) {
-  return language === 'en' ? questionTitlesEn[number] ?? title : title;
+function titleFor(language: Language, number: number, title: string, source: Awaited<ReturnType<typeof getQuestions>>) {
+  return language === 'en' ? source.find(question => question.number === number)?.titleEn ?? title : title;
 }
 
 export function generateStaticParams() {
@@ -24,9 +24,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, questionSlug } = await params;
   if (!isLanguage(lang)) notFound();
-  const question = questionBySlug(questionSlug);
+  const source = await getQuestions();
+  const question = questionBySlug(questionSlug, source);
   if (!question) return { title: lang === 'en' ? 'Question not found' : 'Pregunta no encontrada', robots: { index: false, follow: false } };
-  const title = titleFor(lang, question.number, question.title);
+  const title = titleFor(lang, question.number, question.title, source);
   const seoTitle = question.number === 51 ? (lang === 'es' ? 'Conclusión: ciencia, religión y autorrealización' : 'Conclusion: science, religion and self-realization') : title;
   const metadata = pageMetadata({ title: seoTitle, description: question.description, path: questionPath(question), language: lang });
   return {
@@ -45,13 +46,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function QuestionPage({ params }: Props) {
   const { lang, questionSlug } = await params;
   if (!isLanguage(lang)) notFound();
-  const question = questionBySlug(questionSlug);
+  const source = await getQuestions();
+  const question = questionBySlug(questionSlug, source);
   if (!question) notFound();
   if (questionSlug !== canonicalSlug(question)) permanentRedirect(localizedPath(questionPath(question), lang));
   const en = lang === 'en';
-  const title = titleFor(lang, question.number, question.title);
+  const title = titleFor(lang, question.number, question.title, source);
   const narration = question.sections.filter(section => section.kind === 'narration');
-  const published = publishedQuestions();
+  const published = publishedQuestions(source);
   const position = published.findIndex(item => item.number === question.number);
   const previous = published[position - 1];
   const next = published[position + 1];
@@ -69,7 +71,7 @@ export default async function QuestionPage({ params }: Props) {
         {[40, 41, 42, 43].includes(question.number) && <Link href="/clases" className="design-button design-button-outline">
           {en ? 'Philosophy and anthropology courses in Cancún' : 'Cursos de filosofía y antropología en Cancún'}
         </Link>}
-        <nav className="questions-pagination" aria-label={en ? 'Question navigation' : 'Navegación entre preguntas'}>{previous ? <Link href={questionPath(previous)}><ArrowLeft size={18} /><span><small>{en ? 'Previous question' : 'Pregunta anterior'}</small>{titleFor(lang, previous.number, previous.title)}</span></Link> : <span />}{next ? <Link href={questionPath(next)}><span><small>{en ? 'Next question' : 'Siguiente pregunta'}</small>{titleFor(lang, next.number, next.title)}</span><ArrowRight size={18} /></Link> : null}</nav>
+        <nav className="questions-pagination" aria-label={en ? 'Question navigation' : 'Navegación entre preguntas'}>{previous ? <Link href={questionPath(previous)}><ArrowLeft size={18} /><span><small>{en ? 'Previous question' : 'Pregunta anterior'}</small>{titleFor(lang, previous.number, previous.title, source)}</span></Link> : <span />}{next ? <Link href={questionPath(next)}><span><small>{en ? 'Next question' : 'Siguiente pregunta'}</small>{titleFor(lang, next.number, next.title, source)}</span><ArrowRight size={18} /></Link> : null}</nav>
         <Link href="/51preguntas" className="design-button design-button-outline"><List size={18} />{en ? 'View all questions' : 'Ver todas las preguntas'}</Link>
       </div>
     </article>

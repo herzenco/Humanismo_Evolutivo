@@ -11,7 +11,7 @@ import Link from '@/components/LocalizedLink';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { podcastSeries } from '@/data/media';
+import { getPodcastSeries } from '@/lib/qa-resources';
 import { localizedEpisodeContent } from '@/data/podcastEpisodeContent';
 
 const siteUrl = SITE_URL;
@@ -29,8 +29,8 @@ type EpisodePageParams = {
   episodeSlug: string;
 };
 
-function findEpisode({ showId, episodeSlug, lang }: EpisodePageParams, dictionary: Record<string, string>) {
-  const parentSeries = podcastSeries.find((series) => series.id === showId);
+async function findEpisode({ showId, episodeSlug, lang }: EpisodePageParams, dictionary: Record<string, string>) {
+  const parentSeries = (await getPodcastSeries(lang === 'en' ? 'en' : 'es')).find((series) => series.id === showId);
   const episode = parentSeries?.episodes.find((item) => item.slug === episodeSlug);
 
   if (!parentSeries || !episode) {
@@ -58,16 +58,6 @@ function truncateDescription(description: string) {
   return description.length > 160 ? `${description.slice(0, 157)}...` : description;
 }
 
-export function generateStaticParams() {
-  return ['es', 'en'].flatMap((lang) => podcastSeries.flatMap((series) =>
-    series.episodes.map((episode) => ({
-      lang,
-      showId: series.id,
-      episodeSlug: episode.slug,
-    })),
-  ));
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -75,19 +65,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const resolvedParams = await params;
   const dictionary = contentDictionary(resolvedParams.lang === 'en' ? 'en' : 'es', (await getPublicSiteData()).content);
-  const episodePage = findEpisode(resolvedParams, dictionary);
+  const episodePage = await findEpisode(resolvedParams, dictionary);
 
   if (!episodePage || !isLanguage(resolvedParams.lang)) notFound();
   const { parentSeries, episode, title, description, episodeNumber } = episodePage;
-  const seriesTitle = dictionary[parentSeries.titleKey] ?? parentSeries.id;
+  const seriesTitle = dictionary[parentSeries.titleKey] ?? parentSeries.titleKey;
   const metadata = pageMetadata({ title: `${title} | ${seriesTitle}`.length <= 65 ? `${title} | ${seriesTitle}` : title, description: truncateDescription(description),
     path: `/medios/${parentSeries.id}/${episode.slug}`, language: resolvedParams.lang, image: parentSeries.coverImage });
   return { ...metadata, openGraph: { ...metadata.openGraph, type: 'article', publishedTime: episode.date },
     other: { 'podcast:episode': String(episodeNumber) } };
 
 }
-
-export const dynamicParams = false;
 
 export default async function PodcastDetailPage({
   params,
@@ -96,7 +84,7 @@ export default async function PodcastDetailPage({
 }) {
   const resolvedParams = await params;
   const dictionary = contentDictionary(resolvedParams.lang === 'en' ? 'en' : 'es', (await getPublicSiteData()).content);
-  const episodePage = findEpisode(resolvedParams, dictionary);
+  const episodePage = await findEpisode(resolvedParams, dictionary);
 
   if (!episodePage || !isLanguage(resolvedParams.lang)) notFound();
   const language = resolvedParams.lang;
@@ -106,7 +94,7 @@ export default async function PodcastDetailPage({
   const prevEpisode = currentIndex > 0 ? parentSeries.episodes[currentIndex - 1] : null;
   const nextEpisode =
     currentIndex < parentSeries.episodes.length - 1 ? parentSeries.episodes[currentIndex + 1] : null;
-  const seriesTitle = dictionary[parentSeries.titleKey] ?? parentSeries.id;
+  const seriesTitle = dictionary[parentSeries.titleKey] ?? parentSeries.titleKey;
   const pageUrl = absoluteUrl(`/medios/${parentSeries.id}/${episode.slug}`, language);
   const descriptionParagraphs = description.split(/\n{2,}/).filter(Boolean);
 

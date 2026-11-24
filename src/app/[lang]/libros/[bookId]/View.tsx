@@ -2,11 +2,10 @@
 
 import { useSpanishFieldValidation } from '@/hooks/useSpanishFieldValidation';
 import Link from '@/components/LocalizedLink';
-import { use } from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
-import { books } from '@/data/books';
+import type { Book } from '@/data/books';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,8 +24,7 @@ import { downloadBook } from '@/lib/download-book';
 import { z } from 'zod';
 import { BookStructuredData } from '@/components/seo/StructuredData';
 
-export default function BookDetailPage({ params }: { params: Promise<{ bookId: string }> }) {
-  const { bookId } = use(params);
+export default function BookDetailPage({ bookId, books }: { bookId: string; books: Book[] }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const fields = useSpanishFieldValidation();
   const [formData, setFormData] = useState({
@@ -77,7 +75,10 @@ export default function BookDetailPage({ params }: { params: Promise<{ bookId: s
     setIsSubmitting(true);
 
     try {
-      const download = await downloadBook({ bookId: book.id, language, ...formData });
+      const download = await downloadBook({
+        bookId: book.id, language, ...formData,
+        ...(book.managed ? { managed: { url: en ? book.pdfUrlEn || book.pdfUrl : book.pdfUrl, title: book.title } } : {}),
+      });
       // eslint-disable-next-line react-hooks/immutability -- GTM owns this browser-global queue.
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
