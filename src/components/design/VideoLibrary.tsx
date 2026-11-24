@@ -2,16 +2,41 @@
 import { useMemo, useState } from 'react';
 import { Play, Search } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { videoLibrary } from '@/data/video-library';
+import { videoLibrary, type LibraryVideo } from '@/data/video-library';
+import { videoPayload, type resourceRow } from '@/lib/qa-resource-contract';
+import type { z } from 'zod';
 import VideoDialog from './VideoDialog';
 
-export default function VideoLibrary() {
+export default function VideoLibrary({ changes = [] }: { changes?: z.infer<typeof resourceRow>[] }) {
   const { t, language } = useLanguage();
   const es = language === 'es';
   const [query,setQuery] = useState('');
   const [category,setCategory] = useState('all');
   const [limit,setLimit] = useState(12);
-  const all = useMemo(() => videoLibrary(t,language),[t,language]);
+  const all = useMemo(() => {
+    const entries = new Map(videoLibrary(t, language).map(video => [video.id, video]));
+    for (const change of changes) {
+      if (change.payload === null) {
+        entries.delete(change.slug);
+        continue;
+      }
+      const { data } = videoPayload.safeParse(change.payload);
+      if (!data) continue;
+      const video: LibraryVideo = {
+        id: change.slug,
+        title: es ? data.title : data.titleEn || data.title,
+        description: es ? data.description : data.descriptionEn || data.description,
+        category: data.category,
+        poster: data.poster,
+        duration: data.duration,
+        ...(data.source.startsWith('youtube:')
+          ? { youtubeId: data.source.slice(8) }
+          : { src: data.source }),
+      };
+      entries.set(video.id, video);
+    }
+    return [...entries.values()];
+  }, [t, language, es, changes]);
   const categories: Record<string,string> = {all:es ? 'Todos los videos' : 'All videos',introductions:es ? 'Introducciones' : 'Introductions',documentaries:es ? 'Documentales' : 'Documentaries',events:es ? 'Conferencias y eventos' : 'Talks and events'};
   const normalize = (value:string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
   const filtered = all.filter(video => (category === 'all' || video.category === category) && normalize(`${video.title} ${video.description}`).includes(normalize(query.trim())));

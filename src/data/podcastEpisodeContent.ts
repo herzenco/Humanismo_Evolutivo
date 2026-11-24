@@ -373,6 +373,14 @@ export function getPodcastEpisodeContent(audioUrl: string) {
 
 export function localizedEpisodeContent(episode: PodcastEpisode, language: Language, t: (key: string) => string) {
   const supplied = getPodcastEpisodeContent(episode.audioUrl);
+  if (episode.managed) {
+    const url = new URL(episode.audioUrl);
+    const spotifyId = url.hostname === 'open.spotify.com' ? getSpotifyEpisodeId(episode.audioUrl) : null;
+    return {
+      title: episode.titleKey, description: episode.descriptionKey,
+      embedUrl: spotifyId ? `https://open.spotify.com/embed/episode/${spotifyId}` : undefined,
+    };
+  }
   const title = t(episode.titleKey);
   const description = t(episode.descriptionKey);
   if (language === 'es') return { ...supplied, title: supplied?.title ?? title, description: supplied?.description ?? description };

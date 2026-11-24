@@ -8,13 +8,14 @@ import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Footer() {
-  const { language, newsletterEnabled } = useLanguage();
+  const { language, newsletterEnabled, newsletterArchiveEnabled } = useLanguage();
   const es = language === 'es';
   return <footer className="site-footer">
     <div className="site-footer-inner">
       <section id="boletin" className="site-newsletter" aria-labelledby="newsletter-title">
         <div><span className="design-eyebrow">Humanismo Evolutivo</span><h2 id="newsletter-title">{es ? 'Recibe nuestras novedades' : 'Stay connected'}</h2><p>{es ? 'Reflexiones, nuevos contenidos y eventos para seguir evolucionando juntos.' : 'Reflections, new content and events to keep growing together.'}</p></div>
         {newsletterEnabled ? <NewsletterForm es={es} /> : null}
+        {newsletterArchiveEnabled ? <Link href="/boletin">{es ? 'Leer ediciones del boletín' : 'Read newsletter issues'}</Link> : null}
       </section>
       <div className="site-footer-grid">
         <div><Link href="/" className="site-brand"><img src="/brand/humanismo-evolutivo-transparent.webp" alt="Humanismo Evolutivo Transpersonal" width="375" height="640" className="site-brand-logo" /></Link><p className="footer-description">{es ? 'Una visión transpersonal del mundo que conecta ciencia, espíritu y humanidad.' : 'A transpersonal vision connecting science, spirit and humanity.'}</p><p className="footer-author">Marcos Constandse Madrazo</p></div>

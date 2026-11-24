@@ -1,3 +1,4 @@
+import { readQaResources } from '@/lib/qa-resources';
 import { notFound } from 'next/navigation';
 import MediaHero, { mediaDescription } from '@/components/design/MediaHero';
 import VideoLibrary from '@/components/design/VideoLibrary';
@@ -16,12 +17,13 @@ export async function generateMetadata({ params }: Props) {
 export default async function VideosPage({ params }: Props) {
   const { lang } = await params;
   if (!isLanguage(lang)) notFound();
+  const changes = await readQaResources('videos');
   return <PageWrapper>
     <MediaHero kind="videos" language={lang} />
     <section className="design-media-list">
       <div className="design-content-width">
         <div className="design-section-heading"><h2>{lang === 'es' ? 'Ideas que nos conectan' : 'Ideas that connect us'}</h2></div>
-        <VideoLibrary />
+        <VideoLibrary changes={changes} />
       </div>
     </section>
   </PageWrapper>;

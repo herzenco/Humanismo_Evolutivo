@@ -2,10 +2,10 @@ import { supabase } from '@/integrations/supabase/client';
 import { bookDownloadSchema } from '@/lib/validation';
 import { getBookDownload } from '@/lib/book-downloads';
 import type { Language } from '@/lib/site';
-export async function downloadBook({ bookId, language, name, email }: {
-  bookId: string; language: Language; name: string; email: string;
+export async function downloadBook({ bookId, language, name, email, managed }: {
+  bookId: string; language: Language; name: string; email: string; managed?: { url: string; title: string };
 }) {
-  const download = getBookDownload(bookId, language);
+  const download = managed ? { ...managed, language } : getBookDownload(bookId, language);
   const data = bookDownloadSchema.parse({ name: name.trim(), email: email.trim(), book_downloaded: download.title });
   // Verify the file before recording a lead or reporting success.
   const response = await fetch(download.url);
