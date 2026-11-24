@@ -2,7 +2,10 @@ function configuredYouTubeId(value?: string) {
   return value && /^[A-Za-z0-9_-]{11}$/.test(value) ? value : undefined;
 }
 
-// Separate media for the welcome popup, philosophers section, and documentary.
+// Shared by the welcome popup and its replay buttons.
+export const welcomeVideoYouTubeId = 'jBXcNhNX9Jo';
+
+// Video library and documentary configuration.
 export const homeVideos = {
   introduction: {
     youtubeId: configuredYouTubeId(process.env.NEXT_PUBLIC_HE_INTRODUCTION_YOUTUBE_ID),
@@ -21,10 +24,6 @@ export const homeVideos = {
   tutorial: { youtubeId: configuredYouTubeId(process.env.NEXT_PUBLIC_HE_TUTORIAL_YOUTUBE_ID) },
   documentary: { youtubeId: 'FbRIey3dFwA', poster: '/design/documentary-parque-cancun.jpg' },
 } as const;
-
-export function homeVideoPlayback(video: typeof homeVideos.introduction | typeof homeVideos.philosophers) {
-  return video.youtubeId ? { videoId: video.youtubeId } : { videoSrc: video.src, poster: video.poster };
-}
 
 export function youtubeEmbedUrl(videoId: string) {
   return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&cc_load_policy=1&hl=es&cc_lang_pref=es`;
