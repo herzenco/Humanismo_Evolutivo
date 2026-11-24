@@ -9,26 +9,21 @@ import PageWrapper from "@/components/layout/PageWrapper";
 import { ResourceAnalytics } from "@/components/resources/ResourceAnalytics";
 import {
   formatResourceDate,
-  getResourceArticle,
-  resourceArticles,
 } from "@/data/resources";
+
+import { getMagazineArticles } from "@/lib/qa-resources";
 
 type ResourcePageParams = {
   slug: string;
 };
-
-export function generateStaticParams() {
-  return resourceArticles.map((article) => ({ slug: article.slug }));
-}
-
-export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<ResourcePageParams>;
 }): Promise<Metadata> {
-  const article = getResourceArticle((await params).slug);
+  const { slug } = await params;
+  const article = (await getMagazineArticles()).find(entry => entry.slug === slug);
   if (!article) {
     return {
       title: "Recurso no encontrado",
@@ -76,7 +71,8 @@ export default async function ResourceArticlePage({
 }: {
   params: Promise<ResourcePageParams>;
 }) {
-  const article = getResourceArticle((await params).slug);
+  const { slug } = await params;
+  const article = (await getMagazineArticles()).find(entry => entry.slug === slug);
   if (!article) notFound();
 
   const structuredData = {

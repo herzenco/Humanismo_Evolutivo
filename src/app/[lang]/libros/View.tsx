@@ -4,7 +4,7 @@ import { useSpanishFieldValidation } from '@/hooks/useSpanishFieldValidation';
 import BooksIntro from "@/components/design/BooksIntro";
 import { Download, BookOpen } from 'lucide-react';
 import Link from '@/components/LocalizedLink';
-import { books } from '@/data/books';
+import type { Book } from '@/data/books';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useEffect, useState } from 'react';
@@ -23,7 +23,7 @@ import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
 import { z } from 'zod';
 import { bookForLanguage } from '@/lib/book-english';
 
-const Libros = () => {
+const Libros = ({ books }: { books: Book[] }) => {
   const { t, language } = useLanguage();
   const displayBooks = books.map(book => bookForLanguage(book, language, t));
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -38,11 +38,11 @@ const Libros = () => {
 
   useEffect(() => {
     const requestedBook = new URLSearchParams(window.location.search).get('descargar');
-    if (requestedBook && books.some(book => book.id === requestedBook)) {
+    if (requestedBook && books.some(book => book.id === requestedBook && book.downloadAvailable)) {
       setSelectedBook(requestedBook);
       setIsDialogOpen(true);
     }
-  }, []);
+  }, [books]);
 
   const handleDownload = (bookId: string) => {
     setSelectedBook(bookId);
@@ -61,9 +61,9 @@ const Libros = () => {
 
     try {
       const book = books.find(b => b.id === selectedBook);
-      if (!book) return;
+      if (!book?.downloadAvailable) return;
 
-      const pdfFileName = book.pdfUrl;
+      const pdfFileName = book.managed && language === 'en' ? book.pdfUrlEn || book.pdfUrl : book.pdfUrl;
       const bookName = book.title;
 
       // Validate form data with Zod schema

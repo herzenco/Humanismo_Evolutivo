@@ -4,19 +4,23 @@ import { notFound } from 'next/navigation';
 import Link from '@/components/LocalizedLink';
 import JsonLd from '@/components/seo/JsonLd';
 import PageWrapper from '@/components/layout/PageWrapper';
-import { onlineSchoolCourse, schoolBreak, schoolCoursePath, schoolCourses, schoolHolidays, schoolTerms } from '@/data/school-calendar-2027';
+import { onlineSchoolCourse, schoolBreak, schoolCoursePath, schoolHolidays, schoolTerms } from '@/data/school-calendar-2027';
 import { pageMetadata } from '@/lib/seo';
 import { absoluteUrl, EDUCATION_WAITLIST_URL, isLanguage } from '@/lib/site';
 import styles from './classes.module.css';
 
-const weeklySchedule = Array.from({ length: 6 }, (_, index) => {
-  const day = index + 1;
-  return {
-    day,
-    courses: schoolCourses.filter(course => course.days.includes(day))
-      .sort((a, b) => a.start.localeCompare(b.start)),
-  };
-});
+import { getSchoolCourses } from '@/lib/qa-resources';
+
+function getWeeklySchedule(schoolCourses: Awaited<ReturnType<typeof getSchoolCourses>>) {
+  return Array.from({ length: 6 }, (_, index) => {
+    const day = index + 1;
+    return {
+      day,
+      courses: schoolCourses.filter(course => course.days.includes(day))
+        .sort((a, b) => a.start.localeCompare(b.start)),
+    };
+  });
+}
 
 const copy = {
   es: {
@@ -84,6 +88,8 @@ export default async function ClassesPage({ params }: Props) {
   const { lang } = await params;
   if (!isLanguage(lang)) notFound();
   const text = copy[lang];
+  const schoolCourses = await getSchoolCourses();
+  const weeklySchedule = getWeeklySchedule(schoolCourses);
   const locale = lang === 'es' ? 'es-MX' : 'en-US';
   const weekday = new Intl.DateTimeFormat(locale, { weekday: 'long', timeZone: 'UTC' });
   const date = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', timeZone: 'UTC' });

@@ -1,3 +1,4 @@
+import { qaResourceReaderConfigured } from '@/lib/qa-resources';
 import { newsletterConfig } from '@/lib/newsletter';
 import { notFound } from 'next/navigation';
 import { LanguageProvider } from '@/contexts/LanguageContext';
@@ -15,5 +16,5 @@ export default async function LangLayout({ children, params }: {
   const { lang } = await params;
   if (!isLanguage(lang)) notFound();
   const { content } = await getPublicSiteData();
-  return <LanguageProvider language={lang} content={content} newsletterEnabled={Boolean(newsletterConfig(process.env))}>{children}</LanguageProvider>;
+  return <LanguageProvider language={lang} content={content} newsletterEnabled={Boolean(newsletterConfig(process.env))} newsletterArchiveEnabled={qaResourceReaderConfigured()}>{children}</LanguageProvider>;
 }

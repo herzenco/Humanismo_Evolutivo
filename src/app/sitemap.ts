@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { resourceArticles } from '@/data/resources';
+import { getMagazineArticles, getQuestions } from '@/lib/qa-resources';
 import { publishedQuestions, questionPath } from '@/data/questions';
 import { indexablePaths } from '@/lib/indexable-paths';
 import { hreflangLanguages } from '@/lib/release-flags';
@@ -13,8 +13,9 @@ function localized(path: string, lastModified?: string): MetadataRoute.Sitemap[n
   };
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const questions = publishedQuestions();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [resourceArticles, questionRecords] = await Promise.all([getMagazineArticles(), getQuestions()]);
+  const questions = publishedQuestions(questionRecords);
   return [
     ...indexablePaths().map(path => localized(path)),
     { url: absoluteUrl('/resources') },

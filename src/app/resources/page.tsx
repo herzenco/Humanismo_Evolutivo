@@ -6,7 +6,9 @@ import styles from "./magazine.module.css";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { ResourceAnalytics } from "@/components/resources/ResourceAnalytics";
 import { ResourceCardLink } from "@/components/resources/ResourceCardLink";
-import { formatResourceDate, resourceArticles } from "@/data/resources";
+import { formatResourceDate } from "@/data/resources";
+
+import { getMagazineArticles } from "@/lib/qa-resources";
 
 const description = "Artículos y reflexiones sobre filosofía, conciencia, ciencia y espiritualidad en la revista de Humanismo Evolutivo.";
 
@@ -18,7 +20,8 @@ export const metadata = pageMetadata({
   localized: false,
 });
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  const resourceArticles = await getMagazineArticles();
   return (
     <PageWrapper>
       <ResourceAnalytics pageType="resources_index" />
