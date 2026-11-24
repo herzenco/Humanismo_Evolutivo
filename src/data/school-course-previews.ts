@@ -13,6 +13,7 @@ type Preview = {
   title: string;
   lesson: string;
   exercise: string;
+  credit?: string;
 };
 
 const historiaEvolutivaDelArteObjectives: Record<Language, CourseObjectives> = {
@@ -133,6 +134,7 @@ export const schoolCoursePreviews: Record<string, Record<Language, Preview>> = {
   'introduccion-a-la-filosofia': {
     es: {
       summary: "Un recorrido por la historia del pensamiento occidental, de los primeros filósofos griegos al existencialismo, para conocer las grandes preguntas que el ser humano se ha formulado durante veinticinco siglos.",
+      credit: 'Curso basado en la obra de Luis B. Gómez y de Marcos Constandse.',
       title: 'De una opinión a un argumento',
       lesson: 'Un argumento presenta razones que permiten examinar una idea. Para comprobar su alcance, conviene ponerlo a prueba con un caso que podría contradecirlo.',
       exercise: 'Escribe una opinión sobre qué hace justa una decisión. Da una razón y busca un ejemplo que ponga esa razón a prueba.',
@@ -147,6 +149,7 @@ export const schoolCoursePreviews: Record<string, Record<Language, Preview>> = {
   'introduccion-a-la-antropologia': {
     es: {
       summary: "Una introducción a la antropología como estudio del ser humano en su totalidad biológica, cultural y social: de la evolución y la adaptación al poblamiento, las civilizaciones y las grandes teorías etnológicas.",
+      credit: 'Curso basado en la obra de Luis B. Gómez y de Marcos Constandse.',
       title: 'Observar antes de interpretar',
       lesson: 'Una misma práctica puede tener sentidos distintos para quienes participan en ella. La observación ayuda a distinguir lo que vemos de lo que suponemos.',
       exercise: 'Describe una comida familiar sin interpretar su significado. Después, escribe una pregunta que harías a alguien que participa en ella.',
