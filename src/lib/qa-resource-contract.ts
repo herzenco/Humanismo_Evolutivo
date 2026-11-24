@@ -38,12 +38,15 @@ export const articlePayload = z.object({
   body: text(12000),
 }).strict();
 
+export const newsletterMaxImages = 4;
 export const newsletterLayouts = { texto: 0, portada: 1, galeria: 2 } as const;
 export const newsletterImagePath = z.string().regex(/^[0-9a-f-]{36}\/[0-9a-f-]{36}\.(jpg|png|webp)$/);
 export const newsletterDesign = z.object({
   layout: z.enum(["texto", "portada", "galeria"]),
-  images: z.array(z.object({ path: newsletterImagePath, alt: text(200) }).strict()).max(2),
-}).strict().refine(value => value.images.length === newsletterLayouts[value.layout]);
+  images: z.array(z.object({ path: newsletterImagePath, alt: text(200) }).strict()).max(newsletterMaxImages),
+}).strict().refine(value => value.layout === "galeria"
+  ? value.images.length >= newsletterLayouts.galeria
+  : value.images.length === newsletterLayouts[value.layout]);
 
 export const newsletterPayload = articlePayload.extend({ design: newsletterDesign.optional() });
 
