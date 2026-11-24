@@ -44,7 +44,9 @@ html { scroll-padding-top:144px; }
 .site-footer { background:#173F2C; color:#fff; padding:64px 24px 28px; }
 .site-footer-inner { max-width:1200px; margin:auto; }
 .site-newsletter { border:1px solid #D4AF5A59; background:#1F4B36; padding:36px 40px; border-radius:24px; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:48px; margin-bottom:64px; }
-.site-newsletter h2 { font-size:36px; line-height:1.1; margin:12px 0; font-weight:600; }
+.newsletter-page { max-width:1248px; margin:auto; padding:clamp(32px, 7vw, 96px) 24px; color:#fff; }
+.newsletter-page .site-newsletter { margin-bottom:0; }
+.newsletter-page h1, .site-newsletter h2 { font-size:36px; line-height:1.1; margin:12px 0; font-weight:600; }
 .site-newsletter p { color:#ffffffbf; font-size:16px; line-height:1.6; }
 .newsletter-form { min-width:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; align-items:start; }
 .newsletter-field { display:grid; gap:6px; font-weight:600; }
@@ -136,7 +138,7 @@ html { scroll-padding-top:144px; }
  .editorial [role=img] .he-sized { max-width:none; }
  .site-footer { padding:48px 24px 24px; }
  .site-newsletter { display:flex; flex-direction:column; padding:24px; gap:20px; align-items:stretch; margin-bottom:40px; }
- .site-newsletter h2 { font-size:32px; }
+ .newsletter-page h1, .site-newsletter h2 { font-size:32px; }
  .site-footer-grid { grid-template-columns:1fr 1fr; gap:32px 20px; }
  .site-footer-grid > :first-child { grid-column:1 / -1; }
  .site-footer-grid h3 { font-size:23px; }

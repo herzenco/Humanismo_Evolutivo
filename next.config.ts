@@ -43,6 +43,7 @@ const nextConfig: NextConfig = {
     return {
       beforeFiles: [
         { source: '/', destination: '/es' },
+        { source: '/boletin', destination: '/es/boletin' },
         ...pages.flatMap(page => [
           { source: `/${page}`, destination: `/es/${page}` },
           { source: `/${page}/:path*`, destination: `/es/${page}/:path*` },
