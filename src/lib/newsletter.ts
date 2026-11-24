@@ -5,8 +5,8 @@ const liveHost = 'iwtcdjkawcjsxmwhzlot.supabase.co';
 const origins = new Set(['https://humanismoevolutivo.com', 'https://qa.humanismoevolutivo.com']);
 
 export function newsletterConfig(env: NodeJS.ProcessEnv) {
-  const { NEWSLETTER_ENVIRONMENT: environment, NEWSLETTER_SUPABASE_URL: url, NEWSLETTER_SUPABASE_PUBLISHABLE_KEY: key } = env;
-  if ((environment !== 'qa' && environment !== 'production') || !url || !key?.startsWith('sb_publishable_')) return null;
+  const { NEWSLETTER_ENVIRONMENT: environment, NEWSLETTER_SUPABASE_URL: url, NEWSLETTER_SUPABASE_SECRET_KEY: key } = env;
+  if ((environment !== 'qa' && environment !== 'production') || !url || !key?.startsWith('sb_secret_')) return null;
   try {
     const target = new URL(url);
     if (target.origin !== url.replace(/\/$/, '') || target.protocol !== 'https:' || !/^[a-z0-9]+\.supabase\.co$/.test(target.host)) return null;

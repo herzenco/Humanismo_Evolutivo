@@ -25,3 +25,24 @@ The QA project is connected to this repository, tracks `qa` as its production br
 The `Promotion policy` check requires `dev` → `qa` and `qa` → `main`, from this repository. Protected branches require pull requests and this check. The workflow uses `pull_request_target` only to inspect branch metadata; it never checks out or executes pull request code or receives deployment credentials.
 
 QA approval is a human release step. The branch check verifies the promotion path; it does not replace application tests or assert that QA has passed. Administrators retain emergency bypass capability.
+
+## Contact and newsletter database cutover
+
+- Configure `NEWSLETTER_SUPABASE_SECRET_KEY` for the project identified by
+  `NEWSLETTER_SUPABASE_URL`. Configure `CONTACT_SUPABASE_SECRET_KEY` for the
+  project identified by `NEXT_PUBLIC_SUPABASE_URL`. Both are server-only
+  Supabase secret keys. Keep the public browser key for existing browser reads
+  and the cookie-aware client for admin reads.
+- Verify each target has its existing intake tables and functions. Apply
+  `20261124170000_restrict_newsletter_intake.sql` to the newsletter project
+  and `20261124170100_restrict_contact_intake.sql` to the contact project.
+  When they are the same project, apply both. Repeat against the isolated QA
+  targets before coordinating production. A target without the original intake
+  schema needs that schema before its corresponding migration.
+- Coordinate migration and deployment in the same release window. Applying the
+  restrictions interrupts intake on deployments still using the public key.
+  After deploying, verify contact success and rate rejection in QA, and test
+  newsletter signup, retry after a rejected send, confirmation, and unsubscribe.
+  A rollback deployment must still use server-only intake.
+- Explicitly set `QA_GATE_ENABLED=true` in the QA Vercel project. Verify that
+  anonymous requests to the QA homepage and a protected asset are gated.

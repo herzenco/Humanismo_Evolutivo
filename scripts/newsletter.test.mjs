@@ -9,7 +9,7 @@ const email2 = 'herzen+heqa-02@herzenco.co';
 const testEnv = {
   NEWSLETTER_ENVIRONMENT: 'qa',
   NEWSLETTER_SUPABASE_URL: 'https://nywgzeucqbfgvyjfmvgt.supabase.co',
-  NEWSLETTER_SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_mock',
+  NEWSLETTER_SUPABASE_SECRET_KEY: 'sb_secret_mock',
   NEWSLETTER_FROM_EMAIL: 'newsletter@example.invalid',
   RESEND_API_KEY: 'mock',
   RESEND_NEWSLETTER_SEGMENT_ID: 'mock-segment',
@@ -54,6 +54,7 @@ test('environment flags reject unset or crossed database targets', () => {
   assert.equal(newsletterConfig({ ...testEnv, NEWSLETTER_ENVIRONMENT: 'production' }), null);
   assert.ok(newsletterConfig({ ...testEnv, NEWSLETTER_ENVIRONMENT: 'production', NEWSLETTER_SUPABASE_URL: live }));
   assert.ok(newsletterConfig(testEnv));
+  assert.equal(newsletterConfig({ ...testEnv, NEWSLETTER_SUPABASE_SECRET_KEY: 'sb_publishable_mock' }), null);
 });
 
 test('request origin, consent, plus-tagged addresses and SHA-256', () => {
@@ -81,24 +82,35 @@ test('SQL protects rows, keeps plus tags, and limits and consumes tokens atomica
   assert.match(sql, /interval '1 day'\) >= 5/);
 });
 
-test('mocked intake and token actions stay generic and persist during a Resend outage', async t => {
+test('mocked intake retries failed delivery and supports confirmation and unsubscribe', async t => {
   const rows = new Map();
   const requests = [];
   const now = Date.now();
+  let failDelivery = true;
   t.mock.method(globalThis, 'fetch', async (input, init) => {
     const url = new URL(typeof input === 'string' ? input : input.url ?? input);
     const args = JSON.parse(init?.body ?? '{}');
     requests.push({ url, args });
-    if (url.hostname === 'api.resend.com') return new Response(null, { status: 503 });
+    if (url.hostname === 'api.resend.com') {
+      if (url.pathname === '/emails' && !failDelivery) return Response.json({ id: 'mock-email' });
+      return new Response(null, { status: 503 });
+    }
+    assert.equal(new Headers(init?.headers).get('apikey'), testEnv.NEWSLETTER_SUPABASE_SECRET_KEY);
     assert.equal(url.origin, testEnv.NEWSLETTER_SUPABASE_URL);
     switch (url.pathname.split('/').at(-1)) {
       case 'signup_newsletter': {
-        if (rows.has(args.p_email)) return Response.json('skip');
+        if (rows.get(args.p_email)?.sent) return Response.json('skip');
         rows.set(args.p_email, {
           email: args.p_email, hash: args.p_confirm_hash, bajaHash: args.p_unsubscribe_hash,
           expires: now + 1000, status: 'pending', resend_synced_at: null,
         });
         return Response.json('send');
+      }
+      case 'finish_newsletter_confirmation_delivery': {
+        const row = [...rows.values()].find(item => item.hash === args.p_confirm_hash);
+        assert.ok(row);
+        row.sent = args.p_sent;
+        return new Response(null, { status: 204 });
       }
       case 'confirm_newsletter': {
         const row = [...rows.values()].find(item => item.hash === args.p_token_hash && item.expires > now && item.status === 'pending');
@@ -119,11 +131,14 @@ test('mocked intake and token actions stay generic and persist during a Resend o
   assert.equal((await signup({ website: 'bot' }, 'https://preview.example.invalid')).status, 403);
   assert.deepEqual(await (await signup({ website: 'bot' })).json(), { ok: true });
   assert.equal(requests.length, 0);
+  assert.equal((await signup({ email: email1, consent: true })).status, 503);
+  assert.equal(rows.get(email1).sent, false);
+  failDelivery = false;
   assert.deepEqual(await (await signup({ email: email1, consent: true })).json(), { ok: true });
   assert.deepEqual(await (await signup({ email: email1, consent: true })).json(), { ok: true });
   assert.deepEqual(await (await signup({ email: email2, consent: true })).json(), { ok: true });
 
-  const outbound = requests.filter(request => request.url.hostname === 'api.resend.com');
+  const outbound = requests.filter(request => request.url.pathname === '/emails').slice(1);
   assert.equal(outbound.length, 2);
   assert.equal(rows.size, 2);
   assert.equal(rows.get(email1).status, 'pending');

@@ -12,7 +12,13 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   experimental: { globalNotFound: true },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      {
+        source: "/qa-access",
+        headers: [{ key: "Referrer-Policy", value: "same-origin" }],
+      },
+    ];
   },
   async redirects() {
     // The standalone admin app owns its navigation and authentication.
@@ -57,21 +63,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "qlqkdininewormskpnya.supabase.co",
         pathname: "/storage/v1/object/public/**",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      // OCC content can reference approved images from different publishing CDNs.
-      {
-        protocol: "https",
-        hostname: "**",
-        pathname: "/**",
-      },
-      {
-        protocol: "http",
-        hostname: "**",
-        pathname: "/**",
       },
     ],
   },

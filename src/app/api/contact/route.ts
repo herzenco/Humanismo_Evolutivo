@@ -1,5 +1,6 @@
-import { hasHoneypot } from '@/lib/newsletter';
+import { hashToken, hasHoneypot } from '@/lib/newsletter';
 import { contactSchema } from '@/lib/contact';
+import { createContactWriter } from '@/lib/supabase/contact';
 import { createClient } from '@/lib/supabase/server';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 
@@ -40,8 +41,11 @@ export async function POST(request: Request) {
   if (hasHoneypot(body)) return reply({ ok: true });
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) return fail(400, 'Revisa los campos del formulario.', 'Check the form fields and try again.');
-  const client = await createClient();
-  const { data, error } = await client.rpc('submit_contact_submission', {
+  const client = createContactWriter();
+  if (!client) return fail(503, 'El formulario no está disponible en este momento.', 'The form is currently unavailable.');
+  const ip = request.headers.get('x-vercel-forwarded-for')?.split(',')[0].trim() ?? '';
+  const { data, error } = await client.rpc('submit_contact_submission_limited', {
+    p_ip_hash: hashToken(ip),
     p_name: parsed.data.name,
     p_email: parsed.data.email,
     p_phone: parsed.data.phone || '',
@@ -50,6 +54,7 @@ export async function POST(request: Request) {
     p_consent: true,
     p_locale: parsed.data.locale,
   });
+  if (!error && data === null) return fail(429, 'Has enviado demasiados mensajes. Intenta más tarde.', 'Too many messages. Please try again later.');
   if (error || !data) return fail(503, 'No pudimos guardar tu mensaje. Intenta más tarde.', 'We could not save your message. Please try again later.');
   await notify(parsed.data).catch(() => false);
   return reply({ ok: true });

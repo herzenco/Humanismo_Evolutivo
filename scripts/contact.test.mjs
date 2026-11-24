@@ -9,6 +9,12 @@ const hooks = registerHooks({
     if (specifier === '@/lib/newsletter') return nextResolve('../src/lib/newsletter.ts', { ...context, parentURL: import.meta.url });
     if (specifier === '@/lib/contact') return nextResolve('../src/lib/contact.ts', { ...context, parentURL: import.meta.url });
     if (specifier === '@/lib/supabase/config') return { url: stub('export const isSupabaseConfigured = true'), shortCircuit: true };
+    if (specifier === '@/lib/supabase/contact') {
+      return {
+        url: stub('export const createContactWriter = () => ({ rpc: (...args) => globalThis.recordContactWrite(...args) })'),
+        shortCircuit: true,
+      };
+    }
     if (specifier === '@/lib/supabase/server') {
       return {
         url: stub('export const createClient = async () => ({ rpc: (...args) => globalThis.recordContactWrite(...args) })'),
@@ -61,7 +67,10 @@ test('contact validates, saves and notifies without Turnstile', async (t) => {
   process.env.PORTAL_INVITATION_FROM = 'invitation@example.test';
   const notified = await submit();
   assert.deepEqual(await notified.json(), { ok: true });
-  assert.deepEqual(writes.map(([rpc]) => rpc), ['submit_contact_submission', 'submit_contact_submission']);
+  assert.deepEqual(writes.map(([rpc]) => rpc), ['submit_contact_submission_limited', 'submit_contact_submission_limited']);
+  assert.equal(fetchMock.mock.callCount(), 1);
+  globalThis.recordContactWrite = () => ({ data: null, error: null });
+  assert.equal((await submit()).status, 429);
   assert.equal(fetchMock.mock.callCount(), 1);
   const [url, options] = fetchMock.mock.calls[0].arguments;
   assert.equal(url, 'https://api.resend.com/emails');

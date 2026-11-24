@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
+import { get } from 'node:http';
 import { setTimeout as delay } from 'node:timers/promises';
 import { QA_PROJECT_ID, QA_SESSION_SECONDS, createQaSession } from '../src/lib/qa-gate.ts';
 
@@ -28,7 +29,7 @@ await withServer({},3169,async(request,base)=>{
   for(const path of ['/','/portal','/51preguntas/pregunta_1','/books/Yo_Soy_Nosotros_Resumen.pdf','/favicon-small.png','/sitemap.xml']) {
     const response=await request(path);assert.equal(response.status,303,path);assert.ok(response.headers.get('location').includes('/qa-access?next='));
   }
-  assert.equal((await request('/api/education/access')).status,401);
+  assert.equal((await request('/api/contact')).status,401);
   assert.equal((await request('/api/qa-media/introduction',{headers:{Range:'bytes=0-1'}})).status,401);
   assert.equal((await request('/_next/static/test.js')).status,401);
   assert.equal((await request('/portal',{headers:{RSC:'1'}})).status,303);
@@ -55,5 +56,19 @@ await withServer({},3169,async(request,base)=>{
   const external=await post({password,next:'//evil.test'});assert.equal(new URL(external.headers.get('location')).origin,base);
 });
 await withServer({QA_GATE_PASSWORD_HASH:'',QA_GATE_SECRET:''},3170,async request=>{assert.equal((await request('/')).status,503);assert.equal((await request('/qa-access')).status,503);});
-await withServer({VERCEL_PROJECT_ID:'public-project',QA_GATE_ENABLED:'',QA_GATE_PASSWORD_HASH:'',QA_GATE_SECRET:''},3171,async request=>{assert.equal((await request('/')).status,200);assert.equal((await request('/qa-access')).status,404);});
+await withServer({VERCEL_PROJECT_ID:'public-project',QA_GATE_ENABLED:'',QA_GATE_PASSWORD_HASH:'',QA_GATE_SECRET:''},3171,async (request,base)=>{
+  assert.equal((await request('/')).status,200);
+  assert.equal((await request('/qa-access')).status,404);
+  for (const path of ['/', '/api/contact', '/books/yo-soy-nosotros.pdf']) {
+    const response = await new Promise((resolve, reject) => {
+      get(new URL(path, base), { headers: { Host: 'qa.humanismoevolutivo.com' } }, result => {
+        result.resume();
+        resolve(result);
+      }).on('error', reject);
+    });
+    assert.equal(response.statusCode, 503, path);
+    assert.match(response.headers['x-robots-tag'], /noindex/);
+    assert.match(response.headers['cache-control'], /no-store/);
+  }
+});
 console.log('Verified: full QA gate, failed/successful unlock, secure cookie, protected files/API/RSC, logout, fail-closed configuration, and unaffected non-QA site.');
