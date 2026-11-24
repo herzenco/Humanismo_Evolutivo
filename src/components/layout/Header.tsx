@@ -22,6 +22,7 @@ function ResourcesNavigation({ onNavigate }: { onNavigate?: () => void }) {
     ['Podcasts', '/podcasts'],
     [es ? 'Revista' : 'Magazine', '/resources'],
     [es ? 'Preguntas' : 'Questions', '/51preguntas'],
+    [es ? 'Boletín' : 'Newsletter', '/#boletin'],
   ];
 
   return <details
