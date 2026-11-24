@@ -826,3 +826,9 @@ body { font-family:'Source Sans 3',system-ui,sans-serif; background:#FAF7EF; col
 #contacto .portal-admin-form input[type="checkbox"] { width:24px; height:24px; padding:0; }
 #contacto [role="alert"] { color:#9b2e22; }
 #credo-personal, #contenidos { scroll-margin-top:1rem; }
+
+.newsletter-issue-photos { display: grid; gap: 1rem; margin-block: 1.25rem; }
+.newsletter-issue-photos img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: .75rem; }
+@media (min-width: 640px) {
+  .newsletter-issue-photos[data-layout="galeria"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
