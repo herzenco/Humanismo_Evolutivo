@@ -4,6 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import PageWrapper from '@/components/layout/PageWrapper';
 import VisionEditorial from "@/components/design/VisionEditorial";
 import PersonalCreed from '@/components/design/PersonalCreed';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
 
 const Vision = () => {
@@ -11,7 +12,7 @@ const Vision = () => {
 
   return (
     <PageWrapper>
-      {language === "es" ? <VisionEditorial /> : <>
+      {language === "es" ? <VisionEditorial /> : <Tabs defaultValue="vision">
       <article className="container mx-auto px-4 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,9 +28,13 @@ const Vision = () => {
             <p className="text-2xl font-light italic text-muted-foreground">
               {t('vision.subtitle')}
             </p>
+            <TabsList aria-label="Author readings" className="vision-tabs">
+              <TabsTrigger value="vision">Vision</TabsTrigger>
+              <TabsTrigger value="credo">Personal creed</TabsTrigger>
+            </TabsList>
           </div>
 
-          {/* Content */}
+          <TabsContent value="vision">
           <div className="prose prose-lg max-w-none">
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-6">La fuente de la que bebí:</h2>
@@ -263,11 +268,12 @@ const Vision = () => {
               </p>
             </section>
 
-            <PersonalCreed title="Personal Creed" />
           </div>
+          </TabsContent>
+          <TabsContent value="credo"><PersonalCreed title="Personal Creed" /></TabsContent>
         </motion.div>
       </article>
-    </>}
+    </Tabs>}
     </PageWrapper>
   );
 };

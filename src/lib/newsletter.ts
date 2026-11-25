@@ -5,8 +5,8 @@ const liveHost = 'iwtcdjkawcjsxmwhzlot.supabase.co';
 const origins = new Set(['https://humanismoevolutivo.com', 'https://qa.humanismoevolutivo.com']);
 
 export function newsletterConfig(env: NodeJS.ProcessEnv) {
-  const { NEWSLETTER_ENVIRONMENT: environment, NEWSLETTER_SUPABASE_URL: url, NEWSLETTER_SUPABASE_PUBLISHABLE_KEY: key } = env;
-  if ((environment !== 'qa' && environment !== 'production') || !url || !key?.startsWith('sb_publishable_')) return null;
+  const { NEWSLETTER_ENVIRONMENT: environment, NEWSLETTER_SUPABASE_URL: url, NEWSLETTER_SUPABASE_SECRET_KEY: key } = env;
+  if ((environment !== 'qa' && environment !== 'production') || !url || !key?.startsWith('sb_secret_')) return null;
   try {
     const target = new URL(url);
     if (target.origin !== url.replace(/\/$/, '') || target.protocol !== 'https:' || !/^[a-z0-9]+\.supabase\.co$/.test(target.host)) return null;
@@ -21,10 +21,12 @@ export const signupSchema = z.object({
   name: z.string().trim().max(120).optional(),
   locale: z.enum(['es', 'en']).default('es'),
   consent: z.literal(true),
-});
+  question: z.number().int().min(35).max(51).optional(),
+}).refine(value => value.question === undefined || Boolean(value.name), { path: ['name'] });
 
 export function newsletterOrigin(request: Request) {
-  const origin = new URL(request.url).origin;
+  const host = request.headers.get('host');
+  const origin = host ? `https://${host.toLowerCase()}` : new URL(request.url).origin;
   return origins.has(origin) && request.headers.get('origin') === origin ? origin : null;
 }
 

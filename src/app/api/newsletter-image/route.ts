@@ -1,14 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse, type NextRequest } from 'next/server';
 import { newsletterImagePath } from '@/lib/qa-resource-contract';
-import { getQaResourceConnection } from '@/lib/qa-resources';
+import { qaResourceReaderConfig } from '@/lib/qa-resources';
 
 export async function GET(request: NextRequest) {
   const path = newsletterImagePath.safeParse(request.nextUrl.searchParams.get('path'));
-  const connection = getQaResourceConnection();
-  if (!connection || !path.success) return new NextResponse(null, { status: 404 });
+  const config = qaResourceReaderConfig();
+  if (!config || !path.success) return new NextResponse(null, { status: 404 });
 
-  const { url, publishableKey } = connection;
+  const { url, publishableKey } = config;
   const client = createClient(url, publishableKey, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
     global: { fetch: (input, init) => fetch(input, { ...init, cache: 'no-store' }) },

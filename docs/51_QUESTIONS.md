@@ -8,7 +8,7 @@ The 51 Markdown files were supplied in `HUMANISMO EVOLUTIVO/VIDEOS SITIO WEB/51 
 
 Each page displays the supplied question as its heading and only the narrated version as its reading text. The dialogue remains archived in the source and generated data but is not displayed or included in article structured data. Each page shows one video, preferring the horizontal version when supplied and otherwise using the first available video. All supplied variants remain archived in the media manifest. Production annotations such as estimated recording duration/word count are kept in the Markdown sources but omitted from the published reading text. Speaker emphasis is rendered safely as React markup. No author name or original publication date has been inferred.
 
-The original folder includes video files for questions 1–25. Questions 26–51 have Markdown only. For 1–10, horizontal dialogue, vertical dialogue and vertical narration are available; 11–25 have vertical dialogue and narration. Original MOV files remain in the source folders. Optimized H.264/AAC MP4 copies and JPEG posters are served from the project's public Vercel Blob store, not from Git or the application deployment bundle.
+Questions 1–34 already have published videos. The [horizontal source folder](https://drive.google.com/drive/folders/1zpMt9L_Ufl8jbemteQoHZdNsGWqzWJNZ) contains the numbered QuickTime originals. Some filenames include a `P` or extra spaces before the extension. The [question source folders](https://drive.google.com/drive/folders/1tRYADooXrAOK56wW_4kpq2QccEig-VZE) contain the text for questions 35–51. These question pages show the availability form until video metadata is present. Optimized MP4s and posters are served from the project's public Vercel Blob store.
 
 ## Regenerate the content
 
@@ -20,7 +20,7 @@ node scripts/import-questions.mjs content/questions content/questions/media.json
 
 The importer also accepts the original `51 PREGUNTAS` folder as its first argument. It validates numbering and both script formats, preserves the source files and writes `src/generated/questions.json`. Question descriptions are excerpts from the supplied narration. The site consumes generated content through `src/data/questions.ts`.
 
-When new videos arrive, encode them as browser-compatible MP4s with fast-start playback, upload video and poster assets, add their records to the manifest, and regenerate. Never store media access credentials or full-size original videos in Git.
+When new videos arrive, encode them as browser-compatible MP4s with fast-start playback, upload video and poster assets, add their records to the manifest with `orientation: "horizontal"`, and regenerate. The question page will replace the form with the player. The question origin tag under Boletín identifies people who requested the availability notice. Never store media access credentials or full-size original videos in Git.
 
 ## Discovery and metadata
 

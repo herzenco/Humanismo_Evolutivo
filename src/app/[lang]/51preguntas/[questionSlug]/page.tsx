@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, List } from 'lucide-react';
 import PageWrapper from '@/components/layout/PageWrapper';
 import QuestionStructuredData from '@/components/questions/QuestionStructuredData';
 import QuestionVideoPlayer from '@/components/questions/QuestionVideoPlayer';
+import NewsletterForm from '@/components/layout/NewsletterForm';
 import QuestionText from '@/components/questions/QuestionText';
 import { questionKeywords, publishedQuestions, questionBySlug, questionPath, questionSlug as canonicalSlug } from '@/data/questions';
 import { getQuestions } from '@/lib/qa-resources';
@@ -63,7 +64,13 @@ export default async function QuestionPage({ params }: Props) {
     <QuestionStructuredData data={{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: en ? 'Home' : 'Inicio', item: absoluteUrl('/', lang) }, { '@type': 'ListItem', position: 2, name: en ? 'The 51 questions' : 'Las 51 preguntas', item: absoluteUrl('/51preguntas', lang) }, { '@type': 'ListItem', position: 3, name: title, item: canonical }] }} />
     <article><header className="questions-hero"><div className="questions-reading-width"><Link href="/51preguntas" className="questions-back"><ArrowLeft size={16} />{en ? 'The 51 questions' : 'Las 51 preguntas'}</Link><span className="design-eyebrow">{en ? `QUESTION ${question.number} OF 51` : `PREGUNTA ${question.number} DE 51`}</span><h1>{title}</h1>{question.author ? <p className="questions-byline">{question.author}</p> : null}</div></header>
       <div className="questions-answer questions-reading-width">
-        {question.videos?.length ? <QuestionVideoPlayer key={question.number} title={title} videos={question.videos} language={lang} /> : <p className="question-video-coming-soon">{en ? 'The video for this question will be available soon.' : 'El video de esta pregunta estará disponible próximamente.'}</p>}
+        {question.videos?.length ? <QuestionVideoPlayer key={question.number} title={title} videos={question.videos} language={lang} /> : question.number >= 35 ? (
+          <section className="question-video-notify" aria-labelledby="question-video-coming-soon">
+            <h2 id="question-video-coming-soon">{en ? 'Coming soon' : 'Próximamente'}</h2>
+            <p>{en ? 'Leave your details to get an email when this video is available.' : 'Deje sus datos para recibir un correo cuando se publique este video.'}</p>
+            <NewsletterForm es={!en} question={question.number} />
+          </section>
+        ) : <p className="question-video-coming-soon">{en ? 'The video for this question will be available soon.' : 'El video de esta pregunta estará disponible próximamente.'}</p>}
         {en ? <p>This reflection is published in the author's Spanish.</p> : null}
         <section id="question-narration" aria-label={en ? 'Narrated version' : 'Versión narrada'}>
           {narration.flatMap(section => section.paragraphs).map((paragraph, index) => <p key={index}><QuestionText>{paragraph}</QuestionText></p>)}

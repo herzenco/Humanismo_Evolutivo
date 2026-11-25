@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from '@/components/LocalizedLink';
 import PageWrapper from '@/components/layout/PageWrapper';
 import JsonLd from '@/components/seo/JsonLd';
+import lessonPlans from '@/data/school-lesson-plans.json';
 import { schoolBreak, schoolCoursePath, schoolTerms } from '@/data/school-calendar-2027';
 import { getSchoolCourses } from '@/lib/qa-resources';
 import { pageMetadata } from '@/lib/seo';
@@ -50,6 +51,7 @@ export default async function CoursePage({ params }: Props) {
   const teacher = course.instructor
     ? `${en ? 'Instructor' : 'Docente'}: ${course.instructor}`
     : (en ? 'Instructor to be confirmed' : 'Docente por confirmar');
+  const lessonPlan = lessonPlans[course.id as keyof typeof lessonPlans];
   const planPending = course.classPlanPending ? (en ? 'Class plan pending' : 'Plan de clases pendiente') : null;
 
   return <PageWrapper>
@@ -64,6 +66,9 @@ export default async function CoursePage({ params }: Props) {
         <p>{teacher}</p>
         {planPending ? <p className={styles.planPending}>{planPending}</p> : null}
         <p>{preview.summary}</p>
+        <a className="design-button design-button-gold" href="https://educacion.humanismoevolutivo.com/">
+          {en ? 'Enroll' : 'Inscribirme'}
+        </a>
         {preview.credit ? <p className={styles.courseCredit}>{preview.credit}</p> : null}
       </div>
     </section>
@@ -94,6 +99,19 @@ export default async function CoursePage({ params }: Props) {
           <p>{preview.exercise}</p>
         </div>
       </section>
+
+      {lessonPlan ? <section className={styles.courseObjectives} aria-labelledby="course-lesson-plan">
+        <h2 id="course-lesson-plan">{en ? 'Lesson plan' : 'Plan de clases'}</h2>
+        {lessonPlan.reference ? <p>{en ? 'Reference material from the May 2026 combined plan.' : 'Material de referencia del plan combinado de mayo de 2026.'}</p> : null}
+        {en ? <p>The lesson titles are in Spanish.</p> : null}
+        <details>
+          <summary>{en ? 'Lesson topics' : 'Temas por clase'} ({lessonPlan.lessons.length})</summary>
+          <ol lang="es">{lessonPlan.lessons.map((lesson, index) => <li key={index}>
+            <strong>{lesson.title}</strong>
+            {lesson.topics ? <p>{lesson.topics}</p> : null}
+          </li>)}</ol>
+        </details>
+      </section> : null}
 
       {preview.objectives ? <section className={styles.courseObjectives} aria-labelledby="course-objectives">
         <h2 id="course-objectives">{en ? 'Course objectives' : 'Objetivos del curso'}</h2>

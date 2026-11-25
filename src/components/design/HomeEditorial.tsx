@@ -153,9 +153,6 @@ export default function HomeEditorial() {
 <p className="he-42c9249ac">
 {tx("Sócrates, Platón y Aristóteles te acompañan para explorar las grandes preguntas de la vida desde el Humanismo Evolutivo Transpersonal.")}
 </p>
-<div className="he-6b1b061fa">
-{tx("PREGUNTAR · REFLEXIONAR · COMPRENDER")}
-</div>
 <aside className="he-262a265ce">
 <div className="he-049d5de8a">
 {tx("Nota sobre los personajes")}
@@ -172,7 +169,7 @@ export default function HomeEditorial() {
 {tx("Sócrates")}
 </div>
 <div className="he-4fd9c33ff">
-{tx("PREGUNTA")}
+{tx("PREGUNTAR")}
 </div>
 </div>
 <div className="he-a1beba773">
@@ -181,7 +178,7 @@ export default function HomeEditorial() {
 {tx("Platón")}
 </div>
 <div className="he-4fd9c33ff">
-{tx("REFLEXIONA")}
+{tx("REFLEXIONAR")}
 </div>
 </div>
 <div className="he-a1beba773">
@@ -190,7 +187,7 @@ export default function HomeEditorial() {
 {tx("Aristóteles")}
 </div>
 <div className="he-4fd9c33ff">
-{tx("COMPRENDE")}
+{tx("COMPRENDER")}
 </div>
 </div>
 </div>
