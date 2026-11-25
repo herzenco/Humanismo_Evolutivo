@@ -1,8 +1,9 @@
 import Link from "next/link";
 import PersonalCreed from "./PersonalCreed";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Ported from the supplied Vision.html; navigation uses application routes.
-export default function VisionEditorial() { return <div className="editorial">
+export default function VisionEditorial() { return <Tabs defaultValue="vision" className="editorial">
 <section aria-labelledby="vision-titulo" className="he-2d4745d82 he-row">
 <div className="he-56b59d3b1 he-sized">
 <div className="he-d76576463">
@@ -27,27 +28,10 @@ export default function VisionEditorial() { return <div className="editorial">
 </span>
 </span>
 </Link>
-<div className="he-152d372b7 he-row">
-<a href="#la-fuente" className="he-21e3a953a he-row">
-{"Comenzar la lectura\n"}
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M6 9l6 6 6-6">
-
-</path>
-</svg>
-</a>
-<a href="#credo-personal" className="he-b9cc09976 he-row">
-<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-<path d="M3 5.5c2.5-1 5.5-1 9 1 3.5-2 6.5-2 9-1v13c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1z">
-
-</path>
-<path d="M12 6.5v13">
-
-</path>
-</svg>
-{"\nIr al Credo personal"}
-</a>
-</div>
+<TabsList aria-label="Lecturas del autor" className="vision-tabs">
+  <TabsTrigger value="vision">Visión</TabsTrigger>
+  <TabsTrigger value="credo">Credo personal</TabsTrigger>
+</TabsList>
 </div>
 <figure className="he-a912b057f he-sized">
 <div className="he-a2379a7fe he-sized">
@@ -58,6 +42,7 @@ export default function VisionEditorial() { return <div className="editorial">
 </figcaption>
 </figure>
 </section>
+<TabsContent value="vision">
 <section className="he-d0cf40f13 he-row vision-reading-layout">
 <aside aria-label="Índice del ensayo" className="he-1370fe7e3 he-sized">
 <div className="he-977bcbd7b">
@@ -119,14 +104,6 @@ export default function VisionEditorial() { return <div className="editorial">
 
 </span>
 {"En relación a la salud"}
-</a>
-</li>
-<li>
-<a href="#credo-personal" className="he-0565b12eb he-row">
-<span className="he-3c616e763 he-sized">
-
-</span>
-{"Credo personal"}
 </a>
 </li>
 </ol>
@@ -374,7 +351,10 @@ export default function VisionEditorial() { return <div className="editorial">
 </li>
 </ol>
 </section>
-<PersonalCreed title="Credo personal" />
 </article>
 </section>
-</div>; }
+</TabsContent>
+<TabsContent value="credo" className="design-content-width vision-creed-panel">
+  <PersonalCreed title="Credo personal" />
+</TabsContent>
+</Tabs>; }

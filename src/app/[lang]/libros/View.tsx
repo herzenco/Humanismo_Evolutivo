@@ -17,9 +17,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { bookDownloadSchema, sanitizeForAnalytics } from '@/lib/validation';
+import { sanitizeForAnalytics } from '@/lib/validation';
+import { downloadBook } from '@/lib/download-book';
 import { z } from 'zod';
 import { bookForLanguage } from '@/lib/book-english';
 
@@ -57,57 +57,24 @@ const Libros = ({ books }: { books: Book[] }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!fields.validate(e.currentTarget, ['name', 'email'])) return;
+    const website = String(new FormData(e.currentTarget).get('website') ?? '');
     setIsSubmitting(true);
 
     try {
       const book = books.find(b => b.id === selectedBook);
       if (!book?.downloadAvailable) return;
 
-      const pdfFileName = book.managed && language === 'en' ? book.pdfUrlEn || book.pdfUrl : book.pdfUrl;
-      const bookName = book.title;
-
-      // Validate form data with Zod schema
-      const validatedData = bookDownloadSchema.parse({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        book_downloaded: bookName.trim()
-      }) as { name: string; email: string; book_downloaded: string };
-
-      // Save validated data to database
-      const { error } = await supabase
-        .from('book_downloads')
-        .insert(validatedData);
-
-      if (error) throw error;
-
-      // Track with GTM using sanitized data
-      (window as any).dataLayer?.push({
+      const download = await downloadBook({
+        bookId: book.id, language, ...formData, website,
+        ...(book.managed ? { managed: { url: language === 'en' ? book.pdfUrlEn || book.pdfUrl : book.pdfUrl, title: book.title } } : {}),
+      });
+      window.dataLayer?.push({
         event: 'download_book_submit',
         book_id: selectedBook,
-        book_title: sanitizeForAnalytics(bookName),
-        location: 'libros_page'
+        book_title: sanitizeForAnalytics(download.title),
+        location: 'libros_page',
       });
-
       setIsSubmitted(true);
-
-      setTimeout(async () => {
-        try {
-          const res = await fetch(pdfFileName);
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = bookName + '.pdf';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        } catch (downloadError) {
-          console.error('Download error:', downloadError);
-          toast.error(t('download.error'));
-        }
-      }, 300);
 
       setTimeout(() => {
         setIsSubmitted(false);
@@ -197,6 +164,7 @@ const Libros = ({ books }: { books: Book[] }) => {
 
           {!isSubmitted && (
             <form noValidate onSubmit={handleSubmit}>
+              <div hidden aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" /></div>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <label htmlFor="name" className="text-sm font-medium">

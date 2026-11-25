@@ -139,18 +139,6 @@ export default async function GardensPage({ params }: Props) {
       </div>
     </section>
 
-    <section className={`design-content-width ${styles.parkSection}`} aria-labelledby="parque-cancun">
-      <div className="design-section-heading"><h2 id="parque-cancun">{text.parkTitle}</h2></div>
-      <div className={styles.parkStory}>
-        <p>{text.parkOverview}</p>
-        <p>{text.parkHistory}</p>
-      </div>
-      <div className={styles.parkLinks}>
-        <a className="design-text-link" href="https://www.parquecancun.org/nosotros/">{text.parkHistoryLink}<ArrowUpRight size={17} aria-hidden="true" /></a>
-        <a className="design-text-link" href="https://www.parquecancun.org/preguntas-fecuentes/">{text.parkVisitLink}<ArrowUpRight size={17} aria-hidden="true" /></a>
-      </div>
-    </section>
-
     <section className={`design-content-width ${styles.gallerySection}`} aria-labelledby="galeria">
       <div className="design-section-heading"><h2 id="galeria">{text.gardenIndex}</h2></div>
       <ul className={styles.gallery}>
@@ -176,5 +164,16 @@ export default async function GardensPage({ params }: Props) {
         />
       </section>)}
     </div>
+    <section className={`design-content-width ${styles.parkSection}`} aria-labelledby="parque-cancun">
+      <div className="design-section-heading"><h2 id="parque-cancun">{text.parkTitle}</h2></div>
+      <div className={styles.parkStory}>
+        <p>{text.parkOverview}</p>
+        <p>{text.parkHistory}</p>
+      </div>
+      <div className={styles.parkLinks}>
+        <a className="design-text-link" href="https://www.parquecancun.org/nosotros/">{text.parkHistoryLink}<ArrowUpRight size={17} aria-hidden="true" /></a>
+        <a className="design-text-link" href="https://www.parquecancun.org/preguntas-fecuentes/">{text.parkVisitLink}<ArrowUpRight size={17} aria-hidden="true" /></a>
+      </div>
+    </section>
   </PageWrapper>;
 }

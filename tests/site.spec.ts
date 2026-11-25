@@ -8,7 +8,6 @@ import { getBookDownload } from '../src/lib/book-downloads';
 import { indexablePaths } from '../src/lib/indexable-paths';
 import { EN_ENABLED, PORTAL_ENABLED } from '../src/lib/release-flags';
 import { EDUCATION_WAITLIST_URL, SITE_URL, absoluteUrl, localizedPath } from '../src/lib/site';
-const fixture = 'http://127.0.0.1:54329';
 
 test('every book has an existing valid PDF for both languages', () => {
   for (const book of books) for (const language of ['es', 'en'] as const) {
@@ -203,7 +202,12 @@ test('old language preferences do not break hydration and language navigation pr
 });
 
 for (const path of ['/libros', '/libros/lo-mejor-esta-por-venir']) {
-  test(`${path} downloads the book and omits personal data from analytics`, async ({ page, request }) => {
+  test(`${path} downloads the book and omits personal data from analytics`, async ({ page }) => {
+    const leads: unknown[] = [];
+    await page.route('**/api/book-downloads', route => {
+      leads.push(route.request().postDataJSON());
+      return route.fulfill({ json: { ok: true } });
+    });
     await page.goto(path);
     if (path === '/libros') {
       const bookLink = page.locator('a[href="/libros/lo-mejor-esta-por-venir"]').filter({ hasText: /Explor/ }).first();
@@ -219,8 +223,9 @@ for (const path of ['/libros', '/libros/lo-mejor-esta-por-venir']) {
     await dialog.locator('button[type="submit"]').click();
     const download = await downloadPromise;
     expect(download.suggestedFilename()).toContain('venir');
-    const state = await (await request.get(`${fixture}/test/state`)).json();
-    expect(state.book_downloads.at(-1).book_downloaded).toContain('venir');
+    expect(leads).toEqual([{
+      name: 'Test Reader', email: 'reader@example.test', bookId: 'lo-mejor-esta-por-venir', website: '',
+    }]);
     const analytics = await page.evaluate(() => JSON.stringify(window.dataLayer ?? []));
     if (path !== '/libros') expect(analytics).toContain('book_download_form_submit');
     expect(analytics).not.toContain('reader@example.test');
@@ -280,15 +285,21 @@ test('2027 clases pages show sheet descriptions, teachers, plans and the Saturda
     else await expect(page.getByText('Plan de clases pendiente')).toHaveCount(0);
     if (schoolCoursePreviews[course.id].es.credit) await expect(page.getByText(courseCredit, { exact: true })).toBeVisible();
     else await expect(page.getByText(courseCredit)).toHaveCount(0);
+    await expect(page.getByText('Docente: Aída', { exact: true })).toHaveCount(0);
+    await expect(page.getByRole('link', { name: 'Inscribirme' })).toHaveAttribute('href', 'https://educacion.humanismoevolutivo.com/');
+    if (course.classPlanPending) {
+      await expect(page.getByRole('heading', { name: 'Plan de clases', exact: true })).toHaveCount(0);
+    } else {
+      await expect(page.getByRole('heading', { name: 'Plan de clases', exact: true })).toBeVisible();
+    }
     const html = await page.content();
-    expect(html).not.toContain('Aída');
     expect(html).not.toMatch(/drive\.google|docs\.google/i);
     await expect(page.locator('time').first()).toHaveText(course.start);
   }
 });
 
-test('failed download registration never reports success or triggers a file', async ({ page, request }) => {
-  await request.post(`${fixture}/test/fail-downloads`, { data: { fail: true } });
+test('failed download registration never reports success or triggers a file', async ({ page }) => {
+  await page.route('**/api/book-downloads', route => route.fulfill({ status: 503, json: { ok: false } }));
   let downloads = 0; page.on('download', () => downloads++);
   await page.goto('/libros/lo-mejor-esta-por-venir');
   await page.getByRole('button', { name: 'Descargar Libro', exact: true }).click();
@@ -297,6 +308,42 @@ test('failed download registration never reports success or triggers a file', as
   await dialog.locator('button[type="submit"]').click();
   await expect(page.getByText('No se pudo descargar', { exact: true })).toBeVisible();
   await expect(dialog.locator('form')).toBeVisible(); expect(downloads).toBe(0);
-  await request.post(`${fixture}/test/fail-downloads`, { data: { fail: false } });
 });
 
+
+
+test('Vision tabs switch between the essay and the personal creed', async ({ page }) => {
+  await page.goto('/vision');
+  await expect(page.getByRole('tab', { name: 'Visión' })).toHaveAttribute('aria-selected', 'true');
+  await page.getByRole('tab', { name: 'Credo personal' }).click();
+  await expect(page.getByRole('heading', { name: 'Credo personal' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'La fuente de la que bebí:' })).toBeHidden();
+});
+
+test('November newsletter opens a dedicated edition and confirmation routes still resolve', async ({ page, request }) => {
+  await page.goto('/boletin');
+  await page.getByRole('link', { name: 'Leer edición' }).first().click();
+  await expect(page).toHaveURL(/\/boletin\/noviembre-2026$/);
+  await expect(page.getByRole('heading', { name: 'Un jardín para mirar de nuevo' })).toBeVisible();
+  expect((await request.get('/boletin/confirmar')).ok()).toBe(true);
+  expect((await request.get('/boletin/abril-1999')).status()).toBe(404);
+});
+
+test('published question videos are preserved and upcoming questions submit their source', async ({ page }) => {
+  await page.goto('/51preguntas/pregunta_34');
+  await expect(page.locator('video').first()).toBeVisible();
+  await page.goto('/51preguntas/pregunta_35');
+  const upcoming = page.getByRole('region', { name: 'Próximamente' });
+  await expect(upcoming).toBeVisible();
+  await page.route('**/api/boletin', route => {
+    expect(route.request().postDataJSON()).toMatchObject({ question: 35, consent: true });
+    return route.fulfill({ status: 503, json: { ok: false } });
+  });
+  await upcoming.getByLabel('Nombre').fill('Test Reader');
+  await upcoming.getByLabel('Correo electrónico').fill('reader@example.test');
+  await upcoming.getByRole('checkbox').check();
+  await upcoming.getByRole('button', { name: 'Avísenme cuando esté disponible' }).click();
+  await expect(upcoming.getByRole('alert')).toHaveText('No pudimos registrar su correo. Inténtelo de nuevo.');
+  await page.goto('/51preguntas/pregunta_51');
+  await expect(page.getByRole('region', { name: 'Próximamente' })).toBeVisible();
+});

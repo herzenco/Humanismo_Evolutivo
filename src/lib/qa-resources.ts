@@ -1,5 +1,6 @@
 import 'server-only';
 import { cache } from 'react';
+import { qaGateEnabled } from '@/lib/qa-gate';
 import { z } from 'zod';
 import { getSupabaseConfig, isSupabaseConfigured } from '@/lib/supabase/config';
 import { articlePayload, newsletterDesign, newsletterPayload, bookPayload, coursePayload, podcastPayload, questionPayload, resourceRow, type ResourceKind } from './qa-resource-contract';
@@ -16,36 +17,34 @@ import type { Language } from '@/lib/site';
 
 const qaSupabaseUrl = 'https://nywgzeucqbfgvyjfmvgt.supabase.co';
 
-export function getQaResourceConnection() {
+export function qaResourceReaderConfig() {
   const token = process.env.QA_RESOURCE_READER_TOKEN?.trim();
   if (!token || !/^[a-f0-9]{64}$/.test(token)) return null;
 
-  const dedicatedKey = process.env.QA_RESOURCE_SUPABASE_PUBLISHABLE_KEY?.trim();
-  if (dedicatedKey) {
-    return dedicatedKey.startsWith('sb_publishable_')
-      ? { url: qaSupabaseUrl, publishableKey: dedicatedKey, token }
-      : null;
+  const explicitKey = process.env.QA_RESOURCE_SUPABASE_PUBLISHABLE_KEY?.trim();
+  if (qaGateEnabled() && explicitKey?.startsWith('sb_publishable_')) {
+    return { url: qaSupabaseUrl, publishableKey: explicitKey, token };
   }
-
-  const legacyConfig = isSupabaseConfigured ? getSupabaseConfig() : null;
-  return legacyConfig?.url === qaSupabaseUrl ? { ...legacyConfig, token } : null;
+  if (!isSupabaseConfigured) return null;
+  const config = getSupabaseConfig();
+  return config.url === qaSupabaseUrl ? { ...config, token } : null;
 }
 
 export function qaResourceReaderConfigured() {
-  return getQaResourceConnection() !== null;
+  return qaResourceReaderConfig() !== null;
 }
 
 export const readQaResources = cache(async (kind: ResourceKind) => {
-  const connection = getQaResourceConnection();
-  if (!connection) return [];
-  const { url, publishableKey, token } = connection;
+  const config = qaResourceReaderConfig();
+  if (!config) return [];
+  const { url, publishableKey, token } = config;
   try {
     const response = await fetch(url + '/rest/v1/rpc/qa_public_resource_entries', {
       method: 'POST',
       headers: { apikey: publishableKey, 'Content-Type': 'application/json' },
       body: JSON.stringify({ p_kind: kind, p_token: token }),
       signal: AbortSignal.timeout(5000),
-      next: { revalidate: 30 },
+      ...(kind === 'revista' || kind === 'boletin' ? { cache: 'no-store' } : { next: { revalidate: 30 } }),
     });
     if (!response.ok) throw new Error('HTTP ' + response.status);
     return z.array(resourceRow).parse(await response.json());

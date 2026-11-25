@@ -1,4 +1,4 @@
-import { qaGateResponse, privateQaResponse, rememberQaAccess } from '@/lib/qa-gate-response'
+import { qaGateResponse, privateQaResponse, qaRequestOrigin, rememberQaAccess } from '@/lib/qa-gate-response'
 import { qaGateEnabled } from '@/lib/qa-gate'
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
@@ -77,6 +77,9 @@ function finish(request: NextRequest, response: NextResponse) {
 }
 
 export async function proxy(request: NextRequest) {
+  if (new URL(qaRequestOrigin(request)).hostname === 'qa.humanismoevolutivo.com' && !qaGateEnabled()) {
+    return privateQaResponse(new NextResponse('El acceso de QA no está configurado. Contacta al administrador.', { status: 503 }))
+  }
   const blocked = qaGateResponse(request)
   if (blocked) return blocked
 

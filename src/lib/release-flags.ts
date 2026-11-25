@@ -28,6 +28,7 @@ const SPANISH_ROOTS = new Set([
   'video',
   '51preguntas',
   'resources',
+  'boletin',
 ])
 
 export type EnglishRedirect = { pathname: string; fallback: boolean }
