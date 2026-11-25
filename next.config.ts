@@ -50,6 +50,7 @@ const nextConfig: NextConfig = {
       beforeFiles: [
         { source: '/', destination: '/es' },
         { source: '/boletin', destination: '/es/boletin' },
+        { source: '/boletin/:edition((?:[a-z]+)-[0-9]{4})', destination: '/es/boletin/:edition' },
         ...pages.flatMap(page => [
           { source: `/${page}`, destination: `/es/${page}` },
           { source: `/${page}/:path*`, destination: `/es/${page}/:path*` },

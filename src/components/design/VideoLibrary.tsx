@@ -46,9 +46,9 @@ export default function VideoLibrary({ changes = [] }: { changes?: z.infer<typeo
       <label><span className="sr-only">{es ? 'Categoría de videos' : 'Video category'}</span><select value={category} onChange={event => {setCategory(event.target.value);setLimit(12);}}>{Object.entries(categories).map(([id,label]) => <option key={id} value={id}>{label}</option>)}</select></label>
     </div>
     <p className="video-library-count" role="status">{filtered.length} {filtered.length === 1 ? 'video' : 'videos'} · {es ? 'Biblioteca de videos del sitio' : 'Website video library'}</p>
-    <div className="design-media-grid">{filtered.slice(0,limit).map(video => <article className="design-media-card" key={video.id}>
-      <div className="design-media-cover"><img width="280" height="210" src={video.poster} alt="" loading="lazy"/><span><Play size={16} aria-hidden="true"/>{video.duration || (es ? 'Video completo' : 'Full video')}</span></div>
-      <div><span className="design-eyebrow">{categories[video.category]}</span><h3>{video.title}</h3><p>{video.description}</p>
+    <div className="video-gallery">{filtered.slice(0,limit).map(video => <article className="video-gallery-card" key={video.id}>
+      <div className="video-gallery-thumbnail"><img width="640" height="360" src={video.poster} alt="" loading="lazy"/><span><Play size={16} aria-hidden="true"/>{video.duration || (es ? 'Video completo' : 'Full video')}</span></div>
+      <div className="video-gallery-copy"><span className="design-eyebrow">{categories[video.category]}</span><h3>{video.title}</h3><p>{video.description}</p>
         <VideoDialog {...(video.src ? {videoSrc:video.src,poster:video.poster} : {videoId:video.youtubeId!})} title={video.title} aria-label={`${es ? 'Ver video' : 'Watch video'}: ${video.title}`} className="design-button video-library-play"><Play size={18} aria-hidden="true"/>{es ? 'Ver video' : 'Watch video'}</VideoDialog>
       </div>
     </article>)}</div>

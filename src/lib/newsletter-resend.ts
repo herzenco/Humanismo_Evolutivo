@@ -11,10 +11,12 @@ export async function resendRequest(path: string, method: string, body?: object)
   }).catch(() => null);
 }
 
-export async function sendNewsletterConfirmation(email: string, name: string | undefined, confirmUrl: string, bajaUrl: string) {
+export async function sendNewsletterConfirmation(email: string, name: string | undefined, confirmUrl: string, bajaUrl: string, question?: number) {
   const from = process.env.NEWSLETTER_FROM_EMAIL;
   if (!from) return false;
-  const text = `Hola${name ? ', ' + name : ''}:\n\nPara recibir el boletín de Humanismo Evolutivo, confirma tu suscripción en este enlace: ${confirmUrl}. El enlace vence en 48 horas. Si no solicitaste esta suscripción, ignora este correo. Para darte de baja en cualquier momento: ${bajaUrl}`;
+  const purpose = question === undefined ? 'recibir el boletín de Humanismo Evolutivo' :
+    `recibir el boletín de Humanismo Evolutivo y el aviso sobre el video de la pregunta ${question}`;
+  const text = `Hola${name ? ', ' + name : ''}:\n\nPara ${purpose}, confirma tu suscripción en este enlace: ${confirmUrl}. El enlace vence en 48 horas. Si no solicitaste esta suscripción, ignora este correo. Para darte de baja en cualquier momento: ${bajaUrl}`;
   const escapeHtml = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
   const html = '<p>' + escapeHtml(text).replace('\n\n', '</p><p>')
     .replace(escapeHtml(confirmUrl), `<a href="${escapeHtml(confirmUrl)}">${escapeHtml(confirmUrl)}</a>`)

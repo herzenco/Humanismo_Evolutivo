@@ -26,23 +26,38 @@ The `Promotion policy` check requires `dev` → `qa` and `qa` → `main`, from t
 
 QA approval is a human release step. The branch check verifies the promotion path; it does not replace application tests or assert that QA has passed. Administrators retain emergency bypass capability.
 
-## Contact and newsletter database cutover
+## Boletín and book downloads
 
-- Configure `NEWSLETTER_SUPABASE_SECRET_KEY` for the project identified by
-  `NEWSLETTER_SUPABASE_URL`. Configure `CONTACT_SUPABASE_SECRET_KEY` for the
-  project identified by `NEXT_PUBLIC_SUPABASE_URL`. Both are server-only
-  Supabase secret keys. Keep the public browser key for existing browser reads
-  and the cookie-aware client for admin reads.
-- Verify each target has its existing intake tables and functions. Apply
-  `20261124170000_restrict_newsletter_intake.sql` to the newsletter project
-  and `20261124170100_restrict_contact_intake.sql` to the contact project.
-  When they are the same project, apply both. Repeat against the isolated QA
-  targets before coordinating production. A target without the original intake
-  schema needs that schema before its corresponding migration.
-- Coordinate migration and deployment in the same release window. Applying the
-  restrictions interrupts intake on deployments still using the public key.
-  After deploying, verify contact success and rate rejection in QA, and test
-  newsletter signup, retry after a rejected send, confirmation, and unsubscribe.
-  A rollback deployment must still use server-only intake.
-- Explicitly set `QA_GATE_ENABLED=true` in the QA Vercel project. Verify that
-  anonymous requests to the QA homepage and a protected asset are gated.
+- Set `NEWSLETTER_ENVIRONMENT`, `NEWSLETTER_SUPABASE_URL` and the server-only
+  `NEWSLETTER_SUPABASE_SECRET_KEY` for the environment's subscriber database.
+  Set the verified `NEWSLETTER_FROM_EMAIL`, `RESEND_API_KEY` and
+  `RESEND_NEWSLETTER_SEGMENT_ID` for confirmation and delivery.
+- Apply the existing newsletter schema, the confirmation delivery migration
+  (`20261124170000_restrict_newsletter_intake.sql`) and the signup sources and
+  download migration (`20261124183000_marketing_signup_sources_and_downloads.sql`)
+  in the subscriber database. Both public forms write to that database.
+  Coordinate database changes with the site deployment. Old newsletter and legacy book
+  download routes use public permissions that the migrations revoke.
+- The download migration imports existing `book_downloads` rows if the table
+  is in that same database. If the old site wrote to a different database,
+  move the historical rows through an authorized server-side import before
+  cutting over. The migration does not query another project.
+- Deploy the matching admin read functions after the marketing migration.
+  Use the admin repository's `supabase/qa/marketing_leads_admin.sql` on isolated QA
+  and `20261124183100_marketing_leads_admin.sql` for the production admin schema.
+- Test a Boletín signup and a question signup including confirmation, then
+  confirm both origins under Boletín in admin. Download two books with the
+  same test address and verify one row with both books under Descargas de libros.
+- After publishing a question video, use that question's origin tag in the
+  confirmed Boletín contacts to send the availability announcement through
+  the normal newsletter publishing workflow.
+
+## Revista and Boletín archive in QA
+
+Set `QA_RESOURCE_READER_TOKEN` to the reader credential configured in the
+isolated admin QA database. If the public site uses a different Supabase
+project for its browser client, also set `QA_RESOURCE_SUPABASE_PUBLISHABLE_KEY`
+to the admin QA project's publishable key. The dedicated override is enabled
+only for a deployment with the QA gate enabled. Revista and Boletín read
+published entries at request time. After release, check the admin-published
+article on the Revista listing and its article page.

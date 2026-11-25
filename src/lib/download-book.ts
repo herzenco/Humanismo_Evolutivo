@@ -1,9 +1,8 @@
-import { supabase } from '@/integrations/supabase/client';
 import { bookDownloadSchema } from '@/lib/validation';
 import { getBookDownload } from '@/lib/book-downloads';
 import type { Language } from '@/lib/site';
-export async function downloadBook({ bookId, language, name, email, managed }: {
-  bookId: string; language: Language; name: string; email: string; managed?: { url: string; title: string };
+export async function downloadBook({ bookId, language, name, email, website, managed }: {
+  bookId: string; language: Language; name: string; email: string; website?: string; managed?: { url: string; title: string };
 }) {
   const download = managed ? { ...managed, language } : getBookDownload(bookId, language);
   const data = bookDownloadSchema.parse({ name: name.trim(), email: email.trim(), book_downloaded: download.title });
@@ -12,8 +11,12 @@ export async function downloadBook({ bookId, language, name, email, managed }: {
   if (!response.ok) throw new Error('PDF unavailable');
   const blob = await response.blob();
   if (await blob.slice(0, 5).text() !== '%PDF-') throw new Error('Invalid PDF response');
-  const { error } = await supabase.from('book_downloads').insert(data);
-  if (error) throw error;
+  const registration = await fetch('/api/book-downloads', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: data.name, email: data.email, bookId, website }),
+  });
+  if (!registration.ok) throw new Error('Book download registration failed');
   const objectUrl = URL.createObjectURL(blob);
   const anchor = document.createElement('a');
   anchor.href = objectUrl;

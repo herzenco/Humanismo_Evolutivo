@@ -72,11 +72,12 @@ export default function BookDetailPage({ bookId, books }: { bookId: string; book
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!fields.validate(e.currentTarget, ['name', 'email'])) return;
+    const website = String(new FormData(e.currentTarget).get('website') ?? '');
     setIsSubmitting(true);
 
     try {
       const download = await downloadBook({
-        bookId: book.id, language, ...formData,
+        bookId: book.id, language, ...formData, website,
         ...(book.managed ? { managed: { url: en ? book.pdfUrlEn || book.pdfUrl : book.pdfUrl, title: book.title } } : {}),
       });
       // eslint-disable-next-line react-hooks/immutability -- GTM owns this browser-global queue.
@@ -372,6 +373,7 @@ export default function BookDetailPage({ bookId, books }: { bookId: string; book
 
           {!isSubmitted && (
             <form noValidate onSubmit={handleSubmit}>
+                <div hidden aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" /></div>
               <p className="mb-4 text-sm">{label('El formulario solicita tu nombre y correo electrónico. Consulta el', 'This form asks for your name and email. Read the')} <Link href="/privacidad" className="underline">{label('aviso de privacidad', 'privacy notice')}</Link>.</p>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">

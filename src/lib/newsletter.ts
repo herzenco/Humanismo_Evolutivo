@@ -21,10 +21,12 @@ export const signupSchema = z.object({
   name: z.string().trim().max(120).optional(),
   locale: z.enum(['es', 'en']).default('es'),
   consent: z.literal(true),
-});
+  question: z.number().int().min(35).max(51).optional(),
+}).refine(value => value.question === undefined || Boolean(value.name), { path: ['name'] });
 
 export function newsletterOrigin(request: Request) {
-  const origin = new URL(request.url).origin;
+  const host = request.headers.get('host');
+  const origin = host ? `https://${host.toLowerCase()}` : new URL(request.url).origin;
   return origins.has(origin) && request.headers.get('origin') === origin ? origin : null;
 }
 

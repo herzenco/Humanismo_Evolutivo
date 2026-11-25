@@ -18,22 +18,24 @@ export async function POST(request: Request) {
   if (!parsed.success) return reply(400);
   const client = createNewsletterClient();
   if (!client || !process.env.NEWSLETTER_FROM_EMAIL || !process.env.RESEND_API_KEY) return reply(503);
-  const { email, name, locale } = parsed.data;
+  const { email, name, locale, question } = parsed.data;
   const ip = request.headers.get('x-vercel-forwarded-for') ?? '';
   const confirm = newToken();
   const baja = newToken();
-  const { data, error } = await client.rpc('signup_newsletter', {
+  const { data, error } = await client.rpc('signup_newsletter_from_source', {
+    p_source: question === undefined ? 'boletin' : `pregunta-${question}`,
     p_email: email, p_name: name ?? '', p_locale: locale, p_consent: true,
     p_ip_hash: hashToken(ip.split(',')[0].trim()),
     p_confirm_hash: hashToken(confirm), p_unsubscribe_hash: hashToken(baja),
   });
+  if (error) console.error('Newsletter registration failed', { code: error.code });
   if (error || data === 'busy') return reply(503);
   if (data === 'limited') return reply(429);
   if (data !== 'send' && data !== 'skip') return reply(503);
   if (data === 'send') {
     const confirmUrl = new URL('/boletin/confirmar?token=' + confirm, origin);
     const bajaUrl = new URL('/boletin/baja?token=' + baja, origin);
-    const sent = await sendNewsletterConfirmation(email, name, confirmUrl.href, bajaUrl.href);
+    const sent = await sendNewsletterConfirmation(email, name, confirmUrl.href, bajaUrl.href, question);
     const delivery = await client.rpc('finish_newsletter_confirmation_delivery', {
       p_confirm_hash: hashToken(confirm), p_sent: sent,
     });

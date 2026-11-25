@@ -60,7 +60,13 @@ test('environment flags reject unset or crossed database targets', () => {
 test('request origin, consent, plus-tagged addresses and SHA-256', () => {
   assert.equal(newsletterOrigin(new Request('https://preview.example.invalid', { headers: { origin: 'https://preview.example.invalid' } })), null);
   assert.equal(newsletterOrigin(new Request(qa, { headers: { origin: qa } })), qa);
+  const local = 'http://localhost:3000/api/boletin';
+  assert.equal(newsletterOrigin(new Request(local, { headers: { host: 'qa.humanismoevolutivo.com', origin: qa } })), qa);
+  assert.equal(newsletterOrigin(new Request(local, { headers: { host: 'other.example.test', origin: qa } })), null);
   assert.equal(signupSchema.safeParse({ email: email1, consent: false }).success, false);
+  assert.equal(signupSchema.safeParse({ email: email1, consent: true, question: 34, name: 'Test' }).success, false);
+  assert.equal(signupSchema.safeParse({ email: email1, consent: true, question: 35 }).success, false);
+  assert.equal(signupSchema.safeParse({ email: email1, consent: true, question: 51, name: 'Test' }).success, true);
   const validate = email => signupSchema.parse({ email, consent: true }).email;
   assert.equal(validate(email1.toUpperCase()), email1);
   assert.equal(validate(email2), email2);
@@ -98,7 +104,7 @@ test('mocked intake retries failed delivery and supports confirmation and unsubs
     assert.equal(new Headers(init?.headers).get('apikey'), testEnv.NEWSLETTER_SUPABASE_SECRET_KEY);
     assert.equal(url.origin, testEnv.NEWSLETTER_SUPABASE_URL);
     switch (url.pathname.split('/').at(-1)) {
-      case 'signup_newsletter': {
+      case 'signup_newsletter_from_source': {
         if (rows.get(args.p_email)?.sent) return Response.json('skip');
         rows.set(args.p_email, {
           email: args.p_email, hash: args.p_confirm_hash, bajaHash: args.p_unsubscribe_hash,
@@ -136,7 +142,10 @@ test('mocked intake retries failed delivery and supports confirmation and unsubs
   failDelivery = false;
   assert.deepEqual(await (await signup({ email: email1, consent: true })).json(), { ok: true });
   assert.deepEqual(await (await signup({ email: email1, consent: true })).json(), { ok: true });
-  assert.deepEqual(await (await signup({ email: email2, consent: true })).json(), { ok: true });
+  assert.deepEqual(await (await signup({ email: email2, consent: true, name: 'Test', question: 35 })).json(), { ok: true });
+  assert.ok(requests.some(request => request.args.p_email === email2 && request.args.p_source === 'pregunta-35'));
+  assert.ok(requests.some(request => request.args.p_email === email1 && request.args.p_source === 'boletin'));
+  assert.ok(requests.some(request => request.args.to?.includes(email2) && request.args.text.includes('pregunta 35')));
 
   const outbound = requests.filter(request => request.url.pathname === '/emails').slice(1);
   assert.equal(outbound.length, 2);
