@@ -4,6 +4,7 @@ import test from 'node:test';
 
 const source = {
   'server-only': 'export {}',
+  'next/navigation': 'export function unstable_rethrow(error) { if (error === globalThis.qaDynamicSignal) throw error; }',
   '@/data/resources': 'export const resourceArticles = []',
   '@/data/school-calendar-2027': 'export const schoolCourses = []',
   '@/data/school-course-previews': 'export const schoolCoursePreviews = {}',
@@ -55,4 +56,12 @@ test('Revista picks up an admin publication after an empty response and respects
   assert.equal(article.bodyHtml, '<p>Primera línea</p><p>Segunda línea</p>');
   entries = [{ ...row, version: 2, payload: null }];
   assert.deepEqual(await getMagazineArticles(), []);
+});
+
+test('the editorial reader lets Next switch from prerendering to request-time rendering', async t => {
+  const signal = new Error('Next.js prerender signal');
+  globalThis.qaDynamicSignal = signal;
+  t.after(() => { delete globalThis.qaDynamicSignal; });
+  t.mock.method(globalThis, 'fetch', async () => { throw signal; });
+  await assert.rejects(getMagazineArticles('boletin'), error => error === signal);
 });
