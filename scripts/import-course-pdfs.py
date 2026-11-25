@@ -10,6 +10,7 @@ specs=[('yo-soy-nosotros','Introduccion_Yo_Soy_Nosotros_Programa_45_Clases','Int
 courses=[]
 for id,file,title,count,minutes in specs:
  text='\n'.join(page.extract_text() for page in PdfReader(args.source_dir/(file+'.pdf')).pages)
+ text=text.replace('Aída','Aida')
  text='\n'.join(l.rstrip() for l in text.splitlines() if not l.startswith('Fundación Humanismo Evolutivo') and not re.match(r'^Página \d+$',l))
  matches=list(re.finditer(r'^CLASE (\d+)\s*$',text,re.M))
  assert len(matches)==count,(id,len(matches))

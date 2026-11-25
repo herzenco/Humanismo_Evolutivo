@@ -1,4 +1,4 @@
-import onlineCatalog from '../generated/course-catalog.json';
+import onlineCatalog from '../generated/course-catalog.json' with { type: 'json' };
 
 // The course-page brief confirms February 16 for the first term.
 // Remaining dates and session counts come from Calendario Escolar 2027, scan pp. 1–5.
@@ -22,19 +22,24 @@ type SchoolCourse = {
   start: string;
   end: string;
   termSessions: readonly [number, number];
+  classPlanPending?: boolean;
 };
 
 export const schoolCourses: readonly SchoolCourse[] = [
-  { id: 'humanismo-evolutivo-transpersonal', title: 'Introducción al Humanismo Evolutivo Transpersonal', instructor: 'Aída', days: mondayWednesdayFriday, start: '18:00', end: '19:00', termSessions: [45, 51] },
+  { id: 'humanismo-evolutivo-transpersonal', title: 'Introducción al Humanismo Evolutivo Transpersonal', instructor: 'Aida', days: mondayWednesdayFriday, start: '18:00', end: '19:00', termSessions: [45, 51] },
   { id: 'yo-soy-nosotros', title: 'Introducción a la Filosofía de “Yo soy nosotros”', instructor: 'Olimpia', days: mondayWednesdayFriday, start: '17:00', end: '18:00', termSessions: [45, 51] },
   { id: 'ecologia-y-espiritualidad', title: 'Ecología y Espiritualidad', instructor: null, days: mondayWednesdayFriday, start: '16:00', end: '17:00', termSessions: [45, 51] },
-  { id: 'introduccion-a-la-filosofia', title: 'Introducción a la Filosofía', instructor: 'Olimpia', days: tuesdayThursday, start: '18:00', end: '19:00', termSessions: [33, 34] },
-  { id: 'introduccion-a-la-antropologia', title: 'Introducción a la Antropología', instructor: null, days: tuesdayThursday, start: '17:00', end: '18:00', termSessions: [33, 34] },
-  { id: 'historia-evolutiva-del-arte', title: 'Historia Evolutiva del Arte', instructor: 'Alex', days: tuesdayThursday, start: '16:00', end: '17:00', termSessions: [33, 34] },
-  { id: 'el-arte-de-ser-empresario', title: 'El arte de ser empresario', instructor: 'MCM', days: saturday, start: '11:00', end: '13:00', termSessions: [11, 12] },
-  { id: 'historia-de-las-religiones', title: 'Historia de las Religiones', instructor: 'Alex', days: saturday, start: '10:00', end: '11:00', termSessions: [11, 12] },
-  { id: 'filosofia-para-ninos', title: 'Filosofía para niños', instructor: 'Olimpia', days: saturday, start: '10:00', end: '11:00', termSessions: [11, 12] },
+  { id: 'introduccion-a-la-filosofia', title: 'Introducción a la Filosofía', instructor: 'Olimpia', days: tuesdayThursday, start: '17:00', end: '18:00', termSessions: [33, 34] },
+  { id: 'introduccion-a-la-antropologia', title: 'Introducción a la Antropología', instructor: null, days: tuesdayThursday, start: '18:00', end: '19:00', termSessions: [33, 34] },
+  { id: 'historia-evolutiva-del-arte', title: 'Historia Evolutiva del Arte', instructor: 'Alex', days: tuesdayThursday, start: '16:00', end: '17:00', termSessions: [33, 34], classPlanPending: true },
+  { id: 'el-arte-de-ser-empresario', title: 'El arte de ser empresario', instructor: 'Ing. Marcos Constandse Madrazo', days: saturday, start: '11:00', end: '13:00', termSessions: [11, 12] },
+  { id: 'historia-de-las-religiones', title: 'Historia de las Religiones', instructor: 'Alex', days: saturday, start: '10:00', end: '11:00', termSessions: [11, 12], classPlanPending: true },
+  { id: 'filosofia-para-ninos', title: 'Filosofía para niños', instructor: 'Olimpia', days: saturday, start: '10:00', end: '11:00', termSessions: [11, 12], classPlanPending: true },
 ];
+
+export function schoolYearSessions(termSessions: readonly [number, number]) {
+  return termSessions[0] + termSessions[1];
+}
 
 const onlineCourses = new Map(onlineCatalog.map(course => [course.id, course]));
 
