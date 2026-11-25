@@ -1,5 +1,6 @@
 import 'server-only';
 import { cache } from 'react';
+import { unstable_rethrow } from 'next/navigation';
 import { qaGateEnabled } from '@/lib/qa-gate';
 import { z } from 'zod';
 import { getSupabaseConfig, isSupabaseConfigured } from '@/lib/supabase/config';
@@ -49,6 +50,7 @@ export const readQaResources = cache(async (kind: ResourceKind) => {
     if (!response.ok) throw new Error('HTTP ' + response.status);
     return z.array(resourceRow).parse(await response.json());
   } catch (error) {
+    unstable_rethrow(error);
     console.error('QA resources unavailable', kind, error instanceof Error ? error.message : '');
     throw new Error('No fue posible cargar los recursos de QA');
   }
