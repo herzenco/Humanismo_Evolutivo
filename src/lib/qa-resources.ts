@@ -16,15 +16,29 @@ import type { Language } from '@/lib/site';
 
 const qaSupabaseUrl = 'https://nywgzeucqbfgvyjfmvgt.supabase.co';
 
+export function getQaResourceConnection() {
+  const token = process.env.QA_RESOURCE_READER_TOKEN?.trim();
+  if (!token || !/^[a-f0-9]{64}$/.test(token)) return null;
+
+  const dedicatedKey = process.env.QA_RESOURCE_SUPABASE_PUBLISHABLE_KEY?.trim();
+  if (dedicatedKey) {
+    return dedicatedKey.startsWith('sb_publishable_')
+      ? { url: qaSupabaseUrl, publishableKey: dedicatedKey, token }
+      : null;
+  }
+
+  const legacyConfig = isSupabaseConfigured ? getSupabaseConfig() : null;
+  return legacyConfig?.url === qaSupabaseUrl ? { ...legacyConfig, token } : null;
+}
+
 export function qaResourceReaderConfigured() {
-  return isSupabaseConfigured && getSupabaseConfig().url === qaSupabaseUrl &&
-    /^[a-f0-9]{64}$/.test(process.env.QA_RESOURCE_READER_TOKEN ?? '');
+  return getQaResourceConnection() !== null;
 }
 
 export const readQaResources = cache(async (kind: ResourceKind) => {
-  if (!qaResourceReaderConfigured()) return [];
-  const { url, publishableKey } = getSupabaseConfig();
-  const token = process.env.QA_RESOURCE_READER_TOKEN;
+  const connection = getQaResourceConnection();
+  if (!connection) return [];
+  const { url, publishableKey, token } = connection;
   try {
     const response = await fetch(url + '/rest/v1/rpc/qa_public_resource_entries', {
       method: 'POST',
