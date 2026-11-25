@@ -19,7 +19,7 @@ const hooks = registerHooks({
 const { POST } = await import('../src/app/api/book-downloads/route.ts');
 hooks.deregister();
 
-const origin = 'http://localhost';
+const origin = 'https://qa.humanismoevolutivo.com';
 function submit(overrides = {}) {
   return POST(new Request(origin + '/api/book-downloads', {
     method: 'POST',
