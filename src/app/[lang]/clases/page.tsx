@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import Link from '@/components/LocalizedLink';
 import JsonLd from '@/components/seo/JsonLd';
 import PageWrapper from '@/components/layout/PageWrapper';
-import { onlineSchoolCourse, schoolBreak, schoolCoursePath, schoolCourses, schoolHolidays, schoolTerms } from '@/data/school-calendar-2027';
+import { schoolBreak, schoolCoursePath, schoolCourses, schoolHolidays, schoolTerms, schoolYearSessions } from '@/data/school-calendar-2027';
+import { schoolCoursePreviews } from '@/data/school-course-previews';
 import { pageMetadata } from '@/lib/seo';
 import { absoluteUrl, EDUCATION_WAITLIST_URL, isLanguage } from '@/lib/site';
 import styles from './classes.module.css';
@@ -30,13 +31,13 @@ const copy = {
     first: 'Primer periodo',
     second: 'Segundo periodo',
     instructor: 'Docente',
-    instructorPending: 'Por confirmar',
+    instructorPending: 'Docente por confirmar',
     courseDetails: 'Ver curso',
     break: 'Semana Santa',
     holidays: 'Días festivos durante el ciclo',
     onSite: 'Presencial',
-    online: 'En línea',
-    lessons: 'lecciones',
+    sessions: 'sesiones',
+    planPending: 'Plan de clases pendiente',
     period: 'Calendario Escolar 2027. Horarios en hora de Cancún. Consulta la sede en la página de cada curso.',
     saturdayNote: 'Las clases de los sábados se imparten en fechas seleccionadas.',
     portal: 'Portal educativo',
@@ -52,13 +53,13 @@ const copy = {
     first: 'First term',
     second: 'Second term',
     instructor: 'Instructor',
-    instructorPending: 'To be confirmed',
+    instructorPending: 'Instructor to be confirmed',
     courseDetails: 'View course',
     break: 'Holy Week break',
     holidays: 'Holidays during term',
     onSite: 'In person',
-    online: 'Online',
-    lessons: 'lessons',
+    sessions: 'sessions',
+    planPending: 'Class plan pending',
     period: '2027 school calendar. Times are local to Cancún. See each course page for the venue.',
     saturdayNote: 'Saturday classes are held on selected dates.',
     portal: 'Education portal',
@@ -96,14 +97,14 @@ export default async function ClassesPage({ params }: Props) {
       '@type': 'ItemList',
       name: text.courses,
       itemListElement: schoolCourses.map((course, index) => {
-        const online = onlineSchoolCourse(course.id);
+        const summary = schoolCoursePreviews[course.id]?.[lang]?.summary;
         const url = absoluteUrl(schoolCoursePath(course.id), lang);
         return {
           '@type': 'ListItem', position: index + 1, url,
           item: {
             '@type': 'Course', name: course.title, url,
             provider: { '@type': 'Organization', '@id': `${absoluteUrl('/')}#fundacion`, name: 'Fundación Humanismo Evolutivo' },
-            ...(online && lang === 'es' ? { description: online.description } : {}),
+            ...(summary ? { description: summary } : {}),
           },
         };
       }),
@@ -130,13 +131,15 @@ export default async function ClassesPage({ params }: Props) {
       <div className="design-section-heading"><h2 id="cursos-title">{text.courses}</h2></div>
       <ul className={styles.courseGrid}>
         {schoolCourses.map(course => {
-          const online = onlineSchoolCourse(course.id);
+          const summary = schoolCoursePreviews[course.id]?.[lang]?.summary;
+          const sessions = schoolYearSessions(course.termSessions);
           return <li key={course.id} id={`curso-${course.id}`}>
             <Link href={schoolCoursePath(course.id)} className={styles.courseLink} aria-label={`${text.courseDetails}: ${course.title}`}>
               <h3>{course.title}</h3>
-              {online && lang === 'es' && <p>{online.description}</p>}
-              <p>{text.onSite}{online && ` / ${text.online} · ${online.lessons.length} ${text.lessons}`}</p>
-              <p>{text.instructor}: {course.instructor ?? text.instructorPending}</p>
+              {summary ? <p>{summary}</p> : null}
+              <p>{text.onSite} · {sessions} {text.sessions}</p>
+              <p>{course.instructor ? `${text.instructor}: ${course.instructor}` : text.instructorPending}</p>
+              {course.classPlanPending ? <p className={styles.planPending}>{text.planPending}</p> : null}
               <span className={`design-text-link ${styles.courseLinkLabel}`}>{text.courseDetails}<ArrowRight size={17} aria-hidden="true" /></span>
             </Link>
           </li>;
